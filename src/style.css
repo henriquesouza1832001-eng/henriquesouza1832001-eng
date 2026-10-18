@@ -2181,3 +2181,23 @@ a:hover .arrow.diagonal {
   .folio-project.in-view .art-station:nth-child(4) { animation-delay: .67s; }
   .folio-project.in-view .art-station:nth-child(5) { animation-delay: .88s; }
 }
+
+.folio-section-heading > .folio-projects-heading {
+  flex: 1 1 auto;
+  max-width: none;
+  margin: 0;
+  font-size: clamp(38px, 5.1vw, 70px);
+  font-weight: 620;
+  line-height: .94;
+  letter-spacing: -.075em;
+}
+@media (max-width: 900px) {
+  .folio-section-heading > .folio-projects-heading {
+    font-size: clamp(36px, 6.2vw, 54px);
+  }
+}
+@media (max-width: 640px) {
+  .folio-section-heading > .folio-projects-heading {
+    font-size: 38px;
+  }
+}

@@ -625,9 +625,11 @@ function PortfolioHome() {
             </a>
           </div>
         </section>
-        <section className="folio-work" id="projetos" aria-label="Projetos">
+        <section className="folio-work" id="projetos" aria-labelledby="projects-heading">
           <div className="folio-section-heading" id="codigo">
-            <span>Produtos construídos de ponta a ponta.</span>
+            <h2 className="folio-projects-heading" id="projects-heading">
+              Projetos
+            </h2>
             <a href={GH} target="_blank" rel="noreferrer">
               Meu GitHub <Arrow diagonal />
             </a>

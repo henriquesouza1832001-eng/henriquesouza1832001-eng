@@ -247,7 +247,7 @@ function Home() {
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="hero-kicker">Henrique Souza <span>—</span> Software & produto</p>
+            <p className="hero-kicker">Henrique Souza <span>—</span> Engenharia de software</p>
             <h1 id="hero-title">Eu projeto<br />e construo<br /><em>software.</em></h1>
             <div className="hero-bottom">
               <p>Sistemas web que juntam produto, regras de negócio e operação.</p>
@@ -376,10 +376,10 @@ function App() {
   const match = window.location.pathname.match(/^\/projetos\/([^/]+)\/?$/);
   const project = match ? projectById[match[1]] : null;
   useEffect(() => {
-    const title = project ? `${project.name} — Henrique Souza` : "Henrique Souza — Software & produto";
+    const title = project ? `${project.name} — Henrique Souza` : "Henrique Souza — Engenheiro de software";
     document.title = title;
     document.querySelector('meta[property="og:title"]')?.setAttribute("content", title);
-    document.querySelector('meta[name="description"]')?.setAttribute("content", project ? project.summary : "Henrique Souza projeta e constrói software: produtos web, sistemas e código público.");
+    document.querySelector('meta[name="description"]')?.setAttribute("content", project ? project.summary : "Henrique Souza é engenheiro de software em Belo Horizonte. Projetos web com regras de negócio, dados, integrações e código público.");
   }, [project]);
   return project ? (
     <div className="portfolio detail-portfolio">

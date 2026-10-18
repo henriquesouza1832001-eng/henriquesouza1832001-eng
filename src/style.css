@@ -388,7 +388,7 @@ button { font: inherit; }
   .main-nav { position: absolute; top: 70px; right: 0; left: 0; padding: 22px 24px 28px; display: none; align-items: flex-start; flex-direction: column; gap: 22px; background: var(--night); }
   .main-nav.is-open { display: flex; }
   .main-nav a { font-size: 18px; }
-  .hero-section { min-height: 710px; min-height: calc(95svh - 70px); padding: 62px 23px 66px; align-items: flex-start; }
+  .hero-section { min-height: clamp(520px, calc(84svh - 70px), 710px); padding: 62px 23px 66px; align-items: flex-start; }
   .hero-kicker { margin: 0 0 26px 3px; font-size: 13px; }
   .hero-section h1 { font-size: clamp(67px, 15vw, 96px); line-height: .91; letter-spacing: -.065em; }
   .hero-bottom { margin-top: 34px; align-items: flex-start; flex-direction: column; gap: 20px; }

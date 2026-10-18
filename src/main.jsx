@@ -151,12 +151,46 @@ function Header({ detail = false }) {
 }
 
 function ProjectComposition({ project }) {
+  const drawing = {
+    quarta: (
+      <svg viewBox="0 0 600 360" aria-hidden="true">
+        <path className="map-street" d="M-20 70 174 119 388 79 626 128M-20 245 162 205 338 242 622 194M88-20l41 124-25 126 57 150M302-20l-18 132 43 129-16 139M509-20l-34 110 53 117-41 153" />
+        <path className="map-route" d="m119 104 166 28 177-35 53 117-177 28-74 119" />
+        <g className="map-pin"><circle cx="119" cy="104" r="17"/><circle cx="119" cy="104" r="5"/><circle cx="285" cy="132" r="17"/><circle cx="285" cy="132" r="5"/><circle cx="462" cy="97" r="17"/><circle cx="462" cy="97" r="5"/><circle cx="515" cy="214" r="17"/><circle cx="515" cy="214" r="5"/><circle cx="338" cy="242" r="17"/><circle cx="338" cy="242" r="5"/></g>
+      </svg>
+    ),
+    pulso: (
+      <svg viewBox="0 0 600 360" aria-hidden="true">
+        <path className="signal-line" d="M65 82h131l50 75h118l48-91h120M65 180h110l70-23h130l44 93h113M65 279h145l35-122m130 0 44 131h113" />
+        <circle className="signal-halo" cx="300" cy="157" r="86"/><circle className="signal-core" cx="300" cy="157" r="35"/>
+        <circle className="signal-node" cx="65" cy="82" r="9"/><circle className="signal-node" cx="65" cy="180" r="9"/><circle className="signal-node" cx="65" cy="279" r="9"/><circle className="signal-node" cx="532" cy="66" r="9"/><circle className="signal-node" cx="532" cy="250" r="9"/><circle className="signal-node" cx="532" cy="288" r="9"/>
+      </svg>
+    ),
+    sim: (
+      <svg viewBox="0 0 600 360" aria-hidden="true">
+        <rect className="invite-card" x="45" y="62" width="215" height="235" rx="2"/><rect className="invite-card invite-card-back" x="67" y="40" width="215" height="235" rx="2"/>
+        <path className="invite-rule" d="M103 98h143M103 235h143"/><text className="invite-script" x="116" y="170">vocês</text>
+        <path className="group-branch" d="M355 109h92v54h93M447 163v75h93"/><circle className="group-dot" cx="355" cy="109" r="10"/><circle className="group-dot" cx="540" cy="163" r="10"/><circle className="group-dot" cx="540" cy="238" r="10"/>
+      </svg>
+    ),
+    rota: (
+      <svg viewBox="0 0 600 360" aria-hidden="true">
+        <path className="route-terrain" d="M-30 271c88-88 111-124 200-63s103 57 146-6 92-64 135 0 100 52 178-40M-26 128c70 34 132 29 190-20s117-56 175 5 122 73 280 6"/>
+        <path className="route-main" d="M86 250c34-77 75-82 135-37s91 31 124-20 75-51 110 4 54 53 88 23"/>
+        <g className="route-stop"><circle cx="86" cy="250" r="21"/><circle cx="221" cy="213" r="21"/><circle cx="345" cy="193" r="21"/><circle cx="455" cy="197" r="21"/><circle cx="543" cy="220" r="21"/></g>
+      </svg>
+    ),
+    trilha: (
+      <svg viewBox="0 0 600 360" aria-hidden="true">
+        <path className="trail-street" d="M-20 52 161 100l171-45 303 67M-30 185l190-28 169 72 293-59M-20 315l191-85 161 83 287-71M65-20l29 99 65 79-13 133 58 129M282-20l-17 115 90 72-10 118 48 104M495-20l-39 132 60 94-39 130"/>
+        <path className="trail-route" d="m95 79 70 100-13 51 113 48 90-91 100 48 61-83"/>
+        <circle className="trail-start" cx="95" cy="79" r="13"/><circle className="trail-stop" cx="165" cy="179" r="10"/><circle className="trail-stop" cx="265" cy="278" r="10"/><circle className="trail-stop" cx="355" cy="187" r="10"/><circle className="trail-stop" cx="455" cy="235" r="10"/><circle className="trail-end" cx="516" cy="152" r="13"/>
+      </svg>
+    ),
+  }[project.id];
   return (
-    <div className={`project-composition composition-${project.id}`} role="img" aria-label={project.composition.join(", ")}>
-      {project.composition.map((word, index) => (
-        <span key={word} className={`composition-word composition-word-${index + 1}`}>{word}</span>
-      ))}
-      {project.id === "sim" && <span className="composition-amp" aria-hidden="true">&</span>}
+    <div className={`project-composition composition-${project.id}`} role="img" aria-label={project.composition.join(" · ")}>
+      {drawing}
     </div>
   );
 }

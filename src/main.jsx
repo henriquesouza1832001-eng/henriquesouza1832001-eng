@@ -122,13 +122,17 @@ function Arrow({ diagonal = false }) {
   );
 }
 
+function Mark() {
+  return <span className="mark" aria-hidden="true"><span>H</span><i /></span>;
+}
+
 function Header({ detail = false }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const home = detail ? "/" : "#inicio";
   return (
     <header className="site-header">
       <a className="wordmark" href={home} aria-label="Henrique Souza, início">
-        <img className="brand-logo" src="/assets/logo-hs.png" alt="" />
+        <Mark />
         <span className="wordmark-name">Henrique Souza</span>
       </a>
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}>
@@ -207,6 +211,72 @@ function ProjectSpread({ project }) {
   );
 }
 
+function ChannelReceiver({ project, onSelect }) {
+  const nextChannel = () => {
+    const index = projects.findIndex((item) => item.id === project.id);
+    onSelect(projects[(index + 1) % projects.length].id);
+  };
+  const turnOnWheel = (event) => {
+    if (Math.abs(event.deltaY) < 8 && Math.abs(event.deltaX) < 8) return;
+    event.preventDefault();
+    nextChannel();
+  };
+
+  return (
+    <div className="receiver">
+      <div className="receiver-caption">
+        <span>ESTAÇÃO DE PROJETOS</span>
+        <span>SOFTWARE · BELO HORIZONTE</span>
+      </div>
+      <div className="receiver-body">
+        <section className={`receiver-screen screen-${project.id}`} aria-live="polite" key={project.id}>
+          <div className="screen-header">
+            <span><i /> CANAL ATIVO</span>
+            <span>PROJETO PÚBLICO</span>
+          </div>
+          <div className="screen-content">
+            <ProjectComposition project={project} />
+            <div className="screen-copy">
+              <span className="screen-project-name">{project.name}</span>
+              <h2>{project.storyTitle}</h2>
+              <p>{project.summary}</p>
+              <a href={`/projetos/${project.id}`}>Ver o projeto por dentro <Arrow diagonal /></a>
+            </div>
+          </div>
+        </section>
+        <aside className="receiver-controls">
+          <Mark />
+          <span className="receiver-label">VOLUME</span>
+          <span className="receiver-meter"><i /></span>
+          <span className="receiver-label">CANAL</span>
+          <button className="receiver-wheel" type="button" aria-label={`Avançar canal depois de ${project.name}`} onClick={nextChannel} onWheel={turnOnWheel}>
+            <span />
+          </button>
+          <span className="receiver-label receiver-hint">CLIQUE<br />OU GIRE</span>
+        </aside>
+      </div>
+      <nav className="channel-switcher" aria-label="Canais do portfólio">
+        {projects.map((item) => (
+          <button key={item.id} type="button" className={item.id === project.id ? "is-active" : ""} aria-pressed={item.id === project.id} onClick={() => onSelect(item.id)}>
+            <span>{item.name}</span><Arrow diagonal />
+          </button>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
+function ProjectMarquee() {
+  const names = [...projects, ...projects].map((project) => project.name);
+  return (
+    <div className="project-marquee" aria-label="Projetos em destaque">
+      <div className="project-marquee-track" aria-hidden="true">
+        {names.map((name, index) => <span key={`${name}-${index}`}>{name}<i>✳</i></span>)}
+      </div>
+    </div>
+  );
+}
+
 function Home() {
   const [activeProject, setActiveProject] = useState("quarta");
   useEffect(() => {
@@ -263,21 +333,21 @@ function Home() {
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="hero-kicker">Engenheiro de software <span>·</span> Belo Horizonte</p>
-            <h1 id="hero-title">Eu projeto<br />e construo<br /><em>software.</em></h1>
+            <p className="hero-kicker">Henrique Souza <span>·</span> Engenheiro de software</p>
+            <h1 id="hero-title">Software para<br /><em>o mundo real.</em></h1>
             <div className="hero-bottom">
-              <p>Do modelo de dados à aplicação em produção.</p>
-              <a href="#projetos">Conheça os projetos <span aria-hidden="true">↓</span></a>
+              <p>Do primeiro modelo de dados à aplicação publicada. Abra os projetos e conheça as decisões de engenharia por trás deles.</p>
+              <a href="#projetos">Explorar projetos <span aria-hidden="true">↓</span></a>
             </div>
           </div>
-          <figure className="hero-brand-mark" aria-hidden="true">
-            <img src="/assets/logo-hs.png" alt="" fetchPriority="high" />
-          </figure>
+          <ChannelReceiver project={projectById[activeProject]} onSelect={setActiveProject} />
         </section>
+
+        <ProjectMarquee />
 
         <section className="work-section" id="projetos" aria-labelledby="work-title">
           <div className="work-heading">
-            <h2 id="work-title">Projetos com<br />código público.</h2>
+            <h2 id="work-title">Produtos digitais.<br />Código público.</h2>
             <a href={GITHUB} target="_blank" rel="noreferrer">Ver repositórios públicos <Arrow diagonal /></a>
           </div>
           <nav className="project-index" aria-label="Ir direto a um projeto">
@@ -315,7 +385,7 @@ function Home() {
         </section>
       </main>
       <footer className="site-footer">
-        <a className="footer-wordmark" href="#inicio"><img className="brand-logo" src="/assets/logo-hs.png" alt="" /> Henrique Souza</a>
+        <a className="footer-wordmark" href="#inicio"><Mark /> Henrique Souza</a>
         <span>Belo Horizonte, Brasil</span>
         <a href={GITHUB} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
         <a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>

@@ -598,8 +598,9 @@ function PortfolioHome() {
             return bounds.top <= marker && bounds.bottom > marker;
           })
           .at(-1);
-        if (home && focusedProject)
-          home.dataset.activeProject = focusedProject.dataset.project;
+        if (home)
+          home.dataset.activeProject =
+            focusedProject?.dataset.project || "quarta";
       });
     };
     updateProgress();

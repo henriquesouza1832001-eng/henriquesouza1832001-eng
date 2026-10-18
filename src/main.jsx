@@ -333,11 +333,11 @@ function Home() {
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="hero-kicker">Henrique Souza <span>·</span> Engenheiro de software</p>
-            <h1 id="hero-title">Software para<br /><em>o mundo real.</em></h1>
+            <p className="hero-kicker">Henrique Souza <span>·</span> Software &amp; produto</p>
+            <h1 id="hero-title">Desenvolvo<br />produtos<br /><em>digitais.</em></h1>
             <div className="hero-bottom">
-              <p>Do primeiro modelo de dados à aplicação publicada. Abra os projetos e conheça as decisões de engenharia por trás deles.</p>
-              <a href="#projetos">Explorar projetos <span aria-hidden="true">↓</span></a>
+              <p>Da primeira ideia à publicação: produtos digitais com regras claras, código público e acesso direto.</p>
+              <a href="#projetos">Veja o que já está no ar <span aria-hidden="true">↓</span></a>
             </div>
           </div>
           <ChannelReceiver project={projectById[activeProject]} onSelect={setActiveProject} />
@@ -347,7 +347,7 @@ function Home() {
 
         <section className="work-section" id="projetos" aria-labelledby="work-title">
           <div className="work-heading">
-            <h2 id="work-title">Produtos digitais.<br />Código público.</h2>
+            <h2 id="work-title">Projetos em uso.<br />Código aberto.</h2>
             <a href={GITHUB} target="_blank" rel="noreferrer">Ver repositórios públicos <Arrow diagonal /></a>
           </div>
           <nav className="project-index" aria-label="Ir direto a um projeto">
@@ -371,6 +371,40 @@ function Home() {
               <a href={GITHUB} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
               <a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
             </div>
+          </div>
+        </section>
+
+        <section className="engineering-section" aria-labelledby="engineering-title">
+          <p className="engineering-index" aria-hidden="true">+1</p>
+          <div className="engineering-copy">
+            <p className="section-eyebrow">Como eu trabalho</p>
+            <h2 id="engineering-title">O código é ferramenta.<br /><em>Entender é trabalho.</em></h2>
+            <p>Antes da interface, existe um processo. Eu procuro entender quem usa, quais regras não podem falhar e o que precisa acontecer depois de cada ação.</p>
+            <div className="engineering-steps" aria-label="Etapas do trabalho">
+              <span>Entender</span><i /><span>Modelar</span><i /><span>Construir</span><i /><span>Entregar</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="source-section" id="codigo" aria-labelledby="source-title">
+          <div className="source-heading">
+            <div>
+              <p className="section-eyebrow">Projetos públicos no GitHub</p>
+              <h2 id="source-title">Sem caixa-preta.<br /><em>Está tudo aqui.</em></h2>
+            </div>
+            <a href={GITHUB} target="_blank" rel="noreferrer">Abrir meu GitHub <Arrow diagonal /></a>
+          </div>
+          <div className="source-list">
+            {projects.filter((project) => project.code).map((project) => (
+              <article className="source-card" key={project.id}>
+                <div className="source-card-heading">
+                  <a href={`${project.repo}/${project.repositoryPath}`} target="_blank" rel="noreferrer">{project.name}<Arrow diagonal /></a>
+                  <span>{project.language}</span>
+                </div>
+                <pre><code>{project.code}</code></pre>
+                <p>{project.codeNote}</p>
+              </article>
+            ))}
           </div>
         </section>
 

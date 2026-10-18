@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 
@@ -8,6 +8,24 @@ const EMAIL = "henriquesouza1832001@gmail.com";
 const CONTACT = `mailto:${EMAIL}?subject=${encodeURIComponent("Conversa sobre oportunidade ou projeto")}`;
 
 const projects = [
+  {
+    id: "pulso",
+    name: "PULSO",
+    url: "https://pulso-web.henriquesouza.workers.dev/",
+    repo: `${GITHUB}/Pulso`,
+    summary: "O PULSO organiza acontecimentos públicos por fonte, lugar e confiança.",
+    language: "python",
+    code: `if s.source_classes and s.source_classes <= SOCIAL_CLASSES:
+    value = min(value, SOCIAL_ONLY_CAP)`,
+    codeNote: "Sinais baseados apenas em fontes sociais têm um limite de confiança.",
+    repositoryPath: "blob/main/engine/pulso_engine/scoring/confidence.py",
+    storyTitle: "Um sinal precisa de contexto.",
+    story: "O PULSO organiza informações por evento, lugar e origem. Severidade e confiança são tratadas separadamente para indicar o que as fontes realmente sustentam.",
+    proofTitle: "A fonte muda o peso do sinal.",
+    proof: "Confirmações oficiais elevam a confiança. Contradições e fontes duplicadas reduzem o peso; fontes sociais, sozinhas, não bastam para confirmar um acontecimento.",
+    composition: ["Origem", "Evento", "Contexto"],
+    cta: "Abrir o PULSO",
+  },
   {
     id: "quarta",
     name: "Quarta Amstel",
@@ -34,24 +52,6 @@ if (!sub) {
     cta: "Acessar o produto",
   },
   {
-    id: "pulso",
-    name: "PULSO",
-    url: "https://pulso-web.henriquesouza.workers.dev/",
-    repo: `${GITHUB}/Pulso`,
-    summary: "O PULSO organiza acontecimentos públicos por fonte, lugar e confiança.",
-    language: "python",
-    code: `if s.source_classes and s.source_classes <= SOCIAL_CLASSES:
-    value = min(value, SOCIAL_ONLY_CAP)`,
-    codeNote: "Sinais baseados apenas em fontes sociais têm um limite de confiança.",
-    repositoryPath: "blob/main/engine/pulso_engine/scoring/confidence.py",
-    storyTitle: "Um sinal precisa de contexto.",
-    story: "O PULSO organiza informações por evento, lugar e origem. Severidade e confiança são tratadas separadamente para indicar o que as fontes realmente sustentam.",
-    proofTitle: "A fonte muda o peso do sinal.",
-    proof: "Confirmações oficiais elevam a confiança. Contradições e fontes duplicadas reduzem o peso; fontes sociais, sozinhas, não bastam para confirmar um acontecimento.",
-    composition: ["Origem", "Evento", "Contexto"],
-    cta: "Abrir o PULSO",
-  },
-  {
     id: "sim",
     name: "e&t",
     url: "https://tudocomecoudeumsim.pages.dev/",
@@ -75,24 +75,6 @@ return !groups.length || groups.includes(guest.group_id)
     cta: "Conhecer e&t",
   },
   {
-    id: "rota",
-    name: "Rota di Buteco",
-    url: "https://rotadibuteco.web.app/",
-    repo: `${GITHUB}/rotadibuteco`,
-    summary: "Visitas, avaliações e roteiros compartilhados durante o Comida di Buteco em Belo Horizonte.",
-    status: "A edição deste ano encerrou. O próximo ciclo volta com um redesign completo.",
-    language: "text",
-    code: null,
-    codeNote: null,
-    repositoryPath: "blob/master/README.md",
-    storyTitle: "A cidade vira um plano em grupo.",
-    story: "Durante a edição do Comida di Buteco em Belo Horizonte, o app conectou bares, check-ins, avaliações e roteiros compartilhados.",
-    proofTitle: "Uma visita atualiza o roteiro de todos.",
-    proof: "O check-in registra a visita e alimenta o feed e o ranking do grupo. O produto atual documenta a edição encerrada; a próxima edição será redesenhada.",
-    composition: ["Visitas", "Avaliações", "Grupo"],
-    cta: "Ver a edição encerrada",
-  },
-  {
     id: "trilha",
     name: "Trilha BH",
     url: "https://trilhabh.web.app/",
@@ -110,6 +92,25 @@ return !groups.length || groups.includes(guest.group_id)
     composition: ["Mapa", "Roteiro", "Amigos"],
     cta: "Abrir versão pública",
   },
+  {
+    id: "rota",
+    name: "Rota di Buteco",
+    url: "https://rotadibuteco.web.app/",
+    repo: `${GITHUB}/rotadibuteco`,
+    summary: "Visitas, avaliações e roteiros compartilhados durante o Comida di Buteco em Belo Horizonte.",
+    status: "A edição deste ano encerrou. O próximo ciclo volta com um redesign completo.",
+    language: "text",
+    code: null,
+    codeNote: null,
+    repositoryPath: "blob/master/README.md",
+    storyTitle: "A cidade vira um plano em grupo.",
+    story: "Durante a edição do Comida di Buteco em Belo Horizonte, o app conectou bares, check-ins, avaliações e roteiros compartilhados.",
+    proofTitle: "Uma visita atualiza o roteiro de todos.",
+    proof: "O check-in registra a visita e alimenta o feed e o ranking do grupo. O produto atual documenta a edição encerrada; a próxima edição será redesenhada.",
+    composition: ["Visitas", "Avaliações", "Grupo"],
+    cta: "Ver a edição encerrada",
+  },
+
 ];
 
 const projectById = Object.fromEntries(projects.map((project) => [project.id, project]));
@@ -278,7 +279,7 @@ function ProjectMarquee() {
 }
 
 function Home() {
-  const [activeProject, setActiveProject] = useState("quarta");
+  const [activeProject, setActiveProject] = useState("pulso");
   useEffect(() => {
     const items = document.querySelectorAll(".project-spread, .about-section, .contact-section");
     const hasIntersectionObserver = "IntersectionObserver" in window;
@@ -481,3 +482,4 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+

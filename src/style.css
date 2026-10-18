@@ -594,7 +594,16 @@ a:hover .arrow.diagonal {
   }
   .folio-type {
     margin-bottom: 15px;
-    font-size: 13px;
+    font-size: 15px;
+  }
+  .folio-project-symbol {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 16px;
+  }
+  .folio-project-symbol svg {
+    width: 43px;
+    height: 43px;
   }
   .folio-links a {
     font-size: 16px;
@@ -680,7 +689,7 @@ a:hover .arrow.diagonal {
 }
 .folio-chapter {
   display: flex;
-  min-height: min(100svh, 900px);
+  min-height: min(78svh, 760px);
   flex-direction: column;
   justify-content: center;
   padding: 100px 0;
@@ -688,7 +697,7 @@ a:hover .arrow.diagonal {
   scroll-margin-top: 90px;
 }
 .folio-chapter:first-child {
-  padding-top: 70px;
+  padding-top: 58px;
 }
 .folio-copy {
   max-width: 640px;
@@ -911,6 +920,42 @@ a:hover .arrow.diagonal {
 }
 .folio-home .folio-project.in-view .folio-copy {
   animation: folio-copy-arrive 0.55s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+.folio-project {
+  --project-accent: #d94d35;
+}
+.folio-quarta {
+  --project-accent: #9b2336;
+}
+.folio-pulso {
+  --project-accent: #087a90;
+}
+.folio-sim {
+  --project-accent: #765444;
+}
+.folio-trilha {
+  --project-accent: #52684e;
+}
+.folio-rota {
+  --project-accent: #355d46;
+}
+.folio-project-symbol {
+  width: 102px;
+  height: 102px;
+  margin-bottom: 22px;
+  display: grid;
+  place-items: center;
+  color: var(--project-accent);
+  border: 1px solid color-mix(in srgb, var(--project-accent) 32%, transparent);
+  background: color-mix(in srgb, var(--project-accent) 8%, var(--folio-paper));
+}
+.folio-project-symbol svg {
+  width: 62px;
+  height: 62px;
+  stroke-width: 1.25;
+}
+.folio-project .folio-copy h2 {
+  color: var(--project-accent);
 }
 .folio-hero-kicker {
   font-size: 15px;

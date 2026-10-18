@@ -509,6 +509,9 @@ function PortfolioProject({ project }) {
                 ? "PRODUTO DIGITAL · EM FINALIZAÇÃO"
                 : "PRODUTO DIGITAL · CÓDIGO PÚBLICO"}
         </p>
+        <div className="folio-project-symbol" aria-hidden="true">
+          <ProjectSymbol id={project.id} />
+        </div>
         <h2>{projectNames[project.id]}</h2>
         <p className="folio-description">{summaries[project.id]}</p>
         <div className="folio-links">

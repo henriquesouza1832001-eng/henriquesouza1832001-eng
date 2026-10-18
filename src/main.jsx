@@ -133,7 +133,7 @@ function Header({ detail = false }) {
   return (
     <header className="site-header">
       <a className="wordmark" href={home} aria-label="Henrique Souza, início">
-        <span className="wordmark-symbol">h<span>.</span>s</span>
+        <img className="brand-logo" src="/assets/logo-hs.png" alt="" />
         <span className="wordmark-name">Henrique Souza</span>
       </a>
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}>
@@ -220,7 +220,6 @@ function Home() {
               <a href="#projetos">Conheça os projetos <span aria-hidden="true">↓</span></a>
             </div>
           </div>
-          <div className="hero-stamp" aria-hidden="true"><span>HS</span><i /></div>
         </section>
 
         <section className="work-section" id="projetos" aria-labelledby="work-title">
@@ -253,13 +252,17 @@ function Home() {
         </section>
 
         <section className="contact-section">
-          <p>Tem um problema bom para resolver?</p>
+          <p>Para vagas em engenharia de software, colaboração ou um produto que precisa sair do papel.</p>
           <h2>Vamos<br /><em>conversar.</em></h2>
-          <a href={CONTACT}>Escreva para mim <Arrow diagonal /></a>
+          <div className="contact-actions">
+            <a href={CONTACT}>Falar sobre uma oportunidade <Arrow diagonal /></a>
+            <a className="contact-email" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <a className="contact-linkedin" href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
+          </div>
         </section>
       </main>
       <footer className="site-footer">
-        <a className="footer-wordmark" href="#inicio"><span className="wordmark-symbol">h<span>.</span>s</span> Henrique Souza</a>
+        <a className="footer-wordmark" href="#inicio"><img className="brand-logo" src="/assets/logo-hs.png" alt="" /> Henrique Souza</a>
         <span>Belo Horizonte, Brasil</span>
         <a href={GITHUB} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
         <a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>

@@ -482,10 +482,9 @@ function ProjectEvidence({ project }) {
               </React.Fragment>
             ))}
           </div>
-          <div className="folio-evidence-topline">
-            <span>Fluxo documentado</span>
+          <div className="folio-evidence-topline folio-flow-source">
             <a href={evidenceUrl} target="_blank" rel="noreferrer">
-              Ver no GitHub <Arrow diagonal />
+              Ver documentação <Arrow diagonal />
             </a>
           </div>
         </>
@@ -496,24 +495,19 @@ function ProjectEvidence({ project }) {
 
 const projectPresentation = {
   quarta: {
-    summary:
-      "Descoberta de bares, campanhas e encontros para uma cidade em movimento.",
+    summary: "Um mapa para descobrir bares e acompanhar as campanhas da quarta-feira.",
   },
   pulso: {
-    summary:
-      "Fontes públicas organizadas para entender o que acontece no Brasil e de onde vem cada sinal.",
+    summary: "Acontecimentos de fontes públicas, organizados por lugar, origem e confiança.",
   },
   sim: {
-    summary:
-      "Convite, site e organização da celebração no mesmo produto.",
+    summary: "Site, convites e organização da celebração para o casal e os convidados.",
   },
   trilha: {
-    summary:
-      "Roteiros colaborativos para descobrir bares de Belo Horizonte, no navegador ou no Android.",
+    summary: "Roteiros por bares de Belo Horizonte, planejados com amigos no navegador ou Android.",
   },
   rota: {
-    summary:
-      "A edição 2026 conectou bares, avaliações e roteiros em grupo. O próximo ciclo terá redesign completo.",
+    summary: "A edição 2026 reuniu check-ins, avaliações e roteiros de bares. O próximo ciclo será redesenhado.",
   },
 };
 
@@ -626,7 +620,7 @@ function PortfolioHome() {
           </h1>
           <div className="folio-hero-bottom">
             <p>
-              Começo pelo processo: defino as regras, desenho o sistema e acompanho a implementação até a produção.
+              Primeiro entendo o processo. Depois desenho o sistema, implemento e acompanho sua entrada em produção.
             </p>
             <a href="#projetos">
               Conheça meu trabalho <span>↓</span>
@@ -656,9 +650,9 @@ function PortfolioHome() {
           </div>
           <div className="folio-about-copy">
             <p>
-              Atuo com engenharia de software em Belo Horizonte e também
-              desenvolvo soluções para engenharia e construção civil, aproximando
-              o software da operação que ele precisa atender.
+              Desenvolvo software em Belo Horizonte e soluções para engenharia
+              e construção civil. A proximidade com esses processos orienta minhas
+              decisões de produto e arquitetura.
             </p>
             <div className="folio-about-links">
               <a href={GH} target="_blank" rel="noreferrer">
@@ -677,9 +671,9 @@ function PortfolioHome() {
         <section className="folio-contact">
           <div>
             <h2>
-              Vamos conversar
+              Vamos fazer
               <br />
-              <em>sobre sistemas.</em>
+              <em>funcionar.</em>
             </h2>
           </div>
           <a href={CONTACT}>

@@ -2444,3 +2444,96 @@ a:hover .arrow.diagonal {
     font-size: clamp(58px, 13vw, 82px);
   }
 }
+
+/* The two product journeys read as system flows, not miniature interface cards. */
+.folio-evidence-flow {
+  position: relative;
+  grid-template-columns:
+    minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr) 24px
+    minmax(0, 1fr);
+  align-content: center;
+  align-items: start;
+  gap: 8px;
+  padding-block: 18px 24px;
+}
+.folio-evidence-flow::before {
+  position: absolute;
+  top: 18px;
+  right: 12px;
+  left: 12px;
+  height: 1px;
+  content: "";
+  background: color-mix(in srgb, var(--project-accent) 56%, transparent);
+}
+.folio-evidence-flow span {
+  position: relative;
+  min-height: 108px;
+  display: block;
+  padding: 42px 3px 0;
+  border: 0;
+  color: #f5f3e8;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.3;
+}
+.folio-evidence-flow span::before {
+  position: absolute;
+  top: 12px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--project-accent);
+  border-radius: 50%;
+  content: "";
+  background: var(--project-surface);
+}
+.folio-evidence-flow b {
+  position: relative;
+  padding-top: 9px;
+  color: var(--project-accent);
+  font-size: 18px;
+}
+.folio-flow-source {
+  justify-content: flex-end;
+}
+.folio-flow-source > a {
+  color: var(--project-accent);
+}
+@media (max-width: 900px) {
+  .folio-evidence-flow {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-block: 8px 18px;
+  }
+  .folio-evidence-flow::before {
+    top: 15px;
+    right: auto;
+    bottom: 20px;
+    left: 8px;
+    width: 1px;
+    height: auto;
+  }
+  .folio-evidence-flow span {
+    min-height: 47px;
+    padding: 12px 0 8px 32px;
+    font-size: 17px;
+  }
+  .folio-evidence-flow span::before {
+    top: 16px;
+    left: 3px;
+  }
+  .folio-evidence-flow b {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .folio-evidence-flow {
+    padding-block: 0 12px;
+  }
+  .folio-evidence-flow span {
+    min-height: 43px;
+    font-size: 16px;
+  }
+  .folio-evidence-flow span::before {
+    top: 15px;
+  }
+}

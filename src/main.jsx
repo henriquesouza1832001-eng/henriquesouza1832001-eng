@@ -631,41 +631,62 @@ function PortfolioProject({ project }) {
 }
 
 function ProjectStage({ project }) {
-  const moveArtwork = (event) => {
-    if (event.pointerType === "touch") return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-    event.currentTarget.querySelectorAll("[data-depth]").forEach((layer) => {
-      const depth = Number(layer.dataset.depth);
-      layer.style.translate = `${-x * 24 * depth}px ${-y * 24 * depth}px`;
-    });
-  };
-  const resetArtwork = (event) =>
-    event.currentTarget.querySelectorAll("[data-depth]").forEach((layer) => {
-      layer.style.translate = "";
-    });
+  const story = caseStudies[project.id];
+  const sourceFile = story.file || "README.md";
+  const sourceLabel = sourceFile.split("/").at(-1);
   return (
     <div
       className={`folio-stage folio-${project.id}`}
       data-project={project.id}
     >
-      <a
-        key={project.id}
-        className="folio-art"
-        href={`/projetos/${project.id}`}
-        aria-label={`Ver case ${projectNames[project.id]}`}
-        onPointerMove={moveArtwork}
-        onPointerLeave={resetArtwork}
-      >
-        <ProjectGlyph id={project.id} />
-        <span className="art-open">
-          Ver case completo <Arrow diagonal />
-        </span>
-      </a>
-      <div className="folio-stage-caption">
-        <span>Em destaque</span>
-        <b>{projectNames[project.id]}</b>
+      <div className="folio-stage-topline">
+        <span>{story.code ? "Lógica do produto" : "Fluxo do produto"}</span>
+        <a
+          href={`${project.repo}/${story.repositoryPath}`}
+          target="_blank"
+          rel="noreferrer"
+          title={sourceFile}
+          aria-label={`Ver ${sourceFile} no GitHub`}
+        >
+          {sourceLabel} <Arrow diagonal />
+        </a>
+      </div>
+      <div className="folio-source-sheet" key={project.id}>
+        <div className="folio-source-heading">
+          <ProjectSymbol id={project.id} />
+          <div>
+            <span>Em destaque</span>
+            <h3 aria-live="polite" aria-atomic="true">
+              {projectNames[project.id]}
+            </h3>
+          </div>
+        </div>
+        {story.code ? (
+          <pre className="folio-source-code">
+            <code>{story.code}</code>
+          </pre>
+        ) : (
+          <div className="folio-source-flow">
+            {story.flow.map((step, index) => (
+              <React.Fragment key={step}>
+                <div>{step}</div>
+                {index < story.flow.length - 1 && (
+                  <span aria-hidden="true">↓</span>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        )}
+        <div className="folio-source-foot">
+          <span>
+            {story.code
+              ? "Trecho do repositório público"
+              : "Etapas descritas no repositório"}
+          </span>
+          <a href={project.repo} target="_blank" rel="noreferrer">
+            Abrir no GitHub <Arrow diagonal />
+          </a>
+        </div>
       </div>
     </div>
   );
@@ -696,7 +717,12 @@ function PortfolioHome() {
           )[0];
         if (current) setActiveProject(current.target.dataset.project);
       },
-      { rootMargin: "-38% 0px -38% 0px", threshold: 0 },
+      {
+        rootMargin: window.matchMedia("(max-width: 760px)").matches
+          ? "-54% 0px -16% 0px"
+          : "-38% 0px -38% 0px",
+        threshold: 0,
+      },
     );
     const revealObserver = new IntersectionObserver(
       (entries) =>

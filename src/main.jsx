@@ -4,6 +4,7 @@ import "./style.css";
 
 const GH = "https://github.com/henriquesouza1832001-eng";
 const EMAIL = "henriquesouza1832001@gmail.com";
+const CONTACT = `mailto:${EMAIL}?subject=${encodeURIComponent("Conversa sobre oportunidade ou projeto")}`;
 
 const projects = [
   {
@@ -144,7 +145,7 @@ function Header({ isProject = false }) {
         >
           Sobre
         </a>
-        <a className="nav-contact" href={`mailto:${EMAIL}`}>
+        <a className="nav-contact" href={CONTACT}>
           Vamos conversar <Arrow diagonal />
         </a>
       </nav>
@@ -783,15 +784,15 @@ function PortfolioHome() {
         </section>
         <section className="folio-contact">
           <div>
-            <span>Tem algo bom para construir?</span>
+            <span>Vagas, projetos e boas parcerias.</span>
             <h2>
               Vamos fazer
               <br />
               <em>acontecer.</em>
             </h2>
           </div>
-          <a href={`mailto:${EMAIL}`}>
-            Falar sobre um projeto <Arrow diagonal />
+          <a href={CONTACT}>
+            Vamos conversar por e-mail <Arrow diagonal />
           </a>
           <div className="folio-social">
             <a href={GH} target="_blank" rel="noreferrer">
@@ -804,7 +805,7 @@ function PortfolioHome() {
             >
               LinkedIn
             </a>
-            <a href={`mailto:${EMAIL}`}>E-mail</a>
+            <a href={CONTACT}>E-mail</a>
           </div>
         </section>
       </main>

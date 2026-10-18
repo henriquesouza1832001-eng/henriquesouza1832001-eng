@@ -696,69 +696,50 @@ a:hover .arrow.diagonal {
   background: #d94d35;
   will-change: transform;
 }
-.folio-rail {
-  position: fixed;
-  z-index: 12;
-  top: 50%;
-  right: 22px;
+.folio-index {
   display: grid;
-  gap: 9px;
-  transform: translateY(-50%);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 22px 0 30px;
+  border: 1px solid var(--folio-line);
 }
-.folio-rail a {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  color: #52574e;
-  border: 1px solid #a5a79b;
-  background: #f2f0e8dd;
-  backdrop-filter: blur(12px);
+.folio-index-link {
+  min-width: 0;
+  min-height: 70px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #454940;
+  border-right: 1px solid var(--folio-line);
   transition:
-    color 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease,
-    transform 0.25s ease;
+    color 0.2s ease,
+    background 0.2s ease;
 }
-.folio-rail a:hover,
-.folio-rail a:focus-visible {
-  z-index: 1;
-  transform: translateX(-4px);
-  color: #d94d35;
-  border-color: #d94d35;
+.folio-index-link:last-child {
+  border-right: 0;
 }
-.folio-rail a[aria-current="location"] {
-  color: #f2f0e8;
-  border-color: #171a17;
-  background: #171a17;
+.folio-index-link:hover,
+.folio-index-link:focus-visible {
+  color: var(--folio-ink);
+  background: #e3e1d5;
 }
-.folio-rail svg {
-  width: 28px;
-  height: 28px;
-}
-.folio-rail a > span {
-  position: absolute;
-  right: calc(100% + 9px);
-  padding: 10px 12px;
+.folio-index-link[aria-current="location"] {
   color: #f2f0e8;
   background: #171a17;
-  font-size: 14px;
+}
+.folio-index-link svg {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  stroke-width: 1.6;
+}
+.folio-index-link[aria-current="location"] svg {
+  color: var(--project-accent);
+}
+.folio-index-link > span {
+  font-size: 16px;
+  line-height: 1.15;
   font-weight: 650;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(5px);
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s;
-}
-.folio-rail a:hover > span,
-.folio-rail a:focus-visible > span {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
 }
 @keyframes folio-copy-arrive {
   from {
@@ -768,11 +749,6 @@ a:hover .arrow.diagonal {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-@media (max-width: 1020px) {
-  .folio-rail {
-    display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -802,6 +778,9 @@ a:hover .arrow.diagonal {
   animation: folio-copy-arrive 0.55s cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 .folio-project {
+  --project-accent: #d94d35;
+}
+.folio-index-link {
   --project-accent: #d94d35;
 }
 .folio-quarta {
@@ -836,6 +815,26 @@ a:hover .arrow.diagonal {
 }
 .folio-project .folio-copy h2 {
   color: var(--project-accent);
+}
+@media (max-width: 760px) {
+  .folio-index {
+    display: flex;
+    margin: 18px 0 24px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: #929387 #deded3;
+    scrollbar-width: thin;
+  }
+  .folio-index-link {
+    flex: 0 0 176px;
+    min-height: 64px;
+    padding: 11px 13px;
+    scroll-snap-align: start;
+  }
+  .folio-index-link > span {
+    font-size: 15px;
+  }
 }
 .folio-hero-kicker {
   font-size: 15px;

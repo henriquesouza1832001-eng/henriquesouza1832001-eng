@@ -463,16 +463,16 @@ function ProjectSymbol({ id }) {
   );
 }
 
-function ProjectRail({ activeProject }) {
+function ProjectIndex({ activeProject }) {
   return (
-    <nav className="folio-rail" aria-label="Navegar pelos projetos">
+    <nav className="folio-index" aria-label="Índice de projetos">
       {portfolioProjects.map((project) => (
         <a
           key={project.id}
+          className={`folio-index-link folio-${project.id}`}
+          data-project={project.id}
           href={`#folio-${project.id}`}
-          aria-label={`Ir para ${projectNames[project.id]}`}
           aria-current={activeProject === project.id ? "location" : undefined}
-          title={projectNames[project.id]}
         >
           <ProjectSymbol id={project.id} />
           <span>{projectNames[project.id]}</span>
@@ -676,7 +676,6 @@ function PortfolioHome() {
         <span ref={progressRef} />
       </div>
       <Header />
-      <ProjectRail activeProject={activeProject} />
       <main id="inicio">
         <section className="folio-hero">
           <div className="folio-hero-kicker">
@@ -705,6 +704,7 @@ function PortfolioHome() {
               Acompanhe no GitHub <Arrow diagonal />
             </a>
           </div>
+          <ProjectIndex activeProject={activeProject} />
           <div className="folio-showcase-layout">
             <ProjectStage
               project={

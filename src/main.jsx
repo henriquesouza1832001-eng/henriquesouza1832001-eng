@@ -784,8 +784,8 @@ function PortfolioHome() {
           </h1>
           <div className="folio-hero-bottom">
             <p>
-              Produtos digitais que encontram pessoas, cidades e problemas
-              reais. Do primeiro fluxo ao código em produção.
+              Crio sistemas web, PWAs e APIs para resolver problemas reais. Da
+              regra de negócio à publicação.
             </p>
             <a href="#projetos">
               Conheça o trabalho <span>↓</span>
@@ -810,7 +810,7 @@ function PortfolioHome() {
         </div>
         <section className="folio-work" id="projetos" aria-label="Projetos">
           <div className="folio-section-heading" id="codigo">
-            <span>Projetos feitos para existir fora da tela.</span>
+            <span>Explore o produto. Confira o código.</span>
             <a href={GH} target="_blank" rel="noreferrer">
               Acompanhe no GitHub <Arrow diagonal />
             </a>
@@ -830,14 +830,36 @@ function PortfolioHome() {
           </div>
         </section>
         <section className="folio-about" id="sobre">
-          <p>
-            Gosto de entender como as coisas funcionam antes de decidir como
-            construí-las.
-          </p>
-          <div>
-            <span>Produto</span>
-            <span>Sistemas</span>
-            <span>Código</span>
+          <div className="folio-about-heading">
+            <span className="folio-about-label">Sobre o meu trabalho</span>
+            <h2>
+              Do processo real
+              <br />
+              ao sistema <em>em produção.</em>
+            </h2>
+          </div>
+          <div className="folio-about-copy">
+            <p>
+              Sou desenvolvedor full stack em Belo Horizonte. Trabalho de ponta
+              a ponta: entendo o processo, modelo os dados, construo interfaces
+              e APIs e coloco o sistema no ar.
+            </p>
+            <p>
+              Também desenvolvo soluções para engenharia e construção civil,
+              conectando visão de processos com software.
+            </p>
+            <div className="folio-about-links">
+              <a href={GH} target="_blank" rel="noreferrer">
+                Explorar meu GitHub <Arrow diagonal />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/henrique-s-4080b9139/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn <Arrow diagonal />
+              </a>
+            </div>
           </div>
         </section>
         <section className="folio-contact">
@@ -850,7 +872,7 @@ function PortfolioHome() {
             </h2>
           </div>
           <a href={`mailto:${EMAIL}`}>
-            Henrique, vamos conversar <Arrow diagonal />
+            Falar sobre um projeto <Arrow diagonal />
           </a>
           <div className="folio-social">
             <a href={GH} target="_blank" rel="noreferrer">

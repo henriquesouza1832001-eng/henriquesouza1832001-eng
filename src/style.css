@@ -1343,6 +1343,28 @@ a:hover .arrow.diagonal {
   font-size: 19px;
   line-height: 1;
 }
+@media (min-width: 1360px) {
+  .folio-source-flow {
+    grid-template-columns:
+      minmax(0, 1fr) 18px minmax(0, 1.35fr) 18px minmax(0, 1fr) 18px
+      minmax(0, 1.35fr);
+    align-items: center;
+    gap: 7px;
+  }
+  .folio-source-flow > div {
+    min-height: 112px;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    overflow-wrap: normal;
+  }
+  .folio-source-flow > span {
+    padding: 0;
+    text-align: center;
+    transform: rotate(-90deg);
+  }
+}
 .folio-source-foot {
   padding-top: 16px;
   display: flex;
@@ -1428,6 +1450,7 @@ a:hover .arrow.diagonal {
     mask-image: linear-gradient(#000 74%, transparent 100%);
   }
   .folio-source-flow {
+    grid-template-columns: 1fr;
     gap: 4px;
   }
   .folio-source-flow > div {

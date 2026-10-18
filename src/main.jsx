@@ -38,6 +38,8 @@ if (!sub) {
     name: "PULSO",
     url: "https://pulso-web.henriquesouza.workers.dev/",
     repo: `${GITHUB}/Pulso`,
+    screenshot: "/assets/projects/pulso-live.jpg",
+    screenshotAlt: "Painel público do PULSO com mapa, eventos e indicadores nacionais.",
     summary: "O PULSO organiza acontecimentos públicos por fonte, lugar e confiança.",
     language: "python",
     code: `if s.source_classes and s.source_classes <= SOCIAL_CLASSES:
@@ -56,6 +58,8 @@ if (!sub) {
     name: "e&t",
     url: "https://tudocomecoudeumsim.pages.dev/",
     repo: `${GITHUB}/tudocomecoudeumsim`,
+    screenshot: "/assets/projects/et-live.jpg",
+    screenshotAlt: "Página inicial pública do e&t com convite e informações do casamento.",
     summary: "Um site de casamento com convites e informações organizadas para convidados e grupos.",
     language: "javascript",
     code: `const groups = Array.isArray(event.group_ids)
@@ -97,6 +101,8 @@ return !groups.length || groups.includes(guest.group_id)
     name: "Trilha BH",
     url: "https://trilhabh.web.app/",
     repo: `${GITHUB}/trilhaBH`,
+    screenshot: "/assets/projects/trilha-live.jpg",
+    screenshotAlt: "Aplicativo público da Trilha BH com roteiros temáticos, busca e lista de bares.",
     summary: "Roteiros por Belo Horizonte para montar no mapa e compartilhar com amigos.",
     status: "Em finalização. A versão pública permite acompanhar o projeto.",
     language: "text",
@@ -149,7 +155,8 @@ function Header({ detail = false }) {
   );
 }
 
-function ProjectComposition({ project }) {
+function ProjectComposition({ project, useScreenshot = false }) {
+  const hasScreenshot = useScreenshot && Boolean(project.screenshot);
   const drawing = {
     quarta: (
       <svg viewBox="0 0 600 360" aria-hidden="true">
@@ -188,8 +195,8 @@ function ProjectComposition({ project }) {
     ),
   }[project.id];
   return (
-    <div className={`project-composition composition-${project.id}`} role="img" aria-label={project.composition.join(" · ")}>
-      {drawing}
+    <div className={`project-composition composition-${project.id}${hasScreenshot ? " has-screenshot" : ""}`} role="img" aria-label={hasScreenshot ? project.screenshotAlt : project.composition.join(" · ")}>
+      {hasScreenshot ? <img className="project-screen-capture" src={project.screenshot} alt="" loading="eager" decoding="async" /> : drawing}
     </div>
   );
 }
@@ -197,7 +204,7 @@ function ProjectComposition({ project }) {
 function ProjectSpread({ project }) {
   return (
     <article className={`project-spread spread-${project.id}`} id={project.id}>
-      <ProjectComposition project={project} />
+      <ProjectComposition project={project} useScreenshot />
       <div className="project-copy">
         <h3><a href={`/projetos/${project.id}`}>{project.name}<Arrow diagonal /></a></h3>
         <p className="project-summary">{project.summary}</p>
@@ -466,7 +473,7 @@ function ProjectDetail({ project }) {
     <main className={`detail-page detail-${project.id}`}>
       <section className="detail-hero">
         <a className="back-link" href="/#projetos"><Arrow /> Todos os projetos</a>
-        <ProjectComposition project={project} />
+        <ProjectComposition project={project} useScreenshot />
         <div className="detail-title">
           <p>{project.summary}</p>
           <h1>{project.name}</h1>

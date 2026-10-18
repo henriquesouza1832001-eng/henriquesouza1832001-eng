@@ -2085,18 +2085,9 @@ a:hover .arrow.diagonal {
   overflow: hidden;
   color: var(--project-accent);
 }
-.folio-project-art::before {
-  position: absolute;
-  width: min(68%, 330px);
-  aspect-ratio: 1;
-  border: 1px solid color-mix(in srgb, var(--project-accent) 34%, transparent);
-  border-radius: 50%;
-  content: "";
-  opacity: 0.7;
-}
 .folio-project-art svg {
   position: relative;
-  width: min(80%, 340px);
+  width: min(94%, 430px);
   height: auto;
   overflow: visible;
   stroke: currentColor;
@@ -2104,6 +2095,11 @@ a:hover .arrow.diagonal {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.art-quarta svg { width: min(96%, 455px); }
+.art-pulso svg { width: min(96%, 455px); }
+.art-sim svg { width: min(78%, 360px); }
+.art-trilha svg { width: min(94%, 430px); }
+.art-rota svg { width: min(90%, 410px); }
 .folio-project-art .art-fill { fill: currentColor; }
 .folio-project-art .art-faint { opacity: 0.34; }
 .folio-project:nth-child(5) .folio-project-art {

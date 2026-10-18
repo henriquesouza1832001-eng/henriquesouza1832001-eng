@@ -641,16 +641,16 @@ function PortfolioHome() {
         <section className="folio-about" id="sobre">
           <div className="folio-about-heading">
             <h2>
-              O problema
+              Um olhar
               <br />
-              não termina <em>na tela.</em>
+              de <em>engenharia.</em>
             </h2>
           </div>
           <div className="folio-about-copy">
             <p>
               Sou Henrique, de Belo Horizonte. Minha experiência com engenharia
-              e construção civil me ensinou a olhar além da tela: para regras,
-              exceções e pessoas.
+              e construção civil me ensinou a ligar as regras de negócio à
+              estrutura e à operação de um sistema.
             </p>
             <div className="folio-about-links">
               <a href={GH} target="_blank" rel="noreferrer">

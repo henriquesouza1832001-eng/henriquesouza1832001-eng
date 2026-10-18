@@ -597,7 +597,7 @@ function PortfolioHome() {
           </h1>
           <div className="folio-hero-bottom">
             <p>
-              Primeiro entendo o processo. Depois desenho o sistema, implemento e acompanho sua entrada em produção.
+              Entendo as regras de negócio, desenho a arquitetura e levo o produto até a operação.
             </p>
             <a href="#projetos">
               Conheça meu trabalho <span>↓</span>
@@ -606,7 +606,7 @@ function PortfolioHome() {
         </section>
         <section className="folio-work" id="projetos" aria-label="Projetos">
           <div className="folio-section-heading" id="codigo">
-            <span>Onde a regra vira sistema.</span>
+            <span>Produtos, dados e operação.</span>
             <a href={GH} target="_blank" rel="noreferrer">
               Meu GitHub <Arrow diagonal />
             </a>
@@ -620,16 +620,16 @@ function PortfolioHome() {
         <section className="folio-about" id="sobre">
           <div className="folio-about-heading">
             <h2>
-              Do processo real
+              O problema
               <br />
-              ao sistema <em>em produção.</em>
+              não termina <em>na tela.</em>
             </h2>
           </div>
           <div className="folio-about-copy">
             <p>
-              Desenvolvo software em Belo Horizonte e soluções para engenharia
-              e construção civil. A proximidade com esses processos orienta minhas
-              decisões de produto e arquitetura.
+              Sou Henrique, de Belo Horizonte. Minha experiência com engenharia
+              e construção civil me ensinou a olhar além da tela: para regras,
+              exceções e pessoas.
             </p>
             <div className="folio-about-links">
               <a href={GH} target="_blank" rel="noreferrer">

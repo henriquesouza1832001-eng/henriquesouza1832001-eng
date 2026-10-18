@@ -501,29 +501,29 @@ function ProjectEvidence({ project }) {
 
 const projectPresentation = {
   quarta: {
-    label: "Produto digital · disponível para acesso",
+    label: "Um encontro marcado pela cidade.",
     summary:
-      "Bares, campanhas e encontros em um app feito para a quarta-feira ganhar a cidade. O acesso está aberto; a data oficial de lançamento ainda não foi definida.",
+      "Descubra bares, acompanhe campanhas e encontre gente por perto. Acesso aberto; lançamento sem data definida.",
   },
   pulso: {
-    label: "Plataforma pública · leitura de sinais",
+    label: "Acompanhar o Brasil sem perder o contexto.",
     summary:
-      "Fontes públicas viram contexto: acontecimentos organizados por lugar, origem e confiança.",
+      "Acontecimentos de fontes públicas, organizados por lugar, origem e confiança.",
   },
   sim: {
-    label: "Experiência digital · casamento",
+    label: "Um sim. Tudo o que vem depois.",
     summary:
-      "Convite, site e organização do casamento reunidos em uma experiência para o casal e seus convidados.",
+      "Convite, site e organização da celebração em um espaço para o casal e os convidados.",
   },
   trilha: {
-    label: "Produto local · em finalização",
+    label: "Belo Horizonte pede outros caminhos.",
     summary:
-      "Uma forma coletiva de encontrar bares e desenhar novos roteiros por Belo Horizonte.",
+      "Descobrir bares, montar roteiros e acompanhar o grupo, no navegador ou no Android.",
   },
   rota: {
-    label: "Produto de temporada · próxima edição em redesign",
+    label: "A cidade entrou no roteiro.",
     summary:
-      "Uma experiência que acompanhou o Comida di Buteco em Belo Horizonte, com bares, check-ins, avaliações e roteiros em grupo. A próxima edição terá um redesign completo.",
+      "A edição 2026 conectou bares, avaliações e visitas em grupo. O próximo ciclo terá um redesign completo.",
   },
 };
 
@@ -553,10 +553,7 @@ function PortfolioProject({ project }) {
             <Arrow diagonal />
           </a>
           <a className="folio-case-link" href={`/projetos/${project.id}`}>
-            Ver projeto <Arrow diagonal />
-          </a>
-          <a href={project.repo} target="_blank" rel="noreferrer">
-            Código no GitHub <Arrow diagonal />
+            Ler o projeto <Arrow diagonal />
           </a>
         </div>
       </div>
@@ -647,9 +644,9 @@ function PortfolioHome() {
         </section>
         <section className="folio-work" id="projetos" aria-label="Projetos">
           <div className="folio-section-heading" id="codigo">
-            <span>Projetos públicos. Acesso direto. Código aberto.</span>
+            <span>Código que virou produto.</span>
             <a href={GH} target="_blank" rel="noreferrer">
-              Acompanhe no GitHub <Arrow diagonal />
+              Meu GitHub <Arrow diagonal />
             </a>
           </div>
           <div className="folio-project-grid">

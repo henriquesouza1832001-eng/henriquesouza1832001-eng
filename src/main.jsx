@@ -16,7 +16,6 @@ const projects = [
     summary: "Mapa de bares, campanhas e avisos da Quarta Amstel.",
     status: "O produto está aberto para acesso. O lançamento ainda não tem data definida.",
     language: "javascript",
-    file: "www/js/push.js",
     code: `let sub = await swReg.pushManager.getSubscription();
 
 if (!sub) {
@@ -41,7 +40,6 @@ if (!sub) {
     repo: `${GITHUB}/Pulso`,
     summary: "O PULSO organiza acontecimentos públicos por fonte, lugar e confiança.",
     language: "python",
-    file: "engine/pulso_engine/scoring/confidence.py",
     code: `if s.source_classes and s.source_classes <= SOCIAL_CLASSES:
     value = min(value, SOCIAL_ONLY_CAP)`,
     codeNote: "Sinais baseados apenas em fontes sociais têm um limite de confiança.",
@@ -60,7 +58,6 @@ if (!sub) {
     repo: `${GITHUB}/tudocomecoudeumsim`,
     summary: "Um site de casamento com convites e informações organizadas para convidados e grupos.",
     language: "javascript",
-    file: "functions/api/[[route]].js",
     code: `const groups = Array.isArray(event.group_ids)
   ? event.group_ids
   : JSON.parse(event.group_ids_json || '[]')
@@ -85,7 +82,6 @@ return !groups.length || groups.includes(guest.group_id)
     summary: "Visitas, avaliações e roteiros compartilhados durante o Comida di Buteco em Belo Horizonte.",
     status: "A edição deste ano encerrou. O próximo ciclo volta com um redesign completo.",
     language: "text",
-    file: "README.md",
     code: null,
     codeNote: null,
     repositoryPath: "blob/master/README.md",
@@ -104,7 +100,6 @@ return !groups.length || groups.includes(guest.group_id)
     summary: "Roteiros por Belo Horizonte para montar no mapa e compartilhar com amigos.",
     status: "Em finalização. A versão pública permite acompanhar o projeto.",
     language: "text",
-    file: "www/readme.md",
     code: null,
     codeNote: null,
     repositoryPath: "blob/main/www/readme.md",
@@ -353,7 +348,7 @@ function ProjectDetail({ project }) {
         </div>
         {project.code ? (
           <div className="code-proof">
-            <a href={`${project.repo}/${project.repositoryPath}`} target="_blank" rel="noreferrer">{project.file} <Arrow diagonal /></a>
+            <a href={`${project.repo}/${project.repositoryPath}`} target="_blank" rel="noreferrer">Abrir trecho no GitHub <Arrow diagonal /></a>
             <pre><HighlightedCode code={project.code} language={project.language} /></pre>
             <p>{project.codeNote}</p>
           </div>

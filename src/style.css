@@ -337,7 +337,7 @@ button { font: inherit; }
 .proof-copy h2 { color: var(--orange); }
 .proof-copy > p { margin-top: 27px; color: #d0d0c6; }
 .code-proof, .flow-proof { align-self: center; }
-.code-proof > a, .flow-proof > a { display: inline-flex; align-items: center; gap: 7px; color: var(--orange); font-family: var(--mono); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
+.code-proof > a, .flow-proof > a { display: inline-flex; align-items: center; gap: 7px; color: var(--orange); font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
 .code-proof pre { margin: 26px 0 18px; padding: 28px; overflow-x: auto; border-left: 2px solid var(--orange); color: #f3f0e7; font: 15px/1.75 var(--mono); white-space: pre-wrap; }
 .code-proof > p { max-width: 540px; color: #b5b7ad; font-size: 16px; line-height: 1.5; }
 .syntax-keyword, .syntax-constant { color: var(--orange); }
@@ -432,8 +432,7 @@ button { font: inherit; }
   .proof-copy { display: block; }
   .proof-copy h2 { font-size: 53px; }
   .proof-copy > p { margin-top: 22px; }
-  .code-proof pre { margin: 22px 0 15px; padding: 20px 15px; font-size: 12px; line-height: 1.7; }
-  .code-proof > a { font-size: 12px; }
+  .code-proof pre { margin: 22px 0 15px; padding: 20px 15px; font-size: 13px; line-height: 1.65; }
   .code-proof > p { font-size: 15px; }
   .flow-proof { grid-template-columns: 1fr; gap: 0; }
   .flow-proof > span { min-height: 0; padding: 17px 0; border-bottom: 0; font-size: 20px; }

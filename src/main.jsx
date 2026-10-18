@@ -582,7 +582,7 @@ function ProjectRail({ activeProject }) {
   );
 }
 
-function PortfolioProject({ project, index }) {
+function PortfolioProject({ project }) {
   const summaries = {
     quarta:
       "Bares, campanhas e encontros em um app feito para a quarta-feira ganhar a cidade. O acesso está aberto; a data oficial de lançamento ainda não foi definida.",
@@ -593,38 +593,12 @@ function PortfolioProject({ project, index }) {
       "Uma forma coletiva de encontrar bares e desenhar novos roteiros por Belo Horizonte.",
     rota: "Uma experiência de descoberta que acompanhou a edição 2026. A próxima versão será redesenhada para 2027.",
   };
-  const moveArtwork = (event) => {
-    if (event.pointerType === "touch") return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-    event.currentTarget.querySelectorAll("[data-depth]").forEach((layer) => {
-      const depth = Number(layer.dataset.depth);
-      layer.style.translate = `${-x * 30 * depth}px ${-y * 30 * depth}px`;
-    });
-  };
-  const resetArtwork = (event) =>
-    event.currentTarget.querySelectorAll("[data-depth]").forEach((layer) => {
-      layer.style.translate = "";
-    });
   return (
     <article
-      className={`folio-project folio-${project.id} ${index % 2 ? "folio-reverse" : ""}`}
+      className={`folio-project folio-chapter folio-${project.id}`}
       id={`folio-${project.id}`}
       data-project={project.id}
     >
-      <a
-        className="folio-art"
-        href={`/projetos/${project.id}`}
-        aria-label={`Ver case ${projectNames[project.id]}`}
-        onPointerMove={moveArtwork}
-        onPointerLeave={resetArtwork}
-      >
-        <ProjectGlyph id={project.id} />
-        <span className="art-open">
-          Ver projeto <Arrow diagonal />
-        </span>
-      </a>
       <div className="folio-copy">
         <p className="folio-type">
           {project.id === "quarta"
@@ -653,6 +627,47 @@ function PortfolioProject({ project, index }) {
         </div>
       </div>
     </article>
+  );
+}
+
+function ProjectStage({ project }) {
+  const moveArtwork = (event) => {
+    if (event.pointerType === "touch") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    event.currentTarget.querySelectorAll("[data-depth]").forEach((layer) => {
+      const depth = Number(layer.dataset.depth);
+      layer.style.translate = `${-x * 24 * depth}px ${-y * 24 * depth}px`;
+    });
+  };
+  const resetArtwork = (event) =>
+    event.currentTarget.querySelectorAll("[data-depth]").forEach((layer) => {
+      layer.style.translate = "";
+    });
+  return (
+    <div
+      className={`folio-stage folio-${project.id}`}
+      data-project={project.id}
+    >
+      <a
+        key={project.id}
+        className="folio-art"
+        href={`/projetos/${project.id}`}
+        aria-label={`Ver case ${projectNames[project.id]}`}
+        onPointerMove={moveArtwork}
+        onPointerLeave={resetArtwork}
+      >
+        <ProjectGlyph id={project.id} />
+        <span className="art-open">
+          Ver case completo <Arrow diagonal />
+        </span>
+      </a>
+      <div className="folio-stage-caption">
+        <span>Em destaque</span>
+        <b>{projectNames[project.id]}</b>
+      </div>
+    </div>
   );
 }
 
@@ -693,7 +708,7 @@ function PortfolioHome() {
         }),
       { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
     );
-    document.querySelectorAll(".folio-project").forEach((project) => {
+    document.querySelectorAll(".folio-chapter").forEach((project) => {
       projectObserver.observe(project);
       revealObserver.observe(project);
     });
@@ -774,13 +789,19 @@ function PortfolioHome() {
               Acompanhe no GitHub <Arrow diagonal />
             </a>
           </div>
-          {portfolioProjects.map((project, index) => (
-            <PortfolioProject
-              project={project}
-              index={index}
-              key={project.id}
+          <div className="folio-showcase-layout">
+            <ProjectStage
+              project={
+                portfolioProjects.find((item) => item.id === activeProject) ||
+                portfolioProjects[0]
+              }
             />
-          ))}
+            <div className="folio-chapters">
+              {portfolioProjects.map((project) => (
+                <PortfolioProject project={project} key={project.id} />
+              ))}
+            </div>
+          </div>
         </section>
         <section className="folio-about" id="sobre">
           <p>

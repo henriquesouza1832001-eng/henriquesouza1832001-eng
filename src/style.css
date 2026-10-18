@@ -2284,3 +2284,12 @@ a:hover .arrow.diagonal {
     z-index: auto;
   }
 }
+
+.folio-home .site-header,
+.folio-project-portfolio .site-header {
+  position: fixed;
+  background: rgb(242 240 232 / 94%);
+  border-bottom-color: #171a1722;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}

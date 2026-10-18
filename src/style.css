@@ -174,7 +174,7 @@ a:hover .arrow.diagonal {
   background: var(--folio-ink);
 }
 .folio-hero {
-  min-height: min(900px, 100svh);
+  min-height: min(700px, 90svh);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -239,92 +239,6 @@ a:hover .arrow.diagonal {
 }
 .folio-hero-bottom a span {
   font-size: 26px;
-}
-.hero-orbit {
-  position: absolute;
-  z-index: 0;
-  width: clamp(220px, 32vw, 460px);
-  aspect-ratio: 1;
-  top: 21%;
-  right: 9%;
-  border: 1px solid #d94d3570;
-  border-radius: 50%;
-  transform: rotate(-18deg);
-}
-.hero-orbit::before,
-.hero-orbit::after {
-  content: "";
-  position: absolute;
-  inset: 13%;
-  border: 1px solid #d94d354d;
-  border-radius: 50%;
-  transform: rotate(57deg) scaleX(0.48);
-}
-.hero-orbit::after {
-  transform: rotate(-57deg) scaleX(0.48);
-}
-.hero-orbit i {
-  position: absolute;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #d94d35;
-}
-.hero-orbit i:nth-child(1) {
-  top: 9%;
-  left: 31%;
-}
-.hero-orbit i:nth-child(2) {
-  bottom: 14%;
-  left: 22%;
-  width: 7px;
-  height: 7px;
-}
-.hero-orbit i:nth-child(3) {
-  right: 10%;
-  top: 48%;
-  width: 6px;
-  height: 6px;
-}
-.hero-orbit b {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-size: clamp(30px, 6vw, 76px);
-  letter-spacing: -0.1em;
-  color: #d94d35;
-}
-.folio-marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  color: #f5f3ec;
-  background: #171a17;
-  padding: 20px 0 22px;
-}
-.folio-marquee > div {
-  display: flex;
-  width: max-content;
-  animation: folio-travel 38s linear infinite;
-}
-.folio-marquee > div > span {
-  display: flex;
-  align-items: center;
-  gap: 38px;
-  padding-left: 38px;
-  font-size: clamp(21px, 3vw, 43px);
-  font-weight: 650;
-  letter-spacing: -0.055em;
-}
-.folio-marquee i {
-  color: #d94d35;
-  font-size: 0.7em;
-  font-style: normal;
-}
-@keyframes folio-travel {
-  to {
-    transform: translateX(-50%);
-  }
 }
 .folio-work {
   padding: 0 clamp(22px, 8.1vw, 140px);
@@ -564,12 +478,6 @@ a:hover .arrow.diagonal {
   .folio-hero h1 {
     font-size: clamp(72px, 17vw, 130px);
   }
-  .hero-orbit {
-    width: 62vw;
-    top: 24%;
-    right: -10%;
-    opacity: 0.62;
-  }
   .folio-hero-bottom {
     align-items: start;
     flex-direction: column;
@@ -711,17 +619,6 @@ a:hover .arrow.diagonal {
 .folio-type {
   font-size: 16px;
 }
-.folio-home.folio-motion .folio-chapter:not(.in-view) .folio-copy {
-  opacity: 0.42;
-  transform: translateY(15px);
-}
-.folio-home.folio-motion .folio-chapter.in-view .folio-copy {
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
-}
 @media (max-width: 1020px) {
   .folio-showcase-layout {
     grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
@@ -773,9 +670,6 @@ a:hover .arrow.diagonal {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .folio-marquee > div {
-    animation: none;
-  }
   html {
     scroll-behavior: auto;
   }
@@ -865,20 +759,6 @@ a:hover .arrow.diagonal {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
-}
-.folio-marquee:hover > div {
-  animation-play-state: paused;
-}
-.folio-home .folio-project.in-view .folio-copy {
-  animation: folio-copy-arrive 0.7s cubic-bezier(0.2, 0.75, 0.25, 1) both;
-}
-.folio-home.folio-motion .folio-project:not(.in-view) .folio-copy {
-  opacity: 0;
-  transform: translateY(28px);
-}
-.folio-home.folio-motion .folio-project.in-view .folio-copy {
-  opacity: 1;
-  transform: translateY(0);
 }
 @keyframes folio-copy-arrive {
   from {

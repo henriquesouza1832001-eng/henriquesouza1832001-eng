@@ -249,6 +249,9 @@ function Home() {
               <a href="#projetos">Conheça os projetos <span aria-hidden="true">↓</span></a>
             </div>
           </div>
+          <figure className="hero-portrait">
+            <img src="/assets/henrique-souza.jpg" alt="Henrique Souza" fetchPriority="high" />
+          </figure>
         </section>
 
         <section className="work-section" id="projetos" aria-labelledby="work-title">
@@ -374,7 +377,9 @@ function App() {
     const title = project ? `${project.name} — Henrique Souza` : "Henrique Souza — Engenheiro de software";
     document.title = title;
     document.querySelector('meta[property="og:title"]')?.setAttribute("content", title);
-    document.querySelector('meta[name="description"]')?.setAttribute("content", project ? project.summary : "Henrique Souza é engenheiro de software em Belo Horizonte. Projetos web com regras de negócio, dados, integrações e código público.");
+    const description = project ? project.summary : "Henrique Souza é engenheiro de software em Belo Horizonte. Projetos web com regras de negócio, dados, integrações e código público.";
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", project ? description : "Engenheiro de software em Belo Horizonte. Conheça sistemas públicos e decisões de engenharia nos projetos de Henrique Souza.");
   }, [project]);
   return project ? (
     <div className="portfolio detail-portfolio">

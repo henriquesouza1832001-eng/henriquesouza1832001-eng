@@ -463,9 +463,9 @@ function ProjectSymbol({ id }) {
   );
 }
 
-function ProjectIndex({ activeProject }) {
+function ProjectIndex({ activeProject, indexRef }) {
   return (
-    <nav className="folio-index" aria-label="Índice de projetos">
+    <nav className="folio-index" aria-label="Índice de projetos" ref={indexRef}>
       {portfolioProjects.map((project) => (
         <a
           key={project.id}
@@ -601,6 +601,7 @@ function ProjectStage({ project }) {
 function PortfolioHome() {
   const [activeProject, setActiveProject] = useState("quarta");
   const progressRef = useRef(null);
+  const projectIndexRef = useRef(null);
   useEffect(() => {
     const home = document.querySelector(".folio-home");
     home?.classList.add("folio-motion");
@@ -670,6 +671,31 @@ function PortfolioHome() {
       window.removeEventListener("resize", updateProgress);
     };
   }, []);
+  useEffect(() => {
+    const index = projectIndexRef.current;
+    if (!index || window.innerWidth > 760) return;
+    const active = index.querySelector(`[data-project="${activeProject}"]`);
+    if (!active) return;
+    const start = active.offsetLeft;
+    const end = start + active.offsetWidth;
+    let nextLeft = index.scrollLeft;
+    const visibleStart = index.scrollLeft + 12;
+    const visibleEnd = index.scrollLeft + index.clientWidth - 12;
+    if (start < visibleStart) nextLeft = Math.max(0, start - 12);
+    else if (end > visibleEnd)
+      nextLeft = Math.min(
+        end - index.clientWidth + 12,
+        index.scrollWidth - index.clientWidth,
+      );
+    if (nextLeft !== index.scrollLeft) {
+      index.scrollTo({
+        left: nextLeft,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+      });
+    }
+  }, [activeProject]);
   return (
     <div className="portfolio folio-home">
       <div className="folio-progress" aria-hidden="true">
@@ -704,7 +730,10 @@ function PortfolioHome() {
               Acompanhe no GitHub <Arrow diagonal />
             </a>
           </div>
-          <ProjectIndex activeProject={activeProject} />
+          <ProjectIndex
+            activeProject={activeProject}
+            indexRef={projectIndexRef}
+          />
           <div className="folio-showcase-layout">
             <ProjectStage
               project={

@@ -105,12 +105,7 @@ if (!sub) {
 }`,
   },
   pulso: {
-    code: `value += 25 if s.official_confirmation else 0
-value -= 30 * s.contradiction
-value -= 20 * s.duplicate_ratio
-value = max(0.0, min(100.0, value))
-
-if s.source_classes and s.source_classes <= SOCIAL_CLASSES:
+    code: `if s.source_classes and s.source_classes <= SOCIAL_CLASSES:
     value = min(value, SOCIAL_ONLY_CAP)`,
   },
 };
@@ -199,7 +194,7 @@ const caseStudies = {
     language: "python",
     code: excerpts.pulso.code,
     codeNote:
-      "O cálculo separa confirmação, contradição, duplicidade e limites de fonte.",
+      "Sinais apoiados só por fontes sociais ficam limitados ao teto definido no sistema.",
     repositoryPath: "blob/main/engine/pulso_engine/scoring/confidence.py",
   },
   sim: {
@@ -419,7 +414,7 @@ function App() {
   useEffect(() => {
     const title = projectRoute
       ? `${projectRoute.name} — Henrique Souza`
-      : "Henrique Souza — Desenvolvedor full stack em Belo Horizonte";
+      : "Henrique Souza — Engenharia de software em Belo Horizonte";
     document.title = title;
     document
       .querySelector('meta[property="og:title"]')
@@ -501,29 +496,24 @@ function ProjectEvidence({ project }) {
 
 const projectPresentation = {
   quarta: {
-    label: "Um encontro marcado pela cidade.",
     summary:
-      "Descubra bares, acompanhe campanhas e encontre gente por perto. Acesso aberto; lançamento sem data definida.",
+      "Descoberta de bares, campanhas e encontros para uma cidade em movimento.",
   },
   pulso: {
-    label: "Acompanhar o Brasil sem perder o contexto.",
     summary:
-      "Acontecimentos de fontes públicas, organizados por lugar, origem e confiança.",
+      "Fontes públicas organizadas para entender o que acontece no Brasil e de onde vem cada sinal.",
   },
   sim: {
-    label: "Um sim. Tudo o que vem depois.",
     summary:
-      "Convite, site e organização da celebração em um espaço para o casal e os convidados.",
+      "Convite, site e organização da celebração no mesmo produto.",
   },
   trilha: {
-    label: "Belo Horizonte pede outros caminhos.",
     summary:
-      "Descobrir bares, montar roteiros e acompanhar o grupo, no navegador ou no Android.",
+      "Roteiros colaborativos para descobrir bares de Belo Horizonte, no navegador ou no Android.",
   },
   rota: {
-    label: "A cidade entrou no roteiro.",
     summary:
-      "A edição 2026 conectou bares, avaliações e visitas em grupo. O próximo ciclo terá um redesign completo.",
+      "A edição 2026 conectou bares, avaliações e roteiros em grupo. O próximo ciclo terá redesign completo.",
   },
 };
 
@@ -539,8 +529,14 @@ function PortfolioProject({ project }) {
         <ProjectEvidence project={project} />
       </div>
       <div className="folio-copy">
-        <p className="folio-type">{presentation.label}</p>
-        <h2>{projectNames[project.id]}</h2>
+        <h2>
+          <a
+            href={`/projetos/${project.id}`}
+            aria-label={`Ler sobre ${projectNames[project.id]}`}
+          >
+            {projectNames[project.id]}
+          </a>
+        </h2>
         <p className="folio-description">{presentation.summary}</p>
         <div className="folio-links">
           <a
@@ -551,9 +547,6 @@ function PortfolioProject({ project }) {
           >
             {project.id === "quarta" ? "Acessar produto" : project.cta}
             <Arrow diagonal />
-          </a>
-          <a className="folio-case-link" href={`/projetos/${project.id}`}>
-            Ler o projeto <Arrow diagonal />
           </a>
         </div>
       </div>
@@ -624,18 +617,16 @@ function PortfolioHome() {
       <Header />
       <main id="inicio">
         <section className="folio-hero">
-          <div className="folio-hero-kicker">
-            <span>Henrique Souza</span>
-            <span>Desenvolvimento de software · Belo Horizonte</span>
-          </div>
           <h1>
-            Software para
+            O sistema
             <br />
-            <em>o mundo real.</em>
+            começa <em>antes</em>
+            <br />
+            <em>do código.</em>
           </h1>
           <div className="folio-hero-bottom">
             <p>
-              Do problema ao produto: construo software de ponta a ponta, da regra de negócio à publicação.
+              Começo pelo processo: defino as regras, desenho o sistema e acompanho a implementação até a produção.
             </p>
             <a href="#projetos">
               Conheça meu trabalho <span>↓</span>
@@ -644,7 +635,7 @@ function PortfolioHome() {
         </section>
         <section className="folio-work" id="projetos" aria-label="Projetos">
           <div className="folio-section-heading" id="codigo">
-            <span>Código que virou produto.</span>
+            <span>Onde a regra vira sistema.</span>
             <a href={GH} target="_blank" rel="noreferrer">
               Meu GitHub <Arrow diagonal />
             </a>
@@ -657,7 +648,6 @@ function PortfolioHome() {
         </section>
         <section className="folio-about" id="sobre">
           <div className="folio-about-heading">
-            <span className="folio-about-label">Sobre o meu trabalho</span>
             <h2>
               Do processo real
               <br />
@@ -666,13 +656,9 @@ function PortfolioHome() {
           </div>
           <div className="folio-about-copy">
             <p>
-              Sou desenvolvedor full stack em Belo Horizonte. Trabalho de ponta
-              a ponta: entendo o processo, modelo os dados, construo interfaces
-              e APIs e coloco o sistema no ar.
-            </p>
-            <p>
-              Também desenvolvo soluções para engenharia e construção civil,
-              conectando visão de processos com software.
+              Atuo com engenharia de software em Belo Horizonte e também
+              desenvolvo soluções para engenharia e construção civil, aproximando
+              o software da operação que ele precisa atender.
             </p>
             <div className="folio-about-links">
               <a href={GH} target="_blank" rel="noreferrer">
@@ -690,15 +676,14 @@ function PortfolioHome() {
         </section>
         <section className="folio-contact">
           <div>
-            <span>Vagas, projetos e boas parcerias.</span>
             <h2>
-              Vamos fazer
+              Vamos conversar
               <br />
-              <em>acontecer.</em>
+              <em>sobre sistemas.</em>
             </h2>
           </div>
           <a href={CONTACT}>
-            Vamos conversar por e-mail <Arrow diagonal />
+            Falar sobre uma oportunidade <Arrow diagonal />
           </a>
           <div className="folio-social">
             <a href={GH} target="_blank" rel="noreferrer">

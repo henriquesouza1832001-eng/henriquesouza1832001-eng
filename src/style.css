@@ -1546,6 +1546,12 @@ a:hover .arrow.diagonal {
 .folio-project-portfolio .folio-footer {
   margin-top: 0;
 }
+.folio-project-portfolio .folio-footer .wordmark {
+  color: #f2f0e8;
+}
+.folio-project-portfolio .folio-footer .mark {
+  border-color: #f2f0e877;
+}
 
 /* Keep every chapter readable before its reveal observer runs. */
 .folio-home.folio-motion .folio-chapter .folio-copy {
@@ -2182,8 +2188,8 @@ a:hover .arrow.diagonal {
   .folio-proof-heading > p:last-child { margin-top: 16px; font-size: 20px; }
   .case-proof-code { margin-top: 0; }
   .case-file { min-height: 58px; padding: 12px 14px; }
-  .case-file a { font-size: 14px; }
-  .case-proof-code pre { padding: 20px 15px; font-size: 14px; }
+  .case-file a { font-size: 15px; }
+  .case-proof-code pre { padding: 20px 15px; font-size: 15px; }
   .case-proof-code > p { padding: 14px 15px; font-size: 16px; }
   .case-proof-flow { margin-top: 0; }
   .case-proof-flow > div { min-height: 62px; font-size: 17px; }

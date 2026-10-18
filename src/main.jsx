@@ -211,28 +211,49 @@ function Home() {
   const [activeProject, setActiveProject] = useState("quarta");
   useEffect(() => {
     const items = document.querySelectorAll(".project-spread, .about-section, .contact-section");
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+    const hasIntersectionObserver = "IntersectionObserver" in window;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let revealObserver = null;
+
+    if (hasIntersectionObserver && !reduceMotion) {
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      items.forEach((item) => revealObserver.observe(item));
+    } else {
       items.forEach((item) => item.classList.add("is-visible"));
-      return;
     }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    items.forEach((item) => observer.observe(item));
-    const projectObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveProject(entry.target.id);
-      });
-    }, { rootMargin: "-44% 0px -44% 0px" });
-    document.querySelectorAll(".project-spread").forEach((project) => projectObserver.observe(project));
+
+    let projectObserver = null;
+    if (hasIntersectionObserver) {
+      projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveProject(entry.target.id);
+        });
+      }, { rootMargin: "-44% 0px -44% 0px" });
+      document.querySelectorAll(".project-spread").forEach((project) => projectObserver.observe(project));
+    } else {
+      const updateActiveProject = () => {
+        const midpoint = window.innerHeight / 2;
+        const currentProject = [...document.querySelectorAll(".project-spread")].reduce((closest, project) => {
+          const distance = Math.abs(project.getBoundingClientRect().top + project.offsetHeight / 2 - midpoint);
+          return !closest || distance < closest.distance ? { id: project.id, distance } : closest;
+        }, null);
+        if (currentProject) setActiveProject((active) => active === currentProject.id ? active : currentProject.id);
+      };
+      window.addEventListener("scroll", updateActiveProject, { passive: true });
+      updateActiveProject();
+      return () => window.removeEventListener("scroll", updateActiveProject);
+    }
+
     return () => {
-      observer.disconnect();
-      projectObserver.disconnect();
+      revealObserver?.disconnect();
+      projectObserver?.disconnect();
     };
   }, []);
 
@@ -242,15 +263,15 @@ function Home() {
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="hero-kicker">Henrique Souza <span>—</span> Engenharia de software</p>
+            <p className="hero-kicker">Engenheiro de software <span>·</span> Belo Horizonte</p>
             <h1 id="hero-title">Eu projeto<br />e construo<br /><em>software.</em></h1>
             <div className="hero-bottom">
               <p>Do modelo de dados à aplicação em produção.</p>
               <a href="#projetos">Conheça os projetos <span aria-hidden="true">↓</span></a>
             </div>
           </div>
-          <figure className="hero-portrait">
-            <img src="/assets/henrique-souza.jpg" alt="Henrique Souza" fetchPriority="high" />
+          <figure className="hero-brand-mark" aria-hidden="true">
+            <img src="/assets/logo-hs.png" alt="" fetchPriority="high" />
           </figure>
         </section>
 

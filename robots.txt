@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Quando publicar com domínio próprio, descomente:
-# Sitemap: https://SEU-DOMINIO/sitemap.xml

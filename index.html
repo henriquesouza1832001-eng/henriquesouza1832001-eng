@@ -1,209 +1,35 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/png" href="/assets/logo-hs.png">
-<meta name="theme-color" content="#f2eadf">
-<meta name="description" content="Henrique Souza, engenheiro de software em Belo Horizonte. Produtos digitais e sistemas públicos construídos do fluxo à operação.">
-<title>Henrique Souza — Engenheiro de Software</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap');
-:root{
- --ink:#17211f; --paper:#f2eadf; --paper2:#e6dacb; --orange:#ed5b2a;
- --blue:#3d5f70; --lime:#b7c87a; --wine:#743d43; --line:rgba(23,33,31,.18);
- --serif:"Playfair Display",Georgia,serif; --sans:Manrope,Arial,sans-serif; --mono:"DM Mono",monospace;
-}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);overflow-x:hidden}
-a{color:inherit;text-decoration:none} button{font:inherit}.progress{position:fixed;left:0;top:0;height:4px;background:var(--orange);width:0;z-index:100}
-.nav{position:fixed;z-index:80;left:22px;right:22px;top:18px;display:flex;justify-content:space-between;align-items:center;padding:12px 15px;border:1px solid var(--line);background:rgba(242,234,223,.78);backdrop-filter:blur(16px);border-radius:100px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.04em}.brand img{width:27px;height:27px;object-fit:contain}.brand i{color:var(--orange);font-style:normal}.nav nav{display:flex;gap:22px;font:12px var(--mono)}.nav nav a:hover{color:var(--orange)}
-.status{font:11px var(--mono);display:flex;align-items:center;gap:8px}.status:before{content:"";width:7px;height:7px;background:var(--orange);border-radius:50%;box-shadow:0 0 0 4px rgba(237,91,42,.13)}
-.hero{min-height:100svh;padding:135px 5vw 55px;position:relative;display:grid;grid-template-columns:1.2fr .8fr;align-items:end;border-bottom:1px solid var(--line);overflow:hidden}
-.hero .kicker,.eyebrow{font:12px var(--mono);letter-spacing:.12em;text-transform:uppercase}.hero h1{font-size:clamp(75px,12vw,190px);line-height:.76;letter-spacing:-.085em;margin:28px 0 0;font-weight:800}
-.hero h1 em{font-family:var(--serif);font-weight:600;color:var(--orange);letter-spacing:-.06em}
-.hero-side{align-self:center;padding-left:4vw}.hero-side p{font-size:clamp(18px,2vw,29px);line-height:1.3;max-width:570px;letter-spacing:-.035em}.hero-side small{font:10px/1.6 var(--mono);display:block;margin-top:35px;color:#59615f}
-.hero-stamp{position:absolute;right:5vw;bottom:5vh;width:120px;height:120px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font:9px/1.4 var(--mono);text-align:center;transform:rotate(8deg)}
-.marquee{overflow:hidden;border-bottom:1px solid var(--line);background:var(--ink);color:var(--paper);padding:15px 0}.marquee-track{display:flex;width:max-content;animation:marquee 26s linear infinite}.marquee-track span{font:12px var(--mono);white-space:nowrap;padding-right:40px}.marquee-track b{color:var(--orange)}@keyframes marquee{to{transform:translateX(-50%)}}
-.intro{padding:11vw 5vw;display:grid;grid-template-columns:.6fr 1.4fr;gap:8vw}.intro h2{font-size:clamp(52px,7.6vw,120px);line-height:.9;letter-spacing:-.065em;margin:0}.intro h2 em{font-family:var(--serif);color:var(--orange)}.intro-copy{align-self:end;max-width:720px}.intro-copy p{font-size:20px;line-height:1.6}.intro-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:55px}.intro-grid div{padding:18px 18px 18px 0;border-right:1px solid var(--line)}.intro-grid b{font-size:clamp(20px,2vw,28px);font-weight:600;letter-spacing:-.04em}.intro-grid span{display:block;font:12px/1.5 var(--mono);margin-top:8px}
-.work-head{padding:0 5vw 35px;display:flex;align-items:end;justify-content:space-between}.work-head h2{font-size:clamp(60px,9vw,145px);line-height:.8;letter-spacing:-.075em;margin:0}.work-head h2 em{font-family:var(--serif);color:var(--orange)}.work-head p{font:13px/1.6 var(--mono);max-width:310px}
-.loop-shell{height:100svh;min-height:720px;position:relative;background:var(--ink);color:var(--paper);overflow:hidden}
-.loop-top{position:absolute;z-index:10;top:26px;left:4vw;right:4vw;display:flex;justify-content:space-between;font:12px var(--mono);color:#cfc8be}
-.loop-track{height:100%;display:flex;will-change:transform}.slide{flex:0 0 100vw;height:100%;display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;padding:75px 5vw 40px;gap:5vw}
-.slide-copy{max-width:580px}.num{font:10px var(--mono);color:#aaa}.role{font:12px var(--mono);letter-spacing:.12em;color:#b9b3ab;margin-top:50px}.slide h3{font-size:clamp(62px,7.5vw,120px);line-height:.8;letter-spacing:-.075em;margin:20px 0 28px}.slide h3 i{font-family:var(--serif);font-weight:600;color:var(--accent);font-style:italic}.slide p{font-size:17px;line-height:1.55;color:#cfc9c0;max-width:500px}.tags{display:flex;flex-wrap:wrap;gap:7px;margin:28px 0}.tags span{font:8px var(--mono);border:1px solid rgba(255,255,255,.25);padding:8px 10px;border-radius:99px}.case-actions{display:flex;flex-wrap:wrap;gap:18px;margin-top:30px}.case-link{font:11px var(--mono);display:inline-flex;gap:10px;border-bottom:1px solid #777;padding-bottom:7px}.case-link:hover{color:var(--accent);border-color:var(--accent)}
-.visual{height:min(68vh,690px);min-height:480px;position:relative;overflow:hidden;background:var(--visual);border-radius:3px}.visual:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);pointer-events:none}.visual img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.02);transition:transform .7s cubic-bezier(.2,.8,.2,1)}.slide:hover .visual img{transform:scale(1.025)}.visual.screenshot{display:grid;place-items:center;background:#11171b}.visual.screenshot img{object-fit:cover;filter:none}.visual.sim-shot img{object-fit:contain}.visual.sim-shot{background:#f2eee4}.visual.trilha-shot{background:#27190d}.visual .label{position:absolute;z-index:3;left:20px;bottom:18px;background:rgba(23,33,31,.84);backdrop-filter:blur(8px);padding:10px 12px;font:8px var(--mono);border:1px solid rgba(255,255,255,.16)}
-.visual.fallback{display:grid;place-items:center;background:var(--visual)}.visual.fallback strong{font-size:clamp(90px,15vw,260px);letter-spacing:-.1em;color:var(--accent)}.visual.fallback small{position:absolute;right:24px;bottom:22px;font:11px var(--mono)}.visual.fallback strong{line-height:.82;letter-spacing:-.07em}.slide[data-index="1"] .visual.fallback strong{font-size:clamp(60px,8vw,125px)}.rota-art strong{position:absolute;left:8%;top:10%;font-size:clamp(70px,10vw,150px);text-align:left}.rota-art strong i{font-family:var(--serif);color:var(--accent);font-weight:600}.rota-art svg{position:absolute;inset:26% 5% 12%;width:90%;height:64%;fill:none;stroke:var(--accent);stroke-width:3;opacity:.8}.rota-art svg circle{fill:var(--accent);stroke:none}
-.loop-controls{position:absolute;z-index:15;bottom:25px;right:4vw;display:flex;gap:8px}.loop-controls button{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.18);color:white;cursor:pointer}.loop-controls button:hover{background:var(--paper);color:var(--ink)}
-.loop-hint{position:absolute;z-index:10;bottom:34px;left:4vw;font:12px var(--mono);color:#aaa}.loop-dots{position:absolute;z-index:10;bottom:40px;left:50%;transform:translateX(-50%);display:flex;gap:8px}.loop-dots i{width:24px;height:2px;background:#555}.loop-dots i.active{background:var(--orange)}
-.skills{padding:11vw 5vw;background:var(--blue);color:#f6eee3}.skills-head{display:grid;grid-template-columns:1fr 1fr;gap:5vw}.skills h2{font-size:clamp(60px,9vw,145px);line-height:.82;letter-spacing:-.075em;margin:0}.skills h2 em{font-family:var(--serif);color:#f3c7ae}.skills-note{font-size:19px;line-height:1.6;max-width:560px;align-self:end}.skill-list{margin-top:8vw;border-top:1px solid rgba(255,255,255,.25)}.skill{display:grid;grid-template-columns:1fr 1fr;padding:25px 0;border-bottom:1px solid rgba(255,255,255,.25);align-items:center}.skill b{display:none}.skill strong{font-size:clamp(25px,3vw,48px);letter-spacing:-.04em}.skill span{font:14px var(--mono);text-align:right;opacity:.75}
-.about{padding:11vw 5vw;display:grid;grid-template-columns:1fr 1fr;gap:9vw}.portrait{aspect-ratio:4/5;background:var(--paper2);position:relative;overflow:hidden}.portrait:before{content:"HS";position:absolute;font-weight:800;font-size:26vw;letter-spacing:-.12em;left:-2vw;bottom:-6vw;color:var(--wine);opacity:.95}.portrait:after{content:"BELO HORIZONTE · MG";position:absolute;right:20px;top:20px;font:8px var(--mono);writing-mode:vertical-rl}.about-copy{align-self:center}.about-copy h2{font-size:clamp(50px,6vw,96px);line-height:.9;letter-spacing:-.06em;margin:22px 0}.about-copy h2 em{font-family:var(--serif);color:var(--wine)}.about-copy p{font-size:18px;line-height:1.65}.links{display:flex;gap:18px;flex-wrap:wrap;margin-top:40px}.links a{font:12px var(--mono);border-bottom:1px solid;padding-bottom:6px}.links a:hover{color:var(--orange)}
-.contact{min-height:88vh;padding:9vw 5vw 35px;background:var(--orange);color:#1c1b19;display:flex;flex-direction:column}.contact h2{font-size:clamp(70px,12vw,190px);line-height:.76;letter-spacing:-.085em;margin:8vh 0}.contact h2 em{font-family:var(--serif);font-weight:600;color:var(--paper)}.contact-bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(0,0,0,.35);padding-top:22px}.contact-bottom p{font-size:18px;max-width:480px}.contact-bottom div{display:flex;gap:20px;font:12px var(--mono)}
-footer{padding:22px 5vw;background:var(--orange);display:flex;justify-content:space-between;font:11px var(--mono);border-top:1px solid rgba(0,0,0,.2)}
-.reveal{opacity:0;transform:translateY(24px);transition:.8s ease}.reveal.in{opacity:1;transform:none}
-@media(max-width:900px){.nav nav{display:none}.hero{grid-template-columns:1fr;padding-top:120px}.hero-side{padding:40px 0 100px}.hero-stamp{display:none}.intro{grid-template-columns:1fr}.slide{grid-template-columns:1fr;padding-top:85px;overflow-y:auto}.slide-copy{padding-top:20px}.role{margin-top:18px}.slide h3{font-size:16vw}.visual{min-height:360px;height:48vh}.loop-hint{display:none}.skills-head,.about{grid-template-columns:1fr}.skill{grid-template-columns:1fr}.skill span{display:block;text-align:left}.portrait{max-height:620px}.contact-bottom{display:block}.contact-bottom div{margin-top:35px;flex-wrap:wrap}}
-@media(max-width:560px){.nav{left:10px;right:10px;top:10px}.status{font-size:0}.status:after{content:"FALAR";font-size:9px}.hero,.intro,.work-head,.skills,.about,.contact{padding-left:20px;padding-right:20px}.hero h1{font-size:20vw}.intro-grid{grid-template-columns:1fr}.intro-grid div{border-right:0;border-bottom:1px solid var(--line)}.work-head{display:block}.work-head p{margin-top:30px}.slide{padding-left:20px;padding-right:20px}.visual{min-height:300px}.loop-controls{right:20px}.loop-dots{display:none}.skills h2,.about-copy h2{font-size:17vw}.contact h2{font-size:19vw}.contact-bottom div{display:grid}.contact footer,footer{gap:8px;flex-direction:column}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.marquee-track{animation:none}.reveal{opacity:1;transform:none;transition:none}}
-
-.proof{padding:10vw 5vw;background:var(--blue);color:#f6eee3}.proof-head{display:grid;grid-template-columns:1fr 1fr;gap:0 5vw;align-items:end}.proof-head>.eyebrow{grid-column:1/-1;margin:0 0 34px}.proof-head h2{font-size:clamp(60px,9vw,145px);line-height:.82;letter-spacing:-.075em;margin:0}.proof-head h2 em{font-family:var(--serif);color:#f3c7ae}.proof-intro{max-width:520px;font-size:clamp(20px,2vw,28px);line-height:1.45;margin:0 0 4px}.proof-stage{display:grid;grid-template-columns:.72fr 1.28fr;gap:6vw;margin-top:8vw}.proof-tabs{display:flex;flex-direction:column}.proof-tab{width:100%;display:flex;flex-direction:column;gap:12px;text-align:left;color:#f6eee3;background:transparent;border:0;border-top:1px solid rgba(255,255,255,.3);padding:24px 0;cursor:pointer;transition:color .2s ease,padding-left .2s ease}.proof-tab:last-child{border-bottom:1px solid rgba(255,255,255,.3)}.proof-tab span{font-size:clamp(22px,2.5vw,36px);font-weight:700;letter-spacing:-.04em}.proof-tab small{font:15px/1.45 var(--sans);opacity:.78}.proof-tab:hover,.proof-tab[aria-selected="true"]{color:var(--lime)}.proof-tab[aria-selected="true"]{padding-left:16px}.proof-tab:focus-visible,.proof-source:focus-visible{outline:2px solid var(--lime);outline-offset:5px}.proof-panel{align-self:stretch;min-width:0;background:#17211f;padding:clamp(24px,4vw,54px);display:flex;flex-direction:column;justify-content:space-between}.proof-panel-top{display:flex;align-items:center;justify-content:space-between;gap:24px;font:12px/1.4 var(--mono);letter-spacing:.08em}.proof-source{color:var(--lime);white-space:nowrap}.proof-panel pre{margin:64px 0 48px;white-space:pre-wrap;overflow-wrap:normal;overflow-x:auto;font:clamp(15px,1.25vw,18px)/1.7 var(--mono);color:#f2eadf}.proof-panel code{font:inherit;overflow-wrap:normal}.proof-panel p{font-size:18px;line-height:1.55;max-width:600px;margin:0;color:#cfc9c0}
-@media(max-width:900px){.proof{padding:100px 5vw}.proof-head{grid-template-columns:1fr;gap:28px}.proof-head>.eyebrow{margin:0}.proof-head h2{font-size:clamp(60px,12vw,110px)}.proof-intro{font-size:20px}.proof-stage{grid-template-columns:1fr;gap:38px;margin-top:60px}.proof-tab{padding:18px 0}.proof-tab[aria-selected="true"]{padding-left:10px}.proof-panel{min-height:300px}.proof-panel pre{font-size:13px;margin:44px 0 34px}}
-
-</style>
-</head>
-<body>
-<div class="progress"></div>
-<header class="nav">
- <a class="brand" href="#inicio" aria-label="Henrique Souza, início"><img src="/assets/logo-hs.png" alt=""><span>HENRIQUE SOUZA</span></a>
- <nav><a href="#projetos">PROJETOS</a><a href="#habilidades">CÓDIGO</a><a href="#sobre">SOBRE</a><a href="#contato">CONTATO</a></nav>
- <a class="status" href="#contato">DISPONÍVEL PARA CONVERSAR</a>
-</header>
-
-<main>
-<section class="hero" id="inicio">
- <div>
-  <div class="kicker reveal">ENGENHEIRO DE SOFTWARE · PRODUTO DIGITAL</div>
-  <h1 class="reveal">EU CRIO<br><em>SISTEMAS</em><br>REAIS.</h1>
- </div>
- <div class="hero-side reveal">
-  <p>Desenho e implemento produtos digitais do primeiro fluxo à operação.</p>
-  <small>PRODUTO · SISTEMAS · ENTREGA<br>BELO HORIZONTE, BRASIL</small>
- </div>
- <div class="hero-stamp">SOFTWARE<br>PRODUTO<br>EM PRODUÇÃO</div>
-</section>
-
-<div class="marquee"><div class="marquee-track">
- <span>PRODUTO <b>✦</b> FRONTEND <b>✦</b> BACKEND <b>✦</b> APIs <b>✦</b> PWA <b>✦</b> CLOUD <b>✦</b> DADOS <b>✦</b> DEPLOY <b>✦</b>&nbsp;</span>
- <span>PRODUTO <b>✦</b> FRONTEND <b>✦</b> BACKEND <b>✦</b> APIs <b>✦</b> PWA <b>✦</b> CLOUD <b>✦</b> DADOS <b>✦</b> DEPLOY <b>✦</b>&nbsp;</span>
-</div></div>
-
-<section class="intro">
- <div><p class="eyebrow reveal">COMO EU TRABALHO</p></div>
- <div>
-  <h2 class="reveal">O SISTEMA<br>PRECISA <em>funcionar.</em></h2>
-  <div class="intro-copy reveal">
-   <p>Da interface às regras de negócio, trabalho nas partes que fazem um produto ser útil, confiável e possível de operar.</p>
-   <div class="intro-grid"><div><b>Entender</b><span>O problema e quem usa</span></div><div><b>Desenhar</b><span>Fluxo, dados e regras</span></div><div><b>Publicar</b><span>Acompanhar em uso</span></div></div></div></div></section>
-
-<section id="projetos">
- <div class="work-head">
-  <h2>TRABALHOS<br><em>selecionados.</em></h2>
-  <p>Use a roda, arraste ou navegue pelos projetos. O percurso continua em loop.</p>
- </div>
-
- <div class="loop-shell" id="loop">
-  <div class="loop-top"><span>PROJETOS EM USO</span><span id="counter">01 — 05</span></div>
-  <div class="loop-track" id="track">
-   <article class="slide" style="--accent:#f08b61;--visual:#203d38" data-index="1">
-    <div class="slide-copy"><div class="role">MAPA · CAMPANHAS · AVISOS</div><h3>QUARTA<br><i>AMSTEL</i></h3><p>Um mapa para encontrar bares, acompanhar campanhas e receber avisos locais. O produto está aberto para acesso; a data de lançamento ainda não foi definida.</p><div class="case-actions"><a class="case-link" target="_blank" rel="noreferrer" href="https://quarta-amstel.pages.dev/">ACESSAR O PRODUTO ↗</a><a class="case-link" target="_blank" rel="noreferrer" href="https://github.com/henriquesouza1832001-eng/quarta-amstel">CÓDIGO ↗</a></div></div>
-    <div class="visual fallback" aria-label="Identidade tipográfica do projeto Quarta Amstel"><strong>QUARTA<br>AMSTEL</strong><small>MAPA · CAMPANHA · AVISO</small></div>
-   </article>
-
-   <article class="slide" style="--accent:#ef9a47;--visual:#10151b" data-index="2">
-    <div class="slide-copy"><div class="role">EVENTOS PÚBLICOS · FONTES · CONTEXTO</div><h3>PULSO</h3><p>Um painel que reúne sinais públicos, cruza fontes e mostra o contexto dos acontecimentos em cada região.</p><div class="case-actions"><a class="case-link" target="_blank" rel="noreferrer" href="https://pulso-web.henriquesouza.workers.dev/">ABRIR O PULSO ↗</a><a class="case-link" target="_blank" rel="noreferrer" href="https://github.com/henriquesouza1832001-eng/Pulso">CÓDIGO ↗</a></div></div>
-    <div class="visual screenshot pulso-shot"><img loading="lazy" src="/assets/projects/pulso-live.jpg" alt="Painel público do PULSO, com mapa do Brasil, alertas por região e fontes online"><span class="label">PAINEL PÚBLICO · PULSO</span></div>
-   </article>
-
-   <article class="slide" style="--accent:#c8a77d;--visual:#e9e5dc" data-index="3">
-    <div class="slide-copy"><div class="role">SITE · CONVITE · ACESSO POR GRUPO</div><h3>E<small class="amp">&</small>T</h3><p>Um site de casamento que reúne convite, programação e informações para cada grupo de convidados, com acesso controlado pelo próprio sistema.</p><div class="case-actions"><a class="case-link" target="_blank" rel="noreferrer" href="https://tudocomecoudeumsim.pages.dev/">CONHECER E&T ↗</a><a class="case-link" target="_blank" rel="noreferrer" href="https://github.com/henriquesouza1832001-eng/tudocomecoudeumsim">CÓDIGO ↗</a></div></div>
-    <div class="visual screenshot sim-shot"><img loading="lazy" src="/assets/projects/sim-live.jpg" alt="Página pública do e&t Sites de Casamento com convite e informações do evento"><span class="label">SITE PÚBLICO · E&T</span></div>
-   </article>
-
-   <article class="slide" style="--accent:#ef9a47;--visual:#302118" data-index="4">
-    <div class="slide-copy"><div class="role">MAPA · BARES · ROTEIROS COMPARTILHADOS</div><h3>ROTA DI<br><i>BUTECO</i></h3><p>A edição 2026 reuniu visitas, avaliações e roteiros do Comida di Buteco em Belo Horizonte. O próximo ciclo volta no ano que vem com um redesenho completo.</p><div class="case-actions"><a class="case-link" target="_blank" rel="noreferrer" href="https://rotadibuteco.web.app/">ABRIR A EDIÇÃO ↗</a><a class="case-link" target="_blank" rel="noreferrer" href="https://github.com/henriquesouza1832001-eng/rotadibuteco">CÓDIGO ↗</a></div></div>
-    <div class="visual fallback rota-art" aria-label="Composição tipográfica do projeto Rota di Buteco"><strong>ROTA<br><i>di Buteco</i></strong><svg viewBox="0 0 700 430" aria-hidden="true"><path d="M75 300 C160 110 230 360 330 190 S500 300 625 95"/><circle cx="75" cy="300" r="9"/><circle cx="330" cy="190" r="9"/><circle cx="625" cy="95" r="9"/></svg><small>BELO HORIZONTE · COMIDA DI BUTECO</small></div>
-   </article>
-
-   <article class="slide" style="--accent:#b8ca83;--visual:#291a0d" data-index="5">
-    <div class="slide-copy"><div class="role">DESCOBERTA URBANA · MAPA · GRUPOS</div><h3>TRILHA<i>BH</i></h3><p>Roteiros por Belo Horizonte para explorar a cidade no mapa e compartilhar descobertas com amigos. A versão pública está em finalização.</p><div class="case-actions"><a class="case-link" target="_blank" rel="noreferrer" href="https://trilhabh.web.app/">ABRIR A VERSÃO PÚBLICA ↗</a><a class="case-link" target="_blank" rel="noreferrer" href="https://github.com/henriquesouza1832001-eng/trilhaBH">CÓDIGO ↗</a></div></div>
-    <div class="visual screenshot trilha-shot"><img loading="lazy" src="/assets/projects/trilha-live.jpg" alt="Versão pública do Trilha BH exibindo roteiros e estabelecimentos no mapa"><span class="label">VERSÃO PÚBLICA · TRILHA BH</span></div>
-   </article>
-
-  </div>
-  <div class="loop-hint">ROLE · ARRASTE · CONTINUE</div>
-  <div class="loop-dots" id="dots"></div>
-  <div class="loop-controls"><button id="prev" aria-label="Projeto anterior">←</button><button id="next" aria-label="Próximo projeto">→</button></div>
- </div>
-</section>
-
-<section class="proof" id="habilidades" aria-labelledby="proof-title">
- <div class="proof-head">
-  <p class="eyebrow">CÓDIGO PÚBLICO · ENGENHARIA DE SOFTWARE</p>
-  <h2 id="proof-title">DECISÕES<br><em>no código.</em></h2>
-  <p class="proof-intro">Três regras em repositórios públicos: como cada produto lida com sinais, notificações e acesso.</p>
- </div>
- <div class="proof-stage">
-  <div class="proof-tabs" role="tablist" aria-label="Decisões de engenharia">
-   <button class="proof-tab" id="proof-tab-pulso" type="button" role="tab" aria-selected="true" aria-controls="proof-panel" tabindex="0" data-proof="pulso"><span>PULSO</span><small>Impede que um sinal social infle a confiança.</small></button>
-   <button class="proof-tab" id="proof-tab-amstel" type="button" role="tab" aria-selected="false" aria-controls="proof-panel" tabindex="-1" data-proof="amstel"><span>QUARTA AMSTEL</span><small>Consulta a inscrição de push já gravada.</small></button>
-   <button class="proof-tab" id="proof-tab-et" type="button" role="tab" aria-selected="false" aria-controls="proof-panel" tabindex="-1" data-proof="et"><span>E&T</span><small>Filtra eventos pelo acesso do convidado.</small></button>
-  </div>
-  <article class="proof-panel" id="proof-panel" role="tabpanel" tabindex="0" aria-labelledby="proof-tab-pulso">
-   <div class="proof-panel-top"><span id="proof-project">PULSO · CONFIANÇA</span><a id="proof-source" href="https://github.com/henriquesouza1832001-eng/Pulso/blob/main/engine/pulso_engine/scoring/confidence.py#L23-L24" target="_blank" rel="noreferrer">ABRIR ESTE TRECHO ↗</a></div>
-   <pre><code id="proof-code">value = min(value, SOCIAL_ONLY_CAP)</code></pre>
-   <p id="proof-note">Quando todas as fontes são sociais, o cálculo limita a confiança do sinal.</p>
-  </article>
- </div>
-</section>
-
-<section class="about" id="sobre">
- <div class="portrait" aria-label="Monograma visual Henrique Souza"></div>
- <div class="about-copy">
-  <p class="eyebrow">SOBRE</p>
-  <h2>HENRIQUE<br><em>SOUZA.</em></h2><p>Sou engenheiro de software em Belo Horizonte. Trabalho com produto, arquitetura e operação de sistemas.</p><p>Desenho fluxos, implemento regras de negócio e acompanho o software em uso.</p><div class="links"><a target="_blank" rel="noreferrer" href="https://github.com/henriquesouza1832001-eng">GITHUB ↗</a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/henrique-s-4080b9139/">LINKEDIN ↗</a><a href="mailto:henriquesouza1832001@gmail.com">E-MAIL ↗</a></div>
- </div>
-</section>
-
-<section class="contact" id="contato">
- <p class="eyebrow">CONTATO</p>
- <h2>VAMOS CRIAR<br>ALGO QUE <em>funcione?</em></h2>
- <div class="contact-bottom"><p>Software, produto e sistemas web com um próximo passo claro.</p><div><a href="mailto:henriquesouza1832001@gmail.com">E-MAIL ↗</a><a target="_blank" rel="noreferrer" href="https://github.com/henriquesouza1832001-eng">GITHUB ↗</a><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/henrique-s-4080b9139/">LINKEDIN ↗</a></div></div>
-</section>
-</main>
-<footer><span>HENRIQUE SOUZA © 2026</span><span>BELO HORIZONTE · BRASIL</span><a href="#inicio">VOLTAR AO TOPO ↑</a></footer>
-
-<script>
-const progress=document.querySelector(".progress");
-addEventListener("scroll",()=>{const m=document.documentElement.scrollHeight-innerHeight;progress.style.width=(m?scrollY/m*100:0)+"%"},{passive:true});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll(".reveal").forEach(x=>io.observe(x));
-
-/* Loop horizontal verdadeiramente contínuo:
-   clones nas duas pontas + reposicionamento instantâneo invisível. */
-const shell=document.getElementById("loop"), track=document.getElementById("track");
-let originals=[...track.children], count=originals.length, index=1, moving=false;
-const first=originals[0].cloneNode(true), last=originals[count-1].cloneNode(true);
-first.dataset.clone="1"; last.dataset.clone="1"; track.appendChild(first); track.insertBefore(last,track.firstChild);
-let slides=[...track.children];
-function width(){return shell.clientWidth}
-function place(animate=true){track.style.transition=animate?"transform .72s cubic-bezier(.22,.75,.18,1)":"none";track.style.transform=`translate3d(${-index*width()}px,0,0)`;updateUI()}
-function updateUI(){let real=((index-1)%count+count)%count;document.getElementById("counter").textContent=String(real+1).padStart(2,"0")+" — "+String(count).padStart(2,"0");[...document.querySelectorAll("#dots i")].forEach((d,i)=>d.classList.toggle("active",i===real))}
-const dots=document.getElementById("dots");for(let i=0;i<count;i++){let d=document.createElement("i");dots.appendChild(d)}
-place(false);
-function go(delta){if(moving)return;moving=true;index+=delta;place(true)}
-track.addEventListener("transitionend",()=>{if(index===0){index=count;place(false)}else if(index===count+1){index=1;place(false)}moving=false});
-document.getElementById("next").onclick=()=>go(1);document.getElementById("prev").onclick=()=>go(-1);
-addEventListener("resize",()=>place(false));
-
-/* Roda do mouse vira navegação lateral apenas enquanto a seção está dominante. */
-let wheelLock=false;
-shell.addEventListener("wheel",e=>{if(Math.abs(e.deltaY)<8)return;e.preventDefault();if(wheelLock)return;wheelLock=true;go(e.deltaY>0?1:-1);setTimeout(()=>wheelLock=false,760)},{passive:false});
-
-/* Arrastar / swipe */
-let sx=0,dx=0,drag=false;
-shell.addEventListener("pointerdown",e=>{if(e.target.closest("a,button,.loop-dots"))return;sx=e.clientX;dx=0;drag=true;shell.setPointerCapture(e.pointerId)});
-shell.addEventListener("pointermove",e=>{if(!drag)return;dx=e.clientX-sx;track.style.transition="none";track.style.transform=`translate3d(${(-index*width())+dx}px,0,0)`});
-shell.addEventListener("pointerup",()=>{if(!drag)return;drag=false;if(Math.abs(dx)>70)go(dx<0?1:-1);else place(true)});
-
-/* Teclado */
-shell.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1)});shell.tabIndex=0;
-const proofSamples={
- pulso:{title:'PULSO · CONFIANÇA',code:'value = min(value, SOCIAL_ONLY_CAP)',note:'Quando todas as fontes são sociais, o cálculo limita a confiança do sinal.',href:'https://github.com/henriquesouza1832001-eng/Pulso/blob/main/engine/pulso_engine/scoring/confidence.py#L23-L24'},
- amstel:{title:'QUARTA AMSTEL · WEB PUSH',code:'let sub = await swReg.pushManager.getSubscription();',note:'O navegador consulta a inscrição atual e só cria outra quando falta uma.',href:'https://github.com/henriquesouza1832001-eng/quarta-amstel/blob/main/www/js/push.js#L47'},
- et:{title:'E&T · ACESSO A EVENTOS',code:["statuses.get(event.id) !== 'revoked' &&","event.group_ids.includes(guest.group_id)"].join(String.fromCharCode(10)),note:'A resposta da API exclui eventos revogados e respeita o grupo do convidado.',href:'https://github.com/henriquesouza1832001-eng/tudocomecoudeumsim/blob/main/functions/api/%5B%5Broute%5D%5D.js#L601'},
-};
-const proofTabs=[...document.querySelectorAll('.proof-tab')];
-function activateProof(tab){const sample=proofSamples[tab.dataset.proof];if(!sample)return;proofTabs.forEach(item=>{const active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1});document.getElementById('proof-panel').setAttribute('aria-labelledby',tab.id);document.getElementById('proof-project').textContent=sample.title;document.getElementById('proof-code').textContent=sample.code;document.getElementById('proof-note').textContent=sample.note;document.getElementById('proof-source').href=sample.href}
-proofTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>activateProof(tab));tab.addEventListener('keydown',event=>{if(!['ArrowDown','ArrowUp','ArrowRight','ArrowLeft'].includes(event.key))return;event.preventDefault();const delta=['ArrowDown','ArrowRight'].includes(event.key)?1:-1;const next=proofTabs[(index+delta+proofTabs.length)%proofTabs.length];next.focus();activateProof(next)})});
-
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111411" />
+    <meta
+      name="description"
+      content="Projetos públicos, sites e sistemas digitais de Henrique Souza, desenvolvedor full stack em Belo Horizonte. Explore cada produto e acesse o código-fonte."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Henrique Souza — Desenvolvedor full stack em Belo Horizonte"
+    />
+    <meta
+      property="og:description"
+      content="Projetos públicos de Henrique Souza. Acesse os produtos e seus repositórios no GitHub."
+    />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" href="/assets/logo-hs.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Henrique Souza — Desenvolvedor full stack em Belo Horizonte</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

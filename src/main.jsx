@@ -875,7 +875,7 @@ function ProjectGlyph({ id }) {
 
 function PortfolioProject({ project, index }) {
   const summaries = {
-    quarta: "Bares, campanhas e encontros em um app feito para a quarta-feira ganhar a cidade.",
+    quarta: "Bares, campanhas e encontros em um app feito para a quarta-feira ganhar a cidade. O acesso está aberto; a data oficial de lançamento ainda não foi definida.",
     pulso: "Fontes públicas viram contexto: acontecimentos organizados por lugar, origem e confiança.",
     sim: "Convite, site e organização do casamento reunidos em uma experiência para o casal e seus convidados.",
     trilha: "Uma forma coletiva de encontrar bares e desenhar novos roteiros por Belo Horizonte.",

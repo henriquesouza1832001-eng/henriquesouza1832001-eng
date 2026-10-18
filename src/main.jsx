@@ -621,6 +621,9 @@ function PortfolioProject({ project }) {
             {project.id === "quarta" ? "Acessar produto" : project.cta}
             <Arrow diagonal />
           </a>
+          <a href={`/projetos/${project.id}`}>
+            Ver o case <Arrow diagonal />
+          </a>
           <a href={project.repo} target="_blank" rel="noreferrer">
             Código no GitHub <Arrow diagonal />
           </a>

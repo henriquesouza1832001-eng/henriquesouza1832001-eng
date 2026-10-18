@@ -446,7 +446,8 @@ a:hover .arrow.diagonal {
   font-size: 17px;
   font-weight: 650;
 }
-.folio-links a:first-child {
+.folio-links a:first-child,
+.folio-links a:nth-child(2) {
   color: #d84b34;
 }
 .glyph {
@@ -1649,6 +1650,51 @@ a:hover .arrow.diagonal {
 .folio-home.folio-motion .folio-chapter .folio-copy {
   opacity: 1;
   transform: none;
+}
+
+/* Carry the selected project from its proof panel into its case page. */
+@view-transition {
+  navigation: auto;
+}
+.folio-source-heading h3,
+.folio-detail-hero h1 {
+  view-transition-name: folio-case-title;
+}
+.folio-source-sheet,
+.folio-detail-art {
+  view-transition-name: folio-case-art;
+}
+::view-transition-group(folio-case-title),
+::view-transition-group(folio-case-art) {
+  animation-duration: 650ms;
+  animation-timing-function: cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+::view-transition-old(folio-case-art) {
+  animation: case-art-away 420ms ease both;
+}
+::view-transition-new(folio-case-art) {
+  animation: case-art-arrive 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+@keyframes case-art-away {
+  to {
+    opacity: 0.3;
+    filter: saturate(0.55);
+  }
+}
+@keyframes case-art-arrive {
+  from {
+    opacity: 0.45;
+    filter: saturate(0.7);
+  }
+  to {
+    opacity: 1;
+    filter: saturate(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
 }
 
 /* The feature panel shows public project evidence instead of decorative mockups. */

@@ -49,7 +49,14 @@ const projects = [
   },
 ];
 
-const portfolioProjects = [projects[1], projects[0], ...projects.slice(2)];
+// Put the finished public work first and leave the in-progress Trilha for last.
+const portfolioProjects = [
+  projects[1],
+  projects[0],
+  projects[2],
+  projects[4],
+  projects[3],
+];
 const projectNames = {
   quarta: "Quarta Amstel",
   pulso: "PULSO",
@@ -640,7 +647,7 @@ function PortfolioHome() {
         </section>
         <section className="folio-work" id="projetos" aria-label="Projetos">
           <div className="folio-section-heading" id="codigo">
-            <span>Trabalho real. Código aberto. Produtos acessíveis.</span>
+            <span>Projetos públicos. Acesso direto. Código aberto.</span>
             <a href={GH} target="_blank" rel="noreferrer">
               Acompanhe no GitHub <Arrow diagonal />
             </a>

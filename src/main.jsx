@@ -21,7 +21,7 @@ const projects = [
     tags: ["PWA", "Web Push", "Cloudflare Workers"],
     url: "https://quarta-amstel.pages.dev/",
     repo: `${GH}/quarta-amstel`,
-    cta: "Explorar o app",
+    cta: "Acessar o produto",
   },
   {
     id: "sim",
@@ -37,7 +37,7 @@ const projects = [
     tags: ["PWA", "Firebase", "Capacitor"],
     url: "https://trilhabh.web.app/",
     repo: `${GH}/trilhaBH`,
-    cta: "Abrir a versão de teste",
+    cta: "Abrir versão de teste",
   },
   {
     id: "rota",
@@ -45,7 +45,7 @@ const projects = [
     tags: ["PWA", "Produto", "Redesign"],
     url: "https://rotadibuteco.web.app/",
     repo: `${GH}/rotadibuteco`,
-    cta: "Ver a versão de 2026",
+    cta: "Abrir edição encerrada",
   },
 ];
 
@@ -167,12 +167,12 @@ const caseStudies = {
     status: "Disponível para acesso · lançamento sem data definida",
     introduction:
       "Um app de bares e campanhas para levar as pessoas do mapa ao encontro.",
-    statement: "A próxima quarta começa escolhendo para onde ir.",
+    statement: "Bares, campanhas e encontros começam no mapa.",
     story:
-      "O Quarta Amstel reúne descoberta de bares, campanhas e uma experiência que funciona no celular. O produto está aberto para acesso; a data oficial de lançamento ainda não foi definida.",
-    sectionTitle: "A experiência continua depois do mapa.",
+      "O PWA reúne descoberta de bares e campanhas. Está aberto para acesso; a data de lançamento ainda não foi definida.",
+    sectionTitle: "Notificações continuam a experiência.",
     sectionBody:
-      "Como PWA, o app pode ser instalado pelo navegador. As notificações retomam a inscrição existente quando a pessoa já autorizou o recurso.",
+      "O app pode ser instalado pelo navegador e retoma inscrições de notificações já autorizadas.",
     file: "www/js/push.js",
     language: "javascript",
     code: excerpts.quarta.code,
@@ -182,12 +182,12 @@ const caseStudies = {
   pulso: {
     status: "Produto público",
     introduction: "Um instrumento de leitura de sinais públicos do Brasil.",
-    statement: "Um sinal isolado não conta a história inteira.",
+    statement: "Um sinal sozinho não conta a história.",
     story:
-      "O PULSO coleta informações públicas e as organiza por evento, lugar e origem. Severidade e confiança são tratadas separadamente para deixar claro o que os sinais sustentam — e o que ainda não sustentam.",
-    sectionTitle: "Confiança é construída a partir das fontes.",
+      "Reúne informações públicas por evento, lugar e origem. Severidade e confiança ficam separadas para mostrar o que as fontes sustentam.",
+    sectionTitle: "Confiança nasce da qualidade das fontes.",
     sectionBody:
-      "Confirmações oficiais somam evidência. Contradições e fontes duplicadas reduzem a confiança; sinais sociais, sozinhos, têm um limite.",
+      "Confirmações oficiais aumentam a confiança. Contradições e fontes duplicadas reduzem; sinais sociais, sozinhos, têm um limite.",
     file: "engine/pulso_engine/scoring/confidence.py",
     language: "python",
     code: excerpts.pulso.code,
@@ -198,12 +198,12 @@ const caseStudies = {
   sim: {
     status: "Experiência pública",
     introduction: "Site, convite e organização do casamento em um só lugar.",
-    statement: "Cada pessoa convidada encontra o que precisa saber.",
+    statement: "Cada convidado encontra o que precisa.",
     story:
-      "O e&t aproxima o site do casal e os detalhes da celebração. Convites e eventos publicados respeitam o grupo de cada convidado, mantendo as informações certas com as pessoas certas.",
-    sectionTitle: "O convite também define o acesso.",
+      "A API filtra convites e eventos conforme o grupo de cada convidado, para cada pessoa ver as informações certas da celebração.",
+    sectionTitle: "Cada convite respeita o grupo.",
     sectionBody:
-      "A API filtra os eventos publicados pelo grupo do convidado antes de apresentar os detalhes da celebração.",
+      "A API verifica o grupo do convidado antes de retornar os detalhes de cada evento.",
     file: "functions/api/[[route]].js",
     language: "javascript",
     code: "const groups = Array.isArray(event.group_ids)\n  ? event.group_ids\n  : JSON.parse(event.group_ids_json || '[]')\n\nreturn !groups.length || groups.includes(guest.group_id)\n  ? event\n  : null",
@@ -214,9 +214,9 @@ const caseStudies = {
   trilha: {
     status: "Pré-beta · produto em finalização",
     introduction: "Um roteiro colaborativo para descobrir Belo Horizonte.",
-    statement: "A cidade aparece quando a gente sai pelo caminho.",
+    statement: "O grupo desenha novos caminhos pela cidade.",
     story:
-      "A Trilha BH organiza a descoberta de bares por mapa, visitas e roteiros compartilhados. O mesmo produto atende navegador e Android, com dados de grupos que se atualizam quando há mudanças.",
+      "Mapa, visitas e roteiros compartilhados ajudam grupos a descobrir bares. O mesmo produto atende navegador e Android e mantém os dados atualizados.",
     sectionTitle: "Do mapa ao roteiro do grupo.",
     sectionBody:
       "O fluxo conecta o app PWA ou Android à autenticação e aos dados do Firestore. Feed e ranking do grupo acompanham as atualizações em tempo real.",
@@ -232,12 +232,12 @@ const caseStudies = {
     status: "Edição 2026 encerrada · próximo ciclo em redesign",
     introduction:
       "Uma experiência social que acompanhou o Comida di Buteco em BH.",
-    statement: "Visitar um bar virava parte de uma história em grupo.",
+    statement: "Cada visita entrava na história do grupo.",
     story:
-      "A edição de 2026 reuniu bares, check-ins, avaliações e roteiros em um app colaborativo. O ranking e o feed do grupo acompanhavam as visitas enquanto o evento acontecia. O redesign de 2027 será um novo produto, ainda em preparação.",
-    sectionTitle: "Cada visita mexia na jornada coletiva.",
+      "A edição de 2026 reuniu bares, check-ins, avaliações e roteiros em grupo. O feed e o ranking acompanhavam as visitas; o próximo ciclo terá um redesign completo.",
+    sectionTitle: "A visita alimenta o grupo.",
     sectionBody:
-      "O check-in registrava a experiência e alimentava o feed e o ranking em tempo real. Esta página mostra apenas a edição encerrada de 2026.",
+      "O check-in registrava a visita e atualizava o feed e o ranking do grupo. Esta página documenta a edição encerrada.",
     flow: [
       "Visita ao bar",
       "Registro e avaliação",
@@ -259,7 +259,7 @@ function CaseProof({ story, repo }) {
             target="_blank"
             rel="noreferrer"
           >
-            {story.file} <Arrow diagonal />
+            {story.file.split("/").at(-1)} <Arrow diagonal />
           </a>
         </div>
         <pre>
@@ -332,10 +332,9 @@ function ProjectDetail({ project }) {
     <main className={`folio-detail folio-detail-${project.id}`}>
       <div className="folio-detail-top">
         <a href="/#projetos">← Todos os projetos</a>
-        <span>{story.status}</span>
       </div>
       <section className="folio-detail-hero">
-        <p>{story.introduction}</p>
+        <p className="folio-detail-introduction">{story.introduction}</p>
         <h1>{projectNames[project.id]}</h1>
         <div className="folio-detail-actions">
           <a
@@ -355,10 +354,22 @@ function ProjectDetail({ project }) {
       </section>
       <section className="folio-detail-story">
         <div>
-          <p className="folio-detail-label">O projeto</p>
+          <p className="folio-detail-label">Em resumo</p>
           <h2>{story.statement}</h2>
         </div>
-        <p>{story.story}</p>
+        <div className="folio-detail-description">
+          <p>{story.story}</p>
+          <dl className="folio-detail-facts">
+            <div>
+              <dt>Estado</dt>
+              <dd>{story.status}</dd>
+            </div>
+            <div>
+              <dt>Construído com</dt>
+              <dd>{project.tags.join(" · ")}</dd>
+            </div>
+          </dl>
+        </div>
       </section>
       <section className="folio-detail-proof">
         <div className="folio-proof-heading">
@@ -367,17 +378,6 @@ function ProjectDetail({ project }) {
           <p>{story.sectionBody}</p>
         </div>
         <CaseProof story={story} repo={project.repo} />
-      </section>
-      <section className="folio-detail-stack">
-        <p className="folio-detail-label">Construído com</p>
-        <div>
-          {project.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
-        <a href={project.repo} target="_blank" rel="noreferrer">
-          Explorar o repositório completo <Arrow diagonal />
-        </a>
       </section>
       <nav className="folio-detail-next" aria-label="Mais projetos">
         <a href={`/projetos/${previous.id}`}>

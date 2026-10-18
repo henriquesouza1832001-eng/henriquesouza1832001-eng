@@ -43,13 +43,17 @@ footer{padding:22px 5vw;background:var(--orange);display:flex;justify-content:sp
 @media(max-width:900px){.nav nav{display:none}.hero{grid-template-columns:1fr;padding-top:120px}.hero-side{padding:40px 0 100px}.hero-stamp{display:none}.intro{grid-template-columns:1fr}.slide{grid-template-columns:1fr;padding-top:85px;overflow-y:auto}.slide-copy{padding-top:20px}.role{margin-top:18px}.slide h3{font-size:16vw}.visual{min-height:360px;height:48vh}.loop-hint{display:none}.skills-head,.about{grid-template-columns:1fr}.skill{grid-template-columns:1fr}.skill span{display:block;text-align:left}.portrait{max-height:620px}.contact-bottom{display:block}.contact-bottom div{margin-top:35px;flex-wrap:wrap}}
 @media(max-width:560px){.nav{left:10px;right:10px;top:10px}.status{font-size:0}.status:after{content:"FALAR";font-size:9px}.hero,.intro,.work-head,.skills,.about,.contact{padding-left:20px;padding-right:20px}.hero h1{font-size:20vw}.intro-grid{grid-template-columns:1fr}.intro-grid div{border-right:0;border-bottom:1px solid var(--line)}.work-head{display:block}.work-head p{margin-top:30px}.slide{padding-left:20px;padding-right:20px}.visual{min-height:300px}.loop-controls{right:20px}.loop-dots{display:none}.skills h2,.about-copy h2{font-size:17vw}.contact h2{font-size:19vw}.contact-bottom div{display:grid}.contact footer,footer{gap:8px;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.marquee-track{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+
+.proof{padding:10vw 5vw;background:var(--blue);color:#f6eee3}.proof-head{display:grid;grid-template-columns:1fr 1fr;gap:0 5vw;align-items:end}.proof-head>.eyebrow{grid-column:1/-1;margin:0 0 34px}.proof-head h2{font-size:clamp(60px,9vw,145px);line-height:.82;letter-spacing:-.075em;margin:0}.proof-head h2 em{font-family:var(--serif);color:#f3c7ae}.proof-intro{max-width:520px;font-size:clamp(20px,2vw,28px);line-height:1.45;margin:0 0 4px}.proof-stage{display:grid;grid-template-columns:.72fr 1.28fr;gap:6vw;margin-top:8vw}.proof-tabs{display:flex;flex-direction:column}.proof-tab{width:100%;display:flex;flex-direction:column;gap:12px;text-align:left;color:#f6eee3;background:transparent;border:0;border-top:1px solid rgba(255,255,255,.3);padding:24px 0;cursor:pointer;transition:color .2s ease,padding-left .2s ease}.proof-tab:last-child{border-bottom:1px solid rgba(255,255,255,.3)}.proof-tab span{font-size:clamp(22px,2.5vw,36px);font-weight:700;letter-spacing:-.04em}.proof-tab small{font:15px/1.45 var(--sans);opacity:.78}.proof-tab:hover,.proof-tab[aria-selected="true"]{color:var(--lime)}.proof-tab[aria-selected="true"]{padding-left:16px}.proof-tab:focus-visible,.proof-source:focus-visible{outline:2px solid var(--lime);outline-offset:5px}.proof-panel{align-self:stretch;min-width:0;background:#17211f;padding:clamp(24px,4vw,54px);display:flex;flex-direction:column;justify-content:space-between}.proof-panel-top{display:flex;align-items:center;justify-content:space-between;gap:24px;font:12px/1.4 var(--mono);letter-spacing:.08em}.proof-source{color:var(--lime);white-space:nowrap}.proof-panel pre{margin:64px 0 48px;white-space:pre-wrap;overflow-wrap:normal;overflow-x:auto;font:clamp(15px,1.25vw,18px)/1.7 var(--mono);color:#f2eadf}.proof-panel code{font:inherit;overflow-wrap:normal}.proof-panel p{font-size:18px;line-height:1.55;max-width:600px;margin:0;color:#cfc9c0}
+@media(max-width:900px){.proof{padding:100px 5vw}.proof-head{grid-template-columns:1fr;gap:28px}.proof-head>.eyebrow{margin:0}.proof-head h2{font-size:clamp(60px,12vw,110px)}.proof-intro{font-size:20px}.proof-stage{grid-template-columns:1fr;gap:38px;margin-top:60px}.proof-tab{padding:18px 0}.proof-tab[aria-selected="true"]{padding-left:10px}.proof-panel{min-height:300px}.proof-panel pre{font-size:13px;margin:44px 0 34px}}
+
 </style>
 </head>
 <body>
 <div class="progress"></div>
 <header class="nav">
  <a class="brand" href="#inicio" aria-label="Henrique Souza, início"><img src="/assets/logo-hs.png" alt=""><span>HENRIQUE SOUZA</span></a>
- <nav><a href="#projetos">PROJETOS</a><a href="#habilidades">HABILIDADES</a><a href="#sobre">SOBRE</a><a href="#contato">CONTATO</a></nav>
+ <nav><a href="#projetos">PROJETOS</a><a href="#habilidades">CÓDIGO</a><a href="#sobre">SOBRE</a><a href="#contato">CONTATO</a></nav>
  <a class="status" href="#contato">DISPONÍVEL PARA CONVERSAR</a>
 </header>
 
@@ -120,15 +124,23 @@ footer{padding:22px 5vw;background:var(--orange);display:flex;justify-content:sp
  </div>
 </section>
 
-<section class="skills" id="habilidades">
- <div class="skills-head"><h2>DO PROBLEMA<br>AO <em>deploy.</em></h2><p class="skills-note">Da decisão de produto à operação do sistema.</p></div>
- <div class="skill-list">
-  <div class="skill"><strong>PRODUTO</strong><span>ESCOPO · FLUXO · EXPERIÊNCIA</span></div>
-  <div class="skill"><strong>FRONTEND</strong><span>JAVASCRIPT · HTML · CSS · PWA</span></div>
-  <div class="skill"><strong>BACKEND & APIs</strong><span>REGRAS · AUTENTICAÇÃO · INTEGRAÇÕES</span></div>
-  <div class="skill"><strong>DADOS</strong><span>SQL · D1 · FIRESTORE</span></div>
-  <div class="skill"><strong>CLOUD</strong><span>CLOUDFLARE · FIREBASE · DEPLOY</span></div>
-  <div class="skill"><strong>ENTREGA</strong><span>GIT · GITHUB · TESTES · EVOLUÇÃO</span></div>
+<section class="proof" id="habilidades" aria-labelledby="proof-title">
+ <div class="proof-head">
+  <p class="eyebrow">CÓDIGO PÚBLICO · ENGENHARIA DE SOFTWARE</p>
+  <h2 id="proof-title">DECISÕES<br><em>no código.</em></h2>
+  <p class="proof-intro">Três regras em repositórios públicos: como cada produto lida com sinais, notificações e acesso.</p>
+ </div>
+ <div class="proof-stage">
+  <div class="proof-tabs" role="tablist" aria-label="Decisões de engenharia">
+   <button class="proof-tab" id="proof-tab-pulso" type="button" role="tab" aria-selected="true" aria-controls="proof-panel" tabindex="0" data-proof="pulso"><span>PULSO</span><small>Impede que um sinal social infle a confiança.</small></button>
+   <button class="proof-tab" id="proof-tab-amstel" type="button" role="tab" aria-selected="false" aria-controls="proof-panel" tabindex="-1" data-proof="amstel"><span>QUARTA AMSTEL</span><small>Consulta a inscrição de push já gravada.</small></button>
+   <button class="proof-tab" id="proof-tab-et" type="button" role="tab" aria-selected="false" aria-controls="proof-panel" tabindex="-1" data-proof="et"><span>E&T</span><small>Filtra eventos pelo acesso do convidado.</small></button>
+  </div>
+  <article class="proof-panel" id="proof-panel" role="tabpanel" tabindex="0" aria-labelledby="proof-tab-pulso">
+   <div class="proof-panel-top"><span id="proof-project">PULSO · CONFIANÇA</span><a id="proof-source" href="https://github.com/henriquesouza1832001-eng/Pulso/blob/main/engine/pulso_engine/scoring/confidence.py#L23-L24" target="_blank" rel="noreferrer">ABRIR ESTE TRECHO ↗</a></div>
+   <pre><code id="proof-code">value = min(value, SOCIAL_ONLY_CAP)</code></pre>
+   <p id="proof-note">Quando todas as fontes são sociais, o cálculo limita a confiança do sinal.</p>
+  </article>
  </div>
 </section>
 
@@ -183,6 +195,15 @@ shell.addEventListener("pointerup",()=>{if(!drag)return;drag=false;if(Math.abs(d
 
 /* Teclado */
 shell.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1)});shell.tabIndex=0;
+const proofSamples={
+ pulso:{title:'PULSO · CONFIANÇA',code:'value = min(value, SOCIAL_ONLY_CAP)',note:'Quando todas as fontes são sociais, o cálculo limita a confiança do sinal.',href:'https://github.com/henriquesouza1832001-eng/Pulso/blob/main/engine/pulso_engine/scoring/confidence.py#L23-L24'},
+ amstel:{title:'QUARTA AMSTEL · WEB PUSH',code:'let sub = await swReg.pushManager.getSubscription();',note:'O navegador consulta a inscrição atual e só cria outra quando falta uma.',href:'https://github.com/henriquesouza1832001-eng/quarta-amstel/blob/main/www/js/push.js#L47'},
+ et:{title:'E&T · ACESSO A EVENTOS',code:["statuses.get(event.id) !== 'revoked' &&","event.group_ids.includes(guest.group_id)"].join(String.fromCharCode(10)),note:'A resposta da API exclui eventos revogados e respeita o grupo do convidado.',href:'https://github.com/henriquesouza1832001-eng/tudocomecoudeumsim/blob/main/functions/api/%5B%5Broute%5D%5D.js#L601'},
+};
+const proofTabs=[...document.querySelectorAll('.proof-tab')];
+function activateProof(tab){const sample=proofSamples[tab.dataset.proof];if(!sample)return;proofTabs.forEach(item=>{const active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1});document.getElementById('proof-panel').setAttribute('aria-labelledby',tab.id);document.getElementById('proof-project').textContent=sample.title;document.getElementById('proof-code').textContent=sample.code;document.getElementById('proof-note').textContent=sample.note;document.getElementById('proof-source').href=sample.href}
+proofTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>activateProof(tab));tab.addEventListener('keydown',event=>{if(!['ArrowDown','ArrowUp','ArrowRight','ArrowLeft'].includes(event.key))return;event.preventDefault();const delta=['ArrowDown','ArrowRight'].includes(event.key)?1:-1;const next=proofTabs[(index+delta+proofTabs.length)%proofTabs.length];next.focus();activateProof(next)})});
+
 </script>
 </body>
 </html>

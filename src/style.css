@@ -137,11 +137,15 @@ button { font: inherit; }
 .work-heading > a { padding-bottom: 8px; }
 .work-heading > a:hover, .about-links a:hover, .contact-section > a:hover { color: var(--orange); }
 .project-index {
+  position: sticky;
+  top: 80px;
+  z-index: 12;
   max-width: 1470px;
   margin: 0 auto;
   padding-inline: clamp(24px, 8vw, 126px);
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
+  background: var(--paper);
 }
 .project-index a {
   min-height: 68px;
@@ -179,7 +183,7 @@ button { font: inherit; }
   opacity: 0;
   transform: translateY(25px);
   transition: opacity .75s var(--ease), transform .75s var(--ease);
-  scroll-margin-top: 80px;
+  scroll-margin-top: 68px;
 }
 .project-spread.is-visible { opacity: 1; transform: translateY(0); }
 .spread-quarta { --spread-bg: #efc852; --spread-ink: #202216; }
@@ -318,7 +322,7 @@ button { font: inherit; }
 .detail-sim { --spread-bg: #e6d9c8; --spread-ink: #28231f; }
 .detail-rota { --spread-bg: #30212b; --spread-ink: #f3f0e7; }
 .detail-trilha { --spread-bg: #425c43; --spread-ink: #f3f0e7; }
-.detail-hero > .project-composition { grid-column: 1; grid-row: 2; min-height: 400px; }
+.detail-hero > .project-composition { grid-column: 1; grid-row: 2; width: 100%; min-height: 0; }
 .back-link { grid-column: 1 / -1; grid-row: 1; z-index: 3; width: max-content; display: inline-flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 600; text-decoration: none; }
 .back-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .detail-title { grid-column: 2; grid-row: 2; z-index: 2; }
@@ -368,7 +372,7 @@ button { font: inherit; }
   .about-section { grid-template-columns: 1fr 1fr; gap: 7vw; }
   .about-section h2 { position: static; font-size: clamp(62px, 9vw, 88px); }
   .detail-hero { grid-template-columns: .8fr 1.2fr; gap: 25px; }
-  .detail-hero > .project-composition { min-height: 300px; }
+  .detail-hero > .project-composition { min-height: 0; }
   .detail-title h1 { font-size: clamp(65px, 9vw, 94px); }
   .detail-story { padding-inline: 8vw; gap: 7vw; }
   .detail-proof { grid-template-columns: 1fr; }
@@ -394,7 +398,7 @@ button { font: inherit; }
   .work-section { padding-top: 87px; }
   .work-heading { padding: 0 23px 48px; align-items: flex-start; flex-direction: column; gap: 23px; }
   .work-heading h2 { font-size: clamp(52px, 12vw, 72px); }
-  .project-index { margin-bottom: 0; padding-inline: 23px; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+  .project-index { top: 70px; margin-bottom: 0; padding-inline: 23px; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
   .project-index a { min-width: 145px; min-height: 61px; padding: 14px 11px; font-size: 16px; scroll-snap-align: start; }
   .project-spread, .spread-pulso, .spread-rota { min-height: 0; padding: 57px 23px 83px; display: flex; flex-direction: column; align-items: stretch; gap: 29px; }
   .project-composition { width: 100%; min-height: 0; }

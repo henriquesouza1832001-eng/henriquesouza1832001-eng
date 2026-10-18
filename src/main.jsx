@@ -434,38 +434,54 @@ function App() {
   return <PortfolioHome />;
 }
 
-function ProjectEvidence({ project }) {
-  const story = caseStudies[project.id];
-  const evidenceUrl = `${project.repo}/${story.repositoryPath}`;
+function ProjectArtwork({ project }) {
+  const marks = {
+    quarta: (
+      <>
+        <path d="M46 48h208v124H46z" />
+        <path d="m46 88 62-24 66 27 80-30M109 64v108m65-81v81m66-111v111" />
+        <path d="M144 105c0-15 12-27 27-27s27 12 27 27c0 20-27 51-27 51s-27-31-27-51Z" />
+        <circle cx="171" cy="105" r="8" className="art-fill" />
+      </>
+    ),
+    pulso: (
+      <>
+        <path d="M34 112h45l23-46 41 94 34-70 21 32h68" />
+        <path d="M34 176h232M34 48h232" className="art-faint" />
+        <circle cx="177" cy="90" r="7" className="art-fill" />
+      </>
+    ),
+    sim: (
+      <>
+        <circle cx="132" cy="110" r="55" />
+        <circle cx="184" cy="110" r="55" />
+        <path d="M150 71a55 55 0 0 1 0 78m16-78a55 55 0 0 0 0 78" className="art-faint" />
+      </>
+    ),
+    trilha: (
+      <>
+        <path d="M40 162c42 0 42-88 84-88s42 72 84 72 42-43 52-43" />
+        <circle cx="40" cy="162" r="9" className="art-fill" />
+        <circle cx="124" cy="74" r="9" className="art-fill" />
+        <circle cx="208" cy="146" r="9" className="art-fill" />
+        <circle cx="260" cy="103" r="9" className="art-fill" />
+      </>
+    ),
+    rota: (
+      <>
+        <path d="m38 60 74-24 76 24 74-24v124l-74 24-76-24-74 24Z" />
+        <path d="M112 36v124m76-100v124" />
+        <path d="M128 92c0-15 12-27 27-27s27 12 27 27c0 20-27 51-27 51s-27-31-27-51Z" />
+        <circle cx="155" cy="92" r="8" className="art-fill" />
+      </>
+    ),
+  };
+
   return (
-    <div className={`folio-project-evidence evidence-${project.id}`}>
-      {story.code ? (
-        <>
-          <div className="folio-evidence-topline">
-            <span>{story.file.split("/").at(-1)}</span>
-            <a href={evidenceUrl} target="_blank" rel="noreferrer">
-              Ver código <Arrow diagonal />
-            </a>
-          </div>
-          <pre><HighlightedCode code={story.code} language={story.language} /></pre>
-        </>
-      ) : (
-        <>
-          <div className="folio-evidence-flow">
-            {story.flow.map((step, index) => (
-              <React.Fragment key={step}>
-                <span>{step}</span>
-                {index < story.flow.length - 1 && <b aria-hidden="true">→</b>}
-              </React.Fragment>
-            ))}
-          </div>
-          <div className="folio-evidence-topline folio-flow-source">
-            <a href={evidenceUrl} target="_blank" rel="noreferrer">
-              Ver documentação <Arrow diagonal />
-            </a>
-          </div>
-        </>
-      )}
+    <div className={`folio-project-art art-${project.id}`} aria-hidden="true">
+      <svg viewBox="0 0 300 220" fill="none" focusable="false">
+        {marks[project.id]}
+      </svg>
     </div>
   );
 }
@@ -503,6 +519,7 @@ function PortfolioProject({ project }) {
             aria-label={`Ler sobre ${projectNames[project.id]}`}
           >
             {projectNames[project.id]}
+            <Arrow diagonal />
           </a>
         </h2>
         <p className="folio-description">{presentation.summary}</p>
@@ -518,9 +535,7 @@ function PortfolioProject({ project }) {
           </a>
         </div>
       </div>
-      <div className="folio-card-art">
-        <ProjectEvidence project={project} />
-      </div>
+      <ProjectArtwork project={project} />
     </article>
   );
 }
@@ -597,24 +612,22 @@ function PortfolioHome() {
       <main id="inicio">
         <section className="folio-hero">
           <h1>
-            O sistema
+            Da regra
             <br />
-            começa <em>antes</em>
-            <br />
-            <em>do código.</em>
+            <em>à operação.</em>
           </h1>
           <div className="folio-hero-bottom">
             <p>
-              Entendo as regras de negócio, desenho a arquitetura e levo o produto até a operação.
+              Engenharia de software que conecta contexto de negócio, arquitetura e entrega.
             </p>
             <a href="#projetos">
-              Conheça meu trabalho <span>↓</span>
+              Ver projetos <span>↓</span>
             </a>
           </div>
         </section>
         <section className="folio-work" id="projetos" aria-label="Projetos">
           <div className="folio-section-heading" id="codigo">
-            <span>Produtos, dados e operação.</span>
+            <span>Produtos construídos de ponta a ponta.</span>
             <a href={GH} target="_blank" rel="noreferrer">
               Meu GitHub <Arrow diagonal />
             </a>

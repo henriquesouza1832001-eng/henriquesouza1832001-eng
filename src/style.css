@@ -1758,6 +1758,14 @@ a:hover .arrow.diagonal {
   text-underline-offset: 0.09em;
   transition: text-decoration-color 180ms ease;
 }
+.folio-copy h2 a .arrow {
+  width: 0.32em;
+  height: 0.32em;
+  margin-left: 0.08em;
+  opacity: 0.62;
+}
+.folio-copy h2 a:hover .arrow,
+.folio-copy h2 a:focus-visible .arrow { opacity: 1; }
 .folio-copy h2 a:hover {
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--project-ink) 48%, transparent);
@@ -2058,4 +2066,63 @@ a:hover .arrow.diagonal {
   .folio-evidence-topline { font-size: 15px; }
   .folio-evidence-flow { padding-bottom: 8px; }
   .folio-project .folio-evidence-flow span { border: 0; }
+}
+
+/* The home page introduces each project through its shape and purpose. */
+.folio-hero h1 {
+  max-width: 1180px;
+  font-size: clamp(90px, 14vw, 208px);
+  line-height: 0.88;
+}
+.folio-hero h1 em { color: #d94d35; }
+.folio-hero-bottom p { max-width: 690px; }
+.folio-project-art {
+  position: relative;
+  min-height: 290px;
+  flex: 0 0 290px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--project-accent);
+}
+.folio-project-art::before {
+  position: absolute;
+  width: min(68%, 330px);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--project-accent) 34%, transparent);
+  border-radius: 50%;
+  content: "";
+  opacity: 0.7;
+}
+.folio-project-art svg {
+  position: relative;
+  width: min(80%, 340px);
+  height: auto;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.folio-project-art .art-fill { fill: currentColor; }
+.folio-project-art .art-faint { opacity: 0.34; }
+.folio-project:nth-child(5) .folio-project-art {
+  grid-column: 2;
+  grid-row: 1;
+}
+@media (max-width: 900px) {
+  .folio-project-art {
+    min-height: 250px;
+    flex-basis: 250px;
+  }
+}
+@media (max-width: 640px) {
+  .folio-project-art {
+    min-height: 220px;
+    flex-basis: 220px;
+  }
+  .folio-hero h1 {
+    font-size: clamp(52px, 16vw, 90px);
+  }
+  .folio-hero h1 em { white-space: nowrap; }
 }

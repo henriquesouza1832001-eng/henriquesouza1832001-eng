@@ -1403,10 +1403,12 @@ a:hover .arrow.diagonal {
     font-size: 25px;
   }
   .folio-source-code {
-    max-height: none;
-    overflow: visible;
-    font-size: 13.5px;
-    line-height: 1.48;
+    max-height: 94px;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.42;
+    -webkit-mask-image: linear-gradient(#000 74%, transparent 100%);
+    mask-image: linear-gradient(#000 74%, transparent 100%);
   }
   .folio-source-flow {
     gap: 4px;

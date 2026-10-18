@@ -212,14 +212,26 @@ function ProjectSpread({ project }) {
 }
 
 function ChannelReceiver({ project, onSelect }) {
-  const nextChannel = () => {
-    const index = projects.findIndex((item) => item.id === project.id);
-    onSelect(projects[(index + 1) % projects.length].id);
+  const activeIndex = projects.findIndex((item) => item.id === project.id);
+  const moveChannel = (step) => {
+    const nextIndex = (activeIndex + step + projects.length) % projects.length;
+    onSelect(projects[nextIndex].id);
   };
+  const nextChannel = () => moveChannel(1);
   const turnOnWheel = (event) => {
     if (Math.abs(event.deltaY) < 8 && Math.abs(event.deltaX) < 8) return;
     event.preventDefault();
-    nextChannel();
+    const delta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+    moveChannel(delta > 0 ? 1 : -1);
+  };
+  const useDialKeys = (event) => {
+    if (event.key === "ArrowRight" || event.key === "ArrowUp") {
+      event.preventDefault();
+      moveChannel(1);
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
+      event.preventDefault();
+      moveChannel(-1);
+    }
   };
 
   return (
@@ -249,7 +261,7 @@ function ChannelReceiver({ project, onSelect }) {
           <span className="receiver-label">VOLUME</span>
           <span className="receiver-meter"><i /></span>
           <span className="receiver-label">CANAL</span>
-          <button className="receiver-wheel" type="button" aria-label={`Avançar canal depois de ${project.name}`} onClick={nextChannel} onWheel={turnOnWheel}>
+          <button className="receiver-wheel" type="button" aria-label={`Canal ${project.name}. Clique para avançar; use as setas para trocar`} aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown" style={{ "--channel-angle": `${activeIndex * (360 / projects.length)}deg` }} onClick={nextChannel} onKeyDown={useDialKeys} onWheel={turnOnWheel}>
             <span />
           </button>
           <span className="receiver-label receiver-hint">CLIQUE<br />OU GIRE</span>

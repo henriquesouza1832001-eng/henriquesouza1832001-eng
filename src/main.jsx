@@ -560,15 +560,23 @@ function PortfolioHome() {
         const home = document.querySelector(".folio-home");
         const marker =
           window.innerWidth >= 901 ? 142 : Math.round(window.innerHeight * 0.44);
-        const focusedProject = [...document.querySelectorAll(".folio-project")]
+        const projects = [...document.querySelectorAll(".folio-project")];
+        const focusedProject = projects
           .filter((project) => {
             const bounds = project.getBoundingClientRect();
             return bounds.top <= marker && bounds.bottom > marker;
           })
           .at(-1);
-        if (home)
+        const previousProject = projects
+          .filter((project) => project.getBoundingClientRect().top <= marker)
+          .at(-1);
+        if (home) {
           home.dataset.activeProject =
-            focusedProject?.dataset.project || "quarta";
+            focusedProject?.dataset.project ||
+            previousProject?.dataset.project ||
+            projects[0]?.dataset.project ||
+            "quarta";
+        }
       });
     };
     updateProgress();

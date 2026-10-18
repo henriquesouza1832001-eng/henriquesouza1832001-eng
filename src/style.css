@@ -1012,6 +1012,23 @@ a:hover .arrow.diagonal {
   color: #f2f0e8;
   background: #171a17;
 }
+.syntax-keyword {
+  color: #f2a27e;
+  font-weight: 700;
+}
+.syntax-string {
+  color: #c4dd97;
+}
+.syntax-number {
+  color: #9ed8df;
+}
+.syntax-constant {
+  color: #d2b5f0;
+}
+.syntax-comment {
+  color: #a6ad9e;
+  font-style: italic;
+}
 .case-file {
   display: flex;
   align-items: center;

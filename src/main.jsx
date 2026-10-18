@@ -174,6 +174,7 @@ const caseStudies = {
     sectionBody:
       "Como PWA, o app pode ser instalado pelo navegador. As notificações retomam a inscrição existente quando a pessoa já autorizou o recurso.",
     file: "www/js/push.js",
+    language: "javascript",
     code: excerpts.quarta.code,
     codeNote: "A inscrição só é criada quando ainda não existe no navegador.",
     repositoryPath: "blob/main/www/js/push.js",
@@ -188,6 +189,7 @@ const caseStudies = {
     sectionBody:
       "Confirmações oficiais somam evidência. Contradições e fontes duplicadas reduzem a confiança; sinais sociais, sozinhos, têm um limite.",
     file: "engine/pulso_engine/scoring/confidence.py",
+    language: "python",
     code: excerpts.pulso.code,
     codeNote:
       "O cálculo separa confirmação, contradição, duplicidade e limites de fonte.",
@@ -203,6 +205,7 @@ const caseStudies = {
     sectionBody:
       "A API filtra os eventos publicados pelo grupo do convidado antes de apresentar os detalhes da celebração.",
     file: "functions/api/[[route]].js",
+    language: "javascript",
     code: "const groups = Array.isArray(event.group_ids)\n  ? event.group_ids\n  : JSON.parse(event.group_ids_json || '[]')\n\nreturn !groups.length || groups.includes(guest.group_id)\n  ? event\n  : null",
     codeNote:
       "Um evento sem grupos é público para os convidados; caso contrário, vale a participação do grupo.",
@@ -260,7 +263,7 @@ function CaseProof({ story, repo }) {
           </a>
         </div>
         <pre>
-          <code>{story.code}</code>
+          <HighlightedCode code={story.code} language={story.language} />
         </pre>
         <p>{story.codeNote}</p>
       </div>
@@ -281,6 +284,39 @@ function CaseProof({ story, repo }) {
         Ver a arquitetura descrita no repositório <Arrow diagonal />
       </a>
     </div>
+  );
+}
+
+const syntaxKeywords = {
+  javascript:
+    /^(?:async|await|break|case|catch|class|const|continue|default|delete|do|else|export|extends|false|finally|for|from|function|if|import|in|instanceof|let|new|null|of|return|static|throw|true|try|typeof|var|void|while|yield)$/,
+  python:
+    /^(?:and|as|assert|async|await|break|class|continue|def|del|elif|else|except|False|finally|for|from|global|if|import|in|is|lambda|None|not|or|pass|raise|return|True|try|while|with|yield)$/,
+};
+
+function HighlightedCode({ code, language = "javascript" }) {
+  const parts = code.split(
+    /(#[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`|\b[A-Z][A-Z0-9_]*\b|\b\d+(?:\.\d+)?\b|\b[a-zA-Z_$][\w$]*\b)/g,
+  );
+  return (
+    <code>
+      {parts.map((part, index) => {
+        let className;
+        if (/^(?:"|'|`)/.test(part)) className = "syntax-string";
+        else if (/^#/.test(part)) className = "syntax-comment";
+        else if (/^\d/.test(part)) className = "syntax-number";
+        else if (/^[A-Z][A-Z0-9_]*$/.test(part)) className = "syntax-constant";
+        else if (syntaxKeywords[language]?.test(part))
+          className = "syntax-keyword";
+        return className ? (
+          <span className={className} key={index}>
+            {part}
+          </span>
+        ) : (
+          part
+        );
+      })}
+    </code>
   );
 }
 
@@ -570,7 +606,7 @@ function ProjectStage({ project }) {
         </div>
         {story.code ? (
           <pre className="folio-source-code">
-            <code>{story.code}</code>
+            <HighlightedCode code={story.code} language={story.language} />
           </pre>
         ) : (
           <div className="folio-source-flow">

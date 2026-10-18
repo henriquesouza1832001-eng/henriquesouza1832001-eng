@@ -442,7 +442,7 @@ function ProjectEvidence({ project }) {
       {story.code ? (
         <>
           <div className="folio-evidence-topline">
-            <span>{story.language === "python" ? "Python" : "JavaScript"}</span>
+            <span>{story.file.split("/").at(-1)}</span>
             <a href={evidenceUrl} target="_blank" rel="noreferrer">
               Ver código <Arrow diagonal />
             </a>
@@ -496,9 +496,6 @@ function PortfolioProject({ project }) {
       id={`folio-${project.id}`}
       data-project={project.id}
     >
-      <div className="folio-card-art">
-        <ProjectEvidence project={project} />
-      </div>
       <div className="folio-copy">
         <h2>
           <a
@@ -520,6 +517,9 @@ function PortfolioProject({ project }) {
             <Arrow diagonal />
           </a>
         </div>
+      </div>
+      <div className="folio-card-art">
+        <ProjectEvidence project={project} />
       </div>
     </article>
   );

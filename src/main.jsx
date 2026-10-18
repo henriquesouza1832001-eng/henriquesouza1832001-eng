@@ -500,25 +500,6 @@ function ProjectSymbol({ id }) {
   );
 }
 
-function ProjectIndex({ activeProject, indexRef }) {
-  return (
-    <nav className="folio-index" aria-label="Índice de projetos" ref={indexRef}>
-      {portfolioProjects.map((project) => (
-        <a
-          key={project.id}
-          className={`folio-index-link folio-${project.id}`}
-          data-project={project.id}
-          href={`#folio-${project.id}`}
-          aria-current={activeProject === project.id ? "location" : undefined}
-        >
-          <ProjectSymbol id={project.id} />
-          <span>{projectNames[project.id]}</span>
-        </a>
-      ))}
-    </nav>
-  );
-}
-
 function PortfolioProject({ project }) {
   const summaries = {
     quarta:
@@ -530,24 +511,18 @@ function PortfolioProject({ project }) {
       "Uma forma coletiva de encontrar bares e desenhar novos roteiros por Belo Horizonte.",
     rota: "Uma experiência que acompanhou o Comida di Buteco em Belo Horizonte, com bares, check-ins, avaliações e roteiros em grupo. A próxima edição terá um redesign completo.",
   };
-  const labels = {
-    quarta: "PWA DE BARES · ACESSO ABERTO",
-    pulso: "SINAIS PÚBLICOS · PRODUTO PÚBLICO",
-    sim: "CASAMENTO · SITE E CONVITES",
-    trilha: "PWA + ANDROID · EM FINALIZAÇÃO",
-    rota: "EDIÇÃO ENCERRADA · REDESIGN EM PREPARAÇÃO",
-  };
   return (
     <article
-      className={`folio-project folio-chapter folio-${project.id}`}
+      className={`folio-project folio-${project.id}`}
       id={`folio-${project.id}`}
       data-project={project.id}
     >
+      <div className="folio-card-art" aria-hidden="true">
+        <span className="folio-card-mark"><ProjectSymbol id={project.id} /></span>
+        <span className="folio-card-orbit" />
+      </div>
       <div className="folio-copy">
-        <p className="folio-type">{labels[project.id]}</p>
-        <div className="folio-project-symbol" aria-hidden="true">
-          <ProjectSymbol id={project.id} />
-        </div>
+        <p className="folio-type">{project.id === "quarta" ? "Produto digital · disponível para acesso" : project.id === "pulso" ? "Plataforma pública · leitura de sinais" : project.id === "sim" ? "Experiência digital · casamento" : project.id === "trilha" ? "Produto local · em finalização" : "Produto de temporada · nova edição em redesign"}</p>
         <h2>{projectNames[project.id]}</h2>
         <p className="folio-description">{summaries[project.id]}</p>
         <div className="folio-links">
@@ -560,8 +535,8 @@ function PortfolioProject({ project }) {
             {project.id === "quarta" ? "Acessar produto" : project.cta}
             <Arrow diagonal />
           </a>
-          <a href={`/projetos/${project.id}`}>
-            Ver o case <Arrow diagonal />
+          <a className="folio-case-link" href={`/projetos/${project.id}`}>
+            Ver projeto <Arrow diagonal />
           </a>
           <a href={project.repo} target="_blank" rel="noreferrer">
             Código no GitHub <Arrow diagonal />
@@ -572,101 +547,11 @@ function PortfolioProject({ project }) {
   );
 }
 
-function ProjectStage({ project }) {
-  const story = caseStudies[project.id];
-  const sourceFile = story.file || "README.md";
-  const sourceLabel = sourceFile.split("/").at(-1);
-  return (
-    <div
-      className={`folio-stage folio-${project.id}`}
-      data-project={project.id}
-    >
-      <div className="folio-stage-topline">
-        <span>{story.code ? "Lógica do produto" : "Fluxo do produto"}</span>
-        <a
-          href={`${project.repo}/${story.repositoryPath}`}
-          target="_blank"
-          rel="noreferrer"
-          title={sourceFile}
-          aria-label={`Ver ${sourceFile} no GitHub`}
-        >
-          {sourceLabel} <Arrow diagonal />
-        </a>
-      </div>
-      <div className="folio-source-sheet" key={project.id}>
-        <div className="folio-source-heading">
-          <ProjectSymbol id={project.id} />
-          <div>
-            <span>Em destaque</span>
-            <h3 aria-live="polite" aria-atomic="true">
-              {projectNames[project.id]}
-            </h3>
-          </div>
-        </div>
-        {story.code ? (
-          <pre className="folio-source-code">
-            <HighlightedCode code={story.code} language={story.language} />
-          </pre>
-        ) : (
-          <div className="folio-source-flow">
-            {story.flow.map((step, index) => (
-              <React.Fragment key={step}>
-                <div>{step}</div>
-                {index < story.flow.length - 1 && (
-                  <span aria-hidden="true">↓</span>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        )}
-        <div className="folio-source-foot">
-          <span>
-            {story.code
-              ? "Trecho do repositório público"
-              : "Etapas descritas no repositório"}
-          </span>
-          <a href={project.repo} target="_blank" rel="noreferrer">
-            Abrir no GitHub <Arrow diagonal />
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function PortfolioHome() {
-  const [activeProject, setActiveProject] = useState("quarta");
   const progressRef = useRef(null);
-  const projectIndexRef = useRef(null);
   useEffect(() => {
     const home = document.querySelector(".folio-home");
     home?.classList.add("folio-motion");
-    const projectObserver = new IntersectionObserver(
-      (entries) => {
-        const current = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) =>
-              Math.abs(
-                a.boundingClientRect.top +
-                  a.boundingClientRect.height / 2 -
-                  window.innerHeight / 2,
-              ) -
-              Math.abs(
-                b.boundingClientRect.top +
-                  b.boundingClientRect.height / 2 -
-                  window.innerHeight / 2,
-              ),
-          )[0];
-        if (current) setActiveProject(current.target.dataset.project);
-      },
-      {
-        rootMargin: window.matchMedia("(max-width: 760px)").matches
-          ? "-54% 0px -16% 0px"
-          : "-38% 0px -38% 0px",
-        threshold: 0,
-      },
-    );
     const revealObserver = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
@@ -677,12 +562,10 @@ function PortfolioHome() {
         }),
       { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
     );
-    document.querySelectorAll(".folio-chapter").forEach((project) => {
-      projectObserver.observe(project);
+    document.querySelectorAll(".folio-project").forEach((project) => {
       revealObserver.observe(project);
     });
     return () => {
-      projectObserver.disconnect();
       revealObserver.disconnect();
       home?.classList.remove("folio-motion");
     };
@@ -707,31 +590,6 @@ function PortfolioHome() {
       window.removeEventListener("resize", updateProgress);
     };
   }, []);
-  useEffect(() => {
-    const index = projectIndexRef.current;
-    if (!index || window.innerWidth > 760) return;
-    const active = index.querySelector(`[data-project="${activeProject}"]`);
-    if (!active) return;
-    const start = active.offsetLeft;
-    const end = start + active.offsetWidth;
-    let nextLeft = index.scrollLeft;
-    const visibleStart = index.scrollLeft + 12;
-    const visibleEnd = index.scrollLeft + index.clientWidth - 12;
-    if (start < visibleStart) nextLeft = Math.max(0, start - 12);
-    else if (end > visibleEnd)
-      nextLeft = Math.min(
-        end - index.clientWidth + 12,
-        index.scrollWidth - index.clientWidth,
-      );
-    if (nextLeft !== index.scrollLeft) {
-      index.scrollTo({
-        left: nextLeft,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "auto"
-          : "smooth",
-      });
-    }
-  }, [activeProject]);
   return (
     <div className="portfolio folio-home">
       <div className="folio-progress" aria-hidden="true">
@@ -745,43 +603,30 @@ function PortfolioHome() {
             <span>Desenvolvimento de software · Belo Horizonte</span>
           </div>
           <h1>
-            Código para
+            Software para
             <br />
             <em>o mundo real.</em>
           </h1>
           <div className="folio-hero-bottom">
             <p>
-              Transformo processos reais em produtos digitais — da regra de
-              negócio ao software em produção.
+              Do problema ao produto: construo software de ponta a ponta, da regra de negócio à publicação.
             </p>
             <a href="#projetos">
-              Ver projetos <span>↓</span>
+              Conheça meu trabalho <span>↓</span>
             </a>
           </div>
         </section>
         <section className="folio-work" id="projetos" aria-label="Projetos">
           <div className="folio-section-heading" id="codigo">
-            <span>Projetos feitos para sair da ideia e ganhar uso.</span>
+            <span>Trabalho real. Código aberto. Produtos acessíveis.</span>
             <a href={GH} target="_blank" rel="noreferrer">
               Acompanhe no GitHub <Arrow diagonal />
             </a>
           </div>
-          <ProjectIndex
-            activeProject={activeProject}
-            indexRef={projectIndexRef}
-          />
-          <div className="folio-showcase-layout">
-            <ProjectStage
-              project={
-                portfolioProjects.find((item) => item.id === activeProject) ||
-                portfolioProjects[0]
-              }
-            />
-            <div className="folio-chapters">
-              {portfolioProjects.map((project) => (
-                <PortfolioProject project={project} key={project.id} />
-              ))}
-            </div>
+          <div className="folio-project-grid">
+            {portfolioProjects.map((project) => (
+              <PortfolioProject project={project} key={project.id} />
+            ))}
           </div>
         </section>
         <section className="folio-about" id="sobre">

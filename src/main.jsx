@@ -245,7 +245,7 @@ function Home() {
             <p className="hero-kicker">Henrique Souza <span>—</span> Engenharia de software</p>
             <h1 id="hero-title">Eu projeto<br />e construo<br /><em>software.</em></h1>
             <div className="hero-bottom">
-              <p>Sistemas web que juntam produto, regras de negócio e operação.</p>
+              <p>Do modelo de dados à aplicação em produção.</p>
               <a href="#projetos">Conheça os projetos <span aria-hidden="true">↓</span></a>
             </div>
           </div>

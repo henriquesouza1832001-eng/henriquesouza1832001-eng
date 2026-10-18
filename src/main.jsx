@@ -589,6 +589,17 @@ function PortfolioHome() {
           document.documentElement.scrollHeight - window.innerHeight;
         if (progressRef.current)
           progressRef.current.style.transform = `scaleX(${range > 0 ? window.scrollY / range : 0})`;
+        const home = document.querySelector(".folio-home");
+        const marker =
+          window.innerWidth >= 901 ? 142 : Math.round(window.innerHeight * 0.44);
+        const focusedProject = [...document.querySelectorAll(".folio-project")]
+          .filter((project) => {
+            const bounds = project.getBoundingClientRect();
+            return bounds.top <= marker && bounds.bottom > marker;
+          })
+          .at(-1);
+        if (home && focusedProject)
+          home.dataset.activeProject = focusedProject.dataset.project;
       });
     };
     updateProgress();
@@ -601,7 +612,7 @@ function PortfolioHome() {
     };
   }, []);
   return (
-    <div className="portfolio folio-home">
+    <div className="portfolio folio-home" data-active-project="quarta">
       <div className="folio-progress" aria-hidden="true">
         <span ref={progressRef} />
       </div>

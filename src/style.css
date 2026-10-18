@@ -2293,3 +2293,13 @@ a:hover .arrow.diagonal {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
+.folio-home[data-active-project="quarta"] { --active-project-accent: #9b2336; }
+.folio-home[data-active-project="pulso"] { --active-project-accent: #087a90; }
+.folio-home[data-active-project="sim"] { --active-project-accent: #765444; }
+.folio-home[data-active-project="trilha"] { --active-project-accent: #52684e; }
+.folio-home[data-active-project="rota"] { --active-project-accent: #f28b47; }
+.folio-progress span,
+.folio-home .site-header .mark i {
+  background-color: var(--active-project-accent, #d94d35);
+  transition: background-color 300ms var(--ease);
+}

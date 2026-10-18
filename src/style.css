@@ -1341,15 +1341,6 @@ a:hover .arrow.diagonal {
   align-items: center;
   background: #deded1;
 }
-.folio-detail-label {
-  margin: 0 0 22px;
-  color: var(--detail-accent);
-  font-size: 15px;
-  line-height: 1.3;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
 .folio-detail-story h2 {
   max-width: 800px;
   margin: 0;
@@ -1418,15 +1409,6 @@ a:hover .arrow.diagonal {
   padding: 14px 22px;
   border-bottom: 1px solid #ffffff29;
 }
-.case-file-mark {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid #ffffff55;
-  color: #b5f052;
-  font: 16px var(--mono);
-}
 .case-file a {
   display: inline-flex;
   align-items: center;
@@ -1453,28 +1435,49 @@ a:hover .arrow.diagonal {
   line-height: 1.45;
 }
 .case-proof-flow {
+  position: relative;
   display: grid;
   grid-template-columns:
-    minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr)
-    auto minmax(0, 1fr);
-  gap: 14px;
-  align-items: center;
+    minmax(0, 1fr) 22px minmax(0, 1fr) 22px minmax(0, 1fr)
+    22px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  padding-top: 18px;
+}
+.case-proof-flow::before {
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  left: 10px;
+  height: 1px;
+  content: "";
+  background: color-mix(in srgb, var(--detail-accent) 56%, transparent);
 }
 .case-proof-flow > div {
-  min-height: 126px;
-  display: grid;
-  place-items: center;
-  padding: 20px 16px;
-  text-align: center;
+  position: relative;
+  min-height: 112px;
+  padding: 42px 4px 0;
   color: var(--folio-ink);
-  background: #deded1;
-  font-size: 19px;
-  line-height: 1.25;
-  font-weight: 650;
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+.case-proof-flow > div::before {
+  position: absolute;
+  top: -6px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--detail-accent);
+  border-radius: 50%;
+  content: "";
+  background: var(--folio-paper);
 }
 .case-proof-flow > span {
+  position: relative;
+  padding-top: 0;
   color: var(--detail-accent);
-  font-size: 23px;
+  font-size: 18px;
 }
 .case-proof-flow > a {
   grid-column: 1 / -1;
@@ -2073,12 +2076,6 @@ a:hover .arrow.diagonal {
   gap: clamp(42px, 8vw, 112px);
   align-items: start;
 }
-.folio-detail-label {
-  margin-bottom: 19px;
-  font-size: 17px;
-  letter-spacing: 0;
-  text-transform: none;
-}
 .folio-detail-story h2 {
   max-width: 720px;
   font-size: clamp(52px, 6vw, 78px);
@@ -2091,28 +2088,6 @@ a:hover .arrow.diagonal {
   font-size: clamp(21px, 2vw, 27px);
   line-height: 1.42;
   letter-spacing: -.03em;
-}
-.folio-detail-facts {
-  margin: 36px 0 0;
-  border-top: 1px solid #b8b9ad;
-}
-.folio-detail-facts > div {
-  display: grid;
-  grid-template-columns: minmax(105px, .42fr) 1fr;
-  gap: 18px;
-  padding: 15px 0;
-  border-bottom: 1px solid #b8b9ad;
-}
-.folio-detail-facts dt {
-  color: #64685e;
-  font-size: 16px;
-}
-.folio-detail-facts dd {
-  margin: 0;
-  color: var(--folio-ink);
-  font-size: 17px;
-  line-height: 1.45;
-  font-weight: 600;
 }
 .folio-detail-proof {
   padding: clamp(80px, 10vw, 132px) 0;
@@ -2179,10 +2154,6 @@ a:hover .arrow.diagonal {
   }
   .folio-detail-story h2 { font-size: clamp(48px, 12.2vw, 66px); }
   .folio-detail-description > p { font-size: 21px; }
-  .folio-detail-facts { margin-top: 28px; }
-  .folio-detail-facts > div { grid-template-columns: 1fr; gap: 5px; padding: 13px 0; }
-  .folio-detail-facts dt { font-size: 15px; }
-  .folio-detail-facts dd { font-size: 17px; }
   .folio-detail-proof { padding: 70px 0; display: grid; grid-template-columns: 1fr; gap: 24px; }
   .folio-proof-heading h2 { font-size: clamp(46px, 11vw, 64px); }
   .folio-proof-heading > p:last-child { margin-top: 16px; font-size: 20px; }
@@ -2535,5 +2506,40 @@ a:hover .arrow.diagonal {
   }
   .folio-evidence-flow span::before {
     top: 15px;
+  }
+}
+
+/* Case studies keep their technical proof, without a second metadata table. */
+@media (max-width: 900px) {
+  .case-proof-flow {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 8px 0 0;
+  }
+  .case-proof-flow::before {
+    top: 15px;
+    right: auto;
+    bottom: 22px;
+    left: 9px;
+    width: 1px;
+    height: auto;
+  }
+  .case-proof-flow > div {
+    min-height: 48px;
+    display: block;
+    padding: 12px 0 8px 32px;
+    background: transparent;
+    font-size: 17px;
+    text-align: left;
+  }
+  .case-proof-flow > div::before {
+    top: 16px;
+    left: 3px;
+  }
+  .case-proof-flow > span {
+    display: none;
+  }
+  .case-proof-flow > a {
+    margin-top: 14px;
   }
 }

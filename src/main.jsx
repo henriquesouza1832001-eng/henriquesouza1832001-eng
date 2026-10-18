@@ -10,7 +10,6 @@ const projects = [
   {
     id: "pulso",
     name: "PULSO",
-    tags: ["Python", "React", "Cloudflare"],
     url: "https://pulso-web.henriquesouza.workers.dev/",
     repo: `${GH}/Pulso`,
     cta: "Abrir o PULSO",
@@ -18,7 +17,6 @@ const projects = [
   {
     id: "quarta",
     name: "Quarta Amstel",
-    tags: ["PWA", "Web Push", "Cloudflare Workers"],
     url: "https://quarta-amstel.pages.dev/",
     repo: `${GH}/quarta-amstel`,
     cta: "Acessar o produto",
@@ -26,7 +24,6 @@ const projects = [
   {
     id: "sim",
     name: "e&t",
-    tags: ["Produto digital", "React", "Cloudflare"],
     url: "https://tudocomecoudeumsim.pages.dev/",
     repo: `${GH}/tudocomecoudeumsim`,
     cta: "Conhecer e&t",
@@ -34,7 +31,6 @@ const projects = [
   {
     id: "trilha",
     name: "Trilha BH",
-    tags: ["PWA", "Firebase", "Capacitor"],
     url: "https://trilhabh.web.app/",
     repo: `${GH}/trilhaBH`,
     cta: "Abrir versão de teste",
@@ -42,7 +38,6 @@ const projects = [
   {
     id: "rota",
     name: "Rota di Buteco",
-    tags: ["PWA", "Produto", "Redesign"],
     url: "https://rotadibuteco.web.app/",
     repo: `${GH}/rotadibuteco`,
     cta: "Abrir edição encerrada",
@@ -166,7 +161,6 @@ function Header({ isProject = false }) {
 
 const caseStudies = {
   quarta: {
-    status: "Disponível para acesso · lançamento sem data definida",
     introduction:
       "Um app de bares e campanhas para levar as pessoas do mapa ao encontro.",
     statement: "Bares, campanhas e encontros começam no mapa.",
@@ -182,7 +176,6 @@ const caseStudies = {
     repositoryPath: "blob/main/www/js/push.js",
   },
   pulso: {
-    status: "Produto público",
     introduction: "Um instrumento de leitura de sinais públicos do Brasil.",
     statement: "Um sinal sozinho não conta a história.",
     story:
@@ -198,7 +191,6 @@ const caseStudies = {
     repositoryPath: "blob/main/engine/pulso_engine/scoring/confidence.py",
   },
   sim: {
-    status: "Experiência pública",
     introduction: "Site, convite e organização do casamento em um só lugar.",
     statement: "Cada convidado encontra o que precisa.",
     story:
@@ -214,11 +206,10 @@ const caseStudies = {
     repositoryPath: "blob/main/functions/api/%5B%5Broute%5D%5D.js",
   },
   trilha: {
-    status: "Pré-beta · produto em finalização",
     introduction: "Um roteiro colaborativo para descobrir Belo Horizonte.",
     statement: "O grupo desenha novos caminhos pela cidade.",
     story:
-      "Mapa, visitas e roteiros compartilhados ajudam grupos a descobrir bares. O mesmo produto atende navegador e Android e mantém os dados atualizados.",
+      "Em finalização, conecta mapa, visitas e roteiros compartilhados para grupos descobrirem bares pelo navegador ou no Android.",
     sectionTitle: "Do mapa ao roteiro do grupo.",
     sectionBody:
       "O fluxo conecta o app PWA ou Android à autenticação e aos dados do Firestore. Feed e ranking do grupo acompanham as atualizações em tempo real.",
@@ -231,12 +222,11 @@ const caseStudies = {
     repositoryPath: "blob/main/www/readme.md",
   },
   rota: {
-    status: "Edição 2026 encerrada · próximo ciclo em redesign",
     introduction:
       "Uma experiência social que acompanhou o Comida di Buteco em BH.",
     statement: "Cada visita entrava na história do grupo.",
     story:
-      "A edição de 2026 reuniu bares, check-ins, avaliações e roteiros em grupo. O feed e o ranking acompanhavam as visitas; o próximo ciclo terá um redesign completo.",
+      "A edição de 2026 reuniu bares, check-ins, avaliações e roteiros em grupo. O próximo ciclo terá um redesign completo.",
     sectionTitle: "A visita alimenta o grupo.",
     sectionBody:
       "O check-in registrava a visita e atualizava o feed e o ranking do grupo. Esta página documenta a edição encerrada.",
@@ -255,7 +245,6 @@ function CaseProof({ story, repo }) {
     return (
       <div className="case-proof-code">
         <div className="case-file">
-          <span className="case-file-mark">{"{}"}</span>
           <a
             href={`${repo}/${story.repositoryPath}`}
             target="_blank"
@@ -283,7 +272,7 @@ function CaseProof({ story, repo }) {
         target="_blank"
         rel="noreferrer"
       >
-        Ver a arquitetura descrita no repositório <Arrow diagonal />
+        Ver documentação <Arrow diagonal />
       </a>
     </div>
   );
@@ -356,26 +345,14 @@ function ProjectDetail({ project }) {
       </section>
       <section className="folio-detail-story">
         <div>
-          <p className="folio-detail-label">Em resumo</p>
           <h2>{story.statement}</h2>
         </div>
         <div className="folio-detail-description">
           <p>{story.story}</p>
-          <dl className="folio-detail-facts">
-            <div>
-              <dt>Estado</dt>
-              <dd>{story.status}</dd>
-            </div>
-            <div>
-              <dt>Construído com</dt>
-              <dd>{project.tags.join(" · ")}</dd>
-            </div>
-          </dl>
         </div>
       </section>
       <section className="folio-detail-proof">
         <div className="folio-proof-heading">
-          <p className="folio-detail-label">Por dentro</p>
           <h2>{story.sectionTitle}</h2>
           <p>{story.sectionBody}</p>
         </div>

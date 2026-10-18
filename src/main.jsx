@@ -455,76 +455,86 @@ function App() {
   return <PortfolioHome />;
 }
 
-function ProjectSymbol({ id }) {
-  const drawings = {
-    quarta: (
-      <>
-        <path d="M9 6h14l-2 19H11L9 6Z" />
-        <path d="M11 17h10M12 4h8" />
-      </>
-    ),
-    pulso: <path d="M3 17h5l3-9 5 16 4-12 2 5h7" />,
-    sim: (
-      <>
-        <path d="M16 27S4 20 4 12a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 8-12 15-12 15Z" />
-        <path d="M7 4 5 2m20 2 2-2" />
-      </>
-    ),
-    trilha: (
-      <>
-        <path d="M5 25c0-7 10-5 10-12s12-8 12-2-8 4-8 11" />
-        <circle cx="5" cy="25" r="2" />
-        <circle cx="19" cy="22" r="2" />
-      </>
-    ),
-    rota: (
-      <>
-        <path d="M16 28s-9-9-9-16a9 9 0 1 1 18 0c0 7-9 16-9 16Z" />
-        <circle cx="16" cy="12" r="3" />
-        <path d="M4 28h24" />
-      </>
-    ),
-  };
+function ProjectEvidence({ project }) {
+  const story = caseStudies[project.id];
+  const evidenceUrl = `${project.repo}/${story.repositoryPath}`;
   return (
-    <svg
-      viewBox="0 0 32 32"
-      aria-hidden="true"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {drawings[id]}
-    </svg>
+    <div className={`folio-project-evidence evidence-${project.id}`}>
+      {story.code ? (
+        <>
+          <div className="folio-evidence-topline">
+            <span>{story.language === "python" ? "Python" : "JavaScript"}</span>
+            <a href={evidenceUrl} target="_blank" rel="noreferrer">
+              Ver código <Arrow diagonal />
+            </a>
+          </div>
+          <pre><HighlightedCode code={story.code} language={story.language} /></pre>
+        </>
+      ) : (
+        <>
+          <div className="folio-evidence-flow">
+            {story.flow.map((step, index) => (
+              <React.Fragment key={step}>
+                <span>{step}</span>
+                {index < story.flow.length - 1 && <b aria-hidden="true">→</b>}
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="folio-evidence-topline">
+            <span>Fluxo documentado</span>
+            <a href={evidenceUrl} target="_blank" rel="noreferrer">
+              Ver no GitHub <Arrow diagonal />
+            </a>
+          </div>
+        </>
+      )}
+    </div>
   );
 }
 
-function PortfolioProject({ project }) {
-  const summaries = {
-    quarta:
+const projectPresentation = {
+  quarta: {
+    label: "Produto digital · disponível para acesso",
+    summary:
       "Bares, campanhas e encontros em um app feito para a quarta-feira ganhar a cidade. O acesso está aberto; a data oficial de lançamento ainda não foi definida.",
-    pulso:
+  },
+  pulso: {
+    label: "Plataforma pública · leitura de sinais",
+    summary:
       "Fontes públicas viram contexto: acontecimentos organizados por lugar, origem e confiança.",
-    sim: "Convite, site e organização do casamento reunidos em uma experiência para o casal e seus convidados.",
-    trilha:
+  },
+  sim: {
+    label: "Experiência digital · casamento",
+    summary:
+      "Convite, site e organização do casamento reunidos em uma experiência para o casal e seus convidados.",
+  },
+  trilha: {
+    label: "Produto local · em finalização",
+    summary:
       "Uma forma coletiva de encontrar bares e desenhar novos roteiros por Belo Horizonte.",
-    rota: "Uma experiência que acompanhou o Comida di Buteco em Belo Horizonte, com bares, check-ins, avaliações e roteiros em grupo. A próxima edição terá um redesign completo.",
-  };
+  },
+  rota: {
+    label: "Produto de temporada · próxima edição em redesign",
+    summary:
+      "Uma experiência que acompanhou o Comida di Buteco em Belo Horizonte, com bares, check-ins, avaliações e roteiros em grupo. A próxima edição terá um redesign completo.",
+  },
+};
+
+function PortfolioProject({ project }) {
+  const presentation = projectPresentation[project.id];
   return (
     <article
       className={`folio-project folio-${project.id}`}
       id={`folio-${project.id}`}
       data-project={project.id}
     >
-      <div className="folio-card-art" aria-hidden="true">
-        <span className="folio-card-mark"><ProjectSymbol id={project.id} /></span>
-        <span className="folio-card-orbit" />
+      <div className="folio-card-art">
+        <ProjectEvidence project={project} />
       </div>
       <div className="folio-copy">
-        <p className="folio-type">{project.id === "quarta" ? "Produto digital · disponível para acesso" : project.id === "pulso" ? "Plataforma pública · leitura de sinais" : project.id === "sim" ? "Experiência digital · casamento" : project.id === "trilha" ? "Produto local · em finalização" : "Produto de temporada · nova edição em redesign"}</p>
+        <p className="folio-type">{presentation.label}</p>
         <h2>{projectNames[project.id]}</h2>
-        <p className="folio-description">{summaries[project.id]}</p>
+        <p className="folio-description">{presentation.summary}</p>
         <div className="folio-links">
           <a
             className="folio-primary"

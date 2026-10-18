@@ -271,8 +271,8 @@ function Home() {
         <section className="about-section" id="sobre">
           <h2>Do problema<br />à <em>produção.</em></h2>
           <div className="about-copy">
-            <p>Sou Henrique, engenheiro de software em Belo Horizonte. Trabalho da modelagem das regras à implementação e publicação de produtos web.</p>
-            <p>Gosto de entender como o sistema precisa funcionar por inteiro: a experiência, os dados, as integrações e o que acontece depois que vai ao ar.</p>
+            <p>Sou Henrique, engenheiro de software em Belo Horizonte. Trabalho do modelo de dados à publicação, com atenção às regras que fazem o produto funcionar no uso real.</p>
+            <p>Isso aparece em decisões concretas: no <a className="about-project-link" href="/projetos/pulso">PULSO</a>, sinais apoiados apenas em fontes sociais recebem um limite de confiança. No <a className="about-project-link" href="/projetos/sim">site de casamento</a>, a API verifica o grupo antes de liberar eventos restritos. A interface mostra o resultado; a regra é garantida no sistema.</p>
             <div className="about-links">
               <a href={GITHUB} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
               <a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>

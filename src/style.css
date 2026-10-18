@@ -276,6 +276,8 @@ button { font: inherit; }
 .about-section h2 em { color: var(--orange); }
 .about-copy { padding-top: 14px; }
 .about-copy p { margin: 0 0 24px; color: #d5d5cb; font-size: clamp(21px, 2.3vw, 29px); line-height: 1.42; letter-spacing: -.035em; }
+.about-copy p .about-project-link { color: var(--orange); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.about-copy p .about-project-link:hover { text-decoration-thickness: 2px; }
 .about-links { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 28px; }
 .about-links a { color: var(--orange); }
 

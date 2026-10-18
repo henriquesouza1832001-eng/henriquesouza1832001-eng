@@ -316,18 +316,6 @@ function ProjectDetail({ project }) {
           </a>
         </div>
       </section>
-      <a
-        className="folio-detail-art"
-        href={project.url}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Acessar ${projectNames[project.id]}`}
-      >
-        <ProjectGlyph id={project.id} />
-        <span>
-          Produto público <Arrow diagonal />
-        </span>
-      </a>
       <section className="folio-detail-story">
         <div>
           <p className="folio-detail-label">O projeto</p>
@@ -472,94 +460,6 @@ function ProjectSymbol({ id }) {
     >
       {drawings[id]}
     </svg>
-  );
-}
-
-function ProjectGlyph({ id }) {
-  if (id === "quarta")
-    return (
-      <div className="glyph glyph-amstel" aria-hidden="true">
-        <span className="amstel-orbit" data-depth=".3" />
-        <span className="amstel-glass" data-depth=".8">
-          <i />
-        </span>
-        <span className="glyph-word" data-depth=".2">
-          quarta
-          <br />é nossa.
-        </span>
-        <span className="glyph-spark" data-depth=".5">
-          ✳
-        </span>
-      </div>
-    );
-  if (id === "pulso")
-    return (
-      <div className="glyph glyph-pulso" aria-hidden="true">
-        <span className="pulse-map" data-depth=".15" />
-        <span className="pulse-map pulse-map-two" data-depth=".35" />
-        <span className="pulse-orbit orbit-one" data-depth=".2" />
-        <span className="pulse-orbit orbit-two" data-depth=".3" />
-        <span className="pulse-core" data-depth=".8" />
-        <span className="pulse-word" data-depth=".18">
-          PULSO
-        </span>
-      </div>
-    );
-  if (id === "sim")
-    return (
-      <div className="glyph glyph-sim" aria-hidden="true">
-        <span className="sim-ring" data-depth=".2" />
-        <span className="sim-script" data-depth=".48">
-          e&amp;t
-        </span>
-        <span className="sim-note" data-depth=".75">
-          um dia
-          <br />
-          que fica.
-        </span>
-        <span className="sim-flower" data-depth=".85">
-          ✳
-        </span>
-      </div>
-    );
-  if (id === "trilha")
-    return (
-      <div className="glyph glyph-trilha" aria-hidden="true">
-        <svg data-depth=".2" viewBox="0 0 700 520">
-          <path d="M-20 90C150 30 210 170 362 110S550 30 730 120M-20 150C120 110 240 235 380 165S565 105 730 205M-20 220C130 180 210 310 390 240S570 185 730 280M-20 300C125 250 260 390 410 320S590 275 730 365M-20 390C160 340 270 475 440 400S590 365 730 450" />
-          <path
-            className="trail-route"
-            d="M82 470C180 390 160 310 270 285S390 315 440 220 520 165 620 70"
-          />
-          <circle cx="82" cy="470" r="8" />
-          <circle cx="620" cy="70" r="8" />
-        </svg>
-        <span className="trilha-stamp" data-depth=".65">
-          BH
-          <br />A PÉ
-        </span>
-        <span className="trilha-title" data-depth=".2">
-          a cidade
-          <br />
-          acontece
-          <br />
-          <i>no caminho.</i>
-        </span>
-      </div>
-    );
-  return (
-    <div className="glyph glyph-rota" aria-hidden="true">
-      <span className="rota-sun" data-depth=".2" />
-      <span className="rota-type" data-depth=".5">
-        ROTA
-        <br />
-        <i>di</i> BUTECO
-      </span>
-      <span className="rota-path" data-depth=".3" />
-      <span className="rota-stamp" data-depth=".8">
-        BH · 2026
-      </span>
-    </div>
   );
 }
 

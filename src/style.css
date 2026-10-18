@@ -153,15 +153,15 @@ a:hover .arrow.diagonal {
   padding-inline: clamp(22px, 5.5vw, 96px);
 }
 .folio-home .wordmark {
-  font-size: 13px;
+  font-size: 15px;
 }
 .folio-home .mark {
   border-color: #171a1766;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
 }
 .folio-home .main-nav {
-  font-size: 16px;
+  font-size: 17px;
   gap: clamp(20px, 3.5vw, 54px);
 }
 .folio-home .main-nav > a:not(.nav-contact) {
@@ -182,20 +182,6 @@ a:hover .arrow.diagonal {
   justify-content: space-between;
   padding: 150px clamp(22px, 8.1vw, 140px) 66px;
   background: var(--folio-paper);
-}
-.folio-hero::before {
-  content: "";
-  position: absolute;
-  width: min(64vw, 840px);
-  aspect-ratio: 1;
-  right: -9vw;
-  top: 15%;
-  border-radius: 50%;
-  border: 1px solid #171a1718;
-  box-shadow:
-    0 0 0 68px #171a1705,
-    0 0 0 136px #171a1705,
-    0 0 0 204px #171a1705;
 }
 .folio-hero-kicker,
 .folio-hero-bottom {
@@ -226,7 +212,8 @@ a:hover .arrow.diagonal {
   line-height: 0.81;
   letter-spacing: -0.095em;
   font-weight: 650;
-  max-width: 1200px;
+  max-width: 1260px;
+  text-wrap: balance;
 }
 .folio-hero h1 em {
   color: #d94d35;
@@ -819,8 +806,8 @@ a:hover .arrow.diagonal {
   position: relative;
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   color: #52574e;
   border: 1px solid #a5a79b;
   background: #f2f0e8dd;
@@ -844,8 +831,8 @@ a:hover .arrow.diagonal {
   background: #171a17;
 }
 .folio-rail svg {
-  width: 25px;
-  height: 25px;
+  width: 28px;
+  height: 28px;
 }
 .folio-rail a > span {
   position: absolute;
@@ -915,6 +902,28 @@ a:hover .arrow.diagonal {
   --folio-ink: #171a17;
   color: var(--folio-ink) !important;
   background: var(--folio-paper) !important;
+}
+
+/* The work stays readable before any scroll observer or animation runs. */
+.folio-home.folio-motion .folio-project:not(.in-view) .folio-copy {
+  opacity: 1;
+  transform: none;
+}
+.folio-home .folio-project.in-view .folio-copy {
+  animation: folio-copy-arrive 0.55s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+.folio-hero-kicker {
+  font-size: 15px;
+}
+.folio-type {
+  font-size: 16px;
+  letter-spacing: 0.025em;
+}
+.folio-stage-topline,
+.folio-source-heading span,
+.folio-source-foot,
+.folio-project-status {
+  font-size: 15px;
 }
 .folio-project-portfolio .site-header {
   position: absolute;

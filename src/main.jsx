@@ -678,42 +678,26 @@ function PortfolioHome() {
         <section className="folio-hero">
           <div className="folio-hero-kicker">
             <span>Henrique Souza</span>
-            <span>Desenvolvedor de software · Belo Horizonte</span>
+            <span>Desenvolvimento de software · Belo Horizonte</span>
           </div>
           <h1>
-            Software com
+            Código para
             <br />
-            <em>lugar no mundo.</em>
+            <em>o mundo real.</em>
           </h1>
           <div className="folio-hero-bottom">
             <p>
-              Crio sistemas web, PWAs e APIs para resolver problemas reais. Da
-              regra de negócio à publicação.
+              Transformo processos reais em produtos digitais — da regra de
+              negócio ao software em produção.
             </p>
             <a href="#projetos">
-              Conheça o trabalho <span>↓</span>
+              Ver projetos <span>↓</span>
             </a>
           </div>
-          <div className="hero-orbit" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-            <b>HS</b>
-          </div>
         </section>
-        <div className="folio-marquee" aria-hidden="true">
-          <div>
-            {[0, 1].map((copy) => (
-              <span key={copy}>
-                QUARTA AMSTEL <i>✳</i> PULSO <i>✳</i> e&amp;t <i>✳</i> TRILHA
-                BH <i>✳</i> ROTA DI BUTECO <i>✳</i>
-              </span>
-            ))}
-          </div>
-        </div>
         <section className="folio-work" id="projetos" aria-label="Projetos">
           <div className="folio-section-heading" id="codigo">
-            <span>Explore o produto. Confira o código.</span>
+            <span>Projetos feitos para sair da ideia e ganhar uso.</span>
             <a href={GH} target="_blank" rel="noreferrer">
               Acompanhe no GitHub <Arrow diagonal />
             </a>

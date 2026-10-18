@@ -528,7 +528,14 @@ function PortfolioProject({ project }) {
     sim: "Convite, site e organização do casamento reunidos em uma experiência para o casal e seus convidados.",
     trilha:
       "Uma forma coletiva de encontrar bares e desenhar novos roteiros por Belo Horizonte.",
-    rota: "Uma experiência de descoberta que acompanhou a edição 2026. A próxima versão será redesenhada para 2027.",
+    rota: "Uma experiência que acompanhou o Comida di Buteco em Belo Horizonte, com bares, check-ins, avaliações e roteiros em grupo. A próxima edição terá um redesign completo.",
+  };
+  const labels = {
+    quarta: "PWA DE BARES · ACESSO ABERTO",
+    pulso: "SINAIS PÚBLICOS · PRODUTO PÚBLICO",
+    sim: "CASAMENTO · SITE E CONVITES",
+    trilha: "PWA + ANDROID · EM FINALIZAÇÃO",
+    rota: "EDIÇÃO ENCERRADA · REDESIGN EM PREPARAÇÃO",
   };
   return (
     <article
@@ -537,15 +544,7 @@ function PortfolioProject({ project }) {
       data-project={project.id}
     >
       <div className="folio-copy">
-        <p className="folio-type">
-          {project.id === "quarta"
-            ? "PRODUTO DIGITAL · DISPONÍVEL PARA ACESSO"
-            : project.id === "rota"
-              ? "PRODUTO DIGITAL · PRÓXIMO CICLO EM 2027"
-              : project.id === "trilha"
-                ? "PRODUTO DIGITAL · EM FINALIZAÇÃO"
-                : "PRODUTO DIGITAL · CÓDIGO PÚBLICO"}
-        </p>
+        <p className="folio-type">{labels[project.id]}</p>
         <div className="folio-project-symbol" aria-hidden="true">
           <ProjectSymbol id={project.id} />
         </div>

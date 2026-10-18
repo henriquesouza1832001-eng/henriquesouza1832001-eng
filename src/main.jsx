@@ -438,41 +438,41 @@ function ProjectArtwork({ project }) {
   const marks = {
     quarta: (
       <>
-        <path d="M46 48h208v124H46z" />
-        <path d="m46 88 62-24 66 27 80-30M109 64v108m65-81v81m66-111v111" />
-        <path d="M144 105c0-15 12-27 27-27s27 12 27 27c0 20-27 51-27 51s-27-31-27-51Z" />
-        <circle cx="171" cy="105" r="8" className="art-fill" />
+        <path d="M46 48h208v124H46z" className="art-map-boundary" />
+        <path d="m46 88 62-24 66 27 80-30M109 64v108m65-81v81m66-111v111" className="art-map-streets" pathLength="1" />
+        <path d="M144 105c0-15 12-27 27-27s27 12 27 27c0 20-27 51-27 51s-27-31-27-51Z" className="art-map-pin" pathLength="1" />
+        <circle cx="171" cy="105" r="8" className="art-fill art-map-point" />
       </>
     ),
     pulso: (
       <>
-        <path d="M34 112h45l23-46 41 94 34-70 21 32h68" />
+        <path d="M34 112h45l23-46 41 94 34-70 21 32h68" className="art-pulse-line" pathLength="1" />
         <path d="M34 176h232M34 48h232" className="art-faint" />
-        <circle cx="177" cy="90" r="7" className="art-fill" />
+        <circle cx="177" cy="90" r="7" className="art-fill art-pulse-point" />
       </>
     ),
     sim: (
       <>
-        <circle cx="132" cy="110" r="55" />
-        <circle cx="184" cy="110" r="55" />
+        <circle cx="132" cy="110" r="55" className="art-ring-one" />
+        <circle cx="184" cy="110" r="55" className="art-ring-two" />
         <path d="M150 71a55 55 0 0 1 0 78m16-78a55 55 0 0 0 0 78" className="art-faint" />
       </>
     ),
     trilha: (
       <>
-        <path d="M40 162c42 0 42-88 84-88s42 72 84 72 42-43 52-43" />
-        <circle cx="40" cy="162" r="9" className="art-fill" />
-        <circle cx="124" cy="74" r="9" className="art-fill" />
-        <circle cx="208" cy="146" r="9" className="art-fill" />
-        <circle cx="260" cy="103" r="9" className="art-fill" />
+        <path d="M40 162c42 0 42-88 84-88s42 72 84 72 42-43 52-43" className="art-trail-line" pathLength="1" />
+        <circle cx="40" cy="162" r="9" className="art-fill art-station" />
+        <circle cx="124" cy="74" r="9" className="art-fill art-station" />
+        <circle cx="208" cy="146" r="9" className="art-fill art-station" />
+        <circle cx="260" cy="103" r="9" className="art-fill art-station" />
       </>
     ),
     rota: (
       <>
-        <path d="m38 60 74-24 76 24 74-24v124l-74 24-76-24-74 24Z" />
-        <path d="M112 36v124m76-100v124" />
-        <path d="M128 92c0-15 12-27 27-27s27 12 27 27c0 20-27 51-27 51s-27-31-27-51Z" />
-        <circle cx="155" cy="92" r="8" className="art-fill" />
+        <path d="m38 60 74-24 76 24 74-24v124l-74 24-76-24-74 24Z" className="art-route-map" pathLength="1" />
+        <path d="M112 36v124m76-100v124" className="art-map-folds" pathLength="1" />
+        <path d="M128 92c0-15 12-27 27-27s27 12 27 27c0 20-27 51-27 51s-27-31-27-51Z" className="art-route-pin" pathLength="1" />
+        <circle cx="155" cy="92" r="8" className="art-fill art-route-point" />
       </>
     ),
   };

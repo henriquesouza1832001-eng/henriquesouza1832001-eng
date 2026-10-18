@@ -123,7 +123,7 @@ function Arrow({ diagonal = false }) {
 }
 
 function Mark() {
-  return <span className="mark" aria-hidden="true"><span>H</span><i /></span>;
+  return <img className="brand-logo" src="/assets/logo-hs.png" alt="" aria-hidden="true" />;
 }
 
 function Header({ detail = false }) {

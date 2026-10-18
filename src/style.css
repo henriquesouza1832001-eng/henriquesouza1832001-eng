@@ -627,6 +627,7 @@ html { scroll-padding-top: 78px; }
 .screen-copy a { margin-top: 5px; display: inline-flex; align-items: center; gap: 6px; color: var(--signal); font-size: 13px; font-weight: 650; text-decoration: none; }
 .screen-copy .arrow { width: 15px; height: 15px; }
 .receiver-controls { padding: 10px 0 8px; display: flex; align-items: center; flex-direction: column; gap: 12px; color: #bbc1b2; }
+.receiver-controls .brand-logo { width: 32px; height: 32px; margin-bottom: auto; }
 .receiver-controls .mark { width: 32px; height: 32px; margin-bottom: auto; color: var(--signal); border-color: #878e7e; font-size: 15px; }
 .receiver-label { font: 8px/1.1 var(--mono); letter-spacing: .1em; text-align: center; }
 .receiver-meter { width: 65px; height: 9px; border: 1px solid #838a7b; border-radius: 8px; background: repeating-linear-gradient(90deg, #909788 0 2px, transparent 2px 9px); }
@@ -768,7 +769,7 @@ html { scroll-padding-top: 78px; }
 @media (max-width: 700px) {
   html { scroll-padding-top: 68px; }
   .site-header { height: 68px; padding-inline: 18px; }
-  .brand-logo { display: none; }
+  .brand-logo { width: 38px; height: 38px; }
   .mark { width: 37px; height: 37px; font-size: 18px; }
   .wordmark-name { font-size: 12px; }
   .hero-section {
@@ -795,6 +796,7 @@ html { scroll-padding-top: 78px; }
   .screen-copy p { font-size: 14px; }
   .screen-copy a { margin-top: 2px; font-size: 12px; }
   .receiver-controls { padding: 9px 0 5px; gap: 10px; }
+  .receiver-controls .brand-logo { width: 23px; height: 23px; }
   .receiver-controls .mark { width: 22px; height: 22px; font-size: 12px; }
   .receiver-label { font-size: 6px; }
   .receiver-meter { width: 30px; height: 6px; }

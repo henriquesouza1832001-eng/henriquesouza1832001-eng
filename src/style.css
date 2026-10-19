@@ -140,7 +140,7 @@ button { font: inherit; }
 .receiver-wheel:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
 .receiver-wheel span { width: 3px; height: 13px; align-self: start; margin-top: 7px; border-radius: 4px; background: var(--lime); }
 .channel-switcher { margin-top: 12px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
-.channel-switcher button {
+.channel-switcher a {
   min-width: 0;
   min-height: 54px;
   padding: 10px 14px;
@@ -158,9 +158,10 @@ button { font: inherit; }
   cursor: pointer;
   transition: color .2s ease, border .2s ease, background .2s ease;
 }
-.channel-switcher button .arrow { width: 15px; height: 15px; opacity: .65; }
-.channel-switcher button:hover { border-color: var(--lime); }
-.channel-switcher button.is-active { border-color: var(--lime); color: var(--lime); background: #d0ff3514; }
+.channel-switcher a { text-decoration: none; }
+.channel-switcher a .arrow { width: 15px; height: 15px; opacity: .65; }
+.channel-switcher a:hover { border-color: var(--lime); }
+.channel-switcher a.is-active { border-color: var(--lime); color: var(--lime); background: #d0ff3514; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 .project-marquee { overflow: hidden; color: var(--night); background: var(--lime); }
@@ -431,8 +432,9 @@ button { font: inherit; }
   .receiver-wheel { width: 39px; height: 39px; }
   .receiver-wheel span { height: 9px; margin-top: 5px; }
   .channel-switcher { margin-top: 8px; gap: 6px; }
-  .channel-switcher button { min-height: 48px; padding: 9px 10px; font-size: 14px; }
-  .channel-switcher button .arrow { width: 13px; height: 13px; }
+  .channel-switcher a { min-height: 48px; padding: 9px 10px; font-size: 14px; }
+  .channel-switcher a { text-decoration: none; }
+.channel-switcher a .arrow { width: 13px; height: 13px; }
   .project-marquee-track { min-height: 62px; }
   .project-marquee-track span { gap: 19px; padding-inline: 15px; font-size: 26px; }
   .work-section { padding-top: 78px; }
@@ -491,7 +493,7 @@ button { font: inherit; }
 @media (max-width: 360px) {
   .hero-kicker { font-size: 12px; }
   .hero-section h1 { font-size: clamp(44px, 14vw, 50px); }
-  .channel-switcher button { font-size: 13px; }
+  .channel-switcher a { font-size: 13px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }

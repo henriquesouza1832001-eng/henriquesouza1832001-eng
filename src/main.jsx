@@ -163,11 +163,11 @@ function ChannelReceiver({ project, onSelect }) {
           <span className="sr-only">Use a roda para alternar entre Quarta Amstel e e&t.</span>
         </aside>
       </div>
-      <nav className="channel-switcher" aria-label="Escolher projeto">
+      <nav className="channel-switcher" aria-label="Abrir o case de um projeto">
         {projects.map((item) => (
-          <button key={item.id} type="button" className={item.id === project.id ? "is-active" : ""} aria-pressed={item.id === project.id} onClick={() => onSelect(item.id)}>
+          <a key={item.id} href={"/projetos/" + item.id} className={item.id === project.id ? "is-active" : ""}>
             <span>{item.name}</span><Arrow diagonal />
-          </button>
+          </a>
         ))}
       </nav>
     </div>

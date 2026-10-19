@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 
@@ -9,112 +9,57 @@ const CONTACT = `mailto:${EMAIL}?subject=${encodeURIComponent("Conversa sobre op
 
 const projects = [
   {
-    id: "pulso",
-    name: "PULSO",
-    url: "https://pulso-web.henriquesouza.workers.dev/",
-    repo: `${GITHUB}/Pulso`,
-    summary: "O PULSO organiza acontecimentos públicos por fonte, lugar e confiança.",
-    language: "python",
-    code: `if s.source_classes and s.source_classes <= SOCIAL_CLASSES:
-    value = min(value, SOCIAL_ONLY_CAP)`,
-    codeNote: "Sinais baseados apenas em fontes sociais têm um limite de confiança.",
-    repositoryPath: "blob/main/engine/pulso_engine/scoring/confidence.py",
-    storyTitle: "Um sinal precisa de contexto.",
-    story: "O PULSO organiza informações por evento, lugar e origem. Severidade e confiança são tratadas separadamente para indicar o que as fontes realmente sustentam.",
-    proofTitle: "A fonte muda o peso do sinal.",
-    proof: "Confirmações oficiais elevam a confiança. Contradições e fontes duplicadas reduzem o peso; fontes sociais, sozinhas, não bastam para confirmar um acontecimento.",
-    composition: ["Origem", "Evento", "Contexto"],
-    cta: "Abrir o PULSO",
-  },
-  {
     id: "quarta",
     name: "Quarta Amstel",
     url: "https://quarta-amstel.pages.dev/",
-    repo: `${GITHUB}/quarta-amstel`,
-    summary: "Mapa de bares, campanhas e avisos da Quarta Amstel.",
-    status: "O produto está aberto para acesso. O lançamento ainda não tem data definida.",
+    repo: GITHUB + "/quarta-amstel",
+    summary: "Mapa de bares e campanhas da Quarta Amstel.",
+    status: "Aberto para acesso. O lançamento ainda não tem data definida.",
     language: "javascript",
-    code: `let sub = await swReg.pushManager.getSubscription();
-
-if (!sub) {
-  sub = await swReg.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: _urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
-  });
-}`,
-    codeNote: "A inscrição só é criada quando o navegador ainda não tem uma.",
+    code: [
+      "let sub = await swReg.pushManager.getSubscription();",
+      "",
+      "if (!sub) {",
+      "  sub = await swReg.pushManager.subscribe({",
+      "    userVisibleOnly: true,",
+      "    applicationServerKey: _urlBase64ToUint8Array(VAPID_PUBLIC_KEY),",
+      "  });",
+      "}",
+    ].join("\n"),
+    codeNote: "O navegador reaproveita uma inscrição existente antes de criar outra.",
     repositoryPath: "blob/main/www/js/push.js",
-    storyTitle: "Do mapa ao encontro.",
-    story: "O produto reúne descoberta de bares e campanhas em uma experiência instalável. A inscrição de notificações respeita a permissão do navegador e evita duplicar uma inscrição existente.",
-    proofTitle: "Uma experiência que continua depois da visita.",
-    proof: "O service worker permite que o produto instalado retome a conversa com quem autorizou receber notificações.",
-    composition: ["Bares", "Campanhas", "Encontros"],
-    cta: "Acessar o produto",
+    storyTitle: "Encontrar o bar é só o começo.",
+    story: "O projeto combina mapa, campanhas e avisos numa experiência instalável. Com a permissão do visitante, o navegador pode receber notificações do sistema.",
+    proofTitle: "A mesma inscrição não é criada duas vezes.",
+    proof: "Antes de criar outra inscrição, o código consulta a Push API. Se já existe uma, reutiliza o endpoint; caso contrário, pede permissão e envia a nova inscrição ao Worker.",
+    cta: "Abrir Quarta Amstel",
   },
   {
     id: "sim",
     name: "e&t",
     url: "https://tudocomecoudeumsim.pages.dev/",
-    repo: `${GITHUB}/tudocomecoudeumsim`,
-    summary: "Um site de casamento com convites e informações organizadas para convidados e grupos.",
+    repo: GITHUB + "/tudocomecoudeumsim",
+    summary: "Site de casamento, convites e eventos do casal.",
     language: "javascript",
-    code: `const groups = Array.isArray(event.group_ids)
-  ? event.group_ids
-  : JSON.parse(event.group_ids_json || '[]')
-
-return !groups.length || groups.includes(guest.group_id)
-  ? event
-  : null`,
-    codeNote: "Cada convidado recebe os detalhes dos eventos do próprio grupo.",
+    code: [
+      "const groups = Array.isArray(event.group_ids)",
+      "  ? event.group_ids",
+      "  : JSON.parse(event.group_ids_json || '[]')",
+      "",
+      "return !groups.length || groups.includes(guest.group_id)",
+      "  ? event",
+      "  : null",
+    ].join("\n"),
+    codeNote: "A API confere o grupo antes de devolver cada evento.",
     repositoryPath: "blob/main/functions/api/%5B%5Broute%5D%5D.js",
-    storyTitle: "Cada pessoa recebe o convite certo.",
-    story: "A experiência reúne o site da celebração e uma aplicação para organizar convidados e eventos. A API verifica o grupo antes de entregar as informações de cada convite.",
-    proofTitle: "As regras do convite vivem no sistema.",
-    proof: "O grupo de cada convidado determina quais eventos aparecem. A mesma regra é aplicada no servidor, em vez de depender de um filtro visual na página.",
-    composition: ["Site", "Convite", "Celebração"],
-    cta: "Conhecer e&t",
+    storyTitle: "Cada convite conhece o seu grupo.",
+    story: "O site público apresenta a celebração; a área de convites organiza a entrada e os eventos de cada grupo.",
+    proofTitle: "A regra não fica só na interface.",
+    proof: "A API verifica a autorização e filtra a lista antes de devolver os eventos. O acesso não depende só de esconder uma seção na tela.",
+    cta: "Visitar e&t",
   },
-  {
-    id: "trilha",
-    name: "Trilha BH",
-    url: "https://trilhabh.web.app/",
-    repo: `${GITHUB}/trilhaBH`,
-    summary: "Roteiros por Belo Horizonte para montar no mapa e compartilhar com amigos.",
-    status: "Em finalização. A versão pública permite acompanhar o projeto.",
-    language: "text",
-    code: null,
-    codeNote: null,
-    repositoryPath: "blob/main/www/readme.md",
-    storyTitle: "Descobrir a cidade em companhia.",
-    story: "O projeto aproxima mapa, visitas e roteiros compartilhados. A experiência está sendo preparada para uso no navegador e no Android.",
-    proofTitle: "Mapa, autenticação e atividade do grupo.",
-    proof: "O fluxo liga o PWA e o app Android à autenticação e aos dados do Firestore. Feed e ranking acompanham as atualizações do grupo.",
-    composition: ["Mapa", "Roteiro", "Amigos"],
-    cta: "Abrir versão pública",
-  },
-  {
-    id: "rota",
-    name: "Rota di Buteco",
-    url: "https://rotadibuteco.web.app/",
-    repo: `${GITHUB}/rotadibuteco`,
-    summary: "Visitas, avaliações e roteiros compartilhados durante o Comida di Buteco em Belo Horizonte.",
-    status: "A edição deste ano encerrou. O próximo ciclo volta com um redesign completo.",
-    language: "text",
-    code: null,
-    codeNote: null,
-    repositoryPath: "blob/master/README.md",
-    storyTitle: "A cidade vira um plano em grupo.",
-    story: "Durante a edição do Comida di Buteco em Belo Horizonte, o app conectou bares, check-ins, avaliações e roteiros compartilhados.",
-    proofTitle: "Uma visita atualiza o roteiro de todos.",
-    proof: "O check-in registra a visita e alimenta o feed e o ranking do grupo. O produto atual documenta a edição encerrada; a próxima edição será redesenhada.",
-    composition: ["Visitas", "Avaliações", "Grupo"],
-    cta: "Ver a edição encerrada",
-  },
-
 ];
-
 const projectById = Object.fromEntries(projects.map((project) => [project.id, project]));
-
 function Arrow({ diagonal = false }) {
   return (
     <svg className={diagonal ? "arrow arrow-diagonal" : "arrow"} viewBox="0 0 20 20" aria-hidden="true">
@@ -124,9 +69,8 @@ function Arrow({ diagonal = false }) {
 }
 
 function Mark() {
-  return <span className="mark" aria-hidden="true"><span>H</span><i /></span>;
+  return <img className="brand-logo" src="/assets/logo-hs.png" alt="" />;
 }
-
 function Header({ detail = false }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const home = detail ? "/" : "#inicio";
@@ -150,62 +94,41 @@ function Header({ detail = false }) {
   );
 }
 
-function ProjectComposition({ project }) {
-  const drawing = {
-    quarta: (
-      <svg viewBox="0 0 600 360" aria-hidden="true">
-        <path className="map-street" d="M-20 70 174 119 388 79 626 128M-20 245 162 205 338 242 622 194M88-20l41 124-25 126 57 150M302-20l-18 132 43 129-16 139M509-20l-34 110 53 117-41 153" />
-        <path className="map-route" d="m119 104 166 28 177-35 53 117-177 28-74 119" />
-        <g className="map-pin"><circle cx="119" cy="104" r="17"/><circle cx="119" cy="104" r="5"/><circle cx="285" cy="132" r="17"/><circle cx="285" cy="132" r="5"/><circle cx="462" cy="97" r="17"/><circle cx="462" cy="97" r="5"/><circle cx="515" cy="214" r="17"/><circle cx="515" cy="214" r="5"/><circle cx="338" cy="242" r="17"/><circle cx="338" cy="242" r="5"/></g>
-      </svg>
-    ),
-    pulso: (
-      <svg viewBox="0 0 600 360" aria-hidden="true">
-        <path className="signal-line" d="M65 82h131l50 75h118l48-91h120M65 180h110l70-23h130l44 93h113M65 279h145l35-122m130 0 44 131h113" />
-        <circle className="signal-halo" cx="300" cy="157" r="86"/><circle className="signal-core" cx="300" cy="157" r="35"/>
-        <circle className="signal-node" cx="65" cy="82" r="9"/><circle className="signal-node" cx="65" cy="180" r="9"/><circle className="signal-node" cx="65" cy="279" r="9"/><circle className="signal-node" cx="532" cy="66" r="9"/><circle className="signal-node" cx="532" cy="250" r="9"/><circle className="signal-node" cx="532" cy="288" r="9"/>
-      </svg>
-    ),
-    sim: (
-      <svg viewBox="0 0 600 360" aria-hidden="true">
-        <rect className="invite-card" x="45" y="62" width="215" height="235" rx="2"/><rect className="invite-card invite-card-back" x="67" y="40" width="215" height="235" rx="2"/>
-        <path className="invite-rule" d="M103 98h143M103 235h143"/><text className="invite-script" x="116" y="170">vocês</text>
-        <path className="group-branch" d="M355 109h92v54h93M447 163v75h93"/><circle className="group-dot" cx="355" cy="109" r="10"/><circle className="group-dot" cx="540" cy="163" r="10"/><circle className="group-dot" cx="540" cy="238" r="10"/>
-      </svg>
-    ),
-    rota: (
-      <svg viewBox="0 0 600 360" aria-hidden="true">
-        <path className="route-terrain" d="M-30 271c88-88 111-124 200-63s103 57 146-6 92-64 135 0 100 52 178-40M-26 128c70 34 132 29 190-20s117-56 175 5 122 73 280 6"/>
-        <path className="route-main" d="M86 250c34-77 75-82 135-37s91 31 124-20 75-51 110 4 54 53 88 23"/>
-        <g className="route-stop"><circle cx="86" cy="250" r="21"/><circle cx="221" cy="213" r="21"/><circle cx="345" cy="193" r="21"/><circle cx="455" cy="197" r="21"/><circle cx="543" cy="220" r="21"/></g>
-      </svg>
-    ),
-    trilha: (
-      <svg viewBox="0 0 600 360" aria-hidden="true">
-        <path className="trail-street" d="M-20 52 161 100l171-45 303 67M-30 185l190-28 169 72 293-59M-20 315l191-85 161 83 287-71M65-20l29 99 65 79-13 133 58 129M282-20l-17 115 90 72-10 118 48 104M495-20l-39 132 60 94-39 130"/>
-        <path className="trail-route" d="m95 79 70 100-13 51 113 48 90-91 100 48 61-83"/>
-        <circle className="trail-start" cx="95" cy="79" r="13"/><circle className="trail-stop" cx="165" cy="179" r="10"/><circle className="trail-stop" cx="265" cy="278" r="10"/><circle className="trail-stop" cx="355" cy="187" r="10"/><circle className="trail-stop" cx="455" cy="235" r="10"/><circle className="trail-end" cx="516" cy="152" r="13"/>
-      </svg>
-    ),
-  }[project.id];
+function ProjectMark({ project }) {
+  if (project.id === "quarta") {
+    return (
+      <div className="project-mark project-mark-quarta" role="img" aria-label="Marca da Quarta Amstel">
+        <img src="/assets/amstel-app-mark.png" alt="Amstel" />
+      </div>
+    );
+  }
+
   return (
-    <div className={`project-composition composition-${project.id}`} role="img" aria-label={project.composition.join(" · ")}>
-      {drawing}
+    <div className="project-mark project-mark-sim" role="img" aria-label="e&t">
+      <span>e<span aria-hidden="true">&</span>t</span>
     </div>
   );
 }
-
 function ProjectSpread({ project }) {
   return (
-    <article className={`project-spread spread-${project.id}`} id={project.id}>
-      <ProjectComposition project={project} />
+    <article className={"project-spread spread-" + project.id} id={project.id}>
+      <div className="case-visual">
+        <ProjectMark project={project} />
+      </div>
       <div className="project-copy">
-        <h3><a href={`/projetos/${project.id}`}>{project.name}<Arrow diagonal /></a></h3>
+        <p className="project-name">{project.name}</p>
+        <h3><a href={"/projetos/" + project.id}>{project.storyTitle}<Arrow diagonal /></a></h3>
         <p className="project-summary">{project.summary}</p>
+        <p className="project-story">{project.story}</p>
         {project.status && <p className="project-status">{project.status}</p>}
+        <div className="project-source">
+          <pre><HighlightedCode code={project.code} language={project.language} /></pre>
+          <p>{project.codeNote}</p>
+          <a href={project.repo + "/" + project.repositoryPath} target="_blank" rel="noreferrer">Ver este trecho no GitHub <Arrow diagonal /></a>
+        </div>
         <div className="project-actions">
           <a className="button-primary" href={project.url} target="_blank" rel="noreferrer">{project.cta}<Arrow diagonal /></a>
-          <a className="text-link" href={`/projetos/${project.id}`}>Como foi construído <Arrow /></a>
+          <a className="text-link" href={"/projetos/" + project.id}>Conhecer o case <Arrow /></a>
         </div>
       </div>
     </article>
@@ -225,38 +148,22 @@ function ChannelReceiver({ project, onSelect }) {
 
   return (
     <div className="receiver">
-      <div className="receiver-caption">
-        <span>ESTAÇÃO DE PROJETOS</span>
-        <span>SOFTWARE · BELO HORIZONTE</span>
-      </div>
       <div className="receiver-body">
-        <section className={`receiver-screen screen-${project.id}`} aria-live="polite" key={project.id}>
-          <div className="screen-header">
-            <span><i /> CANAL ATIVO</span>
-            <span>PROJETO PÚBLICO</span>
-          </div>
-          <div className="screen-content">
-            <ProjectComposition project={project} />
-            <div className="screen-copy">
-              <span className="screen-project-name">{project.name}</span>
-              <h2>{project.storyTitle}</h2>
-              <p>{project.summary}</p>
-              <a href={`/projetos/${project.id}`}>Ver o projeto por dentro <Arrow diagonal /></a>
-            </div>
+        <section className={"receiver-screen screen-" + project.id} aria-live="polite" key={project.id}>
+          <ProjectMark project={project} />
+          <div className="screen-copy">
+            <h2>{project.storyTitle}</h2><p>{project.summary}</p>
+            <a href={"/projetos/" + project.id}>Ver o case <Arrow diagonal /></a>
           </div>
         </section>
         <aside className="receiver-controls">
-          <Mark />
-          <span className="receiver-label">VOLUME</span>
-          <span className="receiver-meter"><i /></span>
-          <span className="receiver-label">CANAL</span>
-          <button className="receiver-wheel" type="button" aria-label={`Avançar canal depois de ${project.name}`} onClick={nextChannel} onWheel={turnOnWheel}>
+          <button className="receiver-wheel" type="button" aria-label={"Sintonizar próximo projeto depois de " + project.name} onClick={nextChannel} onWheel={turnOnWheel}>
             <span />
           </button>
-          <span className="receiver-label receiver-hint">CLIQUE<br />OU GIRE</span>
+          <span className="sr-only">Use a roda para alternar entre Quarta Amstel e e&t.</span>
         </aside>
       </div>
-      <nav className="channel-switcher" aria-label="Canais do portfólio">
+      <nav className="channel-switcher" aria-label="Escolher projeto">
         {projects.map((item) => (
           <button key={item.id} type="button" className={item.id === project.id ? "is-active" : ""} aria-pressed={item.id === project.id} onClick={() => onSelect(item.id)}>
             <span>{item.name}</span><Arrow diagonal />
@@ -266,7 +173,6 @@ function ChannelReceiver({ project, onSelect }) {
     </div>
   );
 }
-
 function ProjectMarquee() {
   const names = [...projects, ...projects].map((project) => project.name);
   return (
@@ -279,7 +185,7 @@ function ProjectMarquee() {
 }
 
 function Home() {
-  const [activeProject, setActiveProject] = useState("pulso");
+  const [activeProject, setActiveProject] = useState("quarta");
   useEffect(() => {
     const items = document.querySelectorAll(".project-spread, .about-section, .contact-section");
     const hasIntersectionObserver = "IntersectionObserver" in window;
@@ -334,10 +240,10 @@ function Home() {
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="hero-kicker">Henrique Souza <span>·</span> Engenheiro de software</p>
+            <p className="hero-kicker">Engenheiro de software</p>
             <h1 id="hero-title">Software para<br /><em>o mundo real.</em></h1>
             <div className="hero-bottom">
-              <p>Do primeiro modelo de dados à aplicação publicada. Abra os projetos e conheça as decisões de engenharia por trás deles.</p>
+              <p>Construo software da regra de negócio à publicação.</p>
               <a href="#projetos">Explorar projetos <span aria-hidden="true">↓</span></a>
             </div>
           </div>
@@ -348,7 +254,7 @@ function Home() {
 
         <section className="work-section" id="projetos" aria-labelledby="work-title">
           <div className="work-heading">
-            <h2 id="work-title">Produtos digitais.<br />Código público.</h2>
+            <h2 id="work-title">Projetos reais.<br />Engenharia por dentro.</h2>
             <a href={GITHUB} target="_blank" rel="noreferrer">Ver repositórios públicos <Arrow diagonal /></a>
           </div>
           <nav className="project-index" aria-label="Ir direto a um projeto">
@@ -367,7 +273,7 @@ function Home() {
           <h2>Do problema<br />à <em>produção.</em></h2>
           <div className="about-copy">
             <p>Sou Henrique, engenheiro de software em Belo Horizonte. Trabalho do modelo de dados à publicação, com atenção às regras que fazem o produto funcionar no uso real.</p>
-            <p>Isso aparece em decisões concretas: no <a className="about-project-link" href="/projetos/pulso">PULSO</a>, sinais apoiados apenas em fontes sociais recebem um limite de confiança. No <a className="about-project-link" href="/projetos/sim">site de casamento</a>, a API verifica o grupo antes de liberar eventos restritos. A interface mostra o resultado; a regra é garantida no sistema.</p>
+            <p>Na <a className="about-project-link" href="/projetos/quarta">Quarta Amstel</a>, o navegador reaproveita uma inscrição de notificações antes de registrar outra. No <a className="about-project-link" href="/projetos/sim">e&amp;t</a>, a API confere quais eventos estão liberados para o grupo de cada convite. São regras do produto garantidas no código.</p>
             <div className="about-links">
               <a href={GITHUB} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
               <a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
@@ -421,7 +327,7 @@ function ProjectDetail({ project }) {
     <main className={`detail-page detail-${project.id}`}>
       <section className="detail-hero">
         <a className="back-link" href="/#projetos"><Arrow /> Todos os projetos</a>
-        <ProjectComposition project={project} />
+        <ProjectMark project={project} />
         <div className="detail-title">
           <p>{project.summary}</p>
           <h1>{project.name}</h1>

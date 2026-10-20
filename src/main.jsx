@@ -9,30 +9,12 @@ const CONTACT = `mailto:${EMAIL}?subject=${encodeURIComponent("Conversa sobre op
 
 const projects = [
   {
-    id: "pulso",
-    name: "PULSO",
-    url: "https://pulso-web.henriquesouza.workers.dev/",
-    repo: `${GITHUB}/Pulso`,
-    summary: "O PULSO organiza acontecimentos públicos por fonte, lugar e confiança.",
-    language: "python",
-    code: `if s.source_classes and s.source_classes <= SOCIAL_CLASSES:
-    value = min(value, SOCIAL_ONLY_CAP)`,
-    codeNote: "Sinais baseados apenas em fontes sociais têm um limite de confiança.",
-    repositoryPath: "blob/main/engine/pulso_engine/scoring/confidence.py",
-    storyTitle: "Um sinal precisa de contexto.",
-    story: "O PULSO organiza informações por evento, lugar e origem. Severidade e confiança são tratadas separadamente para indicar o que as fontes realmente sustentam.",
-    proofTitle: "A fonte muda o peso do sinal.",
-    proof: "Confirmações oficiais elevam a confiança. Contradições e fontes duplicadas reduzem o peso; fontes sociais, sozinhas, não bastam para confirmar um acontecimento.",
-    composition: ["Origem", "Evento", "Contexto"],
-    cta: "Abrir o PULSO",
-  },
-  {
     id: "quarta",
     name: "Quarta Amstel",
     url: "https://quarta-amstel.pages.dev/",
     repo: `${GITHUB}/quarta-amstel`,
     summary: "Mapa de bares, campanhas e avisos da Quarta Amstel.",
-    status: "O produto está aberto para acesso. O lançamento ainda não tem data definida.",
+    status: "Pronto para acesso. A data de lançamento ainda não foi definida.",
     language: "javascript",
     code: `let sub = await swReg.pushManager.getSubscription();
 
@@ -74,43 +56,6 @@ return !groups.length || groups.includes(guest.group_id)
     composition: ["Site", "Convite", "Celebração"],
     cta: "Conhecer e&t",
   },
-  {
-    id: "trilha",
-    name: "Trilha BH",
-    url: "https://trilhabh.web.app/",
-    repo: `${GITHUB}/trilhaBH`,
-    summary: "Roteiros por Belo Horizonte para montar no mapa e compartilhar com amigos.",
-    status: "Em finalização. A versão pública permite acompanhar o projeto.",
-    language: "text",
-    code: null,
-    codeNote: null,
-    repositoryPath: "blob/main/www/readme.md",
-    storyTitle: "Descobrir a cidade em companhia.",
-    story: "O projeto aproxima mapa, visitas e roteiros compartilhados. A experiência está sendo preparada para uso no navegador e no Android.",
-    proofTitle: "Mapa, autenticação e atividade do grupo.",
-    proof: "O fluxo liga o PWA e o app Android à autenticação e aos dados do Firestore. Feed e ranking acompanham as atualizações do grupo.",
-    composition: ["Mapa", "Roteiro", "Amigos"],
-    cta: "Abrir versão pública",
-  },
-  {
-    id: "rota",
-    name: "Rota di Buteco",
-    url: "https://rotadibuteco.web.app/",
-    repo: `${GITHUB}/rotadibuteco`,
-    summary: "Visitas, avaliações e roteiros compartilhados durante o Comida di Buteco em Belo Horizonte.",
-    status: "A edição deste ano encerrou. O próximo ciclo volta com um redesign completo.",
-    language: "text",
-    code: null,
-    codeNote: null,
-    repositoryPath: "blob/master/README.md",
-    storyTitle: "A cidade vira um plano em grupo.",
-    story: "Durante a edição do Comida di Buteco em Belo Horizonte, o app conectou bares, check-ins, avaliações e roteiros compartilhados.",
-    proofTitle: "Uma visita atualiza o roteiro de todos.",
-    proof: "O check-in registra a visita e alimenta o feed e o ranking do grupo. O produto atual documenta a edição encerrada; a próxima edição será redesenhada.",
-    composition: ["Visitas", "Avaliações", "Grupo"],
-    cta: "Ver a edição encerrada",
-  },
-
 ];
 
 const projectById = Object.fromEntries(projects.map((project) => [project.id, project]));
@@ -159,32 +104,11 @@ function ProjectComposition({ project }) {
         <g className="map-pin"><circle cx="119" cy="104" r="17"/><circle cx="119" cy="104" r="5"/><circle cx="285" cy="132" r="17"/><circle cx="285" cy="132" r="5"/><circle cx="462" cy="97" r="17"/><circle cx="462" cy="97" r="5"/><circle cx="515" cy="214" r="17"/><circle cx="515" cy="214" r="5"/><circle cx="338" cy="242" r="17"/><circle cx="338" cy="242" r="5"/></g>
       </svg>
     ),
-    pulso: (
-      <svg viewBox="0 0 600 360" aria-hidden="true">
-        <path className="signal-line" d="M65 82h131l50 75h118l48-91h120M65 180h110l70-23h130l44 93h113M65 279h145l35-122m130 0 44 131h113" />
-        <circle className="signal-halo" cx="300" cy="157" r="86"/><circle className="signal-core" cx="300" cy="157" r="35"/>
-        <circle className="signal-node" cx="65" cy="82" r="9"/><circle className="signal-node" cx="65" cy="180" r="9"/><circle className="signal-node" cx="65" cy="279" r="9"/><circle className="signal-node" cx="532" cy="66" r="9"/><circle className="signal-node" cx="532" cy="250" r="9"/><circle className="signal-node" cx="532" cy="288" r="9"/>
-      </svg>
-    ),
     sim: (
       <svg viewBox="0 0 600 360" aria-hidden="true">
         <rect className="invite-card" x="45" y="62" width="215" height="235" rx="2"/><rect className="invite-card invite-card-back" x="67" y="40" width="215" height="235" rx="2"/>
         <path className="invite-rule" d="M103 98h143M103 235h143"/><text className="invite-script" x="116" y="170">vocês</text>
         <path className="group-branch" d="M355 109h92v54h93M447 163v75h93"/><circle className="group-dot" cx="355" cy="109" r="10"/><circle className="group-dot" cx="540" cy="163" r="10"/><circle className="group-dot" cx="540" cy="238" r="10"/>
-      </svg>
-    ),
-    rota: (
-      <svg viewBox="0 0 600 360" aria-hidden="true">
-        <path className="route-terrain" d="M-30 271c88-88 111-124 200-63s103 57 146-6 92-64 135 0 100 52 178-40M-26 128c70 34 132 29 190-20s117-56 175 5 122 73 280 6"/>
-        <path className="route-main" d="M86 250c34-77 75-82 135-37s91 31 124-20 75-51 110 4 54 53 88 23"/>
-        <g className="route-stop"><circle cx="86" cy="250" r="21"/><circle cx="221" cy="213" r="21"/><circle cx="345" cy="193" r="21"/><circle cx="455" cy="197" r="21"/><circle cx="543" cy="220" r="21"/></g>
-      </svg>
-    ),
-    trilha: (
-      <svg viewBox="0 0 600 360" aria-hidden="true">
-        <path className="trail-street" d="M-20 52 161 100l171-45 303 67M-30 185l190-28 169 72 293-59M-20 315l191-85 161 83 287-71M65-20l29 99 65 79-13 133 58 129M282-20l-17 115 90 72-10 118 48 104M495-20l-39 132 60 94-39 130"/>
-        <path className="trail-route" d="m95 79 70 100-13 51 113 48 90-91 100 48 61-83"/>
-        <circle className="trail-start" cx="95" cy="79" r="13"/><circle className="trail-stop" cx="165" cy="179" r="10"/><circle className="trail-stop" cx="265" cy="278" r="10"/><circle className="trail-stop" cx="355" cy="187" r="10"/><circle className="trail-stop" cx="455" cy="235" r="10"/><circle className="trail-end" cx="516" cy="152" r="13"/>
       </svg>
     ),
   }[project.id];
@@ -279,7 +203,7 @@ function ProjectMarquee() {
 }
 
 function Home() {
-  const [activeProject, setActiveProject] = useState("pulso");
+  const [activeProject, setActiveProject] = useState("quarta");
   useEffect(() => {
     const items = document.querySelectorAll(".project-spread, .about-section, .contact-section");
     const hasIntersectionObserver = "IntersectionObserver" in window;
@@ -337,7 +261,7 @@ function Home() {
             <p className="hero-kicker">Henrique Souza <span>·</span> Engenheiro de software</p>
             <h1 id="hero-title">Software para<br /><em>o mundo real.</em></h1>
             <div className="hero-bottom">
-              <p>Do primeiro modelo de dados à aplicação publicada. Abra os projetos e conheça as decisões de engenharia por trás deles.</p>
+              <p>Do mapa de bares à lógica dos convites: dois produtos publicados, com regras pensadas para quem usa cada um.</p>
               <a href="#projetos">Explorar projetos <span aria-hidden="true">↓</span></a>
             </div>
           </div>
@@ -348,7 +272,7 @@ function Home() {
 
         <section className="work-section" id="projetos" aria-labelledby="work-title">
           <div className="work-heading">
-            <h2 id="work-title">Produtos digitais.<br />Código público.</h2>
+            <h2 id="work-title">Dois produtos.<br />Código público.</h2>
             <a href={GITHUB} target="_blank" rel="noreferrer">Ver repositórios públicos <Arrow diagonal /></a>
           </div>
           <nav className="project-index" aria-label="Ir direto a um projeto">
@@ -367,7 +291,7 @@ function Home() {
           <h2>Do problema<br />à <em>produção.</em></h2>
           <div className="about-copy">
             <p>Sou Henrique, engenheiro de software em Belo Horizonte. Trabalho do modelo de dados à publicação, com atenção às regras que fazem o produto funcionar no uso real.</p>
-            <p>Isso aparece em decisões concretas: no <a className="about-project-link" href="/projetos/pulso">PULSO</a>, sinais apoiados apenas em fontes sociais recebem um limite de confiança. No <a className="about-project-link" href="/projetos/sim">site de casamento</a>, a API verifica o grupo antes de liberar eventos restritos. A interface mostra o resultado; a regra é garantida no sistema.</p>
+            <p>No <a className="about-project-link" href="/projetos/quarta">Quarta Amstel</a>, o navegador respeita a permissão antes de inscrever notificações. No <a className="about-project-link" href="/projetos/sim">e&t</a>, a API verifica o grupo do convidado antes de mostrar eventos restritos. São problemas diferentes; em ambos, a regra fica no lugar em que precisa valer.</p>
             <div className="about-links">
               <a href={GITHUB} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
               <a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
@@ -397,7 +321,6 @@ function Home() {
 
 const codeWords = {
   javascript: /^(?:async|await|break|case|catch|class|const|continue|default|delete|do|else|export|extends|false|finally|for|from|function|if|import|in|instanceof|let|new|null|of|return|static|throw|true|try|typeof|var|void|while|yield)$/,
-  python: /^(?:and|as|assert|async|await|break|class|continue|def|del|elif|else|except|False|finally|for|from|global|if|import|in|is|lambda|None|not|or|pass|raise|return|True|try|while|with|yield)$/,
 };
 
 function HighlightedCode({ code, language }) {
@@ -415,8 +338,7 @@ function HighlightedCode({ code, language }) {
 
 function ProjectDetail({ project }) {
   const index = projects.findIndex((item) => item.id === project.id);
-  const previous = projects[(index + projects.length - 1) % projects.length];
-  const next = projects[(index + 1) % projects.length];
+  const otherProject = projects[(index + 1) % projects.length];
   return (
     <main className={`detail-page detail-${project.id}`}>
       <section className="detail-hero">
@@ -455,8 +377,8 @@ function ProjectDetail({ project }) {
         )}
       </section>
       <nav className="detail-next" aria-label="Navegar entre projetos">
-        <a href={`/projetos/${previous.id}`}><span>Projeto anterior</span><strong>{previous.name}</strong><Arrow /></a>
-        <a href={`/projetos/${next.id}`}><span>Próximo projeto</span><strong>{next.name}</strong><Arrow /></a>
+        <a href="/#projetos"><span>Voltar ao portfólio</span><strong>Todos os projetos</strong><Arrow /></a>
+        <a href={`/projetos/${otherProject.id}`}><span>Outro projeto</span><strong>{otherProject.name}</strong><Arrow /></a>
       </nav>
     </main>
   );

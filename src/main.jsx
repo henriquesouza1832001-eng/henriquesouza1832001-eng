@@ -137,9 +137,10 @@ function ProjectSpread({ project }) {
 }
 
 function ChannelReceiver({ project, onSelect }) {
+  const currentIndex = projects.findIndex((item) => item.id === project.id);
+  const nextProject = projects[(currentIndex + 1) % projects.length];
   const nextChannel = () => {
-    const index = projects.findIndex((item) => item.id === project.id);
-    onSelect(projects[(index + 1) % projects.length].id);
+    onSelect(nextProject.id);
   };
   const turnOnWheel = (event) => {
     if (Math.abs(event.deltaY) < 8 && Math.abs(event.deltaX) < 8) return;
@@ -150,14 +151,13 @@ function ChannelReceiver({ project, onSelect }) {
   return (
     <div className="receiver">
       <div className="receiver-caption">
-        <span>ESTAÇÃO DE PROJETOS</span>
-        <span>SOFTWARE · BELO HORIZONTE</span>
+        <span>PROJETOS PÚBLICOS</span>
+        <span>BELO HORIZONTE</span>
       </div>
       <div className="receiver-body">
         <section className={`receiver-screen screen-${project.id}`} aria-live="polite" key={project.id}>
           <div className="screen-header">
-            <span><i /> CANAL ATIVO</span>
-            <span>PROJETO PÚBLICO</span>
+            <span><i /> EM EXIBIÇÃO</span>
           </div>
           <div className="screen-content">
             <ProjectComposition project={project} />
@@ -171,13 +171,11 @@ function ChannelReceiver({ project, onSelect }) {
         </section>
         <aside className="receiver-controls">
           <Mark />
-          <span className="receiver-label">VOLUME</span>
-          <span className="receiver-meter"><i /></span>
           <span className="receiver-label">CANAL</span>
-          <button className="receiver-wheel" type="button" aria-label={`Avançar canal depois de ${project.name}`} onClick={nextChannel} onWheel={turnOnWheel}>
+          <button className="receiver-wheel" type="button" aria-label={`Mudar para ${nextProject.name}`} style={{ "--dial-turn": `${currentIndex * 180}deg` }} onClick={nextChannel} onWheel={turnOnWheel}>
             <span />
           </button>
-          <span className="receiver-label receiver-hint">CLIQUE<br />OU GIRE</span>
+          <span className="receiver-label receiver-hint">MUDAR CANAL</span>
         </aside>
       </div>
       <nav className="channel-switcher" aria-label="Canais do portfólio">

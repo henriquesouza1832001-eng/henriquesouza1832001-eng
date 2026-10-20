@@ -119,9 +119,9 @@ function ProjectComposition({ project }) {
   );
 }
 
-function ProjectSpread({ project }) {
+function ProjectSpread({ project, active }) {
   return (
-    <article className={`project-spread spread-${project.id}`} id={project.id}>
+    <article className={`project-spread spread-${project.id}`} id={project.id} data-active={active ? "true" : undefined}>
       <ProjectComposition project={project} />
       <div className="project-copy">
         <h3><a href={`/projetos/${project.id}`}>{project.name}<Arrow diagonal /></a></h3>
@@ -251,7 +251,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="portfolio home-page" id="inicio">
+    <div className="portfolio home-page" id="inicio" data-active-project={activeProject}>
       <Header />
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
@@ -281,7 +281,7 @@ function Home() {
             ))}
           </nav>
           <div className="project-list">
-            {projects.map((project) => <ProjectSpread key={project.id} project={project} />)}
+            {projects.map((project) => <ProjectSpread key={project.id} project={project} active={activeProject === project.id} />)}
           </div>
         </section>
 

@@ -256,7 +256,7 @@ export default function ProcessWorld({ activeStep }: { activeStep: ProcessStepKe
 
     async function init() {
       try {
-        const three = await import('three');
+        const three = await import('./three-runtime');
         if (disposed || !canvas) return;
         THREE = three;
         renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true, powerPreference: 'low-power' });

@@ -944,7 +944,7 @@ const SoftwareScene = forwardRef<SoftwareSceneHandle, SoftwareSceneProps>(functi
 
     async function initialize() {
       try {
-        const three = await import('three');
+        const three = await import('./three-runtime');
         await document.fonts.ready;
         if (disposed) return;
         THREE = three;

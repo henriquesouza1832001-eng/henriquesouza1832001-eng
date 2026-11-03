@@ -8,7 +8,9 @@
 - `pnpm build` passou; TypeScript, Vite e o pós-build geraram as quatro páginas de projeto, sitemap e 404.
 - Revisão em Chrome local: 1440×900 e 390×844. As quatro etapas foram verificadas por scroll; as abas Sobre e Contato abriram; links de contato e do case Rota foram inspecionados. Nenhum erro de JavaScript. No celular, a página ficou com 390 px de largura sem overflow horizontal.
 - Capturas locais: `preview-initial.png`, `preview-prototype-final.png`, `preview-review-final.png`, `preview-desktop-final.png` e `preview-mobile-final.png`.
-- Limitação conhecida: Three.js continua em chunk de 753,31 kB minificado (192,54 kB gzip), acima do aviso padrão de 500 kB do Vite.
+- Otimização atual: os renderers carregam por uma fachada de exports nomeados em `src/three-runtime.ts`. O chunk caiu de 753,31 kB para 568,58 kB minificado e de 192,54 kB para 143,19 kB gzip, redução de 25,6% no tamanho transferido. A cena continua sendo carregada sob demanda quando entra perto da viewport.
+- Revisão após a otimização: Three.js inicializou no Chrome sem fallback; IDE, prévia, revisão e área de projetos foram conferidas. Sobre, seleção de projeto e três links do case responderam; nenhum erro de JavaScript.
+- Limitação conhecida: o chunk Three.js permanece acima do aviso padrão de 500 kB do Vite.
 - Publicação desta rodada: esta revisão segue para o branch de trabalho no GitHub e para o Cloudflare Pages Production; os endereços estão no README e no registro do release.
 
 > As seções seguintes preservam verificações de versões anteriores. Quando divergirem da revisão atual, vale o estado desta seção.

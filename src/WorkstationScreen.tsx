@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { projects, type Project } from './content';
-import { codeFiles, projectSource, sourceByFile } from './ide-source';
+import { codeFiles, sourceByFile } from './ide-source';
 import './workstation-screen.css';
 
 export type ScreenStage = 'ide' | 'prototype' | 'review' | 'desktop';
@@ -45,7 +45,7 @@ function IdeWindow({ stage, typingStep }: { stage: ScreenStage; typingStep: numb
     : stage === 'prototype'
       ? 'Os projetos e seus estados entram no mesmo sistema.'
       : 'Cada afirmação precisa levar a uma prova pública.';
-  const visibleLines = sourceByFile[selectedFile] ?? projectSource;
+  const visibleLines = sourceByFile[selectedFile] ?? sourceByFile['content.ts'];
   const typedLineCount = Math.floor((typingStep / 18) * visibleLines.length);
   return <div className={`ws-workbench ws-stage-${stage}`}>
     <aside className="ws-file-rail" aria-label="Arquivos do projeto">

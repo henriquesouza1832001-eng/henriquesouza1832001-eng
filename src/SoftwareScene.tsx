@@ -1,6 +1,6 @@
 ﻿import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import WorkstationScreen, { type ScreenStage } from './WorkstationScreen';
-import { projectSource } from './ide-source';
+import { sourceByFile } from './ide-source';
 
 export type SoftwareSceneHandle = {
   setProgress: (value: number) => void;
@@ -182,7 +182,7 @@ function drawIde(context: CanvasRenderingContext2D, reveal: number) {
   context.fillText('{}', 27, 36);
   context.fillStyle = '#d4d1c4';
   context.font = '18px monospace';
-  context.fillText('src / fluxo / Pedido.jsx', 112, 37);
+  context.fillText('src / portfolio / content.ts', 112, 37);
   context.fillStyle = '#777168';
   context.fillRect(0, 62, 194, height - 62);
   context.font = '16px monospace';
@@ -191,12 +191,12 @@ function drawIde(context: CanvasRenderingContext2D, reveal: number) {
   context.fillStyle = '#d66a4a';
   context.fillRect(14, 121, 166, 34);
   context.fillStyle = '#273027';
-  context.fillText('JSX  Pedido.jsx', 26, 144);
+  context.fillText('TS  content.ts', 26, 144);
   context.fillStyle = '#b9b1a6';
-  context.fillText('◇  dados.ts', 24, 190);
-  context.fillText('⌄  tests', 24, 244);
-  context.fillText('TS  validar.test.ts', 24, 281);
-  const lines = projectSource.map(line => [line, '']);
+  context.fillText('TS  SoftwareFilm.tsx', 24, 190);
+  context.fillText('⌄  cases', 24, 244);
+  context.fillText('TS  CasePage.tsx', 24, 281);
+  const lines = sourceByFile['content.ts'].map(line => [line, '']);
   const visibleLines = Math.floor(reveal * lines.length);
   context.font = '16px monospace';
   lines.slice(0, visibleLines).forEach(([lead, tail], index) => {
@@ -216,7 +216,7 @@ function drawIde(context: CanvasRenderingContext2D, reveal: number) {
   }
   context.fillStyle = '#a39b8e';
   context.font = '14px monospace';
-  context.fillText('REACT  ·  COMPONENTE  ·  VALIDAÇÃO', 220, height - 28);
+  context.fillText('REPOSITÓRIO  ·  PROJETOS  ·  LINKS', 220, height - 28);
 }
 
 function drawTyped(context: CanvasRenderingContext2D, text: string, x: number, y: number, progress: number) {

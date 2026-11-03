@@ -1,53 +1,10 @@
 import { useEffect, useState } from 'react';
 import { projects, type Project } from './content';
+import { codeFiles, projectSource, sourceByFile } from './ide-source';
 import './workstation-screen.css';
 
 export type ScreenStage = 'ide' | 'prototype' | 'review' | 'desktop';
-type ScreenApp = 'ide' | 'projects' | 'about' | 'contact';
-
-const projectSource = [
-  "export const projects: Project[] = [",
-  "  { key: 'rota', title: 'Rota di Buteco',",
-  "    status: 'EVENTO ENCERRADO',",
-  "    line: 'A cidade virou um jogo entre amigos.',",
-  "    stack: ['JavaScript', 'Firebase', 'Firestore', 'Leaflet', 'PWA'] },",
-  "  { key: 'quarta', title: 'Quarta é Dia de Amstel',",
-  "    status: 'REPOSITÓRIO PÚBLICO · ACESSO 18+',",
-  "    stack: ['JavaScript', 'Cloudflare Workers', 'D1', 'Web Push'] },",
-  '];',
-];
-
-const sourceByFile: Record<string, string[]> = {
-  'content.ts': projectSource,
-  'App.tsx': [
-    "import { projects } from './content';",
-    "import CasePage from './CasePage';",
-    "import SoftwareFilm from './SoftwareFilm';",
-    "const slug = window.location.pathname.match(/^\\/projetos\\/([^/]+)\\/?$/)?.[1];",
-    'const caseProject = slug ? projects.find(project => project.slug === slug) : undefined;',
-    '',
-    '<SoftwareFilm soundEnabled={soundEnabled} onSoundToggle={toggleSound} />',
-  ],
-  'CasePage.tsx': [
-    "import { featured, type Project } from './content';",
-    "import { CondrioDemo, MnemeDemo, QuartaDemo, RotaDemo } from './Demos';",
-    "import ProjectGraphic from './ProjectGraphic';",
-    '',
-    'const caseCopy: Record<string, { situation: string; system: string; decisionTitle: string; decision: string; limit: string; proof: string }> = {',
-    '  rota: {',
-    "    situation: 'Durante o Comida di Buteco BH 2026, um grupo de amigos queria descobrir bares, registrar visitas e acompanhar quem avançava pelo roteiro. O produto tinha começo e fim: precisava estar pronto para o evento.',",
-  ],
-  'SoftwareFilm.tsx': [
-    'const progress = clamp01(scrollProgress);',
-    'const nextStage = stageFor(progress);',
-    '',
-    'if (nextStage !== currentStage) {',
-    '  setStage(nextStage);',
-    '}',
-    '',
-    'sceneRef.current?.setProgress(progress);',
-  ],
-};
+type ScreenApp = 'ide' | 'projects' | 'about' | 'contact' | 'settings';
 
 const icon = (name: ScreenApp) => {
   const paths: Record<ScreenApp, string> = {
@@ -55,16 +12,18 @@ const icon = (name: ScreenApp) => {
     projects: 'M2 3h12v12H2zM5 6h6M5 9h6M5 12h3',
     about: 'M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 15a6 6 0 0 1 12 0',
     contact: 'M2 3h12v10H7l-4 3v-3H2zM5 7h6M5 10h4',
+    settings: 'M8 2v2M8 12v2M2 8h2M12 8h2M3.8 3.8l1.4 1.4M10.8 10.8l1.4 1.4M12.2 3.8l-1.4 1.4M5.2 10.8l-1.4 1.4M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z',
   };
   return <svg viewBox="0 0 16 16" aria-hidden="true"><path d={paths[name]}/></svg>;
 };
 
-function WindowBar({ activeApp, onSelect, soundEnabled, onSoundToggle }: { activeApp: ScreenApp; onSelect: (app: ScreenApp) => void; soundEnabled: boolean; onSoundToggle: () => void }) {
+function WindowBar({ activeApp, onSelect }: { activeApp: ScreenApp; onSelect: (app: ScreenApp) => void }) {
   const tabs: { id: ScreenApp; label: string }[] = [
     { id: 'ide', label: 'Código' },
     { id: 'projects', label: 'Trabalhos' },
     { id: 'about', label: 'Sobre' },
     { id: 'contact', label: 'Contato' },
+    { id: 'settings', label: 'Ajustes' },
   ];
   return <div className="ws-windowbar">
     <a className="ws-brand" href="#inicio" aria-label="Henrique Souza, início">
@@ -76,12 +35,10 @@ function WindowBar({ activeApp, onSelect, soundEnabled, onSoundToggle }: { activ
         {icon(tab.id)}<span>{tab.label}</span>
       </button>)}
     </nav>
-    <button className="ws-sound-toggle" type="button" data-sound-toggle="true" aria-pressed={soundEnabled} onClick={onSoundToggle}>{soundEnabled ? 'SOM LIGADO' : 'SOM DESLIGADO'}</button>
-    <div className="ws-session"><i/>SESSÃO LOCAL</div>
   </div>;
 }
 
-function IdeWindow({ stage }: { stage: ScreenStage }) {
+function IdeWindow({ stage, typingStep }: { stage: ScreenStage; typingStep: number }) {
   const [selectedFile, setSelectedFile] = useState('content.ts');
   const copy = stage === 'ide'
     ? 'Mapear o trabalho real antes de escolher a interface.'
@@ -89,12 +46,13 @@ function IdeWindow({ stage }: { stage: ScreenStage }) {
       ? 'Os projetos e seus estados entram no mesmo sistema.'
       : 'Cada afirmação precisa levar a uma prova pública.';
   const visibleLines = sourceByFile[selectedFile] ?? projectSource;
+  const typedLineCount = Math.floor((typingStep / 18) * visibleLines.length);
   return <div className={`ws-workbench ws-stage-${stage}`}>
     <aside className="ws-file-rail" aria-label="Arquivos do projeto">
       <span className="ws-rail-heading">EXPLORADOR</span>
       <span className="ws-folder">⌄ src</span>
-      {['App.tsx', 'content.ts', 'ProjectPage.tsx', 'SoftwareFilm.tsx'].map(file => <button key={file} type="button" className={selectedFile === file ? 'selected' : ''} onClick={() => setSelectedFile(file)}>
-        <i>{file.endsWith('.tsx') ? 'TS' : 'JS'}</i>{file}
+      {codeFiles.map(file => <button key={file} type="button" className={selectedFile === file ? 'selected' : ''} onClick={() => setSelectedFile(file)}>
+        <i>TS</i>{file}
       </button>)}
       <span className="ws-folder ws-public-folder">⌄ public</span>
       <span className="ws-static-file">favicon.svg</span>
@@ -103,7 +61,7 @@ function IdeWindow({ stage }: { stage: ScreenStage }) {
       <div className="ws-editor-tab"><span>TS</span>src/{selectedFile}<i>●</i></div>
       <div className="ws-editor-context"><span>src</span><b>›</b><span>{selectedFile}</span></div>
       <pre className="ws-code" tabIndex={0} aria-label="Código de exemplo baseado nos dados públicos dos projetos"><code>
-        {visibleLines.map((line, index) => <span className="ws-code-line" key={`${selectedFile}-${index}`}><i>{String(index + 1).padStart(2, '0')}</i><b>{line}</b></span>)}
+        {visibleLines.slice(0, typedLineCount).map((line, index) => <span className="ws-code-line" key={`${selectedFile}-${index}`}><i>{String(index + 1).padStart(2, '0')}</i><b>{line}</b></span>)}
         {stage === 'review' && <span className="ws-code-note">// links e estados vêm dos projetos públicos</span>}
       </code></pre>
       <div className="ws-terminal"><div><span>TERMINAL</span><span>SAÍDA</span></div><p><b>›</b> {copy}</p><small>Conteúdo editorial · sem conexão com os serviços dos projetos</small></div>
@@ -142,7 +100,7 @@ function ProjectsWindow() {
   const selected = projects.find(project => project.key === selectedKey) ?? projects[0];
   return <div className="ws-projects-app">
     <aside className="ws-project-list" aria-label="Projetos">
-      <div className="ws-project-list-title"><span>MEUS PROJETOS</span><span>{projects.length}</span></div>
+      <div className="ws-project-list-title"><span>MEUS PROJETOS</span></div>
       {projects.map(project => <button key={project.key} type="button" aria-pressed={selectedKey === project.key} onClick={() => setSelectedKey(project.key)}>
         <span className={`ws-project-app-icon ws-icon-${project.key}`}>{project.key === 'rota' ? '↗' : project.title.slice(0, 1)}</span>
         <span><strong>{project.title}</strong><small>{project.status}</small></span>
@@ -163,6 +121,21 @@ function AboutWindow() {
   </section>;
 }
 
+function SettingsWindow({ soundEnabled, onSoundToggle }: { soundEnabled: boolean; onSoundToggle: () => void }) {
+  return <section className="ws-settings-app" aria-labelledby="ws-settings-title">
+    <p className="ws-app-kicker">PREFERÊNCIAS DESTA VISITA</p>
+    <h2 id="ws-settings-title">Ajuste o<br/><em>ambiente.</em></h2>
+    <p>O som da interface fica desligado até você escolher ativá-lo.</p>
+    <div className="ws-setting-row">
+      <div><strong>Som da interface</strong><span>Teclas e navegação</span></div>
+      <button className="ws-setting-switch" type="button" role="switch" data-sound-toggle="true" aria-checked={soundEnabled} aria-label="Som da interface" onClick={onSoundToggle}>
+        <i aria-hidden="true"/><b>{soundEnabled ? 'Ligado' : 'Desligado'}</b>
+      </button>
+    </div>
+    <p className="ws-settings-note">A escolha vale enquanto esta página estiver aberta.</p>
+  </section>;
+}
+
 function ContactWindow() {
   return <section className="ws-contact-app" aria-labelledby="ws-contact-title">
     <p className="ws-app-kicker">BELO HORIZONTE · DISPONÍVEL PARA CONVERSAR</p>
@@ -172,18 +145,19 @@ function ContactWindow() {
   </section>;
 }
 
-export default function WorkstationScreen({ stage, soundEnabled, onSoundToggle }: { stage: ScreenStage; soundEnabled: boolean; onSoundToggle: () => void }) {
+export default function WorkstationScreen({ stage, typingStep, soundEnabled, onSoundToggle }: { stage: ScreenStage; typingStep: number; soundEnabled: boolean; onSoundToggle: () => void }) {
   const [activeApp, setActiveApp] = useState<ScreenApp>('ide');
-  useEffect(() => { setActiveApp(stage === 'desktop' ? 'projects' : 'ide'); }, [stage]);
+  useEffect(() => { if (stage === 'desktop') setActiveApp('projects'); }, [stage]);
   return <section id="workstation-screen" className="ws-screen" data-stage={stage} aria-label="Computador interativo de Henrique Souza">
     <h1 className="ws-visually-hidden">Henrique Souza — engenharia de software em Belo Horizonte</h1>
-    <header className="ws-os-header"><WindowBar activeApp={activeApp} onSelect={setActiveApp} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/></header>
+    <header className="ws-os-header"><WindowBar activeApp={activeApp} onSelect={setActiveApp}/></header>
     <div className="ws-os-body">
-      {activeApp === 'ide' && <IdeWindow stage={stage}/>} 
+      {activeApp === 'ide' && <IdeWindow stage={stage} typingStep={typingStep}/>}
       {activeApp === 'projects' && <ProjectsWindow/>}
       {activeApp === 'about' && <AboutWindow/>}
       {activeApp === 'contact' && <ContactWindow/>}
+      {activeApp === 'settings' && <SettingsWindow soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
     </div>
-    <footer className="ws-taskbar"><span className="ws-taskbar-mark">HS</span><span>PORTFÓLIO</span><span>IDE</span><span className="ws-taskbar-end">PÁGINA EM ROLAGEM <i/></span></footer>
+    <footer className="ws-taskbar"><span className="ws-taskbar-mark">HS</span><span>PORTFÓLIO</span><span className="ws-taskbar-end">Role para acompanhar a construção <i/></span></footer>
   </section>;
 }

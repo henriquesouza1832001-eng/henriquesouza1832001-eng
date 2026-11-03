@@ -22,7 +22,9 @@ O build fica em `dist/`. O script `scripts/postbuild.mjs` gera páginas individu
 
 - `src/SoftwareFilm.tsx` acompanha a rolagem e troca as etapas da tela.
 - `src/SoftwareScene.tsx` monta a estação 3D, os dois monitores, o teclado mecânico RGB, o mouse iluminado e o mousepad. O movimento do cursor é refletido no mouse.
-- `src/WorkstationScreen.tsx` mantém a interface interativa dentro do monitor. As abas abrem código, trabalhos, sobre e contato.
+- `src/WorkstationScreen.tsx` mantém a interface interativa dentro do monitor. Os aplicativos abrem código, trabalhos, sobre, contato e ajustes.
+- `src/ide-source.ts` reúne trechos reais do código do portfólio. A IDE começa vazia e revela as linhas de acordo com o scroll; ao voltar, as linhas recolhem.
+- O painel Ajustes tem o controle funcional do som, desligado por padrão.
 - `src/content.ts` concentra descrições, autoria, estado atual, tecnologias e links públicos dos projetos.
 - As prévias e demonstrações locais são identificadas como estudos. Não se conectam aos serviços dos projetos nem se apresentam como capturas de produção.
 

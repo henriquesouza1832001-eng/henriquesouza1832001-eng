@@ -18,6 +18,8 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
   const progressRef = useRef(0);
   const previousStageRef = useRef<ScreenStage>('ide');
   const [stage, setStage] = useState<ScreenStage>('ide');
+  const [typingStep, setTypingStep] = useState(0);
+  const previousTypingStepRef = useRef(0);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -29,15 +31,16 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
         const range = Math.max(1, root.offsetHeight - window.innerHeight);
         const progress = clamp01(-root.getBoundingClientRect().top / range);
         const nextStage = stageFor(progress);
+        const nextTypingStep = Math.floor(clamp01((progress - 0.035) / 0.265) * 18);
         if (nextStage !== previousStageRef.current) {
           if (progress > progressRef.current) playClick();
           setStage(nextStage);
           previousStageRef.current = nextStage;
         }
-        if (progress > progressRef.current + 0.001 && progress < 0.71) {
-          const typed = Math.floor(clamp01((progress - 0.29) / 0.34) * 18);
-          const previousTyped = Math.floor(clamp01((progressRef.current - 0.29) / 0.34) * 18);
-          if (typed > previousTyped && typed % 4 === 0) playKey();
+        if (nextTypingStep !== previousTypingStepRef.current) {
+          if (nextTypingStep > previousTypingStepRef.current && nextTypingStep % 3 === 0) playKey();
+          setTypingStep(nextTypingStep);
+          previousTypingStepRef.current = nextTypingStep;
         }
         progressRef.current = progress;
         root.style.setProperty('--film-progress', String(progress));
@@ -62,7 +65,7 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
 
   return <section className="software-film" id="processo" ref={rootRef} data-active={stage} aria-label="Portfólio interativo de Henrique Souza">
     <div className="film-sticky">
-      <SoftwareScene ref={sceneRef} stage={stage} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
+      <SoftwareScene ref={sceneRef} stage={stage} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
     </div>
     <div className="film-track" aria-hidden="true">
       <div className="film-chapter film-chapter-ide"/>

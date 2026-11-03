@@ -12,7 +12,7 @@ const pages = [
 function withCaseMetadata(source, slug, title, description) {
   const canonicalUrl = `https://henriquesouzas.com/projetos/${slug}/`;
   return source
-    .replace('<title>Henrique Souza — Oficina de sistemas</title>', `<title>${title} — Henrique Souza</title>`)
+    .replace(/<title>[^<]*<\/title>/, `<title>${title} — Henrique Souza</title>`)
     .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
     .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title} — Henrique Souza" />`)
     .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${description}" />`)
@@ -27,7 +27,7 @@ for (const [slug, title, description] of pages) {
 }
 
 const notFound = html
-  .replace('<title>Henrique Souza — Oficina de sistemas</title>', '<title>Página não encontrada — Henrique Souza</title>')
+  .replace(/<title>[^<]*<\/title>/, '<title>Página não encontrada — Henrique Souza</title>')
   .replace(/<meta name="description" content="[^"]*" \/>/, '<meta name="description" content="Esta rota não existe. Volte aos projetos de Henrique Souza." />')
   .replace(/<meta property="og:title" content="[^"]*" \/>/, '<meta property="og:title" content="Página não encontrada — Henrique Souza" />')
   .replace(/<meta property="og:description" content="[^"]*" \/>/, '<meta property="og:description" content="Esta rota não existe. Volte aos projetos de Henrique Souza." />')

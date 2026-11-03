@@ -1,63 +1,69 @@
-# Direção de experiência — uma ideia vira produto
+# Direção de experiência — um computador em funcionamento
 
-## Princípio
+**Estado:** direção ativa para a home em 03/11/2026. Este documento formaliza a mudança de “Oficina opcional” para computador como apresentação principal. A navegação pelos aplicativos continua direta e não exige terminar a narrativa.
 
-A pessoa rola uma única página e acompanha um aplicativo tomando forma. O fluxo é briefing, IDE, protótipo e produto final. Esses nomes aparecem no texto editorial; não existem abas, menu ou controles para pular entre etapas. A própria rolagem conduz a história.
+## Decisão central
 
-Esta abordagem parte do princípio de transformação de objeto do [Tabasco, de Hilo Studio e Abdurrahim Ali](https://tabasco.abdurrahimali.com/). O objeto de Henrique é uma bancada de desenvolvimento: uma folha, um computador e a interface que está sendo construída. A cena, o conteúdo, a identidade e a animação são próprios deste portfólio.
+A página inicial é uma bancada de desenvolvimento vista como ambiente físico, com um computador navegável dentro do monitor. A metáfora tem relação direta com o trabalho de Henrique: a pessoa acompanha código e interface tomando forma e depois usa a mesma tela para abrir projetos, autoria e contato.
 
-## O que a visita mostra
+O computador não é um jogo nem uma porta escondida. A navegação do monitor fica disponível desde o início. O scroll nativo conduz a narrativa; os aplicativos visíveis levam a conteúdo e links reais.
 
-### Abertura — briefing
+## Percurso
 
-A página abre com o briefing visível no papel e na tela. O exemplo é uma solicitação sem contexto; os campos identificam a entrada, quem assume e como se confirma o resultado. O título e o texto apresentam Henrique como desenvolvedor full stack e explicam por que a interface ainda não vem primeiro.
+### Abertura — IDE
 
-### IDE
+A cena abre com o editor de código visível no monitor principal. O painel começa sem linhas preenchidas; o scroll revela o código linha a linha. O trecho inicial vem dos dados públicos de `src/content.ts`, com Rota di Buteco e Quarta é Dia de Amstel e seus estados atuais. Rolando para cima, as linhas recolhem. Um avanço rápido vai diretamente ao ponto correspondente, sem uma animação de digitação independente.
 
-Ao rolar, a câmera se aproxima. O briefing sai de cena e o monitor abre o editor linha a linha. A passagem usa a própria tela: o briefing recua, o editor entra, depois a prévia desliza para dentro e o produto ocupa o monitor. A tecla física acompanha a sequência do código; as legendas aparecem no teclado e uma tecla baixa a cada caractere simulado.
+### Código, protótipo e entrega
 
-Na mesma leitura, a pessoa pode abrir a bancada para mexer no exemplo. É um editor leve de JavaScript e CSS, sem Monaco ou servidor. Permite criar arquivos e pastas virtuais; o estado usa `sessionStorage` da guia atual e não é enviado. `src/App.js` e `src/styles.css` alimentam a prévia; imports só podem referenciar caminhos locais do projeto. `app.setScreen(...)` e `app.setOutput(...)` atualizam a prévia com texto seguro, enquanto `console.log`, avisos e erros aparecem ao lado.
+A bancada permanece na tela durante toda a rolagem. A câmera aproxima o monitor, a prévia da interface se forma ao lado do editor e o produto demonstrativo ocupa a tela no final. A passagem tem quatro estados; eles representam uma construção e não são controles que a pessoa precisa abrir ou selecionar.
 
-O JavaScript roda num Web Worker temporário dentro de um `iframe sandbox="allow-scripts"`, sem `allow-same-origin`. O sandbox não expõe o DOM, arquivos físicos, armazenamento, formulários, navegação da página, Cloudflare ou rede. A CSP permite scripts em Blob apenas para o editor, bloqueia conexões e conteúdo externo; o Worker também bloqueia as APIs de rede conhecidas. Cada execução termina ao concluir ou após 1,5 s, e aceita no máximo 60 KB de código. O limite reduz travamentos por loops, mas este exemplo não é uma fronteira para executar código hostil de desconhecidos; é um editor demonstrativo para visitantes.
+A prévia de solicitação é uma demonstração editorial deste portfólio. Não representa um produto nem dados de um cliente. Os cases de Henrique aparecem depois dentro do aplicativo de trabalhos, com autoria, estado e provas próprios.
 
-### Protótipo
+### Aplicativos do monitor
 
-O código permanece relacionado à interface: a prévia local cresce ao lado do editor. Campos, texto, ação, validação e confirmação entram conforme a leitura avança. O exemplo responde no navegador e não envia nem persiste dados.
+Os controles ficam visíveis na barra superior do monitor:
 
-### Produto final
+- **Código:** arquivos-fonte selecionáveis; linhas aparecem com o scroll.
+- **Trabalhos:** lista de projetos, estado, papel, tecnologias e links diretos para produto, case ou repositório.
+- **Sobre:** contexto profissional e link para acompanhar o código.
+- **Contato:** GitHub e LinkedIn.
+- **Ajustes:** controle de som real. O padrão é desligado; a preferência vale enquanto a página estiver aberta.
 
-A interface ocupa o monitor. Ela reúne pedido, responsável e situação para mostrar o que uma entrega pronta precisa esclarecer a quem usa. A rolagem chega então a um computador navegável: projetos aparecem como aplicativos próprios na janela de navegador, com descrição, autoria, stack e links. A tela de contato fica na mesma interface.
+Ao chegar ao final do percurso, o computador abre Trabalhos. A pessoa pode escolher outro aplicativo a qualquer momento. Cases continuam com URLs diretas e compartilháveis.
 
-## Identidade visual
+## Direção visual
 
-- Campo de tinta escura, papel quente e um único acento óxido.
-- Barlow Condensed para títulos; DM Sans para leitura e interfaces; DM Mono para informação técnica.
-- Hierarquia controlada por escala, peso, espaço e cor. As duas linhas dos títulos usam a mesma família.
-- Texturas físicas de mesa, papel e parede vêm da cena Three.js. Não há imagem gerada para fingir uma fotografia.
-- As reconstruções de projeto preservam cores próprias apenas dentro das interfaces demonstrativas; a moldura editorial permanece comum.
+- A cena é modelada em Three.js com geometria e mapas procedurais próprios; não usa fotografia gerada ou mockup de banco.
+- O ambiente representa uma bancada usada: monitor principal inclinado, segunda tela acesa, luminária, mesa de madeira, folha, teclado mecânico, mouse e mousepad.
+- A parede tem textura de reboco mineral irregular (`plasterTexture()`), em tinta oliva quente. A luz da luminária e o reflexo discreto no vidro respeitam a cena existente.
+- A moldura do monitor, a base, o suporte, o cabo e as superfícies com diferentes rugosidades dão espessura aos objetos. As telas usam interface HTML projetada sobre a geometria, o que mantém links, foco e controles navegáveis.
+- A identidade do site usa tinta, papel quente e óxido, conforme `02-SISTEMA-VISUAL.md`. Marinho/lima/coral está superada e não deve voltar por causa do prompt de referência.
+- Os trabalhos mantêm sinais visuais próprios dentro de suas demonstrações. Não adicionar letras, números, painéis ou movimento sem função narrativa.
 
-## Movimento e som
+## Movimento, som e desempenho
 
-- O scroll nativo controla câmera, folha, tela e linha fina de progresso.
-- O mouse 3D acompanha o ponteiro; uma tecla abaixa durante a escrita simulada. As teclas físicas têm legendas, o monitor tem moldura com cantos arredondados, câmera, suporte, base e cabo visível.
-- A bancada de edição é carregada apenas quando solicitada. O código de demonstração roda num Worker com tempo limitado, dentro de um iframe sandbox e CSP sem rede; os arquivos virtuais ficam apenas na sessão da guia.
-- Não há loop em repouso. A câmera, o cursor e a tela ficam parados quando não há interação.
-- Sons locais de tecla e clique são opcionais, sempre desligados ao abrir, e usam um único controle global **SOM**.
-- Com `prefers-reduced-motion`, a câmera não avança por animação; o conteúdo e a rolagem continuam disponíveis.
+- O scroll nativo atualiza câmera, folha, código, prévia e produto por `requestAnimationFrame`.
+- O renderizador não roda em loop quando a página está parada. O cursor e o mouse só acompanham movimento recente do ponteiro.
+- As teclas físicas acompanham a revelação do código; o áudio continua desligado por padrão e é controlado em Ajustes.
+- `prefers-reduced-motion` mantém a câmera estável. O conteúdo, os aplicativos e a rolagem continuam disponíveis.
+- Usar a cena Three.js já existente; não adicionar reflexos calculados, pós-processamento ou outra biblioteca sem medição que mostre necessidade.
+- Build de referência nesta revisão: Three.js em chunk dinâmico de 568,58 KB minificado / 143,19 KB gzip. A página ainda pode se beneficiar da inspeção de frames em navegador; não inferir desempenho de scroll só pelo tamanho do arquivo.
 
 ## Implementação
 
-- `src/SoftwareFilm.tsx`: quatro blocos editoriais contínuos e indicação de rolagem.
-- `src/SoftwareScene.tsx`: bancada Three.js e canvas que desenha briefing, IDE, protótipo e produto.
-- `src/InteractiveWorkbench.tsx` e `src/interactive-workbench.css`: editor local opcional, arquivos e pastas, console e prévia isolada.
-- `src/software-film.css`: composição da cena, escala tipográfica e adaptação a telas estreitas.
-- `src/continuous-process.css`: paleta do site, tipografia editorial, projetos e rodapé.
+- `src/SoftwareFilm.tsx`: progresso do scroll, estados da narrativa e revelação por etapas.
+- `src/SoftwareScene.tsx`: bancada Three.js, luz, sombras, projeção do monitor e canvas de fundo.
+- `src/WorkstationScreen.tsx`: aplicativos funcionais exibidos na tela física.
+- `src/ide-source.ts`: trechos apresentados pelo editor.
+- `src/workstation-screen.css` e `src/software-film.css`: interface do sistema e composição do monitor.
+- `src/content.ts`, `src/CasePage.tsx` e `src/ProjectRenderers.tsx`: dados, páginas de case e demonstrações dos projetos.
 - `src/sound.ts` e `src/App.tsx`: áudio opt-in e controle global.
-- `src/PortfolioComputer.tsx` e `src/portfolio-computer.css`: tela final com os projetos e contato.
-- `src/ProjectRenderers.tsx` e `src/content.ts`: interfaces demonstrativas e dados documentados por projeto.
 
-## Limites e validação
+## Critérios para cada revisão
 
-O fluxo principal no monitor é uma demonstração original do processo de desenvolvimento, separada dos projetos reais. A bancada opcional executa JavaScript comum em sandbox e guarda arquivos apenas naquele navegador. Ela não transpila React/JSX, não carrega dependências externas, não chama serviços e não envia arquivos.
-
-TypeScript, build de produção, pós-build e resposta HTTP da prévia local são verificáveis por comando. A inspeção visual do navegador não foi feita nesta rodada. Henrique pediu que não se use seu computador; composição renderizada, leitura em mobile, fallback WebGL e desempenho continuam para a validação dele. O envio ao Cloudflare é manual.
+- A IDE está visível ao abrir, inicia sem código pronto e revela linhas seguindo o scroll nos dois sentidos.
+- A tela final permanece dentro do mesmo monitor e oferece acesso claro aos trabalhos e contato.
+- Cada controle responde a clique, teclado e toque; o som pode ser ligado e desligado nos Ajustes.
+- O texto legível está no DOM, o foco é visível e movimento reduzido é respeitado.
+- Confirmar build, rotas, links, responsividade e funcionamento da cena antes de atualizar o registro de QA e publicar.

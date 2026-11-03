@@ -13,9 +13,6 @@
 .ws-app-nav button:hover,.ws-app-nav button[aria-current=page]{background:#292b26;color:#f2eee4}
 .ws-app-nav button[aria-current=page]:after{position:absolute;right:12px;bottom:-1px;left:12px;height:3px;background:#e77855;content:""}
 .ws-app-nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.35}
-.ws-session{display:flex;align-items:center;gap:8px;margin-left:auto;color:#bdb9ae;font:500 12px var(--mono);letter-spacing:.08em;white-space:nowrap}
-.ws-session i{width:8px;height:8px;border-radius:50%;background:#b8c17b;box-shadow:0 0 8px #b8c17b80}
-.ws-sound-toggle{flex:none;padding:8px 10px;border:1px solid #ffffff27;background:#22251f;color:#c7c1b5;font:500 11px var(--mono)!important;letter-spacing:.07em;cursor:pointer}.ws-sound-toggle:hover{border-color:#d66a4a;color:#fff}
 .ws-os-body{position:relative;min-height:0;overflow:hidden;background:#151815}
 .ws-workbench{display:grid;width:100%;height:100%;grid-template-columns:208px minmax(0,1fr);transition:grid-template-columns .55s cubic-bezier(.2,.75,.2,1)}
 .ws-screen[data-stage=prototype] .ws-workbench,.ws-screen[data-stage=review] .ws-workbench{grid-template-columns:208px minmax(0,1fr) minmax(0,.92fr)}
@@ -69,7 +66,6 @@
   .ws-windowbar{gap:12px;padding-inline:20px}
   .ws-brand{min-width:250px;gap:14px}.ws-brand>svg{width:43px;height:43px}.ws-brand>span{font-size:25px}.ws-brand small{font-size:12px}
   .ws-app-nav{gap:0}.ws-app-nav button{justify-content:center;min-width:108px;padding-inline:11px;font-size:19px}.ws-app-nav button span{display:inline}.ws-app-nav svg{width:23px;height:23px}
-  .ws-sound-toggle{padding:10px 12px;font-size:11px!important}.ws-session{font-size:10px}
   .ws-workbench{grid-template-columns:minmax(0,1fr)}.ws-file-rail{display:none}
   .ws-screen[data-stage=prototype] .ws-workbench,.ws-screen[data-stage=review] .ws-workbench{grid-template-columns:minmax(0,1fr) minmax(0,.95fr)}
   .ws-editor{grid-template-rows:52px 42px minmax(0,1fr) 170px}.ws-editor-tab{font-size:16px}.ws-editor-context{font-size:15px}
@@ -105,4 +101,28 @@
   .ws-project-stack b{font-size:14px}
   .ws-project-proof a{font-size:14px}
   .ws-taskbar{font-size:12px}
+}
+
+.ws-settings-app{display:flex;width:100%;height:100%;flex-direction:column;justify-content:center;padding:70px 95px;background:#e8e2d7;color:#292a24;animation:ws-preview-in .42s ease both}
+.ws-settings-app h2{margin:30px 0 18px;font:700 82px/.86 var(--display);letter-spacing:-.04em;text-transform:uppercase}
+.ws-settings-app h2 em{color:#bd674a;font-style:normal}
+.ws-settings-app>p:not(.ws-app-kicker){max-width:54ch;color:#59564e;font:20px/1.5 var(--reading)}
+.ws-setting-row{display:flex;max-width:730px;align-items:center;justify-content:space-between;gap:24px;margin-top:24px;padding:22px 0;border-top:1px solid #b9b1a2;border-bottom:1px solid #b9b1a2}
+.ws-setting-row>div{display:flex;flex-direction:column;gap:7px}
+.ws-setting-row>div strong{color:#30312a;font:600 19px var(--reading)}
+.ws-setting-row>div span{color:#68645b;font:15px var(--reading)}
+.ws-setting-switch{display:flex;align-items:center;gap:12px;padding:7px 0;border:0;background:transparent;color:#30312a;cursor:pointer}
+.ws-setting-switch i{position:relative;width:54px;height:30px;border-radius:99px;background:#8c897d;transition:background .2s}
+.ws-setting-switch i:after{position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:#f4efe4;content:"";transition:transform .2s}
+.ws-setting-switch[aria-checked=true] i{background:#74806a}
+.ws-setting-switch[aria-checked=true] i:after{transform:translateX(24px)}
+.ws-setting-switch b{min-width:72px;text-align:left;font:600 14px var(--reading)}
+.ws-settings-app .ws-settings-note{margin-top:16px;color:#777267;font:14px/1.5 var(--reading)}
+@media(max-width:760px){
+  .ws-settings-app{padding:50px 60px}
+  .ws-settings-app h2{font-size:77px}
+  .ws-settings-app>p:not(.ws-app-kicker){font-size:21px}
+  .ws-setting-row>div strong{font-size:22px}
+  .ws-setting-row>div span{font-size:17px}
+  .ws-setting-switch b{font-size:17px}
 }

@@ -16,7 +16,7 @@ O portfólio é a porta de entrada para o trabalho de Henrique. Em poucos minuto
 3. perceber a relação entre interface, regra de negócio, dados e infraestrutura;
 4. distinguir trabalho publicado, colaboração e projeto em desenvolvimento;
 5. abrir um case, verificar o repositório ou produto e entrar em contato;
-6. explorar uma experiência interativa opcional sem que ela atrapalhe as tarefas anteriores.
+6. explorar o computador interativo sem perder o caminho direto para projetos, autoria e contato.
 
 O site deve mostrar **como Henrique pensa e constrói**, não apenas afirmar que sabe fazer frontend e backend. Toda afirmação importante precisa estar ligada a uma decisão, uma demonstração ou uma fonte verificável.
 
@@ -112,8 +112,10 @@ Os cases não devem repetir o mesmo template em todos os detalhes. Reutilizar es
 - A demonstração de solicitação é explicitamente conceitual, local à página e não atribuída a nenhum projeto real. O código exibido corresponde à regra que o formulário executa.
 - Depois do percurso, os projetos aparecem na mesma página com peças visuais específicas e links diretos. Rota di Buteco abre a seleção e recebe maior presença. PULSO e TrilhaBH mantêm seus estados explícitos.
 - Cases mantêm URLs diretas, recarregáveis e compartilháveis. Links de índice precisam levar ao case correto e as âncoras devem respeitar o cabeçalho fixo.
-- A Oficina ou jogo é uma segunda camada opcional. Recrutadores e visitantes apressados precisam conseguir ver projetos, autoria e contato sem iniciar a experiência.
-- O jogo deve nascer de uma mecânica ligada aos projetos — por exemplo, mapear um percurso, resolver prioridades de campanha ou encaminhar uma demanda. A mecânica final ainda deve ser escolhida com protótipos pequenos. Não criar jogo só para colocar WebGL na página.
+- **Decisão atual:** a cena do computador é a própria home, não uma Oficina opcional ou um jogo separado. O scroll nativo conduz a passagem da IDE ao produto; os aplicativos visíveis no monitor dão acesso direto a trabalhos, sobre, contato e ajustes. Quem chega com pressa encontra esses controles desde a abertura, sem precisar completar a narrativa.
+- A IDE abre sem linhas preenchidas. Ao rolar, revela trechos reais do código do portfólio; rolar para cima recolhe as linhas. Não simular um loop de digitação independente do gesto.
+- O painel de ajustes tem ao menos um controle funcional. O som começa desligado e só é ativado por escolha explícita.
+- O computador tem relação com o trabalho de Henrique: acompanha uma interface sendo construída e termina como um lugar navegável para inspecionar projetos e código. Não criar um jogo separado nem adicionar WebGL só para impressionar.
 - Não roubar o cursor, bloquear controles do navegador, forçar movimento, esconder o botão de saída ou exigir arrastar. Não usar personagem descartado, carro ou mecânica que imite a identidade de Bruno Simon.
 - Toda interação tem instrução curta, resposta legível, saída imediata e alternativa equivalente para teclado e toque. Respeitar `prefers-reduced-motion`.
 
@@ -155,11 +157,11 @@ A paleta marinho/lima/coral foi rejeitada depois da implementação por parecer 
 
 Definir ordem da home, argumentos de cada case, conteúdo de sobre, chamadas e contatos. Verificar que Rota ocupa o primeiro plano e que estados e créditos estão corretos.
 
-### Fase D — Oficina de sistemas
+### Fase D — Computador como home
 
-A Oficina já contém quatro estações ligadas aos quatro cases principais. A configuração por estação vive em `src/Workshop.tsx`; a estação do MNEME oferece cenário pronto e montagem editável de maioria como alternativas A/B. Validar teclado, toque, foco, saída, viewport e movimento reduzido antes de aceitar a experiência. A rota `/?explorar=1` é suportada.
+A bancada Three.js é a única cena durante o percurso. O monitor principal começa na IDE; a rolagem revela o código e a prévia, depois deixa a interface de projetos em primeiro plano. Aplicativos visíveis oferecem trabalhos, sobre, contato e ajustes. O ajuste de som é real, global e desligado ao abrir. Validar teclado, toque, foco, saída, viewport e movimento reduzido.
 
-Não adicionar um modelo 3D só como enfeite. A cena atual precisa explicar fluxo, regra, arquitetura ou decisão; Blender não é requisito. Se uma interação não explicar o projeto ou dificultar saída/navegação, simplificar ou removê-la e registrar o motivo no QA.
+A cena usa objetos e texturas procedurais próprios: monitor e segunda tela acesa, mesa de madeira, parede de reboco mineral, luminária, teclado, mouse e sombras. Reflexo e iluminação do monitor permanecem sutis e ligados à leitura da cena. Não substituir por mockup fotográfico nem adicionar efeitos de renderização contínua. Se um elemento 3D não explicar ou sustentar o trabalho, simplificar ou removê-lo e registrar o motivo no QA.
 
 ### Fase E — implementação
 

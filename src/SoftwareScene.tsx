@@ -1,12 +1,13 @@
 ﻿import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import WorkstationScreen, { type ScreenStage } from './WorkstationScreen';
+import { projectSource } from './ide-source';
 
 export type SoftwareSceneHandle = {
   setProgress: (value: number) => void;
   setPointer: (x: number, y: number) => void;
 };
 
-type SoftwareSceneProps = { stage: ScreenStage; soundEnabled: boolean; onSoundToggle: () => void };
+type SoftwareSceneProps = { stage: ScreenStage; typingStep: number; soundEnabled: boolean; onSoundToggle: () => void };
 
 function screenTransform(points: [number, number][], width: number, height: number) {
   const source = [[0, 0], [width, 0], [width, height], [0, height]];
@@ -195,27 +196,8 @@ function drawIde(context: CanvasRenderingContext2D, reveal: number) {
   context.fillText('◇  dados.ts', 24, 190);
   context.fillText('⌄  tests', 24, 244);
   context.fillText('TS  validar.test.ts', 24, 281);
-  const lines = [
-    ['import ', "{ useState } from 'react'"],
-    ['export function ', 'Pedido() {'],
-    ['  const [enviado,', ''],
-    ['    setEnviado] =', ' useState(false)'],
-    ['  function salvar(event) {', ''],
-    ['    event.preventDefault()', ''],
-    ['    setEnviado(true)', ''],
-    ['  }', ''],
-    ['  return (', ''],
-    ['    <form onSubmit={salvar}>', ''],
-    ['      <label>Resumo</label>', ''],
-    ['      <textarea required />', ''],
-    ['      <label>Resultado</label>', ''],
-    ['      <textarea required />', ''],
-    ['      <button>Salvar pedido</button>', ''],
-    ['    </form>', ''],
-    ['  )', ''],
-    ['}', ''],
-  ];
-  const visibleLines = Math.max(0, Math.ceil(reveal * lines.length));
+  const lines = projectSource.map(line => [line, '']);
+  const visibleLines = Math.floor(reveal * lines.length);
   context.font = '16px monospace';
   lines.slice(0, visibleLines).forEach(([lead, tail], index) => {
     const y = 112 + index * 35;
@@ -372,7 +354,8 @@ function drawScreen(context: CanvasRenderingContext2D, progress: number) {
   const prototypeEntrance = smooth((progress - 0.3) / 0.12);
   const prototypeProgress = clamp01((progress - 0.38) / 0.28);
   const product = smooth((progress - 0.82) / 0.14);
-  drawIde(context, Math.max(0.2, clamp01(progress / 0.3)));
+  const typingStep = Math.floor(clamp01((progress - 0.035) / 0.265) * 18);
+  drawIde(context, typingStep / 18);
   drawPrototype(context, prototypeProgress * (1 - product), prototypeEntrance * (1 - product));
   drawProduct(context, product, (progress - 0.84) / 0.14);
   context.save();
@@ -386,7 +369,7 @@ function drawScreen(context: CanvasRenderingContext2D, progress: number) {
   context.restore();
 }
 
-const SoftwareScene = forwardRef<SoftwareSceneHandle, SoftwareSceneProps>(function SoftwareScene({ stage, soundEnabled, onSoundToggle }, ref) {
+const SoftwareScene = forwardRef<SoftwareSceneHandle, SoftwareSceneProps>(function SoftwareScene({ stage, typingStep, soundEnabled, onSoundToggle }, ref) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const screenPlaneRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
@@ -913,10 +896,10 @@ const SoftwareScene = forwardRef<SoftwareSceneHandle, SoftwareSceneProps>(functi
         mouseObject.rotation.y = (visualPointer.x - 0.5) * 0.32;
       }
       if (keyboardKeys && keyTransform) {
-        const typing = clamp01((p - 0.38) / 0.3);
+        const typing = clamp01((p - 0.035) / 0.265);
         const step = typing * keyboardTypingOrder.length;
         const sequenceIndex = Math.min(keyboardTypingOrder.length - 1, Math.floor(step));
-        const nextKey = p > 0.38 && p < 0.69 ? keyboardTypingOrder[sequenceIndex] : -1;
+        const nextKey = p > 0.035 && p < 0.3 ? keyboardTypingOrder[sequenceIndex] : -1;
         if (nextKey !== activeKey) {
           if (activeKey >= 0) {
             keyTransform.position.set(...keyboardSlots[activeKey]);
@@ -991,7 +974,7 @@ const SoftwareScene = forwardRef<SoftwareSceneHandle, SoftwareSceneProps>(functi
   return <div className="software-scene">
     <canvas className="software-scene-canvas" ref={canvasRef} aria-hidden="true"/>
     <div className="monitor-screen-plane" ref={screenPlaneRef}>
-      <WorkstationScreen stage={stage} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
+      <WorkstationScreen stage={stage} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
     </div>
     <div className="software-scene-fallback" ref={fallbackRef}>
       <div className="fallback-desk"><div className="fallback-paper" aria-hidden="true"><i/><i/><i/><i/><i/></div><div className="fallback-monitor"><div className="fallback-screen"/><div className="fallback-stand"/></div></div>

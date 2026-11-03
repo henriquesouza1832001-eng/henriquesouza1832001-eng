@@ -307,3 +307,14 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Prévia local `http://127.0.0.1:4173/`: HTML, CSS, JS principal e módulo Three.js responderam HTTP 200 após o build.
 - Pacotes regenerados e verificados: fonte completo com 76 entradas, documentos com 12, deploy Cloudflare com 17. `dist` também contém 17 arquivos; as quatro rotas de case estão presentes. Hashes das cópias fonte e deploy conferem; ZIP-fonte não contém dependências, cache nem ZIP recursivo.
 - Inspeção visual em browser: **pendente**; não fiz captura nem navegação visual. O link está ativo para Henrique avaliar. Deploy Cloudflare: **não realizado**; publicação continua manual.
+
+## Iteração — computador como home, editor guiado pelo scroll, 03/11/2026
+
+- Direção formalizada em `REGRAS-DO-PORTFOLIO.md` e `07-DIRECAO-DE-EXPERIENCIA.md`: o computador passa a ser a própria home, sem um jogo à parte; atalhos de trabalhos, sobre, contato e ajustes ficam no monitor desde a abertura.
+- A IDE inicia sem linhas e revela o trecho de `src/content.ts` segundo a posição real do scroll. Subir recolhe as linhas; pular o percurso mostra o estado correspondente. As teclas físicas e o som opt-in usam a mesma faixa de progresso.
+- O aplicativo Ajustes agora contém o controle de som funcional, acessível por teclado. O som continua desligado por padrão. O contador decorativo dos projetos foi removido.
+- O chunk Three.js permaneceu em 568,58 KB minificado / 143,19 KB gzip. Não foram adicionados novos renderers ou dependências.
+- `npm run build`: **passou**; TypeScript, Vite e geração de quatro cases, sitemap e 404. `git diff --check`: **passou**.
+- Rotas da home, quatro cases, 404, sitemap e pacote fonte responderam HTTP 200 na prévia de produção local. Rota di Buteco e Quarta Amstel responderam HTTP 200 nos endereços públicos.
+- Cloudflare Pages Production: **publicado** no projeto `portfolio-henrique-souza`; o deployment retornou sucesso em `https://d4339b1c.portfolio-henrique-souza.pages.dev`. O domínio `henriquesouzas.com` permanece vinculado ao projeto.
+- Inspeção visual e medição de frames em navegador: **pendentes**. A política local bloqueou a abertura do Edge em segundo plano para a tentativa de perfil; não há medição de FPS ou de fluidez declarada nesta revisão. O tamanho do bundle, sozinho, não comprova desempenho do scroll.

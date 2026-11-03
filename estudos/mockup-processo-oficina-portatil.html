@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111512">
+<title>Henrique Souza — Oficina de sistemas</title>
+<style>
+:root{color-scheme:dark;--ink:#111512;--panel:#171d18;--panel-2:#20251f;--chalk:#e7e0ce;--muted:#bcb9ad;--quiet:#85877f;--olive:#b9c472;--oxide:#d18a61;--rule:#ffffff24;--mono:Consolas,"Courier New",monospace;--sans:Arial,"Aptos",sans-serif;--cond:"Arial Narrow","Bahnschrift Condensed",Impact,sans-serif;--serif:Georgia,"Times New Roman",serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--chalk);font-family:var(--sans);-webkit-font-smoothing:antialiased}button,a{font:inherit}a{color:inherit}button{color:inherit}
+.topbar{height:66px;position:sticky;top:0;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(20px,5vw,76px);border-bottom:1px solid var(--rule);background:#111512f2;backdrop-filter:blur(12px)}
+.brand{display:inline-flex;align-items:center;gap:11px;width:max-content;text-decoration:none}.brand svg{width:28px;height:28px;overflow:visible}.brand path{fill:none;stroke:var(--olive);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.brand circle{fill:var(--oxide)}.brand-name{font:700 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}.brand-name small{display:block;margin-top:5px;color:var(--quiet);font:9px/1 var(--mono);letter-spacing:.08em}
+.tabs{height:100%;display:flex;gap:28px;align-items:stretch}.tab{position:relative;padding:2px 0 0;border:0;background:none;color:var(--quiet);font:10px var(--mono);letter-spacing:.1em;cursor:pointer}.tab[aria-selected=true]{color:var(--chalk)}.tab[aria-selected=true]:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--oxide)}
+.place{justify-self:end;color:var(--quiet);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.view[hidden]{display:none}.phasebar{position:sticky;top:66px;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);padding:0 clamp(20px,5vw,76px);background:#111512f0;border-bottom:1px solid var(--rule);backdrop-filter:blur(10px)}.phase{position:relative;display:flex;align-items:center;gap:10px;height:42px;border:0;border-bottom:1px solid transparent;background:none;color:var(--quiet);text-align:left;font:10px var(--mono);cursor:pointer}.phase:before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--rule)}.phase[aria-current=step]{color:var(--chalk);border-color:var(--oxide)}.phase b{font-weight:400;color:var(--oxide)}
+.journey{display:grid;grid-template-columns:minmax(290px,.82fr) minmax(480px,1.18fr);gap:clamp(38px,7vw,112px);padding:0 clamp(20px,7vw,108px)}.chapters{min-width:0}.chapter{min-height:calc(100svh - 108px);display:flex;align-items:center;padding:70px 0 76px;scroll-margin-top:124px;border-bottom:1px solid var(--rule)}.copy{max-width:490px}.eyebrow{display:flex;align-items:center;gap:9px;margin:0 0 25px;color:var(--olive);font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase}.eyebrow:before{content:"";width:22px;height:1px;background:var(--olive)}
+h1,h2{margin:0 0 25px;max-width:520px;font:700 clamp(46px,5.4vw,72px)/.94 var(--cond);letter-spacing:-.035em;text-transform:uppercase}h1 em,h2 em{color:var(--oxide);font:italic 500 1em/.9 var(--serif);letter-spacing:-.07em;text-transform:none}.copy p{max-width:41ch;margin:0;color:var(--muted);font-size:16px;line-height:1.72}.copy p+p{margin-top:13px}.copy .lead{margin-bottom:18px;color:var(--chalk);font:clamp(18px,1.7vw,21px)/1.48 var(--serif)}
+.jump-projects{display:inline-flex;align-items:center;gap:16px;margin-top:32px;padding:11px 0;border:0;border-top:1px solid var(--rule);background:none;color:var(--chalk);font:11px var(--mono);letter-spacing:.05em;text-decoration:none;cursor:pointer}.jump-projects span{color:var(--oxide);font-size:18px;transition:transform .2s ease}.jump-projects:hover span{transform:translateX(4px)}
+.bench{position:sticky;top:130px;align-self:start;height:min(690px,calc(100svh - 160px));min-height:460px;margin:25px 0 30px;overflow:hidden;border:1px solid #ffffff31;background:var(--panel);box-shadow:0 24px 64px #0005}.bench-head{position:absolute;inset:0 0 auto;height:38px;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:0 15px;border-bottom:1px solid #ffffff20;background:#20251f;color:var(--muted);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}.bench-head strong{color:var(--chalk);font-weight:400}.bench-head .light{display:inline-block;width:6px;height:6px;margin-right:7px;border-radius:50%;background:var(--olive)}.bench-body{position:absolute;inset:38px 0 0}.scene{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .38s ease,visibility .38s ease}.scene.active{opacity:1;visibility:visible;pointer-events:auto}
+/* Briefing: uma folha de trabalho, com contexto e pergunta em primeiro plano. */
+.scene-brief{display:grid;place-items:center;padding:clamp(24px,6vw,68px);background:#b9c472}.brief-sheet{position:relative;width:min(100%,510px);min-height:350px;padding:clamp(27px,5vw,54px);background:#e7e0ce;color:#20221d;box-shadow:0 18px 34px #171d1835;transform:rotate(-1deg)}.brief-sheet:after{content:"";position:absolute;top:0;bottom:0;left:22px;width:1px;background:#d18a6155}.brief-head{display:flex;justify-content:space-between;gap:15px;padding-bottom:13px;border-bottom:1px solid #20221d35;color:#6c6c60;font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}.brief-sheet h3{max-width:360px;margin:42px 0 0;font:700 clamp(34px,4.5vw,52px)/.94 var(--cond);letter-spacing:-.03em;text-transform:uppercase}.brief-question{max-width:330px;margin:17px 0 0;color:#55574f;font:italic 18px/1.4 var(--serif)}.brief-foot{position:absolute;right:clamp(27px,5vw,54px);bottom:25px;left:clamp(27px,5vw,54px);display:flex;justify-content:space-between;gap:10px;padding-top:10px;border-top:1px solid #20221d35;color:#55574f;font:9px var(--mono);letter-spacing:.05em;text-transform:uppercase}
+/* IDE: fluxo didático identificado como estrutura, sem fingir ser um arquivo de produção. */
+.scene-ide{padding:clamp(20px,4vw,48px);background:#151916}.editor{height:100%;display:flex;flex-direction:column;border:1px solid #ffffff20;background:#111512}.editor-head{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 17px;border-bottom:1px solid #ffffff1a;color:var(--muted);font:10px var(--mono)}.editor-head small{color:var(--quiet);font-size:9px}.code-flow{display:grid;grid-template-columns:32px minmax(0,1fr);gap:0 16px;align-content:center;flex:1;padding:24px clamp(14px,3vw,38px);overflow:hidden;font:clamp(12px,1.2vw,15px)/2 var(--mono);white-space:pre}.code-flow .ln{color:#686e62;text-align:right;user-select:none}.code-flow code{color:#d8d2c0}.tok-key{color:#c8d17c}.tok-fn{color:#d18a61}.tok-type{color:#91aaa1}.tok-note{color:#85877f}.editor-foot{display:flex;justify-content:space-between;gap:12px;padding:12px 17px;border-top:1px solid #ffffff1a;color:var(--quiet);font:9px var(--mono);letter-spacing:.05em;text-transform:uppercase}
+/* Protótipo: editor e prévia ficam juntos para a interação explicar a regra. */
+.scene-prototype{display:grid;grid-template-columns:.78fr 1.22fr;background:#151916}.proto-code{display:flex;flex-direction:column;min-width:0;border-right:1px solid #ffffff20;background:#111512}.proto-code header,.proto-preview header{padding:13px 15px;border-bottom:1px solid #ffffff1a;color:var(--muted);font:9px var(--mono);letter-spacing:.06em;text-transform:uppercase}.proto-code pre{margin:0;padding:19px 15px;color:#d8d2c0;font:11px/1.9 var(--mono);white-space:pre-wrap}.proto-code .tok-key{color:#c8d17c}.proto-code .tok-fn{color:#d18a61}.proto-caption{margin:auto 15px 16px;color:var(--quiet);font:9px/1.5 var(--mono);text-transform:uppercase}.proto-preview{display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,4vw,42px);background:#e7e0ce;color:#20221d}.proto-preview header{margin:-20px -20px 24px;padding:0 0 12px;border-color:#20221d30;color:#67685f}.proto-preview h3{margin:0 0 7px;font:700 clamp(25px,3vw,36px)/1 var(--cond);text-transform:uppercase}.proto-preview p{max-width:30ch;margin:0;color:#65665e;font:13px/1.55 var(--sans)}.proto-form{margin-top:24px}.proto-form label{display:block;margin-bottom:7px;color:#65665e;font:9px var(--mono);letter-spacing:.06em;text-transform:uppercase}.proto-form input{width:100%;height:42px;padding:0 11px;border:1px solid #77786c;background:#f2eee3;color:#20221d;font:13px var(--sans);outline:none}.proto-form input:focus{border-color:#637044;box-shadow:0 0 0 2px #b9c47266}.proto-form button{width:100%;height:42px;margin-top:9px;border:0;background:#20251f;color:#e7e0ce;font:10px var(--mono);letter-spacing:.07em;text-transform:uppercase;cursor:pointer}.proto-form button:hover{background:#38402e}.proto-result{min-height:42px;margin-top:13px;padding:10px 11px;border-left:2px solid #9ba75b;color:#55574f;font:11px/1.5 var(--mono)}
+/* Produto final: o mesmo fluxo ganha acabamento; nenhum dado apresentado como publicação real. */
+.scene-product{display:grid;place-items:center;padding:clamp(22px,5vw,56px);background:#b9c472}.deliverable{width:min(100%,540px);background:#e7e0ce;color:#20221d;box-shadow:0 18px 34px #171d1835}.deliver-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #20221d29;color:#696b61;font:9px var(--mono);letter-spacing:.06em;text-transform:uppercase}.deliver-main{padding:clamp(23px,4vw,42px)}.deliver-main .overline{color:#687247;font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}.deliver-main h3{max-width:390px;margin:14px 0 13px;font:700 clamp(34px,4.8vw,56px)/.92 var(--cond);letter-spacing:-.03em;text-transform:uppercase}.deliver-main p{max-width:38ch;margin:0;color:#61635a;font:14px/1.6 var(--sans)}.deliver-flow{display:grid;grid-template-columns:repeat(3,1fr);margin-top:27px;border-top:1px solid #20221d35;border-bottom:1px solid #20221d35}.deliver-flow span{padding:12px 6px;color:#41443a;font:9px var(--mono);text-align:center;text-transform:uppercase}.deliver-flow span+span{border-left:1px solid #20221d35}.deliver-note{margin:0;padding:12px 18px;border-top:1px solid #20221d20;color:#77786f;font:9px var(--mono);letter-spacing:.04em;text-transform:uppercase}
+/* Projetos: índice editorial separado do percurso de construção. */
+.projects-view{min-height:calc(100svh - 66px);padding:clamp(42px,8vw,108px) clamp(20px,12vw,180px) 90px}.projects-intro{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:32px;margin-bottom:42px}.projects-intro .eyebrow{grid-column:1/-1;margin:0}.projects-intro h1{margin:0;font-size:clamp(54px,8vw,94px)}.projects-intro p{max-width:36ch;margin:0 0 5px;color:var(--muted);font:17px/1.65 var(--serif)}.project-list{border-top:1px solid var(--rule)}.project-row{display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:20px;padding:23px 0;border-bottom:1px solid var(--rule)}.project-no{align-self:start;padding-top:5px;color:var(--oxide);font:10px var(--mono)}.project-info h2{margin:0 0 6px;font:700 clamp(25px,3vw,36px)/1 var(--cond);letter-spacing:-.02em;text-transform:uppercase}.project-info p{max-width:62ch;margin:0;color:var(--muted);font-size:13px;line-height:1.5}.project-status{display:block;margin-top:7px;color:var(--olive);font:9px var(--mono);letter-spacing:.06em;text-transform:uppercase}.project-link{align-self:center;color:var(--chalk);font:9px var(--mono);letter-spacing:.05em;text-decoration:none;text-transform:uppercase}.project-link:hover{color:var(--oxide)}.project-link span{color:var(--oxide);font-size:15px}.projects-back{display:inline-flex;margin-top:35px;color:var(--muted);font:10px var(--mono);letter-spacing:.05em;text-decoration:none}.projects-back:hover{color:var(--chalk)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:900px){.topbar{grid-template-columns:1fr auto}.place{display:none}.journey{grid-template-columns:minmax(240px,.78fr) minmax(390px,1.22fr);gap:28px;padding:0 5vw}.chapter{min-height:calc(100svh - 108px)}h1,h2{font-size:clamp(43px,6.5vw,60px)}.bench{min-height:420px}.scene-brief,.scene-product{padding:22px}.brief-sheet{min-height:320px}.projects-view{padding-inline:8vw}}
+@media(max-width:700px){.topbar{height:58px;padding:0 17px}.brand{gap:7px}.brand svg{width:24px}.brand-name{font-size:9px}.brand-name small{font-size:8px}.tabs{gap:17px}.tab{font-size:9px}.phasebar{top:58px;padding:0 17px}.phase{height:39px;justify-content:center;gap:5px;font-size:8px}.phase b{font-size:8px}.journey{display:flex;flex-direction:column;gap:0;padding:0 20px}.chapter{min-height:calc(100svh - 97px);padding:34px 0 41svh;scroll-margin-top:105px;align-items:flex-start}.copy{max-width:100%}.eyebrow{margin-bottom:16px;font-size:9px}h1,h2{max-width:13ch;margin-bottom:14px;font-size:clamp(43px,12vw,62px)}.copy .lead{font-size:18px}.copy p{font-size:14px}.bench{position:fixed;z-index:18;left:17px;right:17px;bottom:10px;top:auto;width:auto;height:38svh;min-height:235px;max-height:310px;margin:0}.bench-head{height:34px;padding:0 11px;font-size:8px}.bench-body{top:34px}.scene-brief,.scene-product{padding:13px}.brief-sheet{min-height:220px;padding:20px 20px 43px 28px}.brief-sheet:after{left:15px}.brief-head{font-size:7px}.brief-sheet h3{margin-top:23px;font-size:34px}.brief-question{margin-top:11px;font-size:14px}.brief-foot{right:19px;left:28px;bottom:14px;font-size:7px}.scene-ide{padding:10px}.editor-head{padding:9px 10px;font-size:8px}.editor-head small{font-size:7px}.code-flow{grid-template-columns:19px minmax(0,1fr);gap:0 8px;padding:10px 8px;font-size:9px;line-height:1.75}.editor-foot{padding:8px 10px;font-size:7px}.scene-prototype{grid-template-columns:1fr;grid-template-rows:.72fr 1.28fr}.proto-code{border-right:0;border-bottom:1px solid #ffffff20}.proto-code header,.proto-preview header{padding:7px 10px;font-size:7px}.proto-code pre{padding:7px 10px;font-size:8px;line-height:1.4}.proto-caption{margin:2px 10px 6px;font-size:7px}.proto-preview{padding:9px 13px}.proto-preview header{margin:-3px 0 9px}.proto-preview h3{font-size:21px}.proto-preview p{font-size:9px;line-height:1.35}.proto-form{margin-top:9px}.proto-form label{margin-bottom:4px;font-size:7px}.proto-form input,.proto-form button{height:30px;margin-top:5px;font-size:9px}.proto-result{min-height:28px;margin-top:6px;padding:5px 7px;font-size:8px}.deliver-main{padding:18px}.deliver-head{padding:10px 12px;font-size:7px}.deliver-main .overline{font-size:8px}.deliver-main h3{margin:8px 0;font-size:33px}.deliver-main p{font-size:10px;line-height:1.4}.deliver-flow{margin-top:14px}.deliver-flow span{padding:8px 3px;font-size:7px}.deliver-note{padding:8px 12px;font-size:7px}.projects-view{min-height:calc(100svh - 58px);padding:46px 21px 60px}.projects-intro{grid-template-columns:1fr;gap:16px;margin-bottom:25px}.projects-intro .eyebrow{grid-column:auto}.projects-intro h1{font-size:60px}.projects-intro p{font-size:15px}.project-row{grid-template-columns:25px minmax(0,1fr);gap:11px;padding:18px 0}.project-info h2{font-size:27px}.project-info p{font-size:12px}.project-link{grid-column:2;justify-self:start;margin-top:4px}.project-status{font-size:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+<style>
+/* Ajustes de leitura: o artefato acompanha cada etapa sem competir com o texto. */
+.project-links{display:flex;flex-direction:column;gap:8px}
+.topbar{grid-template-columns:1fr}
+.bench{top:92px;height:min(690px,calc(100svh - 120px));margin-top:20px}
+.chapter{min-height:calc(100svh - 66px)}
+.bench-body{inset:0}
+.bench.is-done{opacity:0;visibility:hidden;pointer-events:none}
+.projects-view{scroll-margin-top:66px;border-top:1px solid var(--rule)}
+.projects-intro{display:block;margin-bottom:36px}
+.projects-intro h2{margin:0;font:700 clamp(54px,8vw,94px)/.92 var(--cond);letter-spacing:-.035em;text-transform:uppercase}
+.project-row{grid-template-columns:minmax(0,1fr) auto}
+@media(max-width:700px){
+ .topbar{grid-template-columns:1fr}
+ .journey{display:block}
+ .chapter{min-height:calc(100svh - 97px);padding:34px 0 41svh;scroll-margin-top:105px}
+ .bench{position:fixed;z-index:18;left:17px;right:17px;bottom:10px;top:auto;width:auto;height:38svh;min-height:235px;max-height:310px;margin:0}
+ .bench-head{height:34px;padding:0 11px;font-size:8px}
+ .bench-body{inset:0}
+ .scene-brief,.scene-product{padding:13px}
+ .brief-sheet{min-height:220px;padding:20px 20px 43px 28px}
+ .brief-sheet:after{left:15px}.brief-head{font-size:7px}
+ .brief-sheet h3{margin-top:23px;font-size:34px}.brief-question{margin-top:11px;font-size:14px}
+ .brief-foot{right:19px;left:28px;bottom:14px;font-size:7px}
+ .scene-ide{padding:10px}.editor-head{padding:9px 10px;font-size:8px}.editor-head small{font-size:7px}
+ .code-flow{grid-template-columns:19px minmax(0,1fr);gap:0 8px;padding:10px 8px;font-size:9px;line-height:1.75}
+ .editor-foot{padding:8px 10px;font-size:7px}
+ .proto-code header,.proto-preview header{padding:7px 10px;font-size:7px}
+ .proto-code pre{padding:7px 10px;font-size:8px;line-height:1.4}.proto-caption{margin:2px 10px 6px;font-size:7px}
+ .proto-preview{padding:9px 13px}.proto-preview header{margin:-3px 0 9px}
+ .proto-preview h3{font-size:21px}.proto-preview p{font-size:9px;line-height:1.35}
+ .proto-form{margin-top:9px}.proto-form label{margin-bottom:4px;font-size:7px}
+ .proto-form input,.proto-form button{height:30px;margin-top:5px;font-size:9px}
+ .proto-result{min-height:28px;margin-top:6px;padding:5px 7px;font-size:8px}
+ .deliver-main{padding:18px}.deliver-head{padding:10px 12px;font-size:7px}
+ .deliver-main .overline{font-size:8px}.deliver-main h3{margin:8px 0;font-size:33px}
+ .deliver-main p{font-size:10px;line-height:1.4}.deliver-flow{margin-top:14px}
+ .deliver-flow span{padding:8px 3px;font-size:7px}.deliver-note{padding:8px 12px;font-size:7px}
+ .project-links{grid-column:2;flex-direction:row;gap:16px;margin-top:4px}
+ .projects-intro{margin-bottom:25px}
+ .projects-intro h2{font-size:60px}
+ .project-row{grid-template-columns:minmax(0,1fr)}
+ .project-links{grid-column:1}
+ .project-link{grid-column:1}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <a class="brand" href="#processView" aria-label="Henrique Souza, Oficina de sistemas">
+  <svg viewBox="0 0 48 40" aria-hidden="true"><path d="M4 31h12V11h11v20h17M16 21h11M27 15h9v16"/><circle cx="4" cy="31" r="2.5"/><circle cx="27" cy="11" r="2.5"/><circle cx="44" cy="31" r="2.5"/></svg>
+  <span class="brand-name">Henrique Souza<small>Oficina de sistemas</small></span>
+ </a>
+</header>
+
+<main id="processView" class="view">
+ <div class="journey">
+  <div class="chapters">
+   <section class="chapter" id="briefing" data-stage="briefing">
+    <div class="copy"><h1>Antes do código, procuro <em>a trava.</em></h1><p class="lead">O pedido quase sempre chega acompanhado de uma ideia de tela.</p><p>Eu volto para a pessoa, o contexto e a regra: quem tenta fazer o quê, onde o trabalho escapa e o que precisa mudar.</p></div>
+   </section>
+   <section class="chapter" id="ide" data-stage="ide">
+    <div class="copy"><h2>A regra precisa sobreviver <em>ao clique.</em></h2><p class="lead">A interface é só uma parte do sistema.</p><p>Conecto entrada, validação, persistência e retorno. A stack acompanha o problema: React e TypeScript na tela, Node ou Python nos serviços, Firebase ou Cloudflare nos dados.</p></div>
+   </section>
+   <section class="chapter" id="prototipo" data-stage="prototipo">
+    <div class="copy"><h2>O primeiro teste acontece perto <em>do código.</em></h2><p class="lead">IDE e prévia ficam lado a lado.</p><p>Testo o caminho normal, a recusa, o vazio e o erro. Cada clique confirma se a tela mostra o mesmo estado que os dados.</p></div>
+   </section>
+   <section class="chapter" id="produto" data-stage="produto">
+    <div class="copy"><h2>Entregar é fechar <em>o fluxo.</em></h2><p class="lead">A tela, a regra e os dados precisam responder juntos.</p><p>Confiro os limites, registro como continuar e apresento o produto no estado real em que ficou.</p><a class="jump-projects" href="#projetos">VER OS PROJETOS <span>↓</span></a></div>
+   </section>
+  </div>
+
+  <aside class="bench" aria-label="Artefato em construção">
+   <div class="bench-body">
+    <div class="scene scene-brief active" data-scene="briefing" aria-hidden="false">
+     <article class="brief-sheet"><div class="brief-head"><span>OFICINA / NOTA DE TRABALHO</span></div><h3>O que está<br>travando?</h3><p class="brief-question">Quem tenta fazer o quê — e o que acontece no caminho?</p><div class="brief-foot"><span>pessoa · contexto · regra</span><span>rascunho</span></div></article>
+    </div>
+    <div class="scene scene-ide" data-scene="ide" aria-hidden="true">
+     <div class="editor"><div class="editor-head"><span>ESTRUTURA DE FLUXO</span><small>EXEMPLO DIDÁTICO</small></div><div class="code-flow" aria-label="Exemplo de validação, persistência e resposta"><span class="ln">01</span><code><span class="tok-key">async function</span> <span class="tok-fn">executar</span>(entrada) {</code><span class="ln">02</span><code>  <span class="tok-key">const</span> regra = <span class="tok-fn">validar</span>(entrada)</code><span class="ln">03</span><code>  <span class="tok-key">if</span> (!regra.ok) <span class="tok-key">return</span> regra</code><span class="ln">04</span><code>  </code><span class="ln">05</span><code>  <span class="tok-key">const</span> estado = <span class="tok-key">await</span> <span class="tok-fn">persistir</span>(entrada)</code><span class="ln">06</span><code>  <span class="tok-key">return</span> <span class="tok-fn">responder</span>(estado)</code><span class="ln">07</span><code>}</code></div><div class="editor-foot"><span>entrada → regra → persistência → retorno</span><span>esquema</span></div></div>
+    </div>
+    <div class="scene scene-prototype" data-scene="prototipo" aria-hidden="true">
+     <div class="proto-code"><header>IDE / REGRA</header><pre><span class="tok-key">const</span> valido = entrada.trim().length > 2
+<span class="tok-key">if</span> (!valido) <span class="tok-key">return</span> recusar()
+<span class="tok-key">return</span> mostrar(entrada)</pre></div>
+     <div class="proto-preview"><header>PRÉVIA LOCAL</header><h3>Testar regra</h3><form class="proto-form" id="flowForm"><label class="sr-only" for="flowInput">Entrada para teste</label><input id="flowInput" name="input" value="Nova solicitação" autocomplete="off" aria-label="Entrada para teste"><button type="submit">Executar</button><div class="proto-result" id="flowResult" aria-live="polite">Aguardando ação.</div></form></div>
+    </div>
+    <div class="scene scene-product" data-scene="produto" aria-hidden="true">
+     <article class="deliverable"><div class="deliver-head"><span>PRODUTO / ENTREGA</span></div><div class="deliver-main"><h3>Ação.<br>Regra.<br>Resposta.</h3><p>A tela, a regra e os dados fecham o mesmo fluxo e deixam claro o que acontece depois de cada clique.</p><div class="deliver-flow"><span>Interface</span><span>Regra</span><span>Dados</span></div></div><p class="deliver-note">Esquema do método · produtos reais na sequência</p></article>
+    </div>
+   </div>
+  </aside>
+ </div>
+ <section class="projects-view" id="projetos" aria-labelledby="projectsHeading">
+ <div class="projects-intro"><h2 id="projectsHeading">Projetos.</h2></div>
+ <div class="project-list">
+  <article class="project-row"><div class="project-info"><h2>Rota di Buteco</h2><p>PWA social para acompanhar visitas, mapa, feed e ranking entre amigos durante o Comida di Buteco BH 2026.</p><span class="project-status">Evento encerrado</span></div><div class="project-links"><a class="project-link" href="https://rotadibuteco.web.app/" target="_blank" rel="noreferrer">Aplicação <span>↗</span></a><a class="project-link" href="https://github.com/henriquesouza1832001-eng/rotadibuteco" target="_blank" rel="noreferrer">Código <span>↗</span></a></div></article>
+  <article class="project-row"><div class="project-info"><h2>Quarta é Dia de Amstel</h2><p>Campanhas priorizadas por bar, cidade, estado e país.</p><span class="project-status">Site e serviço de campanhas</span></div><a class="project-link" href="https://github.com/henriquesouza1832001-eng/quarta-amstel" target="_blank" rel="noreferrer">Repositório <span>↗</span></a></article>
+  <article class="project-row"><div class="project-info"><h2>Condrio</h2><p>ERP para obras, chamados, conforto, CAPEX e rotinas operacionais.</p><span class="project-status">Repositório público</span></div><a class="project-link" href="https://github.com/henriquesouza1832001-eng/condrio" target="_blank" rel="noreferrer">Repositório <span>↗</span></a></article>
+  <article class="project-row"><div class="project-info"><h2>MNEME</h2><p>Bot de copy trading em Solana com execução simulada. Projeto de Thiago Antunes; Henrique colaborou no desenvolvimento.</p><span class="project-status">Execução documentada em simulação</span></div><a class="project-link" href="https://github.com/th1agx/MNEME" target="_blank" rel="noreferrer">Repositório <span>↗</span></a></article>
+  <article class="project-row"><div class="project-info"><h2>Pulso</h2><p>Projeto em desenvolvimento.</p><span class="project-status">Em desenvolvimento</span></div></article>
+ </div>
+</section>
+</main>
+<script>
+const chapters=[...document.querySelectorAll('.chapter')];
+const scenes=[...document.querySelectorAll('.scene')];
+const bench=document.querySelector('.bench');
+function activateStage(name){
+  scenes.forEach(scene=>{const active=scene.dataset.scene===name;scene.classList.toggle('active',active);scene.setAttribute('aria-hidden',String(!active));});
+}
+const observer=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(visible)activateStage(visible.target.dataset.stage);},{rootMargin:'-35% 0px -45% 0px',threshold:[0,.2,.45,.7]});
+chapters.forEach(chapter=>observer.observe(chapter));
+const projectsObserver=new IntersectionObserver(([entry])=>bench.classList.toggle('is-done',entry.isIntersecting),{threshold:0});
+projectsObserver.observe(document.querySelector('#projetos'));
+document.querySelector('.brand').addEventListener('click',event=>{event.preventDefault();window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});
+document.querySelector('.jump-projects').addEventListener('click',event=>{event.preventDefault();document.querySelector('#projetos').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
+document.querySelector('#flowForm').addEventListener('submit',event=>{event.preventDefault();const value=document.querySelector('#flowInput').value.trim();const result=document.querySelector('#flowResult');if(value.length<3){result.textContent='Recusada: escreva ao menos 3 caracteres.';return;}result.textContent=`Validada localmente: “${value}”.`;});
+</script>
+</body>
+</html>

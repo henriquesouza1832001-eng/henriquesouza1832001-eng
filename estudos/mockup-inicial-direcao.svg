@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1840" viewBox="0 0 1440 1840" role="img" aria-labelledby="title desc">
+<title id="title">Mockup visual da abertura do portfólio Henrique Souza</title>
+<desc id="desc">Direção visual escura e editorial. Uma abertura em terminal conduz ao primeiro capítulo interativo sobre a Rota di Buteco.</desc>
+<defs>
+  <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#e7decf" stroke-opacity=".055" stroke-width="1"/></pattern>
+  <pattern id="smallgrid" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M12 0H0V12" fill="none" stroke="#e7decf" stroke-opacity=".055" stroke-width=".6"/></pattern>
+  <filter id="shadow" x="-20%" y="-20%" width="150%" height="160%"><feDropShadow dx="12" dy="16" stdDeviation="0" flood-color="#000" flood-opacity=".34"/></filter>
+  <clipPath id="mapclip"><rect x="126" y="1208" width="660" height="384"/></clipPath>
+</defs>
+<rect width="1440" height="1840" fill="#151514"/>
+<rect width="1440" height="1840" fill="url(#grid)"/>
+<!-- header -->
+<rect x="0" y="0" width="1440" height="82" fill="#151514" fill-opacity=".96"/>
+<path d="M0 81.5H1440" stroke="#e7decf" stroke-opacity=".18"/>
+<g transform="translate(68 19)" fill="none" stroke="#c57c54" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M3 40V5h22v17h31M25 22v20h31V22M41 22V5h15"/><circle cx="25" cy="22" r="3.5" fill="#e4b26c" stroke="none"/>
+</g>
+<text x="140" y="37" fill="#f0e8d9" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">HENRIQUE SOUZA</text>
+<text x="140" y="55" fill="#96958c" font-family="monospace" font-size="8" letter-spacing="1.4">OFICINA DE SISTEMAS · BH</text>
+<g fill="#c4c0b5" font-family="monospace" font-size="9" letter-spacing="1.2">
+ <text x="672" y="46">PROCESSO</text><text x="780" y="46">PROJETOS</text><text x="880" y="46">SOBRE</text>
+</g>
+<rect x="1226" y="24" width="146" height="34" fill="none" stroke="#858378" stroke-opacity=".6"/>
+<circle cx="1245" cy="41" r="3" fill="#c57c54"/><path d="M1254 37q8 4 0 8m5-12q14 8 0 16" fill="none" stroke="#c57c54" stroke-width="1" opacity=".75"/>
+<text x="1270" y="45" fill="#c4c0b5" font-family="monospace" font-size="8" letter-spacing="1">SOM DESLIGADO</text>
+<!-- hero margin notation -->
+<text x="68" y="135" fill="#c57c54" font-family="monospace" font-size="9" letter-spacing="1.4">01 / ABERTURA</text>
+<path d="M68 153H1372" stroke="#e7decf" stroke-opacity=".2"/>
+<g fill="#928f83" font-family="monospace" font-size="8" letter-spacing="1.2"><text x="68" y="177">CADERNO DE SISTEMAS</text><text x="1190" y="177">BELO HORIZONTE · 19°55′S</text></g>
+<!-- left copy -->
+<text x="69" y="278" fill="#e4b26c" font-family="monospace" font-size="10" letter-spacing="2">INTERFACE / LÓGICA / OPERAÇÃO</text>
+<text x="62" y="396" fill="#f0e8d9" font-family="Arial,Helvetica,sans-serif" font-size="104" font-weight="800" letter-spacing="-7">EU SIGO</text>
+<text x="62" y="492" fill="#f0e8d9" font-family="Arial,Helvetica,sans-serif" font-size="104" font-weight="800" letter-spacing="-7">O FIO ATÉ</text>
+<text x="62" y="588" fill="#f0e8d9" font-family="Arial,Helvetica,sans-serif" font-size="104" font-weight="800" letter-spacing="-7">O <tspan fill="#c57c54">SISTEMA.</tspan></text>
+<path d="M69 633H166" stroke="#c57c54" stroke-width="2"/>
+<text x="68" y="678" fill="#c4c0b5" font-family="Arial,sans-serif" font-size="18">Do primeiro problema ao produto que responde.</text>
+<text x="68" y="709" fill="#96958c" font-family="Arial,sans-serif" font-size="15">Desenho a experiência e sigo até as regras que a fazem funcionar.</text>
+<g font-family="monospace" font-size="8" letter-spacing="1">
+ <text x="68" y="785" fill="#e4b26c">↓ ACOMPANHE A CONSTRUÇÃO</text><text x="341" y="785" fill="#b6b1a5">04 PROJETOS · 07 ETAPAS</text>
+</g>
+<path d="M68 803H588" stroke="#e7decf" stroke-opacity=".25"/>
+<path d="M68 803H218" stroke="#c57c54" stroke-width="2"/>
+<!-- terminal -->
+<g filter="url(#shadow)">
+ <rect x="718" y="222" width="654" height="502" fill="#1b1b19" stroke="#8b887e" stroke-opacity=".65"/>
+ <rect x="718" y="222" width="654" height="47" fill="#22221f"/>
+ <path d="M718 269H1372" stroke="#e7decf" stroke-opacity=".18"/>
+</g>
+<circle cx="745" cy="245" r="4" fill="#c57c54"/><circle cx="759" cy="245" r="4" fill="#e4b26c"/><circle cx="773" cy="245" r="4" fill="#7d8980"/>
+<g fill="#aaa79d" font-family="monospace" font-size="8" letter-spacing="1.1"><text x="800" y="248">OFICINA / SESSÃO 001</text><text x="1305" y="248">LOCAL</text></g>
+<text x="750" y="304" fill="#8e9087" font-family="monospace" font-size="10">~/henrique/sistemas <tspan fill="#c57c54">· leitura local</tspan></text>
+<path d="M750 320H1340" stroke="#e7decf" stroke-opacity=".2" stroke-dasharray="3 5"/>
+<text x="750" y="365" fill="#c57c54" font-family="monospace" font-size="12">henrique@oficina:~$</text>
+<text x="922" y="365" fill="#e4b26c" font-family="monospace" font-size="12">./abrir-caderno --modo campo</text>
+<rect x="1138" y="346" width="8" height="18" fill="#c57c54" opacity=".85"/>
+<g font-family="monospace" font-size="11">
+ <text x="750" y="421" fill="#777d75">01</text><text x="782" y="421" fill="#d2cbbc">lendo rotas, regras e anotações públicas</text>
+ <text x="750" y="455" fill="#777d75">02</text><text x="782" y="455" fill="#d2cbbc">procurando onde o uso encontra atrito</text>
+ <text x="750" y="489" fill="#777d75">03</text><text x="782" y="489" fill="#d2cbbc">primeira parada: Rota di Buteco / BH</text>
+</g>
+<path d="M750 525H1340" stroke="#e7decf" stroke-opacity=".18"/>
+<g fill="#777d75" font-family="monospace" font-size="8" letter-spacing="1"><text x="750" y="551">NOTAS / 03 LINHAS</text><text x="1290" y="551">100%</text></g>
+<rect x="887" y="546" width="370" height="2" fill="#e7decf" fill-opacity=".15"/><rect x="887" y="546" width="370" height="2" fill="#c57c54"/>
+<path d="M750 582H1340V634H750Z" fill="#141412" stroke="#e7decf" stroke-opacity=".24"/>
+<text x="769" y="613" fill="#c57c54" font-family="monospace" font-size="11">henrique@oficina:~$</text><text x="966" y="613" fill="#e7decf" font-family="monospace" font-size="11">digite <tspan fill="#e4b26c">help</tspan></text><path d="M1081 601v17" stroke="#c57c54" stroke-width="2"/>
+<g fill="#8b8a80" font-family="monospace" font-size="8" letter-spacing=".8"><text x="750" y="658">help · projetos · abrir rota · abrir condrio</text><text x="750" y="693">ESTE TERMINAL É UM ÍNDICE INTERATIVO, NÃO UM SHELL REAL.</text></g>
+<!-- scroll path and handoff -->
+<path d="M718 749C718 794 667 798 667 837V883" fill="none" stroke="#c57c54" stroke-width="2"/>
+<circle cx="667" cy="883" r="5" fill="#e4b26c"/>
+<g fill="#c4c0b5" font-family="monospace" font-size="8" letter-spacing="1"><text x="690" y="838">ROLE PARA A PRÓXIMA CAMADA</text><text x="1293" y="838">01 / 07</text></g>
+<path d="M68 875H1372" stroke="#e7decf" stroke-opacity=".2"/>
+<!-- transition headline -->
+<text x="68" y="930" fill="#c57c54" font-family="monospace" font-size="9" letter-spacing="1.5">A PÁGINA COMEÇA A SE TRANSFORMAR</text>
+<text x="68" y="1007" fill="#f0e8d9" font-family="Arial,sans-serif" font-size="55" font-weight="700" letter-spacing="-2.5">A ideia ganha matéria.</text>
+<text x="985" y="992" fill="#a9a69b" font-family="Arial,sans-serif" font-size="13">O scroll muda a cena, a cor e o projeto em foco.</text>
+<text x="985" y="1014" fill="#a9a69b" font-family="Arial,sans-serif" font-size="13">Som de transição: opcional, nunca contínuo.</text>
+<!-- process rail -->
+<path d="M68 1063H1372" stroke="#e7decf" stroke-opacity=".24"/>
+<path d="M68 1063H259" stroke="#c57c54" stroke-width="2"/>
+<g font-family="monospace" font-size="8" letter-spacing="1"><text x="68" y="1050" fill="#e4b26c">01 IDEIA</text><text x="286" y="1050" fill="#858378">02 CÓDIGO</text><text x="494" y="1050" fill="#858378">03 REFINO</text><text x="702" y="1050" fill="#858378">04 VALIDAÇÃO</text><text x="927" y="1050" fill="#858378">05 TESTE</text><text x="1091" y="1050" fill="#858378">06 PRÉVIA</text><text x="1265" y="1050" fill="#858378">07 PRODUTO</text></g>
+<!-- stage/project story composition -->
+<g>
+ <rect x="68" y="1106" width="690" height="478" fill="#20211f" stroke="#e7decf" stroke-opacity=".23"/>
+ <rect x="68" y="1106" width="690" height="478" fill="url(#smallgrid)" opacity=".65"/>
+ <text x="92" y="1137" fill="#a9a69b" font-family="monospace" font-size="8" letter-spacing="1.1">MESA DE TRABALHO / CENA 01</text><text x="690" y="1137" fill="#c57c54" font-family="monospace" font-size="8" letter-spacing="1">IDEIA</text>
+ <g clip-path="url(#mapclip)">
+   <path d="M133 1492C211 1457 209 1350 303 1382S428 1515 518 1431 663 1376 763 1280" fill="none" stroke="#e7decf" stroke-opacity=".14" stroke-width="24"/>
+   <path d="M133 1492C211 1457 209 1350 303 1382S428 1515 518 1431 663 1376 763 1280" fill="none" stroke="#c57c54" stroke-width="3" stroke-dasharray="7 10"/>
+   <path d="M160 1218h190v146H160z" fill="#d9cfbb" transform="rotate(-7 255 1291)" filter="url(#shadow)"/>
+   <path d="M188 1253l96-12M190 1275l72-9M194 1303c28-31 41 39 68 4s37-9 56 13" fill="none" stroke="#55534b" stroke-width="3"/>
+   <text x="189" y="1238" fill="#6c6559" font-family="monospace" font-size="7" letter-spacing="1">NOTA DE CAMPO / 01</text>
+   <circle cx="456" cy="1331" r="62" fill="#c57c54" fill-opacity=".13" stroke="#c57c54" stroke-opacity=".8"/>
+   <circle cx="456" cy="1331" r="29" fill="#e4b26c"/>
+   <path d="M456 1299c-16 0-27 12-27 26 0 18 27 43 27 43s27-25 27-43c0-14-11-26-27-26z" fill="#27231e"/><circle cx="456" cy="1325" r="8" fill="#e4b26c"/>
+   <circle cx="585" cy="1452" r="10" fill="#e4b26c"/><circle cx="255" cy="1455" r="10" fill="#c57c54"/>
+   <path d="M405 1272l-58-42m193 187 73 43M255 1412v-49" stroke="#e4b26c" stroke-opacity=".6" stroke-width="1" stroke-dasharray="4 5"/>
+   <text x="520" y="1260" fill="#f0e8d9" font-family="monospace" font-size="8" letter-spacing="1">LOCAL → GRUPO</text>
+   <text x="505" y="1510" fill="#c4c0b5" font-family="monospace" font-size="8" letter-spacing="1">128 BARES / 7 REGIÕES</text>
+ </g>
+ <path d="M92 1545H734" stroke="#e7decf" stroke-opacity=".2"/>
+ <text x="92" y="1564" fill="#c57c54" font-family="monospace" font-size="7" letter-spacing="1">ARRASTE A MESA PARA GIRAR · ROLE PARA AVANÇAR</text>
+</g>
+<!-- project editorial -->
+<g>
+ <text x="812" y="1142" fill="#e4b26c" font-family="monospace" font-size="9" letter-spacing="1.2">01 / ROTA DI BUTECO</text>
+ <text x="812" y="1213" fill="#f0e8d9" font-family="Arial,sans-serif" font-size="54" font-weight="700" letter-spacing="-3">Uma cidade.</text>
+ <text x="812" y="1271" fill="#f0e8d9" font-family="Arial,sans-serif" font-size="54" font-weight="700" letter-spacing="-3">Muitos percursos.</text>
+ <text x="812" y="1318" fill="#c4c0b5" font-family="Georgia,serif" font-size="18" font-style="italic">O mapa vira uma experiência de grupo.</text>
+ <path d="M812 1350H1372" stroke="#e7decf" stroke-opacity=".25"/>
+ <text x="812" y="1380" fill="#c57c54" font-family="monospace" font-size="8" letter-spacing="1.1">O PROBLEMA</text>
+ <text x="812" y="1407" fill="#c4c0b5" font-family="Arial,sans-serif" font-size="13">Bares, visitas e fotos estavam espalhados</text>
+ <text x="812" y="1427" fill="#c4c0b5" font-family="Arial,sans-serif" font-size="13">entre mapa, conversa e memória do grupo.</text>
+ <text x="812" y="1471" fill="#c57c54" font-family="monospace" font-size="8" letter-spacing="1.1">A DECISÃO</text>
+ <text x="812" y="1498" fill="#c4c0b5" font-family="Arial,sans-serif" font-size="13">Um check-in atualiza lugar, feed e placar</text>
+ <text x="812" y="1518" fill="#c4c0b5" font-family="Arial,sans-serif" font-size="13">numa única sequência de uso.</text>
+ <path d="M812 1551H1372" stroke="#e7decf" stroke-opacity=".2"/>
+ <g fill="#e4b26c" font-family="monospace" font-size="8" letter-spacing=".8"><text x="812" y="1576">PWA</text><text x="865" y="1576">FIREBASE</text><text x="956" y="1576">LEAFLET</text><text x="1047" y="1576">128 BARES · 7 REGIÕES</text></g>
+</g>
+<!-- note / bottom -->
+<rect x="0" y="1636" width="1440" height="204" fill="#1b1b19"/>
+<path d="M0 1636H1440" stroke="#e7decf" stroke-opacity=".22"/>
+<text x="68" y="1680" fill="#c57c54" font-family="monospace" font-size="8" letter-spacing="1.2">COMO A VISITA SE MOVE</text>
+<g font-family="Arial,sans-serif" font-size="15" fill="#d3cec1">
+ <text x="68" y="1720">O texto conta o problema.</text><text x="458" y="1720">A cena mostra a construção.</text><text x="886" y="1720">O projeto prova a decisão.</text>
+</g>
+<g fill="#8b887e" font-family="monospace" font-size="8" letter-spacing=".8"><text x="68" y="1755">SEM ROLAGEM HORIZONTAL FORÇADA.</text><text x="458" y="1755">SOM SÓ COM ATIVAÇÃO EXPLÍCITA.</text><text x="886" y="1755">CADA NÚMERO TEM FONTE NO REPOSITÓRIO.</text></g>
+<path d="M68 1783H1372" stroke="#e7decf" stroke-opacity=".2"/>
+<text x="68" y="1812" fill="#8b887e" font-family="monospace" font-size="7" letter-spacing="1">ESTUDO VISUAL · NÃO É A VERSÃO PUBLICADA DO PORTFÓLIO</text>
+<text x="1322" y="1812" fill="#e4b26c" font-family="monospace" font-size="8">HS / 01</text>
+</svg>

@@ -72,3 +72,15 @@
   }
   @media(prefers-reduced-motion:reduce){.mobile-phone *{scroll-behavior:auto!important;transition:none!important}}
 }
+
+/* Mobile uses the same software workspace, without a phone mockup or fake status indicators. */
+@media(max-width:760px){
+  .mobile-device-stage{display:grid;grid-template-rows:minmax(0,1fr);gap:0;padding:0;background:#111a2d}
+  .mobile-phone{width:100%;height:100svh;min-height:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+  .mobile-phone:before,.mobile-phone:after{display:none}
+  .mobile-phone-screen{grid-template-rows:38px minmax(0,1fr) 48px;border:0;border-radius:0}
+  .mobile-status-bar{padding-inline:18px;background:#111a2d;color:#f5efd9;font:600 9px var(--mono);letter-spacing:.12em}
+  .mobile-status-bar span{display:none}
+  .mobile-status-bar:before{content:"HENRIQUE SOUZA / PORTFÓLIO"}
+  .mobile-device-caption{display:none}
+}

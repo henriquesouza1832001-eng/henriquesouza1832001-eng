@@ -13,7 +13,7 @@ function Header({ soundEnabled, onSoundToggle }: { soundEnabled: boolean; onSoun
 }
 
 function CaseFooter() {
-  return <footer id="contato" className="footer section-wrap" data-palette-zone="contact"><div className="section-label"><span>CONTATO</span><span>BELO HORIZONTE / BRASIL</span></div><h2>Me conta onde<br/><em>o processo trava.</em></h2><div className="footer-links"><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/henrique-s-4080b9139/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="/#workstation-screen">Voltar ao computador ↗</a></div><div className="footer-bottom"><span>HENRIQUE SOUZA © 2026</span><a href="#topo">VOLTAR AO INÍCIO ↑</a><span>ENGENHARIA DE SOFTWARE</span></div></footer>;
+  return <footer id="contato" className="footer section-wrap" data-palette-zone="contact"><div className="section-label"><span>CONTATO</span><span>BELO HORIZONTE / BRASIL</span></div><h2>Me conta onde<br/><em>o processo trava.</em></h2><div className="footer-links"><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/henrique-s-4080b9139/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="/#processo">Voltar ao computador ↗</a></div><div className="footer-bottom"><span>HENRIQUE SOUZA © 2026</span><a href="#topo">VOLTAR AO INÍCIO ↑</a><span>ENGENHARIA DE SOFTWARE</span></div></footer>;
 }
 
 export default function App() {
@@ -58,12 +58,12 @@ export default function App() {
   }, [caseProject, slug, notFound]);
 
   return <>
-    <a className="skip-link" href={notFound ? '#topo' : caseProject ? '#topo' : '#workstation-screen'}>Pular para o conteúdo principal</a>
+    <a className="skip-link" href={notFound ? '#topo' : caseProject ? '#topo' : '#processo'}>Pular para o conteúdo principal</a>
     {(caseProject || notFound) && <Header soundEnabled={soundEnabled} onSoundToggle={toggleSound}/>}
     {caseProject
       ? <><CasePage project={caseProject}/><CaseFooter/></>
       : notFound
-        ? <main id="topo" className="not-found section-wrap"><span>404 / ROTA NÃO ENCONTRADA</span><h1>Esse caminho<br/>não existe.</h1><a href="/#workstation-screen">Voltar ao computador ↗</a></main>
+        ? <main id="topo" className="not-found section-wrap"><span>404 / ROTA NÃO ENCONTRADA</span><h1>Esse caminho<br/>não existe.</h1><a href="/#processo">Voltar ao computador ↗</a></main>
         : <main className="portfolio-main" id="inicio"><SoftwareFilm soundEnabled={soundEnabled} onSoundToggle={toggleSound}/></main>}
   </>;
 }

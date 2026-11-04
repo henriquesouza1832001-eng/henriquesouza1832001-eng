@@ -331,3 +331,15 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Pacote-fonte público regenerado com **91 arquivos**, incluindo a interface mobile e o QA; sem dependências, `dist` ou ZIP recursivo.
 - Inspeção visual do novo estado, teste de gesto em dispositivo real e perfil de FPS: **pendentes**. A compilação e a inspeção estática não comprovam fluidez visual.
 - Cloudflare Pages Production: **publicado** no projeto `portfolio-henrique-souza`. A home, quatro cases e o ZIP responderam HTTP 200 em `henriquesouzas.com` após o deploy.
+
+## Correção — desktop de software e Explorador funcional, 03/11/2026
+
+- Removida a cena física de Three.js: bancada, monitor, segunda tela, lâmpada, teclado, mouse, sombras e fallback de hardware. O desktop agora é uma interface própria em React/CSS.
+- A IDE abre desde a entrada. O scroll nativo revela e recolhe trechos reais do código do portfólio; perto do fim, o Explorador abre automaticamente apenas se a pessoa não escolheu outro app.
+- O atalho **Portfólio** abre o Explorador. A raiz lista o README e as pastas dos seis projetos; abrir uma pasta mostra o resumo e os atalhos que existem publicamente: case, produto e repositório. Busca, breadcrumb, acessos laterais, menu Iniciar, barra de tarefas e controles de janela têm ações reais.
+- Removidos do projeto os componentes de cena e o pacote Three.js. A versão estreita não desenha carcaça de telefone, notch ou status fictício.
+- Captura headless do estado inicial: IDE e atalhos visíveis; ajustada a posição do nome no papel de parede para que não fique por trás da janela.
+- `npm run build`: **passou**; TypeScript, Vite e postbuild. 46 módulos; JavaScript principal de 303,32 kB / 91,93 kB gzip. Não há chunk de Three.js.
+- `git diff --check`: **passou**. A prévia local respondeu HTTP 200 na home.
+- Conferência manual de cliques do Explorador e inspeção em dispositivo físico: **pendentes**. O build confirma compilação e geração de rotas, não substitui esses passos.
+- Cloudflare desta revisão: **pendente de publicação**.

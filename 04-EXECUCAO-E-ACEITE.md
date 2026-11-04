@@ -1,10 +1,9 @@
 # Execução e aceite do portfólio
 
 **Revisão:** 03/11/2026.  
-**Projeto:** React + TypeScript + Vite; publicação atual no Cloudflare Pages não sincronizada com esta revisão local.  
-**Regra desta rodada:** avançar arquivo, conteúdo e verificações técnicas sem controlar o computador de Henrique. A revisão visual na interface depende de validação manual posterior.
+**Projeto:** React + TypeScript + Vite. Este arquivo preserva o histórico e os critérios anteriores; a direção visual vigente está em `07-DIRECAO-DE-EXPERIENCIA.md` e a implementação mais recente, em `QA.md`.
 
-**Direção ativa — 03/11/2026:** a home segue briefing → IDE → protótipo ao lado do código → produto, sem menu ou números de etapa. A narrativa termina nos projetos, na mesma rolagem. O estado em vigor está detalhado em [07-DIRECAO-DE-EXPERIENCIA.md](07-DIRECAO-DE-EXPERIENCIA.md) e [QA.md](QA.md); os wireframes e ordens anteriores deste plano são histórico.
+**Direção atualizada — 03/11/2026:** a home é uma área de trabalho navegável. A IDE aparece desde o início e o atalho Portfólio abre um Explorador com arquivos de projetos, resumos e links públicos. A bancada física/3D descrita nas entradas seguintes foi removida. As instruções vigentes estão em [07-DIRECAO-DE-EXPERIENCIA.md](07-DIRECAO-DE-EXPERIENCIA.md) e [QA.md](QA.md); as fases e wireframes seguintes são histórico.
 
 ## Fase A — inventário de projetos
 

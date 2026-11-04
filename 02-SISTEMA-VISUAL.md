@@ -1,59 +1,46 @@
-# Sistema visual — direção de trabalho
+# Sistema visual — área de trabalho de software
 
-**Estado:** aplicada em 03/11/2026 para avaliação visual de Henrique. A identidade ainda não está aprovada. Esta revisão usa Tabasco como referência de ritmo e de objeto que evolui com o scroll; não copia o site, os modelos, a arte ou a identidade dele.
+**Estado:** direção vigente em 03/11/2026, em revisão visual. Substitui a bancada 3D, os objetos físicos e os mockups de computador descritos em versões anteriores.
 
 ## Ideia visual
 
-Uma oficina de software em funcionamento. O primeiro quadro já mostra um briefing legível sobre a mesa e no monitor. Conforme a pessoa rola, a folha cede lugar ao editor; o código e a prévia aparecem juntos; a mesma interface termina como produto. A história é contada numa única rolagem contínua, sem menu, abas ou navegação por etapas.
+O portfólio se apresenta como um desktop interativo. A área de trabalho usa um mapa abstrato de Belo Horizonte como papel de parede; as janelas mostram código, arquivos e caminhos públicos dos projetos. A metáfora serve à navegação e ao conteúdo, sem tentar simular uma fotografia de hardware.
 
-O caso mostrado é um exemplo original de fluxo de solicitação, usado para explicar como uma aplicação é construída. Os projetos de Henrique começam depois, como trabalhos próprios, cada um apresentado pelo problema e pelas decisões documentadas.
+O Explorador de Arquivos usa fundo claro e hierarquia familiar para facilitar leitura e descoberta. A IDE fica em tema escuro, com arquivos TypeScript reais do repositório. O desktop continua legível sem depender de ícones decorativos, reflexos, iluminação simulada ou texto minúsculo.
 
-## Paleta de trabalho
+## Cores e tipografia
 
-| Token | Valor | Uso |
-|---|---|---|
-| Tinta | `#11100f` | Fundo principal. |
-| Painel | `#191715` | Superfícies escuras e cabeçalho. |
-| Papel | `#eee9de` | Briefing, interface demonstrativa e texto principal. |
-| Texto auxiliar | `#b8b1a5` | Leitura secundária e metadados. |
-| Óxido | `#d66a4a` | Único acento editorial do portfólio. |
+O desktop combina verde profundo, papel quente e oliva. O editor mantém a paleta escura da própria interface. Os projetos preservam as cores internas das demonstrações quando isso ajuda a reconhecer sua lógica.
 
-Madeira, papel, luminária e metais mantêm tons materiais próprios da cena. As reconstruções dos produtos usam as cores necessárias para que cada interface continue reconhecível; a moldura editorial, os títulos, os links e os estados do site usam a mesma tinta, papel e óxido.
+- `--display`: Barlow Condensed para títulos de janela e chamadas curtas;
+- `--reading`: DM Sans para descrições, leitura e controles;
+- `--mono`: DM Mono para nomes de arquivo, linguagem e estados técnicos.
 
-## Tipografia
+Priorizar corpo de texto entre 12 e 15 px em painéis internos e não reduzir informação útil a metadados de 8 px. Evitar sequências de números decorativos e indicadores sem função.
 
-- **Barlow Condensed**: uma família de títulos, sempre com o mesmo tratamento; o destaque muda pela cor e pela composição, não por uma segunda fonte de display.
-- **DM Sans**: leitura, explicação e interface de produto.
-- **DM Mono**: rótulos, arquivos, estado e informação técnica.
+## Uso da interface
 
-Títulos seguem uma escala responsiva única. O corpo editorial começa em 14–15 px; rótulos e metadados têm tamanho mínimo de 8–10 px. As interfaces internas podem usar escala menor porque representam janelas de produto dentro da cena, sem substituir o texto editorial acessível em HTML.
+1. A IDE aparece aberta desde o início; a rolagem nativa revela os trechos de código público, linha a linha.
+2. O atalho Portfólio abre uma pasta raiz com o README e os diretórios dos projetos públicos.
+3. Cada pasta contém resumo e somente os atalhos que existem: case, produto público e repositório.
+4. Menu, busca, barra de tarefas, minimizar, maximizar e fechar precisam responder de verdade.
+5. Depois da primeira ação manual, o scroll não troca a janela que a pessoa escolheu.
+6. Em telas estreitas, os mesmos aplicativos se reorganizam sem carcaça, notch ou status fictício de telefone.
 
-## Aplicação
+## Autoria e movimento
 
-1. A bancada ocupa a tela com briefing, monitor, teclado, mouse, mousepad, luminária, mesa de madeira e parede texturizada. Modelos e materiais são construídos na cena Three.js com superfícies procedurais; não é uma fotografia nem imagem gerada.
-2. A abertura apresenta “O pedido sem contexto.” e deixa claro o problema do fluxo demonstrativo.
-3. O scroll transforma a mesma cena: briefing, editor com linhas de código, prévia construída ao lado dele e produto final com pedido, responsável e situação.
-4. O cursor acompanha a posição do visitante, o mouse 3D segue o ponteiro e teclas com legendas pressionam uma sequência curta de código. O monitor tem moldura, câmera, suporte e cabo. Não há movimento em loop quando a pessoa para.
-5. Sons de tecla e clique são opcionais e compartilham o controle global **SOM**; o padrão é desligado.
-6. Texto e títulos ficam em HTML. O fluxo do monitor é uma demonstração editorial. A bancada abre um editor JavaScript/CSS: os arquivos vivem na sessão da guia; a prévia executa num Web Worker dentro de `iframe sandbox="allow-scripts"`, sem acesso ao DOM ou à rede. O escopo é limitado a 60 KB por execução e 1,5 s; não publica nem representa um projeto real.
-7. No fim da narrativa, o computador funciona como navegador local para explorar Rota, Quarta, Condrio, MNEME, PULSO e TrilhaBH e acessar os contatos.
+- Mapas e desenhos são feitos em SVG/CSS e devem descrever uma relação de produto ou navegação.
+- Os arquivos exibidos na IDE vêm do código público, sem digitação independente do scroll.
+- O scroll permanece nativo e pode ser revertido. Não interceptar a roda, criar avanço automático ou prender o visitante em uma janela interna.
+- Som desligado por padrão e ativado apenas por escolha explícita.
+- Foco visível, controles nomeados e respeito a `prefers-reduced-motion`.
+- Nenhuma imagem gerada ou mockup genérico substitui a evidência real do projeto.
 
-## Regras para manter autoria e leitura
+## Arquivos de implementação
 
-- Usar a referência de scroll como princípio narrativo: um objeto muda porque o produto está sendo construído.
-- Manter uma família de títulos, uma de leitura e uma técnica; não alternar famílias para criar destaque.
-- Reservar o óxido ao acento editorial. Cores próprias dos projetos aparecem dentro das reconstruções, sem colorir cada seção do portfólio.
-- Fazer cada mudança visível corresponder a uma ação: entender, codificar, conferir e entregar.
-- Evitar texto empilhado sobre a cena, cartões sobre o monitor, métricas decorativas, terminal falso e animação sem relação com o processo.
-- Respeitar scroll nativo, movimento reduzido, foco visível e a preferência explícita de som desligado.
-
-## Arquivos e validação
-
-- Narrativa e textos: `src/SoftwareFilm.tsx`.
-- Bancada 3D, tela e cursor: `src/SoftwareScene.tsx`.
-- Editor de exploração: `src/InteractiveWorkbench.tsx` e `src/interactive-workbench.css`.
-- Paleta, escala e composição: `src/continuous-process.css` e `src/software-film.css`.
-- Projetos: `src/ProjectIndex.tsx`, `src/ProjectRenderers.tsx` e `src/content.ts`.
-- QA e estado da publicação: `QA.md`.
-
-TypeScript, build Vite, pós-build e resposta HTTP 200 da prévia local passaram nesta revisão. Não foi feita inspeção visual no navegador; proporções em aparelhos e desempenho do 3D seguem para validação de Henrique. O deploy continua manual.
+- `src/DesktopOS.tsx` e `src/desktop-os.css`: desktop e aplicativos.
+- `src/SoftwareFilm.tsx` e `src/software-film.css`: scroll e etapas da home.
+- `src/MobilePortfolio.tsx` e `src/mobile-portfolio.css`: composição responsiva estreita.
+- `src/ide-source.ts`: trechos públicos de código.
+- `src/content.ts`, `src/CasePage.tsx` e `src/ProjectRenderers.tsx`: conteúdo e demonstrações dos projetos.
+- `QA.md`: histórico das decisões e verificações realizadas.

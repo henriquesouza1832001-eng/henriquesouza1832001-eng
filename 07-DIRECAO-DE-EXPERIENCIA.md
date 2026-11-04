@@ -1,76 +1,60 @@
-# Direção de experiência — um computador em funcionamento
+# Direção de experiência — área de trabalho navegável
 
-**Estado:** direção ativa para a home em 03/11/2026. Este documento formaliza o computador como apresentação principal no desktop e a adaptação para celular em retrato. A navegação pelos aplicativos continua direta e não exige terminar a narrativa.
+**Estado:** direção vigente em 03/11/2026. Esta decisão substitui a bancada 3D e os mockups de computador e telefone descritos em registros anteriores.
 
-## Decisão central
+## Ideia central
 
-A página inicial é uma bancada de desenvolvimento vista como ambiente físico, com um computador navegável dentro do monitor. A metáfora tem relação direta com o trabalho de Henrique: a pessoa acompanha código e interface tomando forma e depois usa a mesma tela para abrir projetos, autoria e contato.
+A home se comporta como uma área de trabalho de software, feita de interfaces e arquivos. A metáfora fala diretamente do trabalho de engenharia: código, produto, estrutura e autoria ficam acessíveis na mesma navegação.
 
-O computador não é um jogo nem uma porta escondida. A tela inicial oferece ícones para entrar em qualquer app; a navegação do monitor também permanece disponível. O scroll nativo conduz a narrativa; os aplicativos levam a conteúdo e links reais.
+O desktop não tenta parecer uma fotografia de hardware. Não tem monitor físico, segunda tela, luminária, mesa ou teclado cenográfico. O visual vem do papel de parede cartográfico, da tipografia e das janelas do sistema; cada controle precisa levar a uma ação real.
 
-## Percurso
+## Abertura e rolagem
 
-### Abertura — desktop
+- A IDE aparece aberta desde o primeiro quadro, com arquivos reais do portfólio e sem linhas reveladas.
+- A rolagem nativa mostra o código público linha a linha. Rolar para cima recolhe as linhas; pular pelo percurso revela o trecho correspondente.
+- No fim do percurso, o Explorador de Arquivos entra em foco se a pessoa não tiver assumido a navegação manualmente.
+- Abrir qualquer atalho, selecionar um app no menu ou usar a barra de tarefas transfere o controle para a pessoa. O progresso do scroll não deve trocar apps depois disso.
+- O navegador não captura gestos, não avança sozinho e não mantém a página presa depois da área interativa.
 
-A cena abre num desktop com ícones funcionais para Projetos, Código, Sobre, Contato e Ajustes. Um clique abre o app escolhido. O primeiro movimento de scroll abre a IDE se a pessoa ainda não escolheu um app; o painel começa sem linhas preenchidas e revela código real linha a linha. O trecho inicial vem dos dados públicos de `src/content.ts`, com os projetos e estados atuais. Rolando para cima, as linhas recolhem. Um avanço rápido vai diretamente ao ponto correspondente, sem animação de digitação independente.
+## Portfólio como arquivos
 
-### Adaptação mobile — celular
+O atalho **Portfólio** abre o Explorador de Arquivos. Na pasta raiz aparecem o `LEIA-ME.md` e as pastas correspondentes aos projetos públicos. Ao abrir uma pasta, o painel mostra:
 
-Em telas estreitas, a bancada desktop dá lugar a um celular em retrato, com tela inicial própria e os mesmos apps. A pessoa pode tocar em projetos, código, sobre, contato ou ajustes. O scroll do navegador continua nativo e conduz a revelação de código e a tela de projetos; a versão mobile não carrega a cena WebGL da bancada.
+- `LEIA-ME.md` com resumo, papel de Henrique e tecnologias confirmadas;
+- `CASE.url` quando há case publicado no próprio portfólio;
+- `PRODUTO.url` quando existe produto público com link;
+- `REPOSITÓRIO.url` para o código-fonte público.
 
-### Código, protótipo e entrega
+Selecionar um arquivo mostra seu conteúdo ou destino no painel de leitura. Os atalhos externos abrem o destino real. A busca filtra a pasta atual, a trilha de navegação volta à raiz, e os links laterais abrem pastas ou o perfil público no GitHub. Não exibir controles inertes.
 
-A bancada permanece na tela durante toda a rolagem. A câmera aproxima o monitor, a prévia da interface se forma ao lado do editor e o produto demonstrativo ocupa a tela no final. A passagem tem quatro estados; eles representam uma construção e não são controles que a pessoa precisa abrir ou selecionar.
+As janelas de Código, Sobre e Contato também abrem pelos atalhos do desktop e pelo menu. Minimizar, maximizar, restaurar e fechar têm comportamento funcional. A barra de tarefas troca entre janelas abertas. Ajustes contém o controle real de som, desligado por padrão.
 
-A prévia de solicitação é uma demonstração editorial deste portfólio. Não representa um produto nem dados de um cliente. Os cases de Henrique aparecem depois dentro do aplicativo de trabalhos, com autoria, estado e provas próprios.
+## Telas estreitas
 
-### Aplicativos do monitor
+Em telas estreitas, a mesma ideia vira uma interface responsiva de software. Não desenhar carcaça de telefone, notch, sinal, bateria ou relógio fictício. Manter os atalhos de Portfólio, Código, Sobre, Contato e Ajustes legíveis e acessíveis ao toque; preservar o scroll nativo e os mesmos links públicos.
 
-Os controles ficam visíveis na barra superior do monitor:
+## Direção visual e movimento
 
-- **Início:** ícones funcionais para abrir os aplicativos.
-- **Código:** arquivos-fonte selecionáveis; linhas aparecem com o scroll.
-- **Trabalhos:** lista de projetos, estado, papel, tecnologias e links diretos para produto, case ou repositório.
-- **Sobre:** contexto profissional e link para acompanhar o código.
-- **Contato:** GitHub e LinkedIn.
-- **Ajustes:** controle de som real. O padrão é desligado; a preferência vale enquanto a página estiver aberta.
+- Fundo cartográfico próprio, sem textura fotográfica ou ilustração genérica.
+- Janelas com hierarquia clara, área de conteúdo ampla, tipografia legível e contraste funcional.
+- O Explorador usa superfície clara para leitura de arquivos; o editor mantém tema escuro próprio.
+- Movimento breve entre janelas, sem câmera, parallax, cursor customizado ou renderização contínua.
+- Respeitar `prefers-reduced-motion`; manter foco visível e navegação por teclado.
 
-Ao chegar ao final do percurso, o computador abre Trabalhos. A pessoa pode escolher outro aplicativo a qualquer momento. Cases continuam com URLs diretas e compartilháveis.
+## Arquivos principais
 
-## Direção visual
+- `src/SoftwareFilm.tsx`: progresso nativo do scroll e atualização da IDE.
+- `src/DesktopOS.tsx` e `src/desktop-os.css`: desktop, Explorador de Arquivos, janelas, barra de tarefas e atalhos.
+- `src/MobilePortfolio.tsx` e `src/mobile-portfolio.css`: composição responsiva para telas estreitas.
+- `src/ide-source.ts`: trechos públicos apresentados na IDE.
+- `src/content.ts`, `src/CasePage.tsx` e `src/ProjectRenderers.tsx`: conteúdo, cases e demonstrações.
+- `src/sound.ts`: sons opcionais da interface.
 
-- A cena é modelada em Three.js com geometria e mapas procedurais próprios; não usa fotografia gerada ou mockup de banco.
-- O ambiente representa uma bancada usada: monitor principal inclinado, segunda tela acesa, luminária, mesa de madeira, folha, teclado mecânico, mouse e mousepad.
-- A parede tem textura de reboco mineral irregular (`plasterTexture()`), em tinta oliva quente. A luz da luminária e o reflexo discreto no vidro respeitam a cena existente.
-- A moldura do monitor, a base, o suporte, o cabo e as superfícies com diferentes rugosidades dão espessura aos objetos. As telas usam interface HTML projetada sobre a geometria, o que mantém links, foco e controles navegáveis.
-- A identidade do site usa tinta, papel quente e óxido, conforme `02-SISTEMA-VISUAL.md`. Marinho/lima/coral está superada e não deve voltar por causa do prompt de referência.
-- Os trabalhos mantêm sinais visuais próprios dentro de suas demonstrações. Não adicionar letras, números, painéis ou movimento sem função narrativa.
+## Critérios de revisão
 
-## Movimento, som e desempenho
-
-- O scroll nativo atualiza câmera, folha, código, prévia e produto por `requestAnimationFrame`.
-- O renderizador não roda em loop quando a página está parada. O cursor e o mouse só acompanham movimento recente do ponteiro.
-- As teclas físicas acompanham a revelação do código; o áudio continua desligado por padrão e é controlado em Ajustes.
-- `prefers-reduced-motion` mantém a câmera estável. O conteúdo, os aplicativos e a rolagem continuam disponíveis.
-- Usar a cena Three.js já existente; não adicionar reflexos calculados, pós-processamento ou outra biblioteca sem medição que mostre necessidade.
-- Build de referência nesta revisão: Three.js em chunk dinâmico de 568,58 KB minificado / 143,19 KB gzip. A página ainda pode se beneficiar da inspeção de frames em navegador; não inferir desempenho de scroll só pelo tamanho do arquivo.
-
-## Implementação
-
-- `src/SoftwareFilm.tsx`: progresso do scroll, estados da narrativa e revelação por etapas.
-- `src/SoftwareScene.tsx`: bancada Three.js, luz, sombras, projeção do monitor e canvas de fundo.
-- `src/WorkstationScreen.tsx`: aplicativos funcionais exibidos na tela física.
-- `src/MobilePortfolio.tsx` e `src/mobile-portfolio.css`: sistema de apps para celular, sem WebGL.
-- `src/ide-source.ts`: trechos apresentados pelo editor.
-- `src/workstation-screen.css` e `src/software-film.css`: interface do sistema e composição do monitor.
-- `src/content.ts`, `src/CasePage.tsx` e `src/ProjectRenderers.tsx`: dados, páginas de case e demonstrações dos projetos.
-- `src/sound.ts` e `src/App.tsx`: áudio opt-in e controle global.
-
-## Critérios para cada revisão
-
-- No desktop, a tela inicial mostra apps funcionais; o scroll abre a IDE, que começa sem código pronto e revela linhas nos dois sentidos. No mobile, a tela inicial do celular mostra os mesmos apps.
-- A tela final permanece dentro do mesmo monitor e oferece acesso claro aos trabalhos e contato.
-- Cada controle responde a clique, teclado e toque; o som pode ser ligado e desligado nos Ajustes.
-- O scroll vertical permanece nativo, sem gesto sequestrado. A versão mobile não inicializa Three.js.
-- O texto legível está no DOM, o foco é visível e movimento reduzido é respeitado.
-- Confirmar build, rotas, links, responsividade e funcionamento da cena antes de atualizar o registro de QA e publicar.
+- Clicar em Portfólio abre a raiz do Explorador com arquivos e pastas selecionáveis.
+- Abrir cada pasta mostra somente destinos e conteúdo comprovadamente públicos.
+- Busca, navegação de pasta, atalhos, janela, menu e barra de tarefas funcionam.
+- A IDE aparece desde a abertura e o scroll revela código real sem prender a página.
+- Desktop e 320, 375, 768 px preservam leitura, foco, navegação e ausência de overflow horizontal.
+- Teclado, toque, som, movimento reduzido, links diretos e cases são conferidos antes da publicação.

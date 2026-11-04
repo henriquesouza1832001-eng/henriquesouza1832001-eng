@@ -107,14 +107,14 @@ Os cases não devem repetir o mesmo template em todos os detalhes. Reutilizar es
 
 ## 7. Navegação, rolagem e experiência interativa
 
-- O computador é a própria home e a cena permanece durante todo o percurso. No desktop, a tela começa num ambiente de trabalho com ícones funcionais; cada ícone abre um app. O primeiro movimento de scroll inicia a IDE e a revelação de código.
-- O scroll do navegador continua nativo e vertical. Não interceptar roda ou gesto de toque, avançar sozinho, nem prender a navegação em painéis internos. O progresso atualiza a cena e pode ser revertido ao rolar para cima.
-- A IDE mostra trechos reais do código público deste portfólio, linha a linha e conforme a posição do scroll. O app continua acessível pela navegação do monitor; não usar loop de digitação independente do gesto.
-- No fim do percurso, a tela de projetos prioriza Rota di Buteco e oferece prova pública para cada trabalho, com estado explícito para PULSO e TrilhaBH. Cases mantêm URLs diretas, recarregáveis e compartilháveis.
-- Em telas estreitas, a metáfora muda para um celular em retrato, com tela inicial e ícones equivalentes para projetos, código, sobre, contato e ajustes. O mesmo conteúdo e os mesmos links ficam acessíveis ao toque. A cena Three.js do desktop não deve ser carregada no mobile.
+- O computador é a própria home, apresentado como uma área de trabalho de software; não há ambiente físico, monitor em perspectiva, segunda tela, lâmpada ou objeto cenográfico. A IDE aparece desde a abertura, e o desktop oferece atalhos que abrem apps reais.
+- O atalho **Portfólio** abre um Explorador de Arquivos funcional. A pasta raiz lista o README e as pastas de projetos; abrir uma pasta mostra o resumo, o case quando existe, o produto quando está publicado e o repositório público. A busca, o caminho da pasta, os atalhos laterais e os controles da janela precisam responder.
+- O scroll do navegador continua nativo e vertical. Não interceptar roda ou gesto de toque, avançar sozinho, nem prender a navegação em painéis internos. O código público aparece linha a linha conforme a posição do scroll e recolhe ao subir; depois do primeiro controle manual, a escolha de app da pessoa prevalece.
+- No fim do percurso, o desktop abre o Explorador de Arquivos se a pessoa ainda não escolheu um app. Os cases mantêm URLs diretas, recarregáveis e compartilháveis.
+- Em telas estreitas, manter a metáfora de software em uma composição responsiva, sem moldura de telefone ou indicadores de estado fictícios. O conteúdo e os links ficam acessíveis ao toque.
 - Cases mantêm URLs diretas, recarregáveis e compartilháveis. Links de índice precisam levar ao case correto e as âncoras devem respeitar o cabeçalho fixo.
-- **Decisão atual:** a cena do computador é a própria home, não uma Oficina opcional ou um jogo separado. O desktop abre com ícones para trabalhos, código, sobre, contato e ajustes; o primeiro scroll inicia a IDE. Quem chega com pressa pode abrir qualquer app sem completar a narrativa.
-- O celular tem sua própria tela inicial com os mesmos apps. O scroll continua na página e conduz a revelação de código e a tela de projetos.
+- **Decisão atual:** a área de trabalho interativa é a própria home. A IDE fica aberta desde o início; a pasta Portfólio abre o Explorador e seus arquivos. Quem chega com pressa consegue abrir projetos, cases, produtos, código e contato sem completar a narrativa.
+- Em telas estreitas, os mesmos apps permanecem disponíveis numa interface direta, sem desenhar carcaça de dispositivo.
 - O painel de ajustes tem ao menos um controle funcional. O som começa desligado e só é ativado por escolha explícita.
 - O computador tem relação com o trabalho de Henrique: acompanha uma interface sendo construída e termina como um lugar navegável para inspecionar projetos e código. Não criar um jogo separado nem adicionar WebGL só para impressionar.
 - Não roubar o cursor, bloquear controles do navegador, forçar movimento, esconder o botão de saída ou exigir arrastar. Não usar personagem descartado, carro ou mecânica que imite a identidade de Bruno Simon.
@@ -123,8 +123,7 @@ Os cases não devem repetir o mesmo template em todos os detalhes. Reutilizar es
 ## 8. Regras técnicas
 
 - **React e TypeScript** são a base aprovada para a aplicação interativa atual. Manter componentes e conteúdo tipado; não migrar de stack apenas por preferência estética.
-- Adicionar dependências só quando uma necessidade concreta não puder ser atendida bem com a stack existente. O percurso atual usa React, HTML, CSS e os renderers de projeto existentes; Blender e Three.js não são requisito para contar a passagem do briefing ao produto.
-- Carregar a bancada Three.js somente em desktop e manter os ícones HTML úteis enquanto ela inicia. Em telas estreitas, usar a versão do celular sem criar um contexto WebGL.
+- Adicionar dependências só quando uma necessidade concreta não puder ser atendida bem com a stack existente. A área de trabalho usa React, HTML e CSS; não manter Three.js ou outro renderer 3D para simular hardware.
 - Usar HTML semântico, foco visível, rótulos para controles, links externos seguros e contrastes legíveis. A experiência principal precisa funcionar sem hover.
 - Garantir layout em 320, 375, 768 e desktop amplo. Não deixar títulos cortados, cards inacessíveis ou a página com rolagem horizontal acidental.
 - Manter títulos e descrições próprios por case, 404, canonical, sitemap e metadados sociais atualizados.
@@ -160,9 +159,9 @@ Definir ordem da home, argumentos de cada case, conteúdo de sobre, chamadas e c
 
 ### Fase D — Computador como home
 
-A bancada Three.js é a cena desktop durante o percurso. A tela começa num desktop com ícones funcionais; o primeiro scroll abre a IDE e revela código real. O percurso termina na interface de projetos. Em viewport estreito, usar um celular em retrato com os mesmos apps, sem WebGL. O ajuste de som é real, global e desligado ao abrir. Validar teclado, toque, foco, saída, viewport e movimento reduzido.
+O desktop da home é uma interface de sistema operacional feita em React e CSS. A IDE começa aberta e revela código público durante o scroll. O atalho Portfólio abre um Explorador com pastas e arquivos de projetos reais; cada atalho externo corresponde a um produto, case ou repositório existente. Em viewport estreito, a mesma ideia se reorganiza sem carcaça de dispositivo. O ajuste de som é real, global e desligado ao abrir. Validar teclado, toque, foco, saída, viewport e movimento reduzido.
 
-A cena usa objetos e texturas procedurais próprios: monitor e segunda tela acesa, mesa de madeira, parede de reboco mineral, luminária, teclado, mouse e sombras. Reflexo e iluminação do monitor permanecem sutis e ligados à leitura da cena. Não substituir por mockup fotográfico nem adicionar efeitos de renderização contínua. Se um elemento 3D não explicar ou sustentar o trabalho, simplificar ou removê-lo e registrar o motivo no QA.
+Não simular bancada, monitor, iluminação, segunda tela ou objetos físicos por CSS/3D. A identidade vem da própria interface, do conteúdo público e dos controles que funcionam. Remover controles decorativos e registrar no QA as mudanças de direção.
 
 ### Fase E — implementação
 

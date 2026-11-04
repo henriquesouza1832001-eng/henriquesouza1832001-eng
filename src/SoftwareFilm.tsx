@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import SoftwareScene, { type SoftwareSceneHandle } from './SoftwareScene';
-import { type ScreenStage } from './WorkstationScreen';
+import DesktopOS, { type ScreenStage } from './DesktopOS';
 import { playClick, playKey } from './sound';
 import MobilePortfolio from './MobilePortfolio';
 
@@ -15,7 +14,6 @@ function stageFor(progress: number): ScreenStage {
 
 export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEnabled: boolean; onSoundToggle: () => void }) {
   const rootRef = useRef<HTMLElement>(null);
-  const sceneRef = useRef<SoftwareSceneHandle>(null);
   const progressRef = useRef(0);
   const previousStageRef = useRef<ScreenStage>('ide');
   const [stage, setStage] = useState<ScreenStage>('ide');
@@ -53,22 +51,15 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
         }
         progressRef.current = progress;
         root.style.setProperty('--film-progress', String(progress));
-        sceneRef.current?.setProgress(progress);
       });
     };
-    const pointer = (event: PointerEvent) => sceneRef.current?.setPointer(
-      clamp01(event.clientX / Math.max(1, window.innerWidth)),
-      clamp01(event.clientY / Math.max(1, window.innerHeight)),
-    );
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
-    if (!mobileViewport) window.addEventListener('pointermove', pointer, { passive: true });
     update();
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
-      window.removeEventListener('pointermove', pointer);
     };
   }, [mobileViewport]);
 
@@ -76,7 +67,7 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
     <div className="film-sticky">
       {mobileViewport
         ? <MobilePortfolio progress={Number(rootRef.current?.style.getPropertyValue('--film-progress') ?? 0)} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
-        : <SoftwareScene ref={sceneRef} stage={stage} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
+        : <DesktopOS typingStep={typingStep} progress={progressRef.current} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
     </div>
     <div className="film-track" aria-hidden="true">
       <div className="film-chapter film-chapter-ide"/>

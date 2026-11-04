@@ -350,4 +350,4 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Causa encontrada: a camada transparente da janela ativa cobria a área de trabalho inteira e recebia os cliques fora da janela. A camada agora deixa o evento alcançar os atalhos da área de trabalho; a janela continua recebendo os próprios cliques.
 - Navegador Edge local, viewport de 1600 × 900, entrada real de mouse via Chrome DevTools Protocol: Portfólio abriu o Explorador; a pasta Quarta é Dia de Amstel abriu; PRODUTO.url exibiu o endereço publicado; o atalho Código abriu a IDE e permitiu selecionar arquivo; minimizar/restaurar pela barra de tarefas, menu Iniciar, Ajustes, maximizar/restaurar e fechar responderam.
 - npm run build: passou; TypeScript, Vite e postbuild.
-- Publicação: pendente nesta revisão.
+- Cloudflare Pages Production: publicado no projeto `portfolio-henrique-souza` em `https://da347ac9.portfolio-henrique-souza.pages.dev`; `henriquesouzas.com` e o deploy responderam HTTP 200 para home, quatro cases e ZIP-fonte. No Edge local e no site publicado, cliques reais abriram o Explorador, o projeto Amstel e o link `https://quarta-amstel.pages.dev/`.

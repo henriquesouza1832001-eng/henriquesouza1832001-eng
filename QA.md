@@ -386,3 +386,11 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Cloudflare Pages Production: publicado no projeto `portfolio-henrique-souza` a partir do commit `59d5762f386c449efe7b8587dd3f8a0e6fb49ca8`; deploy `https://e236a0f1.portfolio-henrique-souza.pages.dev`.
 - HTTP 200 confirmado no domínio e no deploy, nos quatro cases publicados e no ZIP do portfólio.
 - A verificação desta rodada cobre build e disponibilidade HTTP; não inclui uma nova inspeção manual de interação no navegador.
+
+## Prévia construída em etapas — 04/11/2026
+
+- A prévia do primeiro quadro começa como estrutura de layout, sem o site completo já montado. O scroll acrescenta marca e apresentação, o projeto em destaque com um diagrama de fluxo, a seleção de projetos e os links.
+- As telas de Pulso e TrilhaBH foram removidas da apresentação. Todos os projetos usam diagramas editoriais baseados em sua descrição pública; não são capturas ou mockups dos aplicativos.
+- Build TypeScript/Vite/postbuild passou com 48 módulos; `git diff --check` passou.
+- Publicado no Cloudflare Pages em `https://532b5a1f.portfolio-henrique-souza.pages.dev`, commit `51c7008cee47f54d665b67aceeb35aa1bd879d84`. O domínio, o deploy, os quatro cases e o ZIP-fonte responderam HTTP 200.
+- Não houve inspeção manual de interação no navegador nesta rodada.

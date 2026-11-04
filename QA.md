@@ -342,4 +342,5 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - `npm run build`: **passou**; TypeScript, Vite e postbuild. 46 módulos; JavaScript principal de 303,32 kB / 91,93 kB gzip. Não há chunk de Three.js.
 - `git diff --check`: **passou**. A prévia local respondeu HTTP 200 na home.
 - Conferência manual de cliques do Explorador e inspeção em dispositivo físico: **pendentes**. O build confirma compilação e geração de rotas, não substitui esses passos.
-- Cloudflare desta revisão: **pendente de publicação**.
+- Cloudflare Pages Production: **publicado** em `https://c825d708.portfolio-henrique-souza.pages.dev` para o commit `2fdc18b2f1b6d9061d54ed1aa461b0002a323051`; `henriquesouzas.com` continua vinculado ao projeto.
+- HTTP 200 confirmado no domínio e na URL do deploy para home, quatro cases e `henrique-portfolio-completo.zip`. O ZIP está sendo regenerado para incluir este registro de publicação.

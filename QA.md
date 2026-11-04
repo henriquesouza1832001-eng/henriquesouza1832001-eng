@@ -344,3 +344,10 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Conferência manual de cliques do Explorador e inspeção em dispositivo físico: **pendentes**. O build confirma compilação e geração de rotas, não substitui esses passos.
 - Cloudflare Pages Production: **publicado** em `https://c825d708.portfolio-henrique-souza.pages.dev` para o commit `2fdc18b2f1b6d9061d54ed1aa461b0002a323051`; `henriquesouzas.com` continua vinculado ao projeto.
 - HTTP 200 confirmado no domínio e na URL do deploy para home, quatro cases e `henrique-portfolio-completo.zip`. O ZIP está sendo regenerado para incluir este registro de publicação.
+
+## Correção: cliques na área de trabalho, 03/11/2026
+
+- Causa encontrada: a camada transparente da janela ativa cobria a área de trabalho inteira e recebia os cliques fora da janela. A camada agora deixa o evento alcançar os atalhos da área de trabalho; a janela continua recebendo os próprios cliques.
+- Navegador Edge local, viewport de 1600 × 900, entrada real de mouse via Chrome DevTools Protocol: Portfólio abriu o Explorador; a pasta Quarta é Dia de Amstel abriu; PRODUTO.url exibiu o endereço publicado; o atalho Código abriu a IDE e permitiu selecionar arquivo; minimizar/restaurar pela barra de tarefas, menu Iniciar, Ajustes, maximizar/restaurar e fechar responderam.
+- npm run build: passou; TypeScript, Vite e postbuild.
+- Publicação: pendente nesta revisão.

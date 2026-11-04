@@ -14,7 +14,7 @@
 .os-mark{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .os-desktop-hint{position:absolute;left:3%;bottom:8%;max-width:310px;color:#f0ecdfb5;font-size:12px;line-height:1.55;letter-spacing:.085em}
 .os-window-layer{position:absolute;z-index:3;inset:0 0 53px;display:grid;place-items:center;padding:5.5vh 4.5vw 1vh;pointer-events:none;visibility:hidden;opacity:0;transition:opacity .2s ease,visibility .2s ease}
-.os-window-layer.is-active{visibility:visible;opacity:1;pointer-events:auto}.os-window-layer.is-hidden{visibility:hidden;pointer-events:none;opacity:0}
+.os-window-layer.is-active{visibility:visible;opacity:1;pointer-events:none}.os-window-layer.is-hidden{visibility:hidden;pointer-events:none;opacity:0}
 .os-window{position:relative;display:flex;width:min(1180px,calc(100vw - 250px));height:min(720px,calc(100svh - 135px));min-height:410px;flex-direction:column;overflow:hidden;border:1px solid #ffffffa8;border-radius:9px;background:var(--os-paper);box-shadow:0 26px 75px #11181162,0 3px 10px #1016104d;color:var(--os-ink);pointer-events:auto}
 .os-window-code{width:min(1060px,calc(100vw - 255px));background:#1f2422;color:#e5e7dc}.os-window-about,.os-window-contact,.os-window-settings{width:min(700px,calc(100vw - 270px));height:auto;min-height:0}
 .os-window.is-maximized{position:absolute;inset:8px;width:auto;height:auto;min-height:0;border-radius:5px}

@@ -328,5 +328,6 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - `npm run build`: **passou**; TypeScript, Vite (51 módulos), quatro páginas de case, sitemap e 404. Chunk principal: 331,67 kB / 102,98 kB gzip; Three.js: 568,58 kB / 143,19 kB gzip; o aviso de chunk acima de 500 kB permanece.
 - `git diff --check`: **passou**.
 - Prévia de produção local: **HTTP 200** para home, quatro cases, 404 e ZIP público.
+- Pacote-fonte público regenerado com **91 arquivos**, incluindo a interface mobile e o QA; sem dependências, `dist` ou ZIP recursivo.
 - Inspeção visual do novo estado, teste de gesto em dispositivo real e perfil de FPS: **pendentes**. A compilação e a inspeção estática não comprovam fluidez visual.
-- Cloudflare Pages: **pendente de novo deploy e verificação pública**.
+- Cloudflare Pages Production: **publicado** no projeto `portfolio-henrique-souza`. A home, quatro cases e o ZIP responderam HTTP 200 em `henriquesouzas.com` após o deploy.

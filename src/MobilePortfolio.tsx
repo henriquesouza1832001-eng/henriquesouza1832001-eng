@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { projects, type Project } from './content';
 import { codeFiles, sourceByFile } from './ide-source';
+import PortfolioBrowser from './PortfolioBrowser';
 import './mobile-portfolio.css';
 
-type MobileApp = 'home' | 'projects' | 'ide' | 'about' | 'contact' | 'settings';
+type MobileApp = 'home' | 'projects' | 'browser' | 'ide' | 'about' | 'contact' | 'settings';
 
 const apps: { id: Exclude<MobileApp, 'home'>; label: string; mark: string }[] = [
   { id: 'projects', label: 'Projetos', mark: '↗' },
+  { id: 'browser', label: 'Site', mark: '⌘' },
   { id: 'ide', label: 'Código', mark: '</>' },
   { id: 'about', label: 'Sobre', mark: 'HS' },
   { id: 'contact', label: 'Contato', mark: '↗' },
@@ -36,7 +38,7 @@ function ProjectApp({ project, onSelect }: { project: Project; onSelect: (key: P
 
 function MobileIDE({ typingStep }: { typingStep: number }) {
   const [selectedFile, setSelectedFile] = useState('content.ts');
-  const lines = sourceByFile[selectedFile] ?? sourceByFile['content.ts'];
+  const lines = (sourceByFile[selectedFile] ?? sourceByFile['content.ts']).split(/\r?\n/);
   const visibleCount = Math.floor((typingStep / 18) * lines.length);
   return <section className="mobile-ide-app" aria-label="IDE com código real do portfólio">
     <p className="mobile-eyebrow">IDE / CÓDIGO DO PORTFÓLIO</p>
@@ -73,7 +75,7 @@ export default function MobilePortfolio({ progress, typingStep, soundEnabled, on
     if (manualChoice.current) return;
     if (progress <= .015) setActiveApp('home');
     else if (progress < .82) setActiveApp('ide');
-    else setActiveApp('projects');
+    else setActiveApp('browser');
   }, [progress]);
 
   const openApp = (app: MobileApp) => {
@@ -88,6 +90,7 @@ export default function MobilePortfolio({ progress, typingStep, soundEnabled, on
         <div className="mobile-screen-content" data-app={activeApp}>
           {activeApp === 'home' && <MobileHome onOpen={openApp}/>}
           {activeApp === 'projects' && <ProjectApp project={selectedProject} onSelect={setSelectedKey}/>}
+          {activeApp === 'browser' && <PortfolioBrowser/>}
           {activeApp === 'ide' && <MobileIDE typingStep={typingStep}/>}
           {activeApp === 'about' && <section className="mobile-info-app"><p className="mobile-eyebrow">HENRIQUE SOUZA / BH</p><h2>Sistemas para<br/><em>trabalho real.</em></h2><p>Trabalho do fluxo que a pessoa usa até os dados e serviços que sustentam o produto.</p><div className="mobile-systems-line">INTERFACE <i/> REGRAS <i/> DADOS</div><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer">Acompanhar no GitHub ↗</a></section>}
           {activeApp === 'contact' && <section className="mobile-info-app"><p className="mobile-eyebrow">CONTATO / BELO HORIZONTE</p><h2>Vamos tirar<br/>uma ideia<br/><em>do papel.</em></h2><p>Me conta onde o processo trava e quem precisa usar a solução.</p><a href="https://www.linkedin.com/in/henrique-s-4080b9139/" target="_blank" rel="noreferrer">Conectar pelo LinkedIn ↗</a><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer">Ver código no GitHub ↗</a></section>}
@@ -95,7 +98,7 @@ export default function MobilePortfolio({ progress, typingStep, soundEnabled, on
         </div>
         <nav className="mobile-app-dock" aria-label="Navegação do celular">
           <button type="button" className={activeApp === 'home' ? 'selected' : ''} onClick={() => openApp('home')} aria-label="Tela inicial"><span>⌂</span></button>
-          {apps.slice(0, 4).map(app => <button type="button" key={app.id} className={activeApp === app.id ? 'selected' : ''} onClick={() => openApp(app.id)} aria-label={app.label}><span>{app.mark}</span></button>)}
+          {apps.slice(0, 5).map(app => <button type="button" key={app.id} className={activeApp === app.id ? 'selected' : ''} onClick={() => openApp(app.id)} aria-label={app.label}><span>{app.mark}</span></button>)}
         </nav>
       </div>
     </div>

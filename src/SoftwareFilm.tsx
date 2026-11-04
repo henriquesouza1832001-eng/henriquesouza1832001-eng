@@ -12,6 +12,13 @@ function stageFor(progress: number): ScreenStage {
   return 'desktop';
 }
 
+const chapterCopy: Record<ScreenStage, { label: string; title: string; body: string }> = {
+  ide: { label: 'Entender o problema', title: 'Software para o mundo real.', body: 'Eu transformo trabalho complexo em produto e sistemas claros — da primeira decisão ao código que mantém tudo funcionando.' },
+  prototype: { label: 'Dar forma ao sistema', title: 'A ideia começa a funcionar.', body: 'Conteúdo, navegação e projetos aparecem no site enquanto a estrutura ganha forma na IDE.' },
+  review: { label: 'Revisar cada fluxo', title: 'Conferir também é construir.', body: 'Os caminhos, estados e links públicos entram na revisão antes de o site ficar pronto para explorar.' },
+  desktop: { label: 'Explorar o resultado', title: 'Agora o site está pronto.', body: 'Abra os projetos, consulte o código e acesse os produtos e repositórios públicos.' },
+};
+
 export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEnabled: boolean; onSoundToggle: () => void }) {
   const rootRef = useRef<HTMLElement>(null);
   const progressRef = useRef(0);
@@ -63,11 +70,24 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
     };
   }, [mobileViewport]);
 
+  const chapter = chapterCopy[stage];
   return <section className="software-film" id="processo" ref={rootRef} data-active={stage} aria-label="Portfólio interativo de Henrique Souza">
     <div className="film-sticky">
       {mobileViewport
-        ? <MobilePortfolio progress={Number(rootRef.current?.style.getPropertyValue('--film-progress') ?? 0)} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
-        : <DesktopOS progress={progressRef.current} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
+        ? <div className="film-mobile-screen"><MobilePortfolio progress={progressRef.current} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/></div>
+        : <div className="film-workbench">
+          <div className="film-backdrop" aria-hidden="true"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><path d="M-80 660C170 610 206 434 388 452S602 614 764 566s237-260 444-216 302 71 486-142"/><path d="M-70 706C180 656 224 482 398 497s202 149 369 112 250-248 448-206 315 72 475-124"/><path d="M260 940c20-176 155-266 246-321s169-61 249-146 116-218 239-254 220 0 318-101"/></svg></div>
+          <div className="film-editorial">
+            <a className="film-brand" href="#inicio"><img src="/assets/logo-hs.png" alt="Marca de Henrique Souza"/><span>HENRIQUE SOUZA<small>ENGENHARIA DE SOFTWARE · BH</small></span></a>
+            <div className="film-chapter-copy" aria-live="polite"><span>{chapter.label}</span><h1>{stage === 'ide' ? <>Software para<br/>o mundo <em>real.</em></> : chapter.title}</h1><p>{chapter.body}</p></div>
+            <div className="film-progress" aria-label={`Etapa: ${chapter.label}`}><div><span>Construção do site</span><strong>{chapter.label}</strong></div><i><b style={{ width: `${Math.max(4, progressRef.current * 100)}%` }}/></i></div>
+            <a className="film-scroll-cue" href="#processo" onClick={event => { event.preventDefault(); window.scrollBy({ top: window.innerHeight * 0.7, behavior: 'smooth' }); }}>Role para acompanhar a construção <span aria-hidden="true">↓</span></a>
+          </div>
+          <div className="film-device" aria-label="Computador interativo de Henrique Souza">
+            <div className="film-monitor-frame"><div className="film-monitor-screen"><DesktopOS progress={progressRef.current} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/></div><div className="film-monitor-bezel"><img src="/assets/logo-hs.png" alt=""/><span>HS · ENGENHARIA DE SOFTWARE</span><i aria-hidden="true"/></div></div>
+            <div className="film-monitor-neck" aria-hidden="true"/><div className="film-monitor-base" aria-hidden="true"/>
+          </div>
+        </div>}
     </div>
     <div className="film-track" aria-hidden="true">
       <div className="film-chapter film-chapter-ide"/>

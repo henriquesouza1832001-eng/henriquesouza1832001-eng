@@ -361,3 +361,13 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Chrome local, viewport 1600 x 900: em 0%, 40%, 70% e 90% de rolagem foram conferidos o arquivo ativo e a abertura final do Explorador. A seleção manual de App.tsx permaneceu após a rolagem; o editor não criou overflow horizontal.
 - npm run build: passou; TypeScript, Vite e postbuild. git diff --check: passou.
 - Cloudflare Pages Production: publicado em `https://36ad0cf3.portfolio-henrique-souza.pages.dev`; home, quatro cases e ZIP-fonte responderam HTTP 200. No Edge em viewport 1600 x 900, a versão publicada mostrou content.ts, App.tsx e SoftwareFilm.tsx nas etapas de rolagem e abriu o Explorador ao final.
+
+## Iteração — construção do portfólio no monitor, 03/11/2026
+
+- A abertura preserva “Software para o mundo real” e recupera a marca HS. O fundo escuro e cartográfico enquadra um monitor único desenhado em CSS.
+- O scroll conduz a IDE e a prévia do site ao mesmo tempo. O editor carrega os arquivos-fonte completos; selecionar, copiar, abrir no GitHub e rodar a prévia são ações reais. Se a permissão de clipboard não estiver disponível, o conteúdo abre num campo selecionável para cópia manual.
+- O navegador aparece no mesmo monitor no final do percurso. Ele usa os projetos e estados de `src/content.ts`; cases, produtos e repositórios mantêm seus destinos reais. TrilhaBH e Pulso usam capturas dos próprios produtos; os outros projetos usam composição tipográfica.
+- A versão estreita termina no mesmo site navegável, sem mockup de telefone ou indicadores de sistema fictícios.
+- `npm run build`: **passou**; TypeScript, Vite (48 módulos) e postbuild; JavaScript principal de 319,38 kB / 96,15 kB gzip.
+- Inspeção visual no Edge headless: entrada e final em 1600 × 900; final em 390 × 844 sem overflow horizontal. A IDE abriu a prévia, a lista selecionou TrilhaBH e o atalho Portfólio abriu o Explorador. A cópia manual apresentou o arquivo completo quando o clipboard não estava disponível.
+- Publicação Cloudflare Pages desta iteração: **pendente**.

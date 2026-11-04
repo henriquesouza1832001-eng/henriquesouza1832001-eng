@@ -1,60 +1,58 @@
-# Direção de experiência — área de trabalho navegável
+# Direção de experiência — o site sendo construído
 
-**Estado:** direção vigente em 03/11/2026. Esta decisão substitui a bancada 3D e os mockups de computador e telefone descritos em registros anteriores.
+**Estado:** direção vigente em 03/11/2026. Esta revisão substitui a página plana de desktop descrita na versão anterior. O pedido atual combina uma abertura editorial, uma sequência de construção guiada pela rolagem e um portfólio navegável dentro do mesmo computador.
 
 ## Ideia central
 
-A home se comporta como uma área de trabalho de software, feita de interfaces e arquivos. A metáfora fala diretamente do trabalho de engenharia: código, produto, estrutura e autoria ficam acessíveis na mesma navegação.
+A pessoa chega a uma frase clara sobre o trabalho de Henrique e vê um monitor aberto numa IDE. Ao rolar, código-fonte público e a prévia do portfólio avançam juntos. O último trecho leva ao navegador dentro do computador, já com os projetos acessíveis.
 
-O desktop não tenta parecer uma fotografia de hardware. Não tem monitor físico, segunda tela, luminária, mesa ou teclado cenográfico. O visual vem do papel de parede cartográfico, da tipografia e das janelas do sistema; cada controle precisa levar a uma ação real.
+A referência Tabasco inspira apenas o uso da rolagem como narrativa visual contínua. A direção, o texto, as cores, as interfaces e os projetos são próprios. Não reproduzir os objetos, a animação, os modelos ou a identidade da referência.
 
-## Abertura e rolagem
+O computador é desenhado com CSS como um monitor único, com moldura e base gráficas. Não incluir segunda tela, luminária, mesa, teclado, mouse ou textura que tente passar por fotografia. O fundo cartográfico, a luz, a tipografia e a marca HS dão personalidade sem competir com a interface.
 
-- A IDE aparece aberta desde o primeiro quadro, com arquivos reais do portfólio e sem linhas reveladas.
-- A rolagem nativa mostra o código público linha a linha. Rolar para cima recolhe as linhas; pular pelo percurso revela o trecho correspondente.
-- No fim do percurso, o Explorador de Arquivos entra em foco se a pessoa não tiver assumido a navegação manualmente.
-- Abrir qualquer atalho, selecionar um app no menu ou usar a barra de tarefas transfere o controle para a pessoa. O progresso do scroll não deve trocar apps depois disso.
-- O navegador não captura gestos, não avança sozinho e não mantém a página presa depois da área interativa.
+## Construção e rolagem
 
-## Portfólio como arquivos
+- A IDE aparece desde o primeiro quadro, ao lado da primeira versão do site.
+- Os arquivos exibidos vêm do código real do repositório. A rolagem revela o restante do arquivo atual; voltar recolhe as linhas.
+- A prévia usa o conteúdo real de `src/content.ts`. O primeiro projeto em destaque é Quarta é Dia de Amstel; os projetos e seus estados continuam selecionáveis.
+- Conforme a rolagem avança, entram os projetos, os links e as demais partes do portfólio.
+- No último trecho, o navegador do sistema abre o site final no mesmo monitor.
+- A rolagem da página permanece nativa. O visitante pode voltar, avançar ou usar controles a qualquer momento.
+- Depois de uma escolha manual de app, a progressão deixa de trocar a janela escolhida.
 
-O atalho **Portfólio** abre o Explorador de Arquivos. Na pasta raiz aparecem o `LEIA-ME.md` e as pastas correspondentes aos projetos públicos. Ao abrir uma pasta, o painel mostra:
+## IDE e navegação
 
-- `LEIA-ME.md` com resumo, papel de Henrique e tecnologias confirmadas;
-- `CASE.url` quando há case publicado no próprio portfólio;
-- `PRODUTO.url` quando existe produto público com link;
-- `REPOSITÓRIO.url` para o código-fonte público.
+O atalho **Código** abre os arquivos TypeScript completos usados pelo site. A pessoa pode selecionar cada arquivo, copiar seu conteúdo, abrir a versão correspondente no GitHub e executar a prévia do portfólio.
 
-Selecionar um arquivo mostra seu conteúdo ou destino no painel de leitura. Os atalhos externos abrem o destino real. A busca filtra a pasta atual, a trilha de navegação volta à raiz, e os links laterais abrem pastas ou o perfil público no GitHub. Não exibir controles inertes.
+O atalho **Portfólio** abre o Explorador de Arquivos. A raiz lista os projetos e suas pastas. Cada pasta mostra o resumo e apenas os destinos públicos disponíveis: case, produto ou repositório. O atalho **Site** abre o navegador final.
 
-As janelas de Código, Sobre e Contato também abrem pelos atalhos do desktop e pelo menu. Minimizar, maximizar, restaurar e fechar têm comportamento funcional. A barra de tarefas troca entre janelas abertas. Ajustes contém o controle real de som, desligado por padrão.
+Menu Iniciar, barra de tarefas, minimizar, maximizar, restaurar, fechar, busca, links e controles de som precisam responder a uma ação real. Som fica desligado até uma escolha explícita.
 
 ## Telas estreitas
 
-Em telas estreitas, a mesma ideia vira uma interface responsiva de software. Não desenhar carcaça de telefone, notch, sinal, bateria ou relógio fictício. Manter os atalhos de Portfólio, Código, Sobre, Contato e Ajustes legíveis e acessíveis ao toque; preservar o scroll nativo e os mesmos links públicos.
+Em telas estreitas, manter a sequência e o mesmo conteúdo num espaço de software responsivo. Não desenhar carcaça, notch, horário, sinal ou bateria fictícios. O fim continua abrindo o portfólio navegável, com links públicos e controles acessíveis ao toque.
 
 ## Direção visual e movimento
 
-- Fundo cartográfico próprio, sem textura fotográfica ou ilustração genérica.
-- Janelas com hierarquia clara, área de conteúdo ampla, tipografia legível e contraste funcional.
-- O Explorador usa superfície clara para leitura de arquivos; o editor mantém tema escuro próprio.
-- Movimento breve entre janelas, sem câmera, parallax, cursor customizado ou renderização contínua.
-- Respeitar `prefers-reduced-motion`; manter foco visível e navegação por teclado.
+- Usar a marca HS existente e sua paleta de azul e amarelo como assinatura.
+- Criar profundidade com o desenho cartográfico, o fundo escuro e a moldura do monitor; não usar objetos 3D genéricos nem reflexos fotográficos.
+- Manter a IDE escura e o site em papel claro, para distinguir fonte e produto.
+- Dar destaque a títulos, frases e projetos. Metadados pequenos aparecem somente quando ajudam a localizar ou usar algo.
+- Respeitar `prefers-reduced-motion`, foco visível, navegação por teclado e links diretos.
 
 ## Arquivos principais
 
-- `src/SoftwareFilm.tsx`: progresso nativo do scroll e atualização da IDE.
-- `src/DesktopOS.tsx` e `src/desktop-os.css`: desktop, Explorador de Arquivos, janelas, barra de tarefas e atalhos.
-- `src/MobilePortfolio.tsx` e `src/mobile-portfolio.css`: composição responsiva para telas estreitas.
-- `src/ide-source.ts`: trechos públicos apresentados na IDE.
-- `src/content.ts`, `src/CasePage.tsx` e `src/ProjectRenderers.tsx`: conteúdo, cases e demonstrações.
-- `src/sound.ts`: sons opcionais da interface.
+- `src/SoftwareFilm.tsx` e `src/software-film.css`: narrativa, progresso de rolagem e monitor.
+- `src/DesktopOS.tsx` e `src/desktop-os.css`: IDE, navegador, Explorador de Arquivos, atalhos e janelas.
+- `src/PortfolioBrowser.tsx` e `src/portfolio-browser.css`: prévia que evolui e portfólio final no navegador.
+- `src/MobilePortfolio.tsx` e `src/mobile-portfolio.css`: adaptação estreita.
+- `src/ide-source.ts`: fonte real apresentada na IDE.
+- `src/content.ts`: projetos, descrições, estados e links públicos.
 
 ## Critérios de revisão
 
-- Clicar em Portfólio abre a raiz do Explorador com arquivos e pastas selecionáveis.
-- Abrir cada pasta mostra somente destinos e conteúdo comprovadamente públicos.
-- Busca, navegação de pasta, atalhos, janela, menu e barra de tarefas funcionam.
-- A IDE aparece desde a abertura e o scroll revela código real sem prender a página.
-- Desktop e 320, 375, 768 px preservam leitura, foco, navegação e ausência de overflow horizontal.
-- Teclado, toque, som, movimento reduzido, links diretos e cases são conferidos antes da publicação.
+- A abertura mostra marca, frase principal, IDE e primeira versão do site dentro de um único monitor.
+- Rolagem para baixo e para cima avança e recolhe a construção sem prender a página.
+- Arquivos, busca, links, janelas e aplicações executam ações verificáveis.
+- O navegador final permite escolher projetos e abrir seus cases, produtos e repositórios reais.
+- Celular e desktop mantêm leitura, foco, uso por teclado ou toque e ausência de overflow horizontal.

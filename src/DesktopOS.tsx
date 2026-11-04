@@ -1,19 +1,20 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { projects, type Project, type ProjectKey } from './content';
 import { codeFiles, sourceByFile } from './ide-source';
+import PortfolioBrowser, { BuildPreview } from './PortfolioBrowser';
 import './desktop-os.css';
 
 export type ScreenStage = 'ide' | 'prototype' | 'review' | 'desktop';
-type WindowId = 'explorer' | 'code' | 'about' | 'contact' | 'settings';
+type WindowId = 'browser' | 'explorer' | 'code' | 'about' | 'contact' | 'settings';
 type ExplorerLocation = 'root' | ProjectKey;
 type ExplorerFileKind = 'readme' | 'case' | 'repo' | 'product';
 type FileSelection = { location: ExplorerLocation; kind: ExplorerFileKind } | null;
 
 const windowLabels: Record<WindowId, string> = {
-  explorer: 'Portfólio', code: 'Código', about: 'Sobre', contact: 'Contato', settings: 'Ajustes',
+  browser: 'Site', explorer: 'Portfólio', code: 'Código', about: 'Sobre', contact: 'Contato', settings: 'Ajustes',
 };
 
-function Mark({ type }: { type: 'folder' | 'document' | 'code' | 'person' | 'mail' | 'settings' | 'start' }) {
+function Mark({ type }: { type: 'folder' | 'document' | 'code' | 'person' | 'mail' | 'settings' | 'start' | 'globe' }) {
   const paths = {
     folder: <><path d="M2 4.2h4.4l1.5 1.6H14v6.5H2z"/><path d="M2 6h12"/></>,
     document: <><path d="M4 1.8h5l3 3v9.4H4z"/><path d="M9 1.8v3h3M6 8h4M6 10.5h4"/></>,
@@ -22,12 +23,13 @@ function Mark({ type }: { type: 'folder' | 'document' | 'code' | 'person' | 'mai
     mail: <><rect x="1.5" y="3" width="13" height="10" rx="1"/><path d="m2 4 6 4.8L14 4"/></>,
     settings: <><circle cx="8" cy="8" r="2.5"/><path d="M8 1.5v2m0 9v2m6.5-6.5h-2m-9 0h-2m11.1-4.6-1.4 1.4m-6.4 6.4-1.4 1.4m9.2 0-1.4-1.4m-6.4-6.4L3.4 3.4"/></>,
     start: <><path d="M1.5 1.5h5.4v5.4H1.5zM9.1 1.5h5.4v5.4H9.1zM1.5 9.1h5.4v5.4H1.5zM9.1 9.1h5.4v5.4H9.1z"/></>,
+    globe: <><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8a10.1 10.1 0 0 1 0 12.4M8 1.8a10.1 10.1 0 0 0 0 12.4"/></>,
   };
   return <svg className={`os-mark os-mark-${type}`} viewBox="0 0 16 16" aria-hidden="true">{paths[type]}</svg>;
 }
 
 function WindowIcon({ id }: { id: WindowId }) {
-  return <Mark type={id === 'explorer' ? 'folder' : id === 'code' ? 'code' : id === 'about' ? 'person' : id === 'contact' ? 'mail' : 'settings'}/>;
+  return <Mark type={id === 'browser' ? 'globe' : id === 'explorer' ? 'folder' : id === 'code' ? 'code' : id === 'about' ? 'person' : id === 'contact' ? 'mail' : 'settings'}/>;
 }
 
 function DesktopShortcut({ id, label, onOpen }: { id: WindowId; label: string; onOpen: (id: WindowId) => void }) {
@@ -42,7 +44,7 @@ function WindowFrame({ id, active, maximized, onClose, onMinimize, onMaximize, c
   return <section className={`os-window os-window-${id} ${maximized ? 'is-maximized' : ''}`} role="dialog" aria-label={windowLabels[id]} aria-hidden={!active}>
     <header className="os-window-titlebar">
       <span className="os-window-appicon"><WindowIcon id={id}/></span>
-      <strong>{id === 'explorer' ? 'Explorador de Arquivos' : id === 'code' ? 'Visual Studio Code · Portfólio' : windowLabels[id]}</strong>
+      <strong>{id === 'browser' ? 'Navegador · Portfólio pronto' : id === 'explorer' ? 'Explorador de Arquivos' : id === 'code' ? 'Visual Studio Code · Portfólio' : windowLabels[id]}</strong>
       <div className="os-window-controls">
         <button type="button" aria-label="Minimizar janela" onClick={onMinimize}><i className="os-minimize"/></button>
         <button type="button" aria-label={maximized ? 'Restaurar janela' : 'Maximizar janela'} onClick={onMaximize}><i className={maximized ? 'os-restore' : 'os-maximize'}/></button>
@@ -145,16 +147,38 @@ function ExplorerWindow({ location, selected, onSelect, onOpenFolder, onGoHome }
   </div>;
 }
 
-function CodeWindow({ progress }: { progress: number }) {
+function CodeWindow({ progress, onOpenBrowser }: { progress: number; onOpenBrowser: () => void }) {
   const [manualFile, setManualFile] = useState<string | null>(null);
+  const [copyMessage, setCopyMessage] = useState('');
+  const [copyFallbackOpen, setCopyFallbackOpen] = useState(false);
   const automaticFile = progress < .3 ? 'content.ts' : progress < .56 ? 'App.tsx' : 'SoftwareFilm.tsx';
   const selectedFile = manualFile ?? automaticFile;
-  const lines = sourceByFile[selectedFile] ?? sourceByFile['content.ts'];
+  const source = sourceByFile[selectedFile] ?? sourceByFile['content.ts'];
+  const lines = source.split(/\r?\n/);
   const phaseProgress = progress < .3 ? progress / .3 : progress < .56 ? (progress - .3) / .26 : (progress - .56) / .26;
   const visibleLines = manualFile ? lines.length : Math.max(Math.min(4, lines.length), Math.ceil(phaseProgress * lines.length));
+  const copySource = async () => {
+    try {
+      await navigator.clipboard.writeText(source);
+      setCopyMessage('Arquivo copiado');
+    } catch {
+      const fallback = document.createElement('textarea');
+      fallback.value = source;
+      fallback.setAttribute('readonly', '');
+      fallback.style.position = 'fixed';
+      fallback.style.opacity = '0';
+      document.body.appendChild(fallback);
+      fallback.select();
+      const copied = document.execCommand('copy');
+      fallback.remove();
+      if (copied) setCopyMessage('Arquivo copiado');
+      else setCopyFallbackOpen(true);
+    }
+  };
   return <div className="code-window-body">
-    <aside className="code-explorer"><span>ARQUIVOS DO PROJETO</span><b><i/> SRC</b>{codeFiles.map(file => <button type="button" key={file} className={selectedFile === file ? 'is-selected' : ''} onClick={() => setManualFile(file)}><i>TS</i>{file}</button>)}</aside>
-    <main className="code-editor"><div className="code-tab"><span>TS</span> src/{selectedFile}</div><div className="code-breadcrumb">src <b>›</b> {selectedFile}</div><pre aria-label={`Código real de ${selectedFile}`}><code>{lines.slice(0, visibleLines).map((line, index) => <span key={`${selectedFile}-${index}`}><i>{String(index + 1).padStart(2, '0')}</i><span className="code-line-text"><CodeLineText line={line}/></span></span>)}</code></pre><footer className="code-statusbar"><span>TypeScript</span><span>Trecho público do portfólio</span></footer></main>
+    <aside className="code-explorer"><span>ARQUIVOS DO PROJETO</span><b><i/> SRC</b>{codeFiles.map(file => <button type="button" key={file} className={selectedFile === file ? 'is-selected' : ''} onClick={() => { setManualFile(file); setCopyMessage(''); }}><i>TS</i>{file}</button>)}<a href={`https://github.com/henriquesouza1832001-eng/henriquesouza1832001-eng/blob/main/src/${selectedFile}`} target="_blank" rel="noreferrer">Abrir no GitHub <span>↗</span></a></aside>
+    <main className="code-editor"><div className="code-tab"><span>TS</span> src/{selectedFile}<div className="code-actions"><button type="button" onClick={copySource}>Copiar</button><button type="button" onClick={onOpenBrowser}>Rodar site <span>↗</span></button></div></div><div className="code-breadcrumb">src <b>›</b> {selectedFile}<span className="code-copy-message" role="status">{copyMessage}</span></div><pre aria-label={`Código-fonte real de ${selectedFile}`}><code>{lines.slice(0, visibleLines).map((line, index) => <span key={`${selectedFile}-${index}`}><i>{String(index + 1).padStart(2, '0')}</i><span className="code-line-text"><CodeLineText line={line}/></span></span>)}</code></pre><footer className="code-statusbar"><span>TypeScript · fonte pública</span><span>{visibleLines} / {lines.length} linhas visíveis</span></footer>{copyFallbackOpen && <div className="code-copy-fallback" role="dialog" aria-modal="true" aria-labelledby="copy-fallback-title"><section><h2 id="copy-fallback-title">Copiar {selectedFile}</h2><p>Selecione o arquivo abaixo e use Ctrl+C ou ⌘C.</p><textarea readOnly autoFocus aria-label={`Código-fonte de ${selectedFile} para copiar`} value={source} onFocus={event => event.currentTarget.select()}/><button type="button" onClick={() => setCopyFallbackOpen(false)}>Fechar</button></section></div>}</main>
+    <BuildPreview progress={progress} onOpenBrowser={onOpenBrowser}/>
   </div>;
 }
 
@@ -162,6 +186,10 @@ function SimpleWindow({ id, soundEnabled, onSoundToggle }: { id: 'about' | 'cont
   if (id === 'about') return <article className="os-simple-window"><small>HENRIQUE SOUZA / BELO HORIZONTE</small><h2>Software para<br/><em>trabalho real.</em></h2><p>Desenvolvimento full stack com atenção ao fluxo que as pessoas usam, às regras de negócio e aos dados que sustentam o produto.</p><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer">Acompanhar no GitHub ↗</a></article>;
   if (id === 'contact') return <article className="os-simple-window"><small>CONTATO / BELO HORIZONTE</small><h2>Vamos tirar<br/>uma ideia<br/><em>do papel.</em></h2><p>Me conta onde o processo trava e quem precisa usar a solução.</p><div className="os-contact-links"><a href="https://www.linkedin.com/in/henrique-s-4080b9139/" target="_blank" rel="noreferrer"><span>LINKEDIN</span>Conectar profissionalmente ↗</a><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer"><span>GITHUB</span>Ver código e repositórios ↗</a></div></article>;
   return <article className="os-simple-window os-settings-window"><small>PREFERÊNCIAS DESTA VISITA</small><h2>Ajustes</h2><p>O som da interface fica desligado até você escolher ativá-lo.</p><div className="os-sound-row"><div><strong>Som da interface</strong><span>Teclas e navegação</span></div><button type="button" role="switch" aria-checked={soundEnabled} onClick={onSoundToggle}><i/><b>{soundEnabled ? 'Ligado' : 'Desligado'}</b></button></div></article>;
+}
+
+function BrowserWindow() {
+  return <PortfolioBrowser/>;
 }
 
 export default function DesktopOS({ progress, soundEnabled, onSoundToggle }: {
@@ -189,7 +217,7 @@ export default function DesktopOS({ progress, soundEnabled, onSoundToggle }: {
 
   useEffect(() => {
     if (navigationChosen.current) return;
-    openWindow(progress < .82 ? 'code' : 'explorer', false);
+    openWindow(progress < .82 ? 'code' : 'browser', false);
   }, [progress]);
 
   useEffect(() => {
@@ -208,7 +236,7 @@ export default function DesktopOS({ progress, soundEnabled, onSoundToggle }: {
     setMinimized(current => current.includes(id) ? current : [...current, id]);
     setActiveWindow(current => current === id ? null : current);
   };
-  const shownStartApps = (['explorer', 'code', 'about', 'contact', 'settings'] as WindowId[]).filter(id => windowLabels[id].toLowerCase().includes(startQuery.toLowerCase()));
+  const shownStartApps = (['browser', 'explorer', 'code', 'about', 'contact', 'settings'] as WindowId[]).filter(id => windowLabels[id].toLowerCase().includes(startQuery.toLowerCase()));
   const openProjectFolder = (key: ProjectKey) => {
     setLocation(key);
     setSelectedFile({ location: key, kind: 'readme' });
@@ -226,6 +254,7 @@ export default function DesktopOS({ progress, soundEnabled, onSoundToggle }: {
     <div className="os-wallpaper-caption"><span>HENRIQUE<br/>SOUZA</span><small>Engenharia de software<br/>Belo Horizonte, Brasil</small></div>
     <nav className="os-desktop-shortcuts" aria-label="Atalhos da área de trabalho">
       <DesktopShortcut id="explorer" label="Portfólio" onOpen={openWindow}/>
+      <DesktopShortcut id="browser" label="Site" onOpen={openWindow}/>
       <DesktopShortcut id="code" label="Código" onOpen={openWindow}/>
       <DesktopShortcut id="about" label="Sobre" onOpen={openWindow}/>
       <DesktopShortcut id="contact" label="Contato" onOpen={openWindow}/>
@@ -235,8 +264,9 @@ export default function DesktopOS({ progress, soundEnabled, onSoundToggle }: {
 
     {openWindows.map(id => <div key={id} className={`os-window-layer ${activeWindow === id && !minimized.includes(id) ? 'is-active' : 'is-hidden'}`}>
       <WindowFrame id={id} active={activeWindow === id && !minimized.includes(id)} maximized={maximized} onClose={() => closeWindow(id)} onMinimize={() => minimizeWindow(id)} onMaximize={() => setMaximized(value => !value)}>
+        {id === 'browser' && <BrowserWindow/>}
         {id === 'explorer' && <ExplorerWindow location={location} selected={selectedFile} onSelect={setSelectedFile} onOpenFolder={openProjectFolder} onGoHome={goHome}/>}
-        {id === 'code' && <CodeWindow progress={progress}/>}
+        {id === 'code' && <CodeWindow progress={progress} onOpenBrowser={() => openWindow('browser')}/>}
         {(id === 'about' || id === 'contact' || id === 'settings') && <SimpleWindow id={id} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
       </WindowFrame>
     </div>)}

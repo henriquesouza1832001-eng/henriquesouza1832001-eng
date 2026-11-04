@@ -1,6 +1,6 @@
 # Henrique Souza — portfólio
 
-Portfólio em React, TypeScript, Vite e Three.js. A página inicial acompanha uma única estação de trabalho durante toda a rolagem: a IDE aparece no monitor desde a abertura, o conteúdo passa por uma prévia e revisão e termina num sistema navegável com projetos, perfil e contato.
+Portfólio em React, TypeScript e Vite. A página acompanha a construção de um site dentro de um único monitor: a IDE abre com arquivos reais do repositório, a prévia cresce conforme a rolagem e, no fim, o navegador abre o portfólio pronto no mesmo computador.
 
 ## Rodar localmente
 
@@ -16,24 +16,22 @@ pnpm build
 pnpm preview
 ```
 
-O build fica em `dist/`. O script `scripts/postbuild.mjs` gera páginas individuais de projeto, sitemap e página 404. Para publicar no Cloudflare Pages, envie o conteúdo de `dist/`.
+O build fica em `dist/`. O script `scripts/postbuild.mjs` gera os cases, sitemap e página 404. Para publicar no Cloudflare Pages, envie o conteúdo de `dist/`.
 
 ## Como a experiência funciona
 
-- `src/SoftwareFilm.tsx` acompanha a rolagem e troca as etapas da tela.
-- `src/SoftwareScene.tsx` monta a estação 3D, os dois monitores, o teclado mecânico RGB, o mouse iluminado e o mousepad. O movimento do cursor é refletido no mouse.
-- `src/WorkstationScreen.tsx` mantém a interface interativa dentro do monitor. Os aplicativos abrem código, trabalhos, sobre, contato e ajustes.
-- `src/ide-source.ts` reúne trechos reais do código do portfólio. A IDE começa vazia e revela as linhas de acordo com o scroll; ao voltar, as linhas recolhem.
-- O painel Ajustes tem o controle funcional do som, desligado por padrão.
-- `src/content.ts` concentra descrições, autoria, estado atual, tecnologias e links públicos dos projetos.
-- As prévias e demonstrações locais são identificadas como estudos. Não se conectam aos serviços dos projetos nem se apresentam como capturas de produção.
+- `src/SoftwareFilm.tsx` acompanha a rolagem nativa e conduz a narrativa do problema ao site pronto.
+- `src/software-film.css` cria a composição editorial, o fundo cartográfico e a moldura do monitor em CSS. Há um único monitor, sem cenário 3D ou acessórios cenográficos.
+- `src/DesktopOS.tsx` contém o sistema navegável, a IDE, o Explorador de Arquivos, o menu Iniciar e as janelas de sobre, contato e ajustes.
+- `src/ide-source.ts` carrega arquivos-fonte públicos completos. Na IDE, é possível selecionar um arquivo, copiá-lo, abri-lo no GitHub e abrir a prévia do site.
+- `src/PortfolioBrowser.tsx` mostra o portfólio final dentro do monitor. A lista de projetos usa `src/content.ts`; os cases, produtos e repositórios abrem seus destinos reais.
+- `src/MobilePortfolio.tsx` adapta a mesma sequência para telas estreitas, sem moldura ou status fictícios de telefone.
+- `src/content.ts` concentra descrições, tecnologias, situação e links públicos dos projetos.
 
-Na área de projetos, cada item pode apontar ao case, ao produto publicado e ao repositório correspondente. Os cases ficam em `/projetos/<slug>/`.
+Os projetos sem captura pública usam uma composição tipográfica identificada como parte do portfólio. As imagens de TrilhaBH e Pulso são capturas dos próprios produtos.
 
 ## Publicação
 
 O site público é [henriquesouzas.com](https://henriquesouzas.com/). O projeto do Cloudflare Pages é `portfolio-henrique-souza`.
 
-## Pacote fonte
-
-`public/henrique-portfolio-completo.zip` é uma cópia do código e da documentação, sem dependências instaladas, cache, build ou arquivos de prévia. Depois de extrair, use Node.js e pnpm, rode `pnpm install` e inicie com `pnpm dev`.
+O repositório público está em [github.com/henriquesouza1832001-eng](https://github.com/henriquesouza1832001-eng).

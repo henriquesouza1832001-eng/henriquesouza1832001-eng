@@ -83,4 +83,7 @@
   .mobile-status-bar span{display:none}
   .mobile-status-bar:before{content:"HENRIQUE SOUZA / PORTFÓLIO"}
   .mobile-device-caption{display:none}
+  .mobile-icon-browser{background:#233a7f;color:#f3ce4c;border-color:#5268b8}
+  .mobile-screen-content[data-app=browser]{display:flex}
+  .mobile-screen-content[data-app=browser]>.portfolio-browser{min-height:0;flex:1}
 }

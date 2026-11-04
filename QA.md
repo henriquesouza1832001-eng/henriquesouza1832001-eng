@@ -377,3 +377,12 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Cloudflare Pages Production: publicado no projeto `portfolio-henrique-souza` a partir do commit `f153dd9b7f709173c8b1f63e26644a664736b001`; deploy `https://21a8e75f.portfolio-henrique-souza.pages.dev`.
 - Conferência visual no domínio `henriquesouzas.com` em viewport 1600 × 900: IDE e prévia na entrada; navegador com o portfólio concluído no mesmo monitor ao fim do scroll.
 - HTTP 200 confirmado para home, deploy, cases `rota-di-buteco`, `quarta-amstel`, `condrio` e `mneme`, além de `henrique-portfolio-completo.zip`.
+
+## Construção narrativa do site — 04/11/2026
+
+- A introdução agora acompanha seis momentos: problema, estrutura, conteúdo, interface, revisão e uso. O texto, o arquivo-fonte e a prévia mudam com o scroll nativo; rolar para cima recolhe as linhas e volta à etapa anterior.
+- A IDE percorre `content.ts`, `App.tsx`, `CasePage.tsx` e `SoftwareFilm.tsx`, todos arquivos do repositório. A prévia abre dados e projetos em progressão; no trecho final, o mesmo monitor abre o navegador com o portfólio utilizável.
+- `npm run build`: **passou**; TypeScript, Vite (48 módulos) e postbuild. `git diff --check`: **passou**.
+- Cloudflare Pages Production: publicado no projeto `portfolio-henrique-souza` a partir do commit `59d5762f386c449efe7b8587dd3f8a0e6fb49ca8`; deploy `https://e236a0f1.portfolio-henrique-souza.pages.dev`.
+- HTTP 200 confirmado no domínio e no deploy, nos quatro cases publicados e no ZIP do portfólio.
+- A verificação desta rodada cobre build e disponibilidade HTTP; não inclui uma nova inspeção manual de interação no navegador.

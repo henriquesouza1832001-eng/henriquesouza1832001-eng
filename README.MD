@@ -1,6 +1,6 @@
 # Henrique Souza — portfólio
 
-Portfólio em React, TypeScript e Vite. A página acompanha a construção de um site dentro de um único monitor: a IDE abre com arquivos reais do repositório, a prévia cresce conforme a rolagem e, no fim, o navegador abre o portfólio pronto no mesmo computador.
+Portfólio em React, TypeScript e Vite. A rolagem conduz seis momentos do trabalho dentro de um único monitor: a IDE revela arquivos reais linha a linha enquanto a prévia ganha estrutura, conteúdo e navegação. No fim, o navegador abre o portfólio pronto no mesmo computador.
 
 ## Rodar localmente
 

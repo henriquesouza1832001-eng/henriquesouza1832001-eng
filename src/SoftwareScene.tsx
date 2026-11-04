@@ -932,7 +932,8 @@ const SoftwareScene = forwardRef<SoftwareSceneHandle, SoftwareSceneProps>(functi
         if (disposed) return;
         THREE = three;
         renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 760 ? 1 : 1.45));
+        // Keep the full-resolution render below the page's scroll work on desktop GPUs.
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.15));
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.18;

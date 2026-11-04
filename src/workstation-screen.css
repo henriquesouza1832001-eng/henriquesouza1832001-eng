@@ -2,6 +2,23 @@
 .ws-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;clip-path:inset(50%)}
 .ws-screen button,.ws-screen a{font:inherit}
 .ws-screen button:focus-visible,.ws-screen a:focus-visible,.ws-screen [tabindex]:focus-visible{outline:3px solid #e77855;outline-offset:2px}
+.ws-desktop-home{position:relative;display:flex;height:100%;flex-direction:column;justify-content:space-between;overflow:hidden;padding:48px 66px 25px;background-color:#252a24;background-image:repeating-linear-gradient(0deg,transparent 0 47px,#e9e2d012 48px),repeating-linear-gradient(90deg,transparent 0 47px,#e9e2d012 48px);color:#eee9de}
+.ws-desktop-home:after{position:absolute;top:0;right:0;width:40%;height:100%;background:linear-gradient(150deg,transparent 25%,#c67d5c0c 25.2% 25.5%,transparent 25.7% 49%,#c67d5c0b 49.2% 49.5%,transparent 49.7%);content:"";pointer-events:none}
+.ws-desktop-intro,.ws-desktop-icons,.ws-desktop-hint{position:relative;z-index:1}
+.ws-desktop-intro>span{color:#c8aa88;font:500 15px var(--mono);letter-spacing:.12em}
+.ws-desktop-intro h2{margin:20px 0 12px;color:#f1ece1;font:700 63px/.94 var(--display);letter-spacing:-.04em;text-transform:uppercase}
+.ws-desktop-intro h2 em{color:#d48463;font-style:normal}
+.ws-desktop-intro p{max-width:55ch;margin:0;color:#c9c3b6;font:21px/1.4 var(--reading)}
+.ws-desktop-icons{display:grid;width:max-content;max-width:100%;grid-template-columns:repeat(5,minmax(120px,150px));gap:15px}
+.ws-desktop-icons button{display:flex;min-height:139px;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;padding:13px;border:1px solid #d7ccae30;border-radius:3px;background:#11151170;color:#f0ebdf;text-align:left;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
+.ws-desktop-icons button:hover{transform:translateY(-3px);border-color:#c77c5d;background:#111511bb}
+.ws-desktop-icons button:focus-visible{outline:3px solid #e77855;outline-offset:3px}
+.ws-desktop-icon{display:grid;width:43px;height:43px;place-items:center;border:1px solid #c9b99c;color:#d4c5a6}
+.ws-desktop-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.2}
+.ws-desktop-icon-projects{color:#d48463;border-color:#d4846380}.ws-desktop-icon-ide{color:#9eb2a1;border-color:#9eb2a180}.ws-desktop-icon-about{color:#c3b5d1;border-color:#c3b5d180}.ws-desktop-icon-contact{color:#d6b478;border-color:#d6b47880}.ws-desktop-icon-settings{color:#a9b4ba;border-color:#a9b4ba80}
+.ws-desktop-icons button strong{font:600 19px var(--reading)}
+.ws-desktop-icons button small{color:#bdb7aa;font:14px var(--reading)}
+.ws-desktop-hint{align-self:flex-end;color:#aaa89d;font:11px var(--mono);letter-spacing:.1em}
 .ws-os-header{position:relative;z-index:2;min-width:0;border-bottom:1px solid #ffffff20;background:#1b1d19}
 .ws-windowbar{display:flex;height:100%;align-items:center;gap:22px;padding:0 24px}
 .ws-brand{display:flex;min-width:300px;align-items:center;gap:12px;color:#eee9de;text-decoration:none}
@@ -62,6 +79,14 @@
 .ws-taskbar{display:flex;align-items:center;gap:0;border-top:1px solid #ffffff20;background:#20221e;color:#c9c4b8;font:500 10px var(--mono);letter-spacing:.06em}.ws-taskbar>span{display:flex;height:100%;align-items:center;padding:0 18px;border-right:1px solid #ffffff17}.ws-taskbar .ws-taskbar-mark{justify-content:center;width:50px;background:#bc674a;color:#171914;font:700 15px var(--display)}.ws-taskbar .ws-taskbar-end{gap:9px;margin-left:auto;border:0;color:#a8a397}.ws-taskbar-end i{width:7px;height:7px;border-radius:50%;background:#b8c17b;box-shadow:0 0 6px #b8c17b}
 @keyframes ws-preview-in{from{opacity:0;transform:translateX(15px)}to{opacity:1;transform:none}}
 @media(max-width:760px){
+  .ws-desktop-home{padding:24px 20px}
+  .ws-desktop-intro>span{font-size:12px}
+  .ws-desktop-intro h2{font-size:42px}
+  .ws-desktop-intro p{font-size:18px}
+  .ws-desktop-icons{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%}
+  .ws-desktop-icons button{min-height:95px;padding:8px}
+  .ws-desktop-icons button strong{font-size:15px}
+  .ws-desktop-icons button small{font-size:12px}
   .ws-screen{grid-template-rows:94px minmax(0,1fr) 50px;font-size:21px}
   .ws-windowbar{gap:12px;padding-inline:20px}
   .ws-brand{min-width:250px;gap:14px}.ws-brand>svg{width:43px;height:43px}.ws-brand>span{font-size:25px}.ws-brand small{font-size:12px}

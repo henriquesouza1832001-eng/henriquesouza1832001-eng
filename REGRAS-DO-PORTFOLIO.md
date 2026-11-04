@@ -107,13 +107,14 @@ Os cases não devem repetir o mesmo template em todos os detalhes. Reutilizar es
 
 ## 7. Navegação, rolagem e experiência interativa
 
-- A home explica como uma ideia chega a produto em um único percurso vertical: briefing, IDE, protótipo junto do código e produto. A pessoa rola a página; não há tabs, numeração ou menu separado para essas passagens.
-- O mesmo espaço de trabalho muda conforme o scroll. A folha do briefing dá lugar ao editor, o editor divide a cena com a prévia e o produto ocupa a bancada no final. Não há loop decorativo nem controle forçado da roda.
-- A demonstração de solicitação é explicitamente conceitual, local à página e não atribuída a nenhum projeto real. O código exibido corresponde à regra que o formulário executa.
-- Depois do percurso, os projetos aparecem na mesma página com peças visuais específicas e links diretos. Rota di Buteco abre a seleção e recebe maior presença. PULSO e TrilhaBH mantêm seus estados explícitos.
+- O computador é a própria home e a cena permanece durante todo o percurso. No desktop, a tela começa num ambiente de trabalho com ícones funcionais; cada ícone abre um app. O primeiro movimento de scroll inicia a IDE e a revelação de código.
+- O scroll do navegador continua nativo e vertical. Não interceptar roda ou gesto de toque, avançar sozinho, nem prender a navegação em painéis internos. O progresso atualiza a cena e pode ser revertido ao rolar para cima.
+- A IDE mostra trechos reais do código público deste portfólio, linha a linha e conforme a posição do scroll. O app continua acessível pela navegação do monitor; não usar loop de digitação independente do gesto.
+- No fim do percurso, a tela de projetos prioriza Rota di Buteco e oferece prova pública para cada trabalho, com estado explícito para PULSO e TrilhaBH. Cases mantêm URLs diretas, recarregáveis e compartilháveis.
+- Em telas estreitas, a metáfora muda para um celular em retrato, com tela inicial e ícones equivalentes para projetos, código, sobre, contato e ajustes. O mesmo conteúdo e os mesmos links ficam acessíveis ao toque. A cena Three.js do desktop não deve ser carregada no mobile.
 - Cases mantêm URLs diretas, recarregáveis e compartilháveis. Links de índice precisam levar ao case correto e as âncoras devem respeitar o cabeçalho fixo.
-- **Decisão atual:** a cena do computador é a própria home, não uma Oficina opcional ou um jogo separado. O scroll nativo conduz a passagem da IDE ao produto; os aplicativos visíveis no monitor dão acesso direto a trabalhos, sobre, contato e ajustes. Quem chega com pressa encontra esses controles desde a abertura, sem precisar completar a narrativa.
-- A IDE abre sem linhas preenchidas. Ao rolar, revela trechos reais do código do portfólio; rolar para cima recolhe as linhas. Não simular um loop de digitação independente do gesto.
+- **Decisão atual:** a cena do computador é a própria home, não uma Oficina opcional ou um jogo separado. O desktop abre com ícones para trabalhos, código, sobre, contato e ajustes; o primeiro scroll inicia a IDE. Quem chega com pressa pode abrir qualquer app sem completar a narrativa.
+- O celular tem sua própria tela inicial com os mesmos apps. O scroll continua na página e conduz a revelação de código e a tela de projetos.
 - O painel de ajustes tem ao menos um controle funcional. O som começa desligado e só é ativado por escolha explícita.
 - O computador tem relação com o trabalho de Henrique: acompanha uma interface sendo construída e termina como um lugar navegável para inspecionar projetos e código. Não criar um jogo separado nem adicionar WebGL só para impressionar.
 - Não roubar o cursor, bloquear controles do navegador, forçar movimento, esconder o botão de saída ou exigir arrastar. Não usar personagem descartado, carro ou mecânica que imite a identidade de Bruno Simon.
@@ -123,7 +124,7 @@ Os cases não devem repetir o mesmo template em todos os detalhes. Reutilizar es
 
 - **React e TypeScript** são a base aprovada para a aplicação interativa atual. Manter componentes e conteúdo tipado; não migrar de stack apenas por preferência estética.
 - Adicionar dependências só quando uma necessidade concreta não puder ser atendida bem com a stack existente. O percurso atual usa React, HTML, CSS e os renderers de projeto existentes; Blender e Three.js não são requisito para contar a passagem do briefing ao produto.
-- Carregar a experiência interativa pesada sob demanda. A home deve abrir rapidamente, com conteúdo útil antes de carregar a Oficina.
+- Carregar a bancada Three.js somente em desktop e manter os ícones HTML úteis enquanto ela inicia. Em telas estreitas, usar a versão do celular sem criar um contexto WebGL.
 - Usar HTML semântico, foco visível, rótulos para controles, links externos seguros e contrastes legíveis. A experiência principal precisa funcionar sem hover.
 - Garantir layout em 320, 375, 768 e desktop amplo. Não deixar títulos cortados, cards inacessíveis ou a página com rolagem horizontal acidental.
 - Manter títulos e descrições próprios por case, 404, canonical, sitemap e metadados sociais atualizados.
@@ -159,7 +160,7 @@ Definir ordem da home, argumentos de cada case, conteúdo de sobre, chamadas e c
 
 ### Fase D — Computador como home
 
-A bancada Three.js é a única cena durante o percurso. O monitor principal começa na IDE; a rolagem revela o código e a prévia, depois deixa a interface de projetos em primeiro plano. Aplicativos visíveis oferecem trabalhos, sobre, contato e ajustes. O ajuste de som é real, global e desligado ao abrir. Validar teclado, toque, foco, saída, viewport e movimento reduzido.
+A bancada Three.js é a cena desktop durante o percurso. A tela começa num desktop com ícones funcionais; o primeiro scroll abre a IDE e revela código real. O percurso termina na interface de projetos. Em viewport estreito, usar um celular em retrato com os mesmos apps, sem WebGL. O ajuste de som é real, global e desligado ao abrir. Validar teclado, toque, foco, saída, viewport e movimento reduzido.
 
 A cena usa objetos e texturas procedurais próprios: monitor e segunda tela acesa, mesa de madeira, parede de reboco mineral, luminária, teclado, mouse e sombras. Reflexo e iluminação do monitor permanecem sutis e ligados à leitura da cena. Não substituir por mockup fotográfico nem adicionar efeitos de renderização contínua. Se um elemento 3D não explicar ou sustentar o trabalho, simplificar ou removê-lo e registrar o motivo no QA.
 

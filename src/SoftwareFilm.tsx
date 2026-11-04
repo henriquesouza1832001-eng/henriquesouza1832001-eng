@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import SoftwareScene, { type SoftwareSceneHandle } from './SoftwareScene';
 import { type ScreenStage } from './WorkstationScreen';
 import { playClick, playKey } from './sound';
+import MobilePortfolio from './MobilePortfolio';
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 
@@ -20,6 +21,14 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
   const [stage, setStage] = useState<ScreenStage>('ide');
   const [typingStep, setTypingStep] = useState(0);
   const previousTypingStepRef = useRef(0);
+  const [mobileViewport, setMobileViewport] = useState(() => window.matchMedia('(max-width: 760px)').matches);
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 760px)');
+    const updateViewport = () => setMobileViewport(query.matches);
+    query.addEventListener('change', updateViewport);
+    return () => query.removeEventListener('change', updateViewport);
+  }, []);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -53,7 +62,7 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
     );
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
-    window.addEventListener('pointermove', pointer, { passive: true });
+    if (!mobileViewport) window.addEventListener('pointermove', pointer, { passive: true });
     update();
     return () => {
       cancelAnimationFrame(frame);
@@ -61,11 +70,13 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
       window.removeEventListener('resize', update);
       window.removeEventListener('pointermove', pointer);
     };
-  }, []);
+  }, [mobileViewport]);
 
   return <section className="software-film" id="processo" ref={rootRef} data-active={stage} aria-label="Portfólio interativo de Henrique Souza">
     <div className="film-sticky">
-      <SoftwareScene ref={sceneRef} stage={stage} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
+      {mobileViewport
+        ? <MobilePortfolio progress={Number(rootRef.current?.style.getPropertyValue('--film-progress') ?? 0)} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
+        : <SoftwareScene ref={sceneRef} stage={stage} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
     </div>
     <div className="film-track" aria-hidden="true">
       <div className="film-chapter film-chapter-ide"/>

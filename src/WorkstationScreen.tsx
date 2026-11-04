@@ -4,10 +4,11 @@ import { codeFiles, sourceByFile } from './ide-source';
 import './workstation-screen.css';
 
 export type ScreenStage = 'ide' | 'prototype' | 'review' | 'desktop';
-type ScreenApp = 'ide' | 'projects' | 'about' | 'contact' | 'settings';
+type ScreenApp = 'home' | 'ide' | 'projects' | 'about' | 'contact' | 'settings';
 
 const icon = (name: ScreenApp) => {
   const paths: Record<ScreenApp, string> = {
+    home: 'M1.5 7.2 8 1.8l6.5 5.4v6.5H9.4V9.1H6.6v4.6H1.5z',
     ide: 'M5 6l-4 4 4 4M11 14l4-4-4-4M9 16l2-12',
     projects: 'M2 3h12v12H2zM5 6h6M5 9h6M5 12h3',
     about: 'M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 15a6 6 0 0 1 12 0',
@@ -19,6 +20,7 @@ const icon = (name: ScreenApp) => {
 
 function WindowBar({ activeApp, onSelect }: { activeApp: ScreenApp; onSelect: (app: ScreenApp) => void }) {
   const tabs: { id: ScreenApp; label: string }[] = [
+    { id: 'home', label: 'Início' },
     { id: 'ide', label: 'Código' },
     { id: 'projects', label: 'Trabalhos' },
     { id: 'about', label: 'Sobre' },
@@ -36,6 +38,25 @@ function WindowBar({ activeApp, onSelect }: { activeApp: ScreenApp; onSelect: (a
       </button>)}
     </nav>
   </div>;
+}
+
+function DesktopHome({ onOpen }: { onOpen: (app: ScreenApp) => void }) {
+  const apps: { id: ScreenApp; title: string; note: string }[] = [
+    { id: 'projects', title: 'Projetos', note: 'Produtos e cases' },
+    { id: 'ide', title: 'Código', note: 'Arquivos públicos' },
+    { id: 'about', title: 'Sobre', note: 'Como eu trabalho' },
+    { id: 'contact', title: 'Contato', note: 'Vamos conversar' },
+    { id: 'settings', title: 'Ajustes', note: 'Som e interface' },
+  ];
+  return <section className="ws-desktop-home" aria-labelledby="ws-desktop-title">
+    <div className="ws-desktop-intro"><span>HENRIQUE SOUZA · BELO HORIZONTE</span><h2 id="ws-desktop-title">Engenharia de software<br/><em>em uso.</em></h2><p>Abra um app para conhecer o trabalho, o código e os sistemas por trás de cada projeto.</p></div>
+    <nav className="ws-desktop-icons" aria-label="Aplicativos disponíveis">
+      {apps.map(app => <button key={app.id} type="button" onClick={() => onOpen(app.id)}>
+        <span className={`ws-desktop-icon ws-desktop-icon-${app.id}`}>{icon(app.id)}</span><strong>{app.title}</strong><small>{app.note}</small>
+      </button>)}
+    </nav>
+    <span className="ws-desktop-hint">CLIQUE OU USE A NAVEGAÇÃO ACIMA</span>
+  </section>;
 }
 
 function IdeWindow({ stage, typingStep }: { stage: ScreenStage; typingStep: number }) {
@@ -146,12 +167,16 @@ function ContactWindow() {
 }
 
 export default function WorkstationScreen({ stage, typingStep, soundEnabled, onSoundToggle }: { stage: ScreenStage; typingStep: number; soundEnabled: boolean; onSoundToggle: () => void }) {
-  const [activeApp, setActiveApp] = useState<ScreenApp>('ide');
-  useEffect(() => { if (stage === 'desktop') setActiveApp('projects'); }, [stage]);
+  const [activeApp, setActiveApp] = useState<ScreenApp>('home');
+  useEffect(() => {
+    if (stage === 'desktop') setActiveApp('projects');
+    else if (typingStep > 0 && activeApp === 'home') setActiveApp('ide');
+  }, [stage, typingStep, activeApp]);
   return <section id="workstation-screen" className="ws-screen" data-stage={stage} aria-label="Computador interativo de Henrique Souza">
     <h1 className="ws-visually-hidden">Henrique Souza — engenharia de software em Belo Horizonte</h1>
     <header className="ws-os-header"><WindowBar activeApp={activeApp} onSelect={setActiveApp}/></header>
     <div className="ws-os-body">
+      {activeApp === 'home' && <DesktopHome onOpen={setActiveApp}/>}
       {activeApp === 'ide' && <IdeWindow stage={stage} typingStep={typingStep}/>}
       {activeApp === 'projects' && <ProjectsWindow/>}
       {activeApp === 'about' && <AboutWindow/>}

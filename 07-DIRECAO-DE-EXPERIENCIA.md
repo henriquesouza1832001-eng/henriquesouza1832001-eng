@@ -1,18 +1,22 @@
 # Direção de experiência — um computador em funcionamento
 
-**Estado:** direção ativa para a home em 03/11/2026. Este documento formaliza a mudança de “Oficina opcional” para computador como apresentação principal. A navegação pelos aplicativos continua direta e não exige terminar a narrativa.
+**Estado:** direção ativa para a home em 03/11/2026. Este documento formaliza o computador como apresentação principal no desktop e a adaptação para celular em retrato. A navegação pelos aplicativos continua direta e não exige terminar a narrativa.
 
 ## Decisão central
 
 A página inicial é uma bancada de desenvolvimento vista como ambiente físico, com um computador navegável dentro do monitor. A metáfora tem relação direta com o trabalho de Henrique: a pessoa acompanha código e interface tomando forma e depois usa a mesma tela para abrir projetos, autoria e contato.
 
-O computador não é um jogo nem uma porta escondida. A navegação do monitor fica disponível desde o início. O scroll nativo conduz a narrativa; os aplicativos visíveis levam a conteúdo e links reais.
+O computador não é um jogo nem uma porta escondida. A tela inicial oferece ícones para entrar em qualquer app; a navegação do monitor também permanece disponível. O scroll nativo conduz a narrativa; os aplicativos levam a conteúdo e links reais.
 
 ## Percurso
 
-### Abertura — IDE
+### Abertura — desktop
 
-A cena abre com o editor de código visível no monitor principal. O painel começa sem linhas preenchidas; o scroll revela o código linha a linha. O trecho inicial vem dos dados públicos de `src/content.ts`, com Rota di Buteco e Quarta é Dia de Amstel e seus estados atuais. Rolando para cima, as linhas recolhem. Um avanço rápido vai diretamente ao ponto correspondente, sem uma animação de digitação independente.
+A cena abre num desktop com ícones funcionais para Projetos, Código, Sobre, Contato e Ajustes. Um clique abre o app escolhido. O primeiro movimento de scroll abre a IDE se a pessoa ainda não escolheu um app; o painel começa sem linhas preenchidas e revela código real linha a linha. O trecho inicial vem dos dados públicos de `src/content.ts`, com os projetos e estados atuais. Rolando para cima, as linhas recolhem. Um avanço rápido vai diretamente ao ponto correspondente, sem animação de digitação independente.
+
+### Adaptação mobile — celular
+
+Em telas estreitas, a bancada desktop dá lugar a um celular em retrato, com tela inicial própria e os mesmos apps. A pessoa pode tocar em projetos, código, sobre, contato ou ajustes. O scroll do navegador continua nativo e conduz a revelação de código e a tela de projetos; a versão mobile não carrega a cena WebGL da bancada.
 
 ### Código, protótipo e entrega
 
@@ -24,6 +28,7 @@ A prévia de solicitação é uma demonstração editorial deste portfólio. Nã
 
 Os controles ficam visíveis na barra superior do monitor:
 
+- **Início:** ícones funcionais para abrir os aplicativos.
 - **Código:** arquivos-fonte selecionáveis; linhas aparecem com o scroll.
 - **Trabalhos:** lista de projetos, estado, papel, tecnologias e links diretos para produto, case ou repositório.
 - **Sobre:** contexto profissional e link para acompanhar o código.
@@ -55,6 +60,7 @@ Ao chegar ao final do percurso, o computador abre Trabalhos. A pessoa pode escol
 - `src/SoftwareFilm.tsx`: progresso do scroll, estados da narrativa e revelação por etapas.
 - `src/SoftwareScene.tsx`: bancada Three.js, luz, sombras, projeção do monitor e canvas de fundo.
 - `src/WorkstationScreen.tsx`: aplicativos funcionais exibidos na tela física.
+- `src/MobilePortfolio.tsx` e `src/mobile-portfolio.css`: sistema de apps para celular, sem WebGL.
 - `src/ide-source.ts`: trechos apresentados pelo editor.
 - `src/workstation-screen.css` e `src/software-film.css`: interface do sistema e composição do monitor.
 - `src/content.ts`, `src/CasePage.tsx` e `src/ProjectRenderers.tsx`: dados, páginas de case e demonstrações dos projetos.
@@ -62,8 +68,9 @@ Ao chegar ao final do percurso, o computador abre Trabalhos. A pessoa pode escol
 
 ## Critérios para cada revisão
 
-- A IDE está visível ao abrir, inicia sem código pronto e revela linhas seguindo o scroll nos dois sentidos.
+- No desktop, a tela inicial mostra apps funcionais; o scroll abre a IDE, que começa sem código pronto e revela linhas nos dois sentidos. No mobile, a tela inicial do celular mostra os mesmos apps.
 - A tela final permanece dentro do mesmo monitor e oferece acesso claro aos trabalhos e contato.
 - Cada controle responde a clique, teclado e toque; o som pode ser ligado e desligado nos Ajustes.
+- O scroll vertical permanece nativo, sem gesto sequestrado. A versão mobile não inicializa Three.js.
 - O texto legível está no DOM, o foco é visível e movimento reduzido é respeitado.
 - Confirmar build, rotas, links, responsividade e funcionamento da cena antes de atualizar o registro de QA e publicar.

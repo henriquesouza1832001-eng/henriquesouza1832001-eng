@@ -318,3 +318,15 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Rotas da home, quatro cases, 404, sitemap e pacote fonte responderam HTTP 200 na prévia de produção local. Rota di Buteco e Quarta Amstel responderam HTTP 200 nos endereços públicos.
 - Cloudflare Pages Production: **publicado** no projeto `portfolio-henrique-souza`; o deployment retornou sucesso em `https://d4339b1c.portfolio-henrique-souza.pages.dev`. O domínio `henriquesouzas.com` permanece vinculado ao projeto.
 - Inspeção visual e medição de frames em navegador: **pendentes**. A política local bloqueou a abertura do Edge em segundo plano para a tentativa de perfil; não há medição de FPS ou de fluidez declarada nesta revisão. O tamanho do bundle, sozinho, não comprova desempenho do scroll.
+
+## Iteração — entrada por apps e interface mobile, 03/11/2026
+
+- A tela inicial desktop agora oferece ícones funcionais para Projetos, Código, Sobre, Contato e Ajustes. O primeiro scroll abre a IDE se a pessoa ainda não escolheu um app; a navegação continua disponível no topo do monitor.
+- Em telas de até 760 px, a bancada WebGL é substituída por um celular em retrato com os mesmos apps. Projetos, repositórios e links de contato continuam disponíveis por toque.
+- A auditoria do caminho principal não encontrou listeners de `wheel`/`touchmove` nem `preventDefault` aplicados ao scroll. O documento continua com a bancada sticky por quatro alturas de viewport. A causa provável de sensação de lentidão é o custo da cena desktop 3D; isso é uma hipótese baseada no código, não um perfil de frames medido.
+- O pixel ratio máximo do renderizador desktop foi reduzido de 1,45 para 1,15. A versão mobile não inicializa Three.js.
+- `npm run build`: **passou**; TypeScript, Vite (51 módulos), quatro páginas de case, sitemap e 404. Chunk principal: 331,67 kB / 102,98 kB gzip; Three.js: 568,58 kB / 143,19 kB gzip; o aviso de chunk acima de 500 kB permanece.
+- `git diff --check`: **passou**.
+- Prévia de produção local: **HTTP 200** para home, quatro cases, 404 e ZIP público.
+- Inspeção visual do novo estado, teste de gesto em dispositivo real e perfil de FPS: **pendentes**. A compilação e a inspeção estática não comprovam fluidez visual.
+- Cloudflare Pages: **pendente de novo deploy e verificação pública**.

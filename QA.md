@@ -371,3 +371,9 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - `npm run build`: **passou**; TypeScript, Vite (48 módulos) e postbuild; JavaScript principal de 319,38 kB / 96,15 kB gzip.
 - Inspeção visual no Edge headless: entrada e final em 1600 × 900; final em 390 × 844 sem overflow horizontal. A IDE abriu a prévia, a lista selecionou TrilhaBH e o atalho Portfólio abriu o Explorador. A cópia manual apresentou o arquivo completo quando o clipboard não estava disponível.
 - Publicação Cloudflare Pages desta iteração: **pendente**.
+
+## Publicação — construção do portfólio no monitor, 03/11/2026
+
+- Cloudflare Pages Production: publicado no projeto `portfolio-henrique-souza` a partir do commit `f153dd9b7f709173c8b1f63e26644a664736b001`; deploy `https://21a8e75f.portfolio-henrique-souza.pages.dev`.
+- Conferência visual no domínio `henriquesouzas.com` em viewport 1600 × 900: IDE e prévia na entrada; navegador com o portfólio concluído no mesmo monitor ao fim do scroll.
+- HTTP 200 confirmado para home, deploy, cases `rota-di-buteco`, `quarta-amstel`, `condrio` e `mneme`, além de `henrique-portfolio-completo.zip`.

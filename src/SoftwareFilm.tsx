@@ -67,7 +67,7 @@ export default function SoftwareFilm({ soundEnabled, onSoundToggle }: { soundEna
     <div className="film-sticky">
       {mobileViewport
         ? <MobilePortfolio progress={Number(rootRef.current?.style.getPropertyValue('--film-progress') ?? 0)} typingStep={typingStep} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>
-        : <DesktopOS typingStep={typingStep} progress={progressRef.current} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
+        : <DesktopOS progress={progressRef.current} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
     </div>
     <div className="film-track" aria-hidden="true">
       <div className="film-chapter film-chapter-ide"/>

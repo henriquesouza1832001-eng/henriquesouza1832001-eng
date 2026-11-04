@@ -351,3 +351,13 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Navegador Edge local, viewport de 1600 × 900, entrada real de mouse via Chrome DevTools Protocol: Portfólio abriu o Explorador; a pasta Quarta é Dia de Amstel abriu; PRODUTO.url exibiu o endereço publicado; o atalho Código abriu a IDE e permitiu selecionar arquivo; minimizar/restaurar pela barra de tarefas, menu Iniciar, Ajustes, maximizar/restaurar e fechar responderam.
 - npm run build: passou; TypeScript, Vite e postbuild.
 - Cloudflare Pages Production: publicado no projeto `portfolio-henrique-souza` em `https://da347ac9.portfolio-henrique-souza.pages.dev`; `henriquesouzas.com` e o deploy responderam HTTP 200 para home, quatro cases e ZIP-fonte. No Edge local e no site publicado, cliques reais abriram o Explorador, o projeto Amstel e o link `https://quarta-amstel.pages.dev/`.
+
+
+## Iteração: leitura da IDE durante a rolagem, 03/11/2026
+
+- Na entrada, a IDE já mostra quatro linhas reais de src/content.ts; não há quadro vazio antes da primeira rolagem.
+- A rolagem percorre os arquivos atuais content.ts, App.tsx e SoftwareFilm.tsx em três etapas. As linhas aparecem junto com o avanço; o código usa cores de sintaxe, quebra dentro do editor e ficou maior.
+- Escolher um arquivo manualmente mantém essa escolha enquanto a pessoa continua rolando. No final, o Explorador abre automaticamente se ela não tiver escolhido outro aplicativo.
+- Chrome local, viewport 1600 x 900: em 0%, 40%, 70% e 90% de rolagem foram conferidos o arquivo ativo e a abertura final do Explorador. A seleção manual de App.tsx permaneceu após a rolagem; o editor não criou overflow horizontal.
+- npm run build: passou; TypeScript, Vite e postbuild. git diff --check: passou.
+- Publicação: pendente após atualizar o pacote-fonte.

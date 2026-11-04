@@ -61,6 +61,20 @@ function ProjectLinks({ project, kind }: { project: Project; kind?: ExplorerFile
   </div>;
 }
 
+const codeTokenPattern = /(\/\/.*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`|\b(?:const|let|return|if|else|import|from|export|default|type|interface|function|async|await|new|true|false|null|undefined)\b|\b\d+(?:\.\d+)?\b)/g;
+const codeKeywords = new Set(['const', 'let', 'return', 'if', 'else', 'import', 'from', 'export', 'default', 'type', 'interface', 'function', 'async', 'await', 'new', 'true', 'false', 'null', 'undefined']);
+
+function CodeLineText({ line }: { line: string }) {
+  return <>{line.split(codeTokenPattern).map((token, index) => {
+    if (!token) return null;
+    const className = token.startsWith('//') ? 'code-token-comment'
+      : token.startsWith('"') || token.startsWith("'") || token.startsWith('`') ? 'code-token-string'
+      : /^\d/.test(token) ? 'code-token-number'
+      : codeKeywords.has(token) ? 'code-token-keyword' : undefined;
+    return className ? <span key={index} className={className}>{token}</span> : token;
+  })}</>;
+}
+
 function ExplorerWindow({ location, selected, onSelect, onOpenFolder, onGoHome }: {
   location: ExplorerLocation;
   selected: FileSelection;
@@ -131,13 +145,16 @@ function ExplorerWindow({ location, selected, onSelect, onOpenFolder, onGoHome }
   </div>;
 }
 
-function CodeWindow({ typingStep }: { typingStep: number }) {
-  const [selectedFile, setSelectedFile] = useState('content.ts');
+function CodeWindow({ progress }: { progress: number }) {
+  const [manualFile, setManualFile] = useState<string | null>(null);
+  const automaticFile = progress < .3 ? 'content.ts' : progress < .56 ? 'App.tsx' : 'SoftwareFilm.tsx';
+  const selectedFile = manualFile ?? automaticFile;
   const lines = sourceByFile[selectedFile] ?? sourceByFile['content.ts'];
-  const visibleLines = Math.ceil((typingStep / 18) * lines.length);
+  const phaseProgress = progress < .3 ? progress / .3 : progress < .56 ? (progress - .3) / .26 : (progress - .56) / .26;
+  const visibleLines = manualFile ? lines.length : Math.max(Math.min(4, lines.length), Math.ceil(phaseProgress * lines.length));
   return <div className="code-window-body">
-    <aside className="code-explorer"><span>ARQUIVOS DO PROJETO</span><b><i/> SRC</b>{codeFiles.map(file => <button type="button" key={file} className={selectedFile === file ? 'is-selected' : ''} onClick={() => setSelectedFile(file)}><i>TS</i>{file}</button>)}</aside>
-    <main className="code-editor"><div className="code-tab"><span>TS</span> src/{selectedFile}</div><div className="code-breadcrumb">src <b>›</b> {selectedFile}</div><pre aria-label={`Código real de ${selectedFile}`}><code>{lines.slice(0, visibleLines).map((line, index) => <span key={`${selectedFile}-${index}`}><i>{String(index + 1).padStart(2, '0')}</i>{line}</span>)}{visibleLines === 0 && <em>Role para revelar o código, linha por linha.</em>}</code></pre><footer className="code-statusbar"><span>TypeScript</span><span>Trecho público do portfólio</span></footer></main>
+    <aside className="code-explorer"><span>ARQUIVOS DO PROJETO</span><b><i/> SRC</b>{codeFiles.map(file => <button type="button" key={file} className={selectedFile === file ? 'is-selected' : ''} onClick={() => setManualFile(file)}><i>TS</i>{file}</button>)}</aside>
+    <main className="code-editor"><div className="code-tab"><span>TS</span> src/{selectedFile}</div><div className="code-breadcrumb">src <b>›</b> {selectedFile}</div><pre aria-label={`Código real de ${selectedFile}`}><code>{lines.slice(0, visibleLines).map((line, index) => <span key={`${selectedFile}-${index}`}><i>{String(index + 1).padStart(2, '0')}</i><span className="code-line-text"><CodeLineText line={line}/></span></span>)}</code></pre><footer className="code-statusbar"><span>TypeScript</span><span>Trecho público do portfólio</span></footer></main>
   </div>;
 }
 
@@ -147,8 +164,8 @@ function SimpleWindow({ id, soundEnabled, onSoundToggle }: { id: 'about' | 'cont
   return <article className="os-simple-window os-settings-window"><small>PREFERÊNCIAS DESTA VISITA</small><h2>Ajustes</h2><p>O som da interface fica desligado até você escolher ativá-lo.</p><div className="os-sound-row"><div><strong>Som da interface</strong><span>Teclas e navegação</span></div><button type="button" role="switch" aria-checked={soundEnabled} onClick={onSoundToggle}><i/><b>{soundEnabled ? 'Ligado' : 'Desligado'}</b></button></div></article>;
 }
 
-export default function DesktopOS({ typingStep, progress, soundEnabled, onSoundToggle }: {
-  typingStep: number; progress: number; soundEnabled: boolean; onSoundToggle: () => void;
+export default function DesktopOS({ progress, soundEnabled, onSoundToggle }: {
+  progress: number; soundEnabled: boolean; onSoundToggle: () => void;
 }) {
   const [openWindows, setOpenWindows] = useState<WindowId[]>([]);
   const [activeWindow, setActiveWindow] = useState<WindowId | null>(null);
@@ -214,12 +231,12 @@ export default function DesktopOS({ typingStep, progress, soundEnabled, onSoundT
       <DesktopShortcut id="contact" label="Contato" onOpen={openWindow}/>
       <DesktopShortcut id="settings" label="Ajustes" onOpen={openWindow}/>
     </nav>
-    <p className="os-desktop-hint">A IDE ACOMPANHA A CONSTRUÇÃO. A PASTA PORTFÓLIO ABRE OS PROJETOS.</p>
+    <p className="os-desktop-hint">{progress >= .82 || activeWindow === 'explorer' ? 'ABRA UMA PASTA PARA EXPLORAR' : 'ROLE PARA REVELAR O CÓDIGO'}</p>
 
     {openWindows.map(id => <div key={id} className={`os-window-layer ${activeWindow === id && !minimized.includes(id) ? 'is-active' : 'is-hidden'}`}>
       <WindowFrame id={id} active={activeWindow === id && !minimized.includes(id)} maximized={maximized} onClose={() => closeWindow(id)} onMinimize={() => minimizeWindow(id)} onMaximize={() => setMaximized(value => !value)}>
         {id === 'explorer' && <ExplorerWindow location={location} selected={selectedFile} onSelect={setSelectedFile} onOpenFolder={openProjectFolder} onGoHome={goHome}/>}
-        {id === 'code' && <CodeWindow typingStep={typingStep}/>}
+        {id === 'code' && <CodeWindow progress={progress}/>}
         {(id === 'about' || id === 'contact' || id === 'settings') && <SimpleWindow id={id} soundEnabled={soundEnabled} onSoundToggle={onSoundToggle}/>}
       </WindowFrame>
     </div>)}

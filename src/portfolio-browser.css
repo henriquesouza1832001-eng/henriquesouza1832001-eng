@@ -16,3 +16,37 @@
 @media(max-width:560px){.build-preview{min-width:230px}.build-preview-content{padding:12px}.build-preview-hero h2{font-size:30px}.build-preview-feature{grid-template-columns:76px minmax(0,1fr);gap:7px;padding:6px}.build-preview-feature h3{font-size:16px}.build-preview-feature p{font-size:8px}.build-preview-feature .site-project-art{min-height:88px}.build-preview-feature .site-project-art>img{min-height:88px}.build-preview-work-heading>span{font-size:7px}.build-preview-work-heading>button{font-size:8px}.portfolio-browser-toolbar{gap:6px;padding:0 7px}.portfolio-site-nav{align-items:flex-start}.portfolio-site-brand{font-size:8px}.portfolio-site-brand img{width:28px;height:28px}.portfolio-site-brand small{font-size:6px}.portfolio-site-nav nav{gap:8px;padding-top:8px}.portfolio-site-nav nav a{font-size:8px}.portfolio-site-hero h1{font-size:clamp(44px,12vw,68px)}.portfolio-site-hero>div p{font-size:10px}.portfolio-site-section-heading{align-items:start;flex-direction:column;gap:8px}.portfolio-site-section-heading>p{max-width:38ch}.portfolio-site-work-layout{grid-template-columns:1fr}.portfolio-site-work-layout>.site-project-list{display:grid;grid-template-columns:1fr 1fr}.portfolio-site-work-layout .site-project-list>button{grid-template-columns:22px minmax(0,1fr);gap:5px}.portfolio-site-work-layout .site-project-list>button:nth-child(odd){border-right:1px solid #dad8cf}.portfolio-site-work-layout .site-project-arrow{display:none}.portfolio-site-feature>.site-project-art{height:128px}.portfolio-site-feature-copy h3{font-size:32px}.portfolio-site-contact{flex-direction:column}.portfolio-site-contact>div:last-child{flex-direction:row;flex-wrap:wrap;gap:10px 18px}}
 @media(prefers-reduced-motion:reduce){.portfolio-browser-scroll{scroll-behavior:auto}}
 @media(max-width:560px){.portfolio-site-brand{font-size:9px}.portfolio-site-brand small{font-size:7px}.portfolio-site-nav nav a{font-size:9px}.portfolio-site-hero>p,.portfolio-site-section-heading span,.portfolio-site-about>span,.portfolio-site-contact>div:first-child>span{font-size:9px}.portfolio-site-hero>div p{font-size:11px}.portfolio-site-section-heading>p{font-size:11px}.site-project-list-copy strong{font-size:11px}.site-project-list-copy small{font-size:9px}.portfolio-site-feature-top{font-size:9px}.portfolio-site-feature-copy>p:not(.portfolio-site-feature-line){font-size:11px}.portfolio-site-role{font-size:10px!important}.portfolio-site-stack span{font-size:9px}.site-project-links a,.portfolio-site-about>a{font-size:10px}.portfolio-site-about>p{font-size:12px}.portfolio-site-contact p{font-size:11px}.portfolio-site-contact>div:last-child a{font-size:11px}}
+.build-preview-blueprint{position:relative;display:flex;min-height:100%;flex-direction:column;justify-content:space-between;overflow:hidden;padding:clamp(18px,3vw,38px);background-color:#e9e8e0;background-image:linear-gradient(#29362d12 1px,transparent 1px),linear-gradient(90deg,#29362d12 1px,transparent 1px);background-size:22px 22px;color:#20251f}
+.blueprint-heading{display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid #424b3d66;color:#3f4b3d;font:600 9px var(--mono,monospace);letter-spacing:.09em}
+.blueprint-heading b{font-weight:600;color:#344bc0}
+.blueprint-hero{display:flex;max-width:76%;flex-direction:column;gap:9px;margin:10px 0}
+.blueprint-rule{height:clamp(24px,5vw,56px);border:1px solid #35403660;background:#f4f2e9b8}
+.blueprint-rule-short{width:70%;height:13px;margin-bottom:6px}
+.blueprint-rule-long{width:100%}
+.blueprint-rule-mid{width:84%}
+.blueprint-sections{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.blueprint-sections i{height:clamp(42px,9vw,90px);border:1px solid #35403660;background:#f4f2e985}
+.build-preview-blueprint>p{max-width:38ch;margin:14px 0 0;color:#4e5749;font-size:11px;line-height:1.45}
+.build-preview-page[data-depth="1"]{background:#e9e8e0}
+.site-project-art{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:12px}
+.site-project-art .project-art-label,.site-project-art .project-art-caption{position:static;inset:auto;display:block;max-width:none;color:inherit;font:inherit;text-transform:none}
+.project-art-label{font:600 8px/1.3 var(--mono,monospace)!important;letter-spacing:.06em;text-transform:uppercase!important;opacity:.76}
+.project-flow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:4px}
+.project-flow-step{display:flex;min-width:0;min-height:35px;flex-direction:column;justify-content:center;gap:5px;padding:5px;border:1px solid currentColor;color:inherit;font-size:8px;line-height:1.15;font-weight:650;overflow-wrap:anywhere}
+.project-flow-step i{width:7px;height:7px;border-radius:50%;background:#f3c747}
+.project-flow-arrow{color:#f1c747;font:600 12px var(--mono,monospace)}
+.site-project-art .project-art-caption{font-size:8px;line-height:1.3;opacity:.8}
+.site-project-art-pulso{background:#263b3a;color:#e7efe8}
+.site-project-art-trilha{background:#36503e;color:#f1ecdf}
+.site-project-art-rota{background:#45361f;color:#f4eddb}
+.site-project-art-quarta{background:#173a50;color:#f5f1e5}
+.site-project-art-condrio{background:#383f38;color:#f0eee4}
+.site-project-art-mneme{background:#e9e5d9;color:#27392e}
+.site-project-art-mneme .project-flow-step{border-color:#435447}
+.site-project-art .project-flow-step{font-size:clamp(7px,.7vw,10px)}
+.portfolio-site-feature>.site-project-art{display:flex;float:none;width:100%;height:144px;margin:0 0 13px}
+.build-preview-feature .site-project-art{min-height:108px}
+.build-preview-feature .site-project-art .project-flow-step{min-height:30px}
+.build-preview-feature .site-project-art .project-art-label,.build-preview-feature .site-project-art .project-art-caption{font-size:7px}
+@media(max-width:980px){.portfolio-site-feature>.site-project-art{height:144px}}
+@media(max-width:560px){.portfolio-site-feature>.site-project-art{height:126px}.build-preview-feature .site-project-art{min-height:96px;padding:7px}.build-preview-feature .site-project-art .project-flow-step{min-height:27px;padding:3px}.build-preview-feature .site-project-art .project-flow-arrow{font-size:9px}.build-preview-blueprint{padding:15px}.build-preview-blueprint>p{font-size:10px}}

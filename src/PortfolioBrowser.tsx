@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { projects, type Project } from './content';
 import './portfolio-browser.css';
 
 const logo = '/assets/logo-hs.png';
-const projectImage: Partial<Record<Project['key'], string>> = {
-  pulso: '/assets/projects/pulso-live.jpg',
-  trilha: '/assets/projects/trilha-live.jpg',
+const projectFlows: Record<Project['key'], { label: string; steps: [string, string, string] }> = {
+  rota: { label: 'Roteiro em grupo', steps: ['Grupo', 'Lugares', 'Mapa'] },
+  quarta: { label: 'Descoberta da campanha', steps: ['Campanha', 'Regras', 'Bares'] },
+  condrio: { label: 'Fluxo da operação', steps: ['Obra', 'Chamado', 'Operação'] },
+  mneme: { label: 'Leitura da estratégia', steps: ['Sinal', 'Estratégia', 'Simulado'] },
+  pulso: { label: 'Contexto dos sinais', steps: ['Fontes', 'Eventos', 'Contexto'] },
+  trilha: { label: 'Roteiro pela cidade', steps: ['Cidade', 'Lugares', 'Roteiro'] },
 };
 
 function ProjectLinks({ project }: { project: Project }) {
@@ -17,11 +21,26 @@ function ProjectLinks({ project }: { project: Project }) {
 }
 
 function ProjectMark({ project }: { project: Project }) {
-  const image = projectImage[project.key];
+  const flow = projectFlows[project.key];
   return <div className={`site-project-art site-project-art-${project.key}`}>
-    {image
-      ? <img src={image} alt={`Captura real de ${project.title}`} loading="lazy"/>
-      : <><span>{project.title}</span><b>{project.line}</b></>}
+    <span className="project-art-label">{flow.label}</span>
+    <div className="project-flow" role="img" aria-label={`${flow.label}: ${flow.steps.join(' → ')}`}>
+      {flow.steps.map((step, index) => <Fragment key={step}><span className="project-flow-step"><i aria-hidden="true"/>{step}</span>{index < flow.steps.length - 1 && <b className="project-flow-arrow" aria-hidden="true">→</b>}</Fragment>)}
+    </div>
+    <span className="project-art-caption">{project.line}</span>
+  </div>;
+}
+
+function BuildScaffold() {
+  return <div className="build-preview-blueprint" role="img" aria-label="Estrutura inicial do portfólio">
+    <div className="blueprint-heading"><span>ESTRUTURA / PORTFÓLIO</span><b>LAYOUT</b></div>
+    <div className="blueprint-hero">
+      <div className="blueprint-rule blueprint-rule-short"/>
+      <div className="blueprint-rule blueprint-rule-long"/>
+      <div className="blueprint-rule blueprint-rule-mid"/>
+    </div>
+    <div className="blueprint-sections"><i/><i/><i/></div>
+    <p>Primeiro, a estrutura. Role para acompanhar o site ganhar conteúdo.</p>
   </div>;
 }
 
@@ -42,7 +61,8 @@ export function BuildPreview({ progress, onOpenBrowser }: { progress: number; on
 
   return <section className="build-preview" aria-label="Prévia do portfólio em construção" data-depth={depth}>
     <header className="build-preview-chrome"><span className="build-preview-dots"><i/><i/><i/></span><span>henriquesouzas.com</span><b>{depth === 6 ? 'PRONTO' : 'EM CONSTRUÇÃO'}</b></header>
-    <div className="build-preview-page">
+    <div className="build-preview-page" data-depth={depth}>
+      {depth === 1 ? <BuildScaffold/> : <>
       <header className="build-preview-nav"><img src={logo} alt=""/><span>HENRIQUE SOUZA</span><button type="button" onClick={onOpenBrowser}>Abrir site <span aria-hidden="true">↗</span></button></header>
       <div className="build-preview-content">
         <section className="build-preview-hero">
@@ -61,6 +81,7 @@ export function BuildPreview({ progress, onOpenBrowser }: { progress: number; on
         </section>}
         {depth >= 5 && <footer className="build-preview-footer"><span>Conteúdo e projetos públicos</span><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer">GitHub ↗</a></footer>}
       </div>
+      </>}
     </div>
   </section>;
 }

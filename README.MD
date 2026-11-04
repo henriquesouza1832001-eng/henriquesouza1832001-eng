@@ -28,7 +28,7 @@ O build fica em `dist/`. O script `scripts/postbuild.mjs` gera os cases, sitemap
 - `src/MobilePortfolio.tsx` adapta a mesma sequência para telas estreitas, sem moldura ou status fictícios de telefone.
 - `src/content.ts` concentra descrições, tecnologias, situação e links públicos dos projetos.
 
-Os projetos sem captura pública usam uma composição tipográfica identificada como parte do portfólio. As imagens de TrilhaBH e Pulso são capturas dos próprios produtos.
+Os projetos são apresentados por diagramas de fluxo baseados nas descrições públicas, em vez de capturas ou mockups dos aplicativos. Cada diagrama mostra o problema e a lógica principal do produto; os links levam aos cases, repositórios e produtos reais quando disponíveis.
 
 ## Publicação
 

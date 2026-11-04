@@ -360,4 +360,4 @@ O texto de apresentação de Henrique e o crédito de colaboração no MNEME pod
 - Escolher um arquivo manualmente mantém essa escolha enquanto a pessoa continua rolando. No final, o Explorador abre automaticamente se ela não tiver escolhido outro aplicativo.
 - Chrome local, viewport 1600 x 900: em 0%, 40%, 70% e 90% de rolagem foram conferidos o arquivo ativo e a abertura final do Explorador. A seleção manual de App.tsx permaneceu após a rolagem; o editor não criou overflow horizontal.
 - npm run build: passou; TypeScript, Vite e postbuild. git diff --check: passou.
-- Publicação: pendente após atualizar o pacote-fonte.
+- Cloudflare Pages Production: publicado em `https://36ad0cf3.portfolio-henrique-souza.pages.dev`; home, quatro cases e ZIP-fonte responderam HTTP 200. No Edge em viewport 1600 x 900, a versão publicada mostrou content.ts, App.tsx e SoftwareFilm.tsx nas etapas de rolagem e abriu o Explorador ao final.

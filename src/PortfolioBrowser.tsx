@@ -38,28 +38,28 @@ function ProjectList({ selectedKey, onSelect }: { selectedKey: Project['key']; o
 export function BuildPreview({ progress, onOpenBrowser }: { progress: number; onOpenBrowser: () => void }) {
   const [selectedKey, setSelectedKey] = useState<Project['key']>('quarta');
   const selected = projects.find(project => project.key === selectedKey) ?? projects[1];
-  const depth = progress < 0.3 ? 1 : progress < 0.56 ? 2 : progress < 0.82 ? 3 : 4;
+  const depth = progress < .18 ? 1 : progress < .36 ? 2 : progress < .54 ? 3 : progress < .72 ? 4 : progress < .88 ? 5 : 6;
 
   return <section className="build-preview" aria-label="Prévia do portfólio em construção" data-depth={depth}>
-    <header className="build-preview-chrome"><span className="build-preview-dots"><i/><i/><i/></span><span>henriquesouzas.com</span><b>{depth === 4 ? 'PRONTO' : 'PRÉVIA AO VIVO'}</b></header>
+    <header className="build-preview-chrome"><span className="build-preview-dots"><i/><i/><i/></span><span>henriquesouzas.com</span><b>{depth === 6 ? 'PRONTO' : 'EM CONSTRUÇÃO'}</b></header>
     <div className="build-preview-page">
       <header className="build-preview-nav"><img src={logo} alt=""/><span>HENRIQUE SOUZA</span><button type="button" onClick={onOpenBrowser}>Abrir site <span aria-hidden="true">↗</span></button></header>
       <div className="build-preview-content">
         <section className="build-preview-hero">
           <span>ENGENHARIA DE SOFTWARE · BELO HORIZONTE</span>
           <h2>Software para<br/>o mundo <em>real.</em></h2>
-          <p>Produto, interface e sistemas pensados a partir do trabalho que precisam resolver.</p>
-          {depth >= 2 && <a href="#projetos-na-previa" onClick={event => { event.preventDefault(); document.getElementById('projetos-na-previa')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }}>Conheça os projetos <span aria-hidden="true">↓</span></a>}
+          {depth >= 2 && <p>Produto, interface e sistemas pensados a partir do trabalho que precisam resolver.</p>}
+          {depth >= 3 && <a href="#projetos-na-previa" onClick={event => { event.preventDefault(); document.getElementById('projetos-na-previa')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }}>Conheça os projetos <span aria-hidden="true">↓</span></a>}
         </section>
-        {depth >= 2 && <section className="build-preview-work" id="projetos-na-previa">
+        {depth >= 3 && <section className="build-preview-work" id="projetos-na-previa">
           <div className="build-preview-work-heading"><span>UM PROJETO EM DESTAQUE</span><button type="button" onClick={onOpenBrowser}>Explorar todos ↗</button></div>
           <div className="build-preview-feature">
             <ProjectMark project={selected}/>
             <div><small>{selected.tag}</small><h3>{selected.title}</h3><p>{selected.description}</p><a href={selected.repo} target="_blank" rel="noreferrer">Código público ↗</a></div>
           </div>
-          {depth >= 3 && <ProjectList selectedKey={selectedKey} onSelect={setSelectedKey}/>}
+          {depth >= 4 && <ProjectList selectedKey={selectedKey} onSelect={setSelectedKey}/>}
         </section>}
-        {depth >= 4 && <footer className="build-preview-footer"><span>Conteúdo e projetos públicos</span><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer">GitHub ↗</a></footer>}
+        {depth >= 5 && <footer className="build-preview-footer"><span>Conteúdo e projetos públicos</span><a href="https://github.com/henriquesouza1832001-eng" target="_blank" rel="noreferrer">GitHub ↗</a></footer>}
       </div>
     </div>
   </section>;

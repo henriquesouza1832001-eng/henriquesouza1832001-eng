@@ -39,7 +39,7 @@ function ProjectApp({ project, onSelect }: { project: Project; onSelect: (key: P
 function MobileIDE({ typingStep }: { typingStep: number }) {
   const [selectedFile, setSelectedFile] = useState('content.ts');
   const lines = (sourceByFile[selectedFile] ?? sourceByFile['content.ts']).split(/\r?\n/);
-  const visibleCount = Math.floor((typingStep / 18) * lines.length);
+  const visibleCount = Math.floor((typingStep / 30) * lines.length);
   return <section className="mobile-ide-app" aria-label="IDE com código real do portfólio">
     <p className="mobile-eyebrow">IDE / CÓDIGO DO PORTFÓLIO</p>
     <div className="mobile-file-picker" aria-label="Escolher arquivo">
@@ -74,7 +74,7 @@ export default function MobilePortfolio({ progress, typingStep, soundEnabled, on
   useEffect(() => {
     if (manualChoice.current) return;
     if (progress <= .015) setActiveApp('home');
-    else if (progress < .82) setActiveApp('ide');
+    else if (progress < .88) setActiveApp('ide');
     else setActiveApp('browser');
   }, [progress]);
 

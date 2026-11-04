@@ -4,7 +4,7 @@ import { codeFiles, sourceByFile } from './ide-source';
 import PortfolioBrowser, { BuildPreview } from './PortfolioBrowser';
 import './desktop-os.css';
 
-export type ScreenStage = 'ide' | 'prototype' | 'review' | 'desktop';
+export type ScreenStage = 'brief' | 'structure' | 'content' | 'interface' | 'review' | 'desktop';
 type WindowId = 'browser' | 'explorer' | 'code' | 'about' | 'contact' | 'settings';
 type ExplorerLocation = 'root' | ProjectKey;
 type ExplorerFileKind = 'readme' | 'case' | 'repo' | 'product';
@@ -151,11 +151,19 @@ function CodeWindow({ progress, onOpenBrowser }: { progress: number; onOpenBrows
   const [manualFile, setManualFile] = useState<string | null>(null);
   const [copyMessage, setCopyMessage] = useState('');
   const [copyFallbackOpen, setCopyFallbackOpen] = useState(false);
-  const automaticFile = progress < .3 ? 'content.ts' : progress < .56 ? 'App.tsx' : 'SoftwareFilm.tsx';
+  const filePhases = [
+    { file: 'content.ts', start: 0, end: .18 },
+    { file: 'App.tsx', start: .18, end: .36 },
+    { file: 'CasePage.tsx', start: .36, end: .54 },
+    { file: 'SoftwareFilm.tsx', start: .54, end: .72 },
+    { file: 'App.tsx', start: .72, end: .88 },
+  ];
+  const currentPhase = filePhases.find(phase => progress < phase.end) ?? filePhases[filePhases.length - 1];
+  const automaticFile = currentPhase.file;
   const selectedFile = manualFile ?? automaticFile;
   const source = sourceByFile[selectedFile] ?? sourceByFile['content.ts'];
   const lines = source.split(/\r?\n/);
-  const phaseProgress = progress < .3 ? progress / .3 : progress < .56 ? (progress - .3) / .26 : (progress - .56) / .26;
+  const phaseProgress = Math.max(0, Math.min(1, (progress - currentPhase.start) / (currentPhase.end - currentPhase.start)));
   const visibleLines = manualFile ? lines.length : Math.max(Math.min(4, lines.length), Math.ceil(phaseProgress * lines.length));
   const copySource = async () => {
     try {
@@ -217,7 +225,7 @@ export default function DesktopOS({ progress, soundEnabled, onSoundToggle }: {
 
   useEffect(() => {
     if (navigationChosen.current) return;
-    openWindow(progress < .82 ? 'code' : 'browser', false);
+    openWindow(progress < .88 ? 'code' : 'browser', false);
   }, [progress]);
 
   useEffect(() => {
@@ -260,7 +268,7 @@ export default function DesktopOS({ progress, soundEnabled, onSoundToggle }: {
       <DesktopShortcut id="contact" label="Contato" onOpen={openWindow}/>
       <DesktopShortcut id="settings" label="Ajustes" onOpen={openWindow}/>
     </nav>
-    <p className="os-desktop-hint">{progress >= .82 || activeWindow === 'explorer' ? 'ABRA UMA PASTA PARA EXPLORAR' : 'ROLE PARA REVELAR O CÓDIGO'}</p>
+    <p className="os-desktop-hint">{progress >= .88 || activeWindow === 'explorer' ? 'ABRA UMA PASTA PARA EXPLORAR' : 'ROLE PARA REVELAR O CÓDIGO'}</p>
 
     {openWindows.map(id => <div key={id} className={`os-window-layer ${activeWindow === id && !minimized.includes(id) ? 'is-active' : 'is-hidden'}`}>
       <WindowFrame id={id} active={activeWindow === id && !minimized.includes(id)} maximized={maximized} onClose={() => closeWindow(id)} onMinimize={() => minimizeWindow(id)} onMaximize={() => setMaximized(value => !value)}>

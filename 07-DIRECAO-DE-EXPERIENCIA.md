@@ -13,10 +13,11 @@ O computador é desenhado com CSS como um monitor único, com moldura e base gr�
 ## Construção e rolagem
 
 - A IDE aparece desde o primeiro quadro, ao lado da primeira versão do site.
-- Os arquivos exibidos vêm do código real do repositório. A rolagem revela o restante do arquivo atual; voltar recolhe as linhas.
+- A rolagem percorre seis momentos do trabalho: problema, estrutura, conteúdo, interface, revisão e uso. O texto editorial, o arquivo aberto e a prévia mudam juntos em cada passagem.
+- Os arquivos exibidos vêm do código real do repositório. Cada trecho revela as linhas do arquivo correspondente; voltar recolhe as linhas e reconstrói a etapa anterior.
 - A prévia usa o conteúdo real de `src/content.ts`. O primeiro projeto em destaque é Quarta é Dia de Amstel; os projetos e seus estados continuam selecionáveis.
-- Conforme a rolagem avança, entram os projetos, os links e as demais partes do portfólio.
-- No último trecho, o navegador do sistema abre o site final no mesmo monitor.
+- Conforme a rolagem avança, entram o conteúdo, os projetos, a seleção e os links reais do portfólio.
+- Só no último trecho o navegador do sistema assume a tela e abre o site final no mesmo monitor, pronto para uso.
 - A rolagem da página permanece nativa. O visitante pode voltar, avançar ou usar controles a qualquer momento.
 - Depois de uma escolha manual de app, a progressão deixa de trocar a janela escolhida.
 

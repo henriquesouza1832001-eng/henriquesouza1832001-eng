@@ -1,52 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
-  <title id="title">Henrique Souza — software para problemas reais</title>
-  <desc id="desc">Capa de portfólio com foco em sistemas web, produtos digitais, cloud e engenharia.</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#09111f"/>
-      <stop offset=".58" stop-color="#101b31"/>
-      <stop offset="1" stop-color="#172743"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#38d6c3" stop-opacity=".95"/>
-      <stop offset="1" stop-color="#7187ff" stop-opacity=".8"/>
-    </linearGradient>
-    <radialGradient id="aura">
-      <stop stop-color="#38d6c3" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#38d6c3" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M32 0H0V32" fill="none" stroke="#d4e2ff" stroke-opacity=".055" stroke-width="1"/>
-    </pattern>
-  </defs>
-  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
-  <rect width="1200" height="360" rx="28" fill="url(#grid)"/>
-  <ellipse cx="1000" cy="170" rx="340" ry="250" fill="url(#aura)"/>
-  <path d="M804 0h396v360H884c87-46 140-110 140-183 0-74-76-137-220-177Z" fill="#101d33" opacity=".6"/>
-  <g fill="none" stroke="url(#glow)" stroke-opacity=".38">
-    <circle cx="1000" cy="180" r="125" stroke-width="1.5"/>
-    <circle cx="1000" cy="180" r="92" stroke-width="1"/>
-    <path d="M875 180h250M1000 55v250" stroke-width="1"/>
-    <path d="M911 91l178 178M1089 91 911 269" stroke-opacity=".22"/>
-  </g>
-  <circle cx="1000" cy="180" r="54" fill="#0b1628" stroke="url(#glow)" stroke-width="2"/>
-  <text x="1000" y="196" text-anchor="middle" fill="#e9fbff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="48" font-weight="700" letter-spacing="-4">HS</text>
-  <circle cx="1000" cy="55" r="5" fill="#41dcc9"/>
-  <circle cx="1125" cy="180" r="5" fill="#8794ff"/>
-  <circle cx="911" cy="269" r="5" fill="#41dcc9"/>
-  <text x="76" y="85" fill="#54dfcf" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="3">PORTFÓLIO • BELO HORIZONTE, BR</text>
-  <text x="72" y="160" fill="#f3f7ff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="54" font-weight="750" letter-spacing="-2">Henrique Souza</text>
-  <text x="76" y="204" fill="#c8d5eb" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="22">Construo produtos digitais que conectam</text>
-  <text x="76" y="235" fill="#c8d5eb" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="22">pessoas, operações e dados.</text>
-  <g font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="600">
-    <rect x="76" y="278" width="116" height="34" rx="17" fill="#162d3d" stroke="#38d6c3" stroke-opacity=".48"/>
-    <text x="134" y="300" text-anchor="middle" fill="#a6f3e8">FULL STACK</text>
-    <rect x="204" y="278" width="76" height="34" rx="17" fill="#162d3d" stroke="#7187ff" stroke-opacity=".48"/>
-    <text x="242" y="300" text-anchor="middle" fill="#c5ceff">CLOUD</text>
-    <rect x="292" y="278" width="66" height="34" rx="17" fill="#162d3d" stroke="#38d6c3" stroke-opacity=".48"/>
-    <text x="325" y="300" text-anchor="middle" fill="#a6f3e8">PWA</text>
-    <rect x="370" y="278" width="128" height="34" rx="17" fill="#162d3d" stroke="#7187ff" stroke-opacity=".48"/>
-    <text x="434" y="300" text-anchor="middle" fill="#c5ceff">ENGENHARIA</text>
-  </g>
-  <text x="76" y="340" fill="#8798b3" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12">Do problema à experiência em produção</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="t d">
+<title id="t">Henrique Souza — sistemas, engenharia e produto</title>
+<desc id="d">Capa editorial com linhas de planta e um fluxo ligando problema, sistema e uso.</desc>
+<rect width="1200" height="300" fill="#f4f1e8"/>
+<path d="M0 1H1200M0 299H1200" stroke="#183c35" stroke-width="2"/>
+<g stroke="#b9c4b9" stroke-width="1" opacity=".65">
+<path d="M36 0V300M68 0V300M100 0V300M132 0V300M164 0V300M196 0V300M228 0V300M260 0V300M292 0V300M324 0V300M356 0V300M388 0V300M420 0V300M452 0V300M484 0V300M516 0V300M548 0V300M580 0V300M612 0V300M644 0V300M676 0V300M708 0V300M740 0V300M772 0V300M804 0V300M836 0V300M868 0V300M900 0V300M932 0V300M964 0V300M996 0V300M1028 0V300M1060 0V300M1092 0V300M1124 0V300M1156 0V300M1188 0V300"/>
+</g>
+<rect x="0" y="0" width="14" height="300" fill="#dd5b3f"/>
+<text x="76" y="58" fill="#52655b" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="3">BELO HORIZONTE · BRASIL</text>
+<text x="72" y="132" fill="#183c35" font-family="Arial,sans-serif" font-size="56" font-weight="700" letter-spacing="-2">Henrique Souza</text>
+<text x="76" y="177" fill="#334b42" font-family="Arial,sans-serif" font-size="21">Software, engenharia e problemas do mundo real.</text>
+<text x="76" y="238" fill="#dd5b3f" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2">FULL STACK</text>
+<circle cx="177" cy="234" r="3" fill="#183c35"/>
+<text x="196" y="238" fill="#dd5b3f" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2">PWA</text>
+<circle cx="250" cy="234" r="3" fill="#183c35"/>
+<text x="270" y="238" fill="#dd5b3f" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2">CLOUD</text>
+<circle cx="348" cy="234" r="3" fill="#183c35"/>
+<text x="368" y="238" fill="#dd5b3f" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2">ENGENHARIA</text>
+<g fill="none" stroke="#183c35" stroke-width="2">
+<path d="M760 214H850V180H932V130H1032V81H1118"/>
+<path d="M760 214V244H850V214M932 180V209H1032V130"/>
+<rect x="746" y="200" width="28" height="28" fill="#f4f1e8"/>
+<rect x="836" y="166" width="28" height="28" fill="#f4f1e8"/>
+<rect x="918" y="116" width="28" height="28" fill="#f4f1e8"/>
+<rect x="1018" y="67" width="28" height="28" fill="#f4f1e8"/>
+</g>
+<g fill="#dd5b3f"><circle cx="760" cy="214" r="4"/><circle cx="850" cy="180" r="4"/><circle cx="932" cy="130" r="4"/><circle cx="1032" cy="81" r="4"/></g>
+<g fill="#52655b" font-family="Arial,sans-serif" font-size="10" letter-spacing="1">
+<text x="739" y="270">PROBLEMA</text><text x="829" y="152">SISTEMA</text><text x="910" y="103">PRODUTO</text><text x="1010" y="54">USO REAL</text>
+</g>
+<text x="1118" y="268" text-anchor="end" fill="#52655b" font-family="Arial,sans-serif" font-size="11">01 / PERFIL</text>
 </svg>
